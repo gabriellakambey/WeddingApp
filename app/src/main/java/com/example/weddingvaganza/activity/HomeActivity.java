@@ -1,0 +1,87 @@
+package com.example.weddingvaganza.activity;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import android.os.Bundle;
+import android.view.MenuItem;
+
+import com.example.weddingvaganza.R;
+import com.example.weddingvaganza.fragment.BudgetFragment;
+import com.example.weddingvaganza.fragment.GuestsFragment;
+import com.example.weddingvaganza.fragment.HomeFragment;
+import com.example.weddingvaganza.fragment.TodoListFragment;
+import com.example.weddingvaganza.fragment.VendorFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+
+    BottomNavigationView menu_bawah;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home);
+
+        //bottom nav
+        menu_bawah = findViewById(R.id.menu_bawah);
+        menu_bawah.setOnNavigationItemSelectedListener(this);
+
+        //home fragment as main fragment
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frame_layout, new HomeFragment()).commit();
+    }
+
+    Fragment fragment = null;
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home:
+                fragment = new HomeFragment();
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frame_layout, fragment);
+                fragmentTransaction.commit();
+                break;
+
+            case R.id.todoList:
+                fragment = new TodoListFragment();
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frame_layout, fragment);
+                fragmentTransaction.commit();
+                break;
+
+            case R.id.guests:
+                fragment = new GuestsFragment();
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frame_layout, fragment);
+                fragmentTransaction.commit();
+                break;
+
+            case R.id.budget:
+                fragment = new BudgetFragment();
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frame_layout, fragment);
+                fragmentTransaction.commit();
+                break;
+
+            case R.id.vendor:
+                fragment = new VendorFragment();
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frame_layout, fragment);
+                fragmentTransaction.commit();
+                break;
+        }
+        return true;
+    }
+}
