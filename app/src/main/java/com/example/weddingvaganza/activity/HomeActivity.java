@@ -58,24 +58,9 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 fragmentTransaction.commit();
                 break;
 
-            case R.id.guests:
-                fragment = new GuestsFragment();
-                fragmentManager = getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frame_layout, fragment);
-                fragmentTransaction.commit();
-                break;
 
             case R.id.budget:
                 fragment = new BudgetFragment();
-                fragmentManager = getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frame_layout, fragment);
-                fragmentTransaction.commit();
-                break;
-
-            case R.id.vendor:
-                fragment = new VendorFragment();
                 fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frame_layout, fragment);
