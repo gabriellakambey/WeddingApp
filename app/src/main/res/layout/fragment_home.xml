@@ -1,256 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/navy"
+    android:orientation="vertical"
     tools:context=".fragment.HomeFragment">
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/header_home"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="30dp"
+            android:text="TONI &amp; TINA"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:gravity="center"/>
+
+        <cn.iwgang.countdownview.CountdownView
+            android:id="@+id/countDown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:isHideTimeBackground="false"
+            app:isShowDay="true"
+            app:isShowHour="true"
+            app:isShowMinute="true"
+            app:isShowSecond="true"
+            app:timeTextColor="@color/navy"
+            app:timeTextSize="20dp"
+            app:isTimeTextBold="true"
+            app:timeBgColor="@color/white"
+            app:timeBgRadius="4dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="133dp">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="TONI &amp; TINA"
-                android:textSize="30dp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:gravity="center"/>
+                android:textSize="11sp"
+                android:text="days"
+                android:textColor="@color/white"/>
+
+            <RelativeLayout
+                android:layout_width="15dp"
+                android:layout_height="match_parent"/>
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/count_down"
-                android:layout_marginTop="5dp"
-                android:text="00 : 00 : 00 : 00"
-                android:textSize="20dp"
-                android:textColor="@color/white"
-                android:textAlignment="center"/>
+                android:textSize="11sp"
+                android:text="hours"
+                android:textColor="@color/white"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="11sp"
-                    android:text="days"
-                    android:textColor="@color/white"/>
-
-                <RelativeLayout
-                    android:layout_width="12dp"
-                    android:layout_height="match_parent"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="11sp"
-                    android:text="hours"
-                    android:textColor="@color/white"/>
-
-                <RelativeLayout
-                    android:layout_width="12dp"
-                    android:layout_height="match_parent"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="11sp"
-                    android:text="mins"
-                    android:textColor="@color/white"/>
-
-                <RelativeLayout
-                    android:layout_width="13dp"
-                    android:layout_height="match_parent"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="11sp"
-                    android:text="secs"
-                    android:textColor="@color/white"/>
-
-            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="14dp"
+                android:layout_height="match_parent"/>
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Until The Wedding"
-                android:textSize="14dp"
-                android:textColor="@color/white"
-                android:textAlignment="center"/>
+                android:textSize="11sp"
+                android:text="mins"
+                android:textColor="@color/white"/>
+
+            <RelativeLayout
+                android:layout_width="16dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:text="secs"
+                android:textColor="@color/white"/>
 
         </LinearLayout>
 
-        <RelativeLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="170dp"
-            android:background="@drawable/bg_champagne">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Until The Wedding"
+            android:textSize="14dp"
+            android:textColor="@color/white"
+            android:textAlignment="center"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/menu_extras"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Menu"
-                    android:layout_marginStart="30dp"
-                    android:textColor="@color/navy"
-                    android:textSize="16dp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="20dp"
+    </LinearLayout>
 
-                    />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+    <FrameLayout
+        android:id="@+id/layout_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header_home"/>
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="6dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginHorizontal="30dp">
-
-                        <ImageButton
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/ic_home"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginVertical="10dp"/>
-                        <ImageButton
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/ic_list"
-                            android:layout_marginStart="90dp"
-                            android:layout_marginVertical="10dp"/>
-                        <ImageButton
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/ic_group"
-                            android:layout_marginStart="160dp"
-                            android:layout_marginVertical="10dp"/>
-                        <ImageButton
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/ic_budget"
-                            android:layout_marginStart="230dp"
-                            android:layout_marginVertical="10dp"/>
-                        <ImageButton
-                            android:layout_marginTop="80dp"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/ic_profile"
-                            android:layout_marginStart="90dp"
-                            android:layout_marginBottom="10dp"/>
-                        <ImageButton
-                            android:layout_marginTop="80dp"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/ic_vendor"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginBottom="10dp"
-                            />
-
-
-
-                    </androidx.cardview.widget.CardView>
-
-
-
-                </LinearLayout>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_below="@+id/menu_extras"
-                >
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="To The Wedding"
-                    android:textColor="@color/navy"
-                    android:textSize="16dp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="30dp"/>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="350dp"
-                    android:layout_height="130dp"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="6dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginHorizontal="30dp">
-
-
-
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Guests"
-                    android:textColor="@color/navy"
-                    android:textSize="16dp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="30dp"/>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="350dp"
-                    android:layout_height="130dp"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="6dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginHorizontal="30dp">
-
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Budget"
-                    android:textColor="@color/navy"
-                    android:textSize="16dp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="30dp"/>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="350dp"
-                    android:layout_height="130dp"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="6dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginHorizontal="30dp">
-
-                </androidx.cardview.widget.CardView>
-
-            </LinearLayout>
-
-        </RelativeLayout>
-
-    </RelativeLayout>
-
-</androidx.core.widget.NestedScrollView>
+</LinearLayout>

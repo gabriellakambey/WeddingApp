@@ -10,11 +10,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.weddingvaganza.R;
-import com.example.weddingvaganza.fragment.BudgetFragment;
-import com.example.weddingvaganza.fragment.GuestsFragment;
 import com.example.weddingvaganza.fragment.HomeFragment;
+import com.example.weddingvaganza.fragment.ProfileFragment;
 import com.example.weddingvaganza.fragment.TodoListFragment;
-import com.example.weddingvaganza.fragment.VendorFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -59,8 +57,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 break;
 
 
-            case R.id.budget:
-                fragment = new BudgetFragment();
+            case R.id.profile:
+                fragment = new ProfileFragment();
                 fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frame_layout, fragment);

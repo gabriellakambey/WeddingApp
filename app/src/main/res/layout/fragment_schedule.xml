@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.VendorFragment">
+    tools:context=".fragment.ScheduleFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Vendor Fragment"
-        android:layout_centerInParent="true"
+        android:text="Schedule"
+        android:textStyle="bold"
+        android:textSize="30dp"
         android:gravity="center"/>
 
 </FrameLayout>

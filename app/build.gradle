@@ -46,6 +46,9 @@ dependencies {
     //passwordView
     implementation 'com.xwray:passwordview:1.0'
 
+    //countdown view
+    implementation 'com.github.iwgang:countdownview:2.1.6'
+
     //custom bottom navigation menu
     implementation 'com.github.armcha:SpaceNavigationView:1.6.0'
 }

@@ -12,8 +12,13 @@ import android.widget.TextView;
 
 import com.example.weddingvaganza.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+
+import cn.iwgang.countdownview.CountdownView;
 
 public class HomeFragment extends Fragment {
     TextView textView;
@@ -24,30 +29,24 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        textView = view.findViewById(R.id.count_down);
+        CountdownView countdownView = view.findViewById(R.id.countDown);
 
-        // timer duration
-        long duration = TimeUnit.MINUTES.toMillis(3);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        String countDate = "31-05-2021 00:00:00";
+        Date now = new Date();
 
-        // countdown timer
-        new CountDownTimer(duration, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                // convert milisecond to minute and second
-                String sDuration = String.format(Locale.ENGLISH, "%02d : %02d"
-                ,TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)
-                ,TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
-                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
+        try {
+            //formatting from String to Date
+            Date date = sdf.parse(countDate);
+            long currentTime = now.getTime();
+            long theDate = date.getTime();
+            long countDownToTheDate = theDate - currentTime;
 
-                //convert string on text view
-                textView.setText(sDuration);
-            }
+            countdownView.start(countDownToTheDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-            @Override
-            public void onFinish() {
-
-            }
-        }.start();
         return view;
     }
 }
