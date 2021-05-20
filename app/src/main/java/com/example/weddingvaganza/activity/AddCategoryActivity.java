@@ -3,7 +3,6 @@ package com.example.weddingvaganza.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -14,33 +13,37 @@ import com.example.weddingvaganza.R;
 
 import java.util.Calendar;
 
-public class SignUpActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-    private Button btn_regis;
+public class AddCategoryActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+
     private TextView textDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_add_category);
 
-        btn_regis = findViewById(R.id.btn_regis);
+        Button btnBackCategory = findViewById(R.id.btnBackCategory);
 
-        btn_regis.setOnClickListener(v-> {
-            Intent regis = new Intent(SignUpActivity.this, SignInActivity.class);
-            startActivity(regis);
+        btnBackCategory.setOnClickListener(v -> {
+            onBack();
         });
 
-        TextView textView = findViewById(R.id.tv_signIn);
-        textView.setOnClickListener(v -> {
-            Intent login = new Intent(SignUpActivity.this, SignInActivity.class);
-            startActivity(login);
-        });
-
-        textDate = findViewById(R.id.textDateSignUp);
-        ImageView datePicker = findViewById(R.id.datePickerSignUp);
+        textDate = findViewById(R.id.textDateCategory);
+        ImageView datePicker = findViewById(R.id.datePickerCategory);
         datePicker.setOnClickListener(v -> {
             showDatePickerDialog();
         });
+    }
+
+    private void onBack() {
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (count == 0){
+            super.onBackPressed();
+        }
+        else {
+            getSupportFragmentManager().popBackStack();
+        }
     }
 
     private void showDatePickerDialog() {

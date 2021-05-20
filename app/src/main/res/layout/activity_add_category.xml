@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.TodoListFragment">
+    tools:context=".activity.AddCategoryActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,37 +17,36 @@
             android:layout_height="65dp"
             android:background="@color/navy"
             app:contentInsetEnd="0dp"
-            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
             app:contentInsetRight="0dp"
-            app:contentInsetStart="0dp">
-
+            app:contentInsetLeft="0dp">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="10dp">
                 <Button
-                    android:id="@+id/btnBackSchedule"
+                    android:id="@+id/btnBackCategory"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="10dp"
                     android:background="@drawable/ic_rounded_back" />
+
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="50dp"
+                    android:text="Category Event"
+                    android:textSize="26dp"
+                    android:textStyle="bold"
                     android:gravity="center"
-                    android:text="Schedule"
-                    android:textColor="@color/white"
-                    android:textSize="28sp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/white"/>
             </RelativeLayout>
-
         </androidx.appcompat.widget.Toolbar>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Schedule"
+            android:text="Add Category"
             android:textSize="16dp"
             android:textStyle="bold"
             android:textColor="@color/navy"
@@ -68,6 +67,46 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="Category Title"
+                    android:textSize="14dp"
+                    android:textColor="@color/navy"
+                    android:layout_marginTop="10dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:textColor="@color/navy"
+                    android:hint="Enter the category title"
+                    android:textColorHint="@color/hint"
+                    android:layout_marginTop="5dp"
+                    android:padding="15dp"
+                    android:background="@drawable/round_navy"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Schedule Title"
+                    android:textSize="14dp"
+                    android:textColor="@color/navy"
+                    android:layout_marginTop="15dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:textColor="@color/navy"
+                    android:hint="Enter the schedule title"
+                    android:textColorHint="@color/hint"
+                    android:layout_marginTop="5dp"
+                    android:padding="15dp"
+                    android:background="@drawable/round_navy"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="Date"
                     android:textSize="14dp"
                     android:textColor="@color/navy"
@@ -81,7 +120,7 @@
                     android:background="@drawable/round_navy">
 
                     <EditText
-                        android:id="@+id/textDateSchedule"
+                        android:id="@+id/textDateCategory"
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:textSize="13sp"
@@ -99,60 +138,13 @@
                         android:layout_height="wrap_content"/>
 
                     <ImageView
-                        android:id="@+id/datePickerSchedule"
+                        android:id="@+id/datePickerCategory"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_calendar"
                         android:layout_gravity="center"/>
 
                 </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Title"
-                    android:textSize="14dp"
-                    android:textColor="@color/navy"
-                    android:layout_marginTop="10dp"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:maxLines="1"
-                    android:inputType="text"
-                    android:textColor="@color/navy"
-                    android:hint="Enter the schedule title"
-                    android:textColorHint="@color/hint"
-                    android:layout_marginTop="5dp"
-                    android:padding="15dp"
-                    android:background="@drawable/round_navy"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Category Event"
-                    android:textColor="@color/navy"
-                    android:textSize="14sp"
-                    android:layout_marginTop="10dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/round_navy"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
-                    <Spinner
-                        android:id="@+id/spinner_category_schedule"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:autofillHints="Select the Category"
-                        android:entries="@array/category" />
-
-                </LinearLayout>
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -171,7 +163,7 @@
                     android:layout_marginTop="5dp">
 
                     <EditText
-                        android:id="@+id/noteSchedule"
+                        android:id="@+id/noteScheduleCategory"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/transparent_background"
@@ -195,7 +187,6 @@
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="15dp"/>
-
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

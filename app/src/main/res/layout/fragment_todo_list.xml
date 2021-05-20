@@ -30,10 +30,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tab_layout"
-        app:tabMode="fixed"
         app:tabGravity="fill"
-        app:tabTextColor="@color/black"
-        app:tabSelectedTextColor="@color/navy"/>
+        app:tabTextColor="@color/navy"
+        app:tabSelectedTextColor="@color/gold"
+        app:tabIndicatorColor="@color/gold"/>
 
     <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
@@ -41,7 +41,5 @@
         android:layout_weight="1"
         android:background="@color/white"
         android:id="@+id/ViewPager"/>
-
-
 
 </LinearLayout>

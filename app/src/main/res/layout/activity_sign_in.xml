@@ -41,7 +41,7 @@
             android:textColorHint="@color/hint"
             android:layout_marginTop="5dp"
             android:padding="15dp"
-            android:background="@drawable/round_border"/>
+            android:background="@drawable/round_champagne"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -53,6 +53,7 @@
             android:textColor="@color/white"/>
 
         <com.xwray.passwordview.PasswordView
+            android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Your Password"
@@ -62,7 +63,7 @@
             android:textSize="14sp"
             android:layout_marginTop="5dp"
             android:padding="15dp"
-            android:background="@drawable/round_border"
+            android:background="@drawable/round_champagne"
             app:useStrikeThrough="true"
             android:drawableTint="@color/white"/>
 

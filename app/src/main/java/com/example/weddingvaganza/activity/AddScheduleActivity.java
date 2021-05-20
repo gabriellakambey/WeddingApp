@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -30,21 +31,21 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
             "Blessing of Church", "Wedding Ceremony"
     };
     private Button btnBack;
-    private LinearLayout datePicker;
+    private ImageView datePicker;
     private TextView textDate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_schedule);
-        spinner = findViewById(R.id.spinner_category);
-        btnBack = findViewById(R.id.btnBack);
+        spinner = findViewById(R.id.spinner_category_schedule);
+        btnBack = findViewById(R.id.btnBackSchedule);
 
         btnBack.setOnClickListener(v -> {
             onBack();
         });
 
-        textDate = findViewById(R.id.textDate);
-        datePicker = findViewById(R.id.datePicker);
+        textDate = findViewById(R.id.textDateSchedule);
+        datePicker = findViewById(R.id.datePickerSchedule);
         datePicker.setOnClickListener(v -> {
             showDatePickerDialog();
         });

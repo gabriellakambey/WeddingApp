@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.TodoListFragment">
+    tools:context=".activity.AddRundownActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="10dp">
                 <Button
-                    android:id="@+id/btnBackSchedule"
+                    android:id="@+id/btnBackRundown"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_centerVertical="true"
@@ -36,7 +36,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="Schedule"
+                    android:text="Rundown"
                     android:textColor="@color/white"
                     android:textSize="28sp"
                     android:textStyle="bold" />
@@ -47,7 +47,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Schedule"
+            android:text="Add Rundown"
             android:textSize="16dp"
             android:textStyle="bold"
             android:textColor="@color/navy"
@@ -68,44 +68,24 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Date"
+                    android:text="Time"
                     android:textSize="14dp"
                     android:textColor="@color/navy"
                     android:layout_marginTop="15dp"/>
 
-                <LinearLayout
-                    android:layout_width="180dp"
+                <EditText
+                    android:id="@+id/timeRundown"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:textSize="12sp"
+                    android:maxLines="1"
+                    android:inputType="time"
+                    android:textColor="@color/navy"
+                    android:hint="hh:mm"
+                    android:textColorHint="@color/hint"
                     android:layout_marginTop="5dp"
-                    android:background="@drawable/round_navy">
-
-                    <EditText
-                        android:id="@+id/textDateSchedule"
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        android:textSize="13sp"
-                        android:maxLines="1"
-                        android:inputType="date"
-                        android:textColor="@color/navy"
-                        android:hint="dd/mm/yyyy"
-                        android:textColorHint="@color/hint"
-                        android:padding="12dp"
-                        android:layout_marginStart="5dp"
-                        android:background="@drawable/transparent_background"/>
-
-                    <RelativeLayout
-                        android:layout_width="15dp"
-                        android:layout_height="wrap_content"/>
-
-                    <ImageView
-                        android:id="@+id/datePickerSchedule"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_calendar"
-                        android:layout_gravity="center"/>
-
-                </LinearLayout>
+                    android:padding="15dp"
+                    android:background="@drawable/round_navy"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -128,30 +108,24 @@
                     android:background="@drawable/round_navy"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Category Event"
-                    android:textColor="@color/navy"
-                    android:textSize="14sp"
-                    android:layout_marginTop="10dp"/>
-
-                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/round_navy"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
-                    <Spinner
-                        android:id="@+id/spinner_category_schedule"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:autofillHints="Select the Category"
-                        android:entries="@array/category" />
-
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:text="Person in Charge"
+                    android:textSize="14dp"
+                    android:textColor="@color/navy"
+                    android:layout_marginTop="10dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:textColor="@color/navy"
+                    android:hint="Enter the person name"
+                    android:textColorHint="@color/hint"
+                    android:layout_marginTop="5dp"
+                    android:padding="15dp"
+                    android:background="@drawable/round_navy"/>
 
                 <TextView
                     android:layout_width="match_parent"
