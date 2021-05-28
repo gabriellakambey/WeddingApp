@@ -6,10 +6,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.CategoryFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:gravity="center"
         android:padding="20dp">
 
@@ -38,6 +37,14 @@
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
 
-    </LinearLayout>
+        <FrameLayout
+            android:id="@+id/fl_categoryEvent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/add_category"/>
+
+    </RelativeLayout>
+
 
 </FrameLayout>

@@ -34,8 +34,8 @@ import cn.iwgang.countdownview.CountdownView;
 public class TodoListFragment extends Fragment {
 
     private TabLayout tabLayout;
-
     private ViewPager viewPager;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
