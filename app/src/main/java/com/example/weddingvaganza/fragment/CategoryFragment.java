@@ -3,8 +3,12 @@ package com.example.weddingvaganza.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +21,9 @@ import com.example.weddingvaganza.activity.AddCategoryActivity;
 
 public class CategoryFragment extends Fragment {
 
-    public static CategoryFragment getInstance(){
-        CategoryFragment categoryFragment = new CategoryFragment();
-        return categoryFragment;
-    }
+    Fragment fragment = null;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,5 +38,17 @@ public class CategoryFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        fragment = new ListCategoryFragment();
+        fragmentManager = getFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fl_categoryEvent, fragment);
+        fragmentTransaction.commit();
+        
     }
 }

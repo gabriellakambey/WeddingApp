@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.GuestsActivity">
+    tools:context=".activity.BudgetActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tb_guests"
+        android:id="@+id/tb_budget"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:background="@color/navy"
@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Guests"
+            android:text="Budget"
             android:fontFamily="@font/snell_roundhand"
             android:textSize="32dp"
             android:textStyle="bold"
@@ -30,7 +30,7 @@
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tl_guests"
+        android:id="@+id/tl_budget"
         app:tabGravity="fill"
         app:tabTextColor="@color/navy"
         app:tabSelectedTextColor="@color/gold"
@@ -41,6 +41,6 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/white"
-        android:id="@+id/vp_guests"/>
+        android:id="@+id/vp_budget"/>
 
 </LinearLayout>

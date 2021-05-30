@@ -179,6 +179,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Wedding Progress"
+                            android:fontFamily="@font/snell_roundhand"
+                            android:textStyle="bold"
                             android:textSize="20sp"
                             android:textColor="@color/navy"/>
 
@@ -303,7 +305,8 @@
                             android:layout_height="29dp"
                             android:layout_marginRight="30dp"
                             android:text="On-list"
-                            android:textSize="14dp"
+                            android:fontFamily="@font/snell_roundhand"
+                            android:textSize="16dp"
                             android:textStyle="bold"
                             android:textColor="@color/gold"
                             android:textAlignment="center"/>
@@ -312,15 +315,17 @@
                             android:layout_height="29dp"
                             android:layout_marginRight="30dp"
                             android:text="Invited"
-                            android:textSize="14dp"
+                            android:textSize="16dp"
                             android:textStyle="bold"
+                            android:fontFamily="@font/snell_roundhand"
                             android:textColor="@color/gold"
                             android:textAlignment="center"/>
                         <TextView
                             android:layout_width="60dp"
                             android:layout_height="29dp"
                             android:text="Check-in"
-                            android:textSize="14dp"
+                            android:fontFamily="@font/snell_roundhand"
+                            android:textSize="16dp"
                             android:textStyle="bold"
                             android:textColor="@color/gold"
                             android:textAlignment="center"/>
@@ -372,7 +377,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="30dp"
                             android:text="Our Budget"
-                            android:textSize="14dp"
+                            android:textSize="16dp"
+                            android:fontFamily="@font/snell_roundhand"
                             android:textStyle="bold"
                             android:textColor="@color/gold"
                             android:textAlignment="center"/>
@@ -380,7 +386,8 @@
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:text="Cost"
-                            android:textSize="14dp"
+                            android:textSize="16dp"
+                            android:fontFamily="@font/snell_roundhand"
                             android:textStyle="bold"
                             android:textColor="@color/gold"
                             android:textAlignment="center"/>

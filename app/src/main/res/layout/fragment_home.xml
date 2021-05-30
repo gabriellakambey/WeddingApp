@@ -1,107 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/navy"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.HomeFragment">
 
     <LinearLayout
-        android:id="@+id/header_home"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="TONI &amp; TINA"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:gravity="center"/>
-
-        <cn.iwgang.countdownview.CountdownView
-            android:id="@+id/countDown"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:isHideTimeBackground="false"
-            app:isShowDay="true"
-            app:isShowHour="true"
-            app:isShowMinute="true"
-            app:isShowSecond="true"
-            app:timeTextColor="@color/navy"
-            app:timeTextSize="20dp"
-            app:isTimeTextBold="true"
-            app:timeBgColor="@color/white"
-            app:timeBgRadius="4dp"/>
-
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/header_home"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="133dp">
+            android:orientation="vertical">
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="TONI &amp; TINA"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="32dp"
+                android:textColor="@color/white"
+                android:gravity="center"/>
+
+            <cn.iwgang.countdownview.CountdownView
+                android:id="@+id/countDown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:isHideTimeBackground="false"
+                app:isShowDay="true"
+                app:isShowHour="true"
+                app:isShowMinute="true"
+                app:isShowSecond="true"
+                app:timeTextColor="@color/navy"
+                app:timeTextSize="20dp"
+                app:isTimeTextBold="true"
+                app:timeBgColor="@color/white"
+                app:timeBgRadius="4dp"/>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="11sp"
-                android:text="days"
-                android:textColor="@color/white"/>
+                android:layout_marginLeft="133dp">
 
-            <RelativeLayout
-                android:layout_width="15dp"
-                android:layout_height="match_parent"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:text="days"
+                    android:textColor="@color/white"/>
+
+                <RelativeLayout
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:text="hours"
+                    android:textColor="@color/white"/>
+
+                <RelativeLayout
+                    android:layout_width="14dp"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:text="mins"
+                    android:textColor="@color/white"/>
+
+                <RelativeLayout
+                    android:layout_width="16dp"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:text="secs"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="11sp"
-                android:text="hours"
-                android:textColor="@color/white"/>
-
-            <RelativeLayout
-                android:layout_width="14dp"
-                android:layout_height="match_parent"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="11sp"
-                android:text="mins"
-                android:textColor="@color/white"/>
-
-            <RelativeLayout
-                android:layout_width="16dp"
-                android:layout_height="match_parent"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="11sp"
-                android:text="secs"
-                android:textColor="@color/white"/>
+                android:layout_marginTop="10dp"
+                android:text="Until The Wedding"
+                android:textSize="20dp"
+                android:fontFamily="@font/snell_roundhand"
+                android:textColor="@color/white"
+                android:textAlignment="center"/>
 
         </LinearLayout>
 
-        <TextView
+        <FrameLayout
+            android:id="@+id/fl_home"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Until The Wedding"
-            android:textSize="14dp"
-            android:textColor="@color/white"
-            android:textAlignment="center"/>
+            android:layout_height="537dp"
+            android:layout_marginTop="20dp" />
 
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/layout_home"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/header_home"/>
-
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>
