@@ -11,10 +11,10 @@ import retrofit2.http.Query;
 public interface WeddingService {
 
     @GET("login")
-    Call<LoginRespondModel> login(@Query("email_user") String email_user, @Query("password_user") String password_user);
+    Call<LoginRespondModel> login(@Query("email") String email, @Query("password") String password);
 
     @POST("register")
-    Call<LoginRespondModel> register(@Field("nama_user") String nama_user, @Field("nama_pasangan_user") String nama_pasangan_user,
-                                     @Field("email_user") String email_user, @Field("password_user") String password_user,
-                                     @Field("tgl_pernikahan") String tgl_pernikahan, @Field("nomorhp_user") String nomorhp_user);
+    Call<LoginRespondModel> register(@Field("nama_user") String name, @Field("nama_pasangan_user") String couple,
+                                     @Field("email_user") String email, @Field("password_user") String password,
+                                     @Field("tgl_pernikahan") String tanggal, @Field("nomorhp_user") String nomorHp);
 }
