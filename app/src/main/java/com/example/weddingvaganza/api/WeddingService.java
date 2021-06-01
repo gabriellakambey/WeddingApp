@@ -1,6 +1,7 @@
 package com.example.weddingvaganza.api;
 
-import com.example.weddingvaganza.model.LoginRespondModel;
+import com.example.weddingvaganza.model.AddCategoryResponse;
+import com.example.weddingvaganza.model.LoginResponseModel;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
