@@ -1,67 +1,80 @@
 package com.example.weddingvaganza.model;
 
 public class UserModel {
-    private int id_user;
-    private String nama_user;
-    private String nama_pasangan_user;
-    private String email_user;
-    private String password_user;
-    private String tgl_pernikahan;
-    private String nomorhp_user;
+//    {
+//        "status": "success",
+//            "personModel": {
+//        "userId": 2,
+//                "userName": "ujicoba2",
+//                "userEmail": "ujicoba2@gmail.com",
+//                "userPassword": "ujicoba2",
+//                "userCouple": "ujicoba2",
+//                "tglPernikahan": "085312345678",
+//                "nomorHp": "20/11/2021"
+//    }
+//    }
 
-    public int getId_user() {
-        return id_user;
+    private int userId;
+    private String userName;
+    private String userEmail;
+    private String userPassword;
+    private String userCouple;
+    private String tglPernikahan;
+    private String nomorHp;
+
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public String getNama_user() {
-        return nama_user;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setNama_user(String nama_user) {
-        this.nama_user = nama_user;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getNama_pasangan_user() {
-        return nama_pasangan_user;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setNama_pasangan_user(String nama_pasangan_user) {
-        this.nama_pasangan_user = nama_pasangan_user;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
-    public String getEmail_user() {
-        return email_user;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setEmail_user(String email_user) {
-        this.email_user = email_user;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
-    public String getPassword_user() {
-        return password_user;
+    public String getUserCouple() {
+        return userCouple;
     }
 
-    public void setPassword_user(String password_user) {
-        this.password_user = password_user;
+    public void setUserCouple(String userCouple) {
+        this.userCouple = userCouple;
     }
 
-    public String getTgl_pernikahan() {
-        return tgl_pernikahan;
+    public String getTglPernikahan() {
+        return tglPernikahan;
     }
 
-    public void setTgl_pernikahan(String tgl_pernikahan) {
-        this.tgl_pernikahan = tgl_pernikahan;
+    public void setTglPernikahan(String tglPernikahan) {
+        this.tglPernikahan = tglPernikahan;
     }
 
-    public String getNomorhp_user() {
-        return nomorhp_user;
+    public String getNomorHp() {
+        return nomorHp;
     }
 
-    public void setNomorhp_user(String nomorhp_user) {
-        this.nomorhp_user = nomorhp_user;
+    public void setNomorHp(String nomorHp) {
+        this.nomorHp = nomorHp;
     }
 }

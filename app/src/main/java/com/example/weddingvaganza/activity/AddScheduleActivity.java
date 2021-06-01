@@ -2,6 +2,7 @@ package com.example.weddingvaganza.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -33,20 +34,21 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
     private Button btnBack;
     private ImageView datePicker;
     private TextView textDate;
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_schedule);
-        spinner = findViewById(R.id.spinner_category_schedule);
-        btnBack = findViewById(R.id.btnBackSchedule);
+        spinner = findViewById(R.id.spinner_category);
+        btnBack = findViewById(R.id.btnBack);
 
         btnBack.setOnClickListener(v -> {
             onBack();
         });
 
-        textDate = findViewById(R.id.textDateSchedule);
-        datePicker = findViewById(R.id.datePickerSchedule);
-        datePicker.setOnClickListener(v -> {
+        textDate = findViewById(R.id.textDate);
+        datePicker = findViewById(R.id.datePicker);
+        textDate.setOnClickListener(v -> {
             showDatePickerDialog();
         });
         final List<String> listCategory = new ArrayList<>(Arrays.asList(list));
