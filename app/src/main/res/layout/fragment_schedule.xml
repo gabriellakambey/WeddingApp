@@ -20,22 +20,11 @@
             android:gravity="center_vertical">
 
             <TextView
-                android:id="@+id/monthSchedule"
+                android:id="@+id/tv_dateSchedule"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
-                android:text="April"
-                android:textColor="@color/navy"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/yearSchedule"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="2021"
+                android:text="April 2021"
                 android:textColor="@color/navy"
                 android:textSize="16sp"
                 android:textStyle="bold" />

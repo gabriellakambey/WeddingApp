@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,11 +27,12 @@ import com.example.weddingvaganza.activity.AddScheduleActivity;
 
 import java.util.Calendar;
 
+import static android.content.ContentValues.TAG;
+
 
 public class ScheduleFragment extends DialogFragment {
 
     private TextView monthSchedule;
-    private TextView yearSchedule;
     private ImageView calendarSchedule;
     private DatePickerDialog.OnDateSetListener dateSetListener;
 
@@ -48,18 +50,69 @@ public class ScheduleFragment extends DialogFragment {
 
 
         calendarSchedule = view.findViewById(R.id.calendarSchedule);
-        monthSchedule = view.findViewById(R.id.monthSchedule);
-        yearSchedule = view.findViewById(R.id.yearSchedule);
+        monthSchedule = view.findViewById(R.id.tv_dateSchedule);
 
         calendarSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment dialogFragment = new SelectedDateFragment();
-                dialogFragment.show(getFragmentManager(), "date picker");
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(getContext(), android.R.style.Theme_DeviceDefault_Dialog, dateSetListener, year, month, day);
+
+                dialog.show();
+
             }
         });
 
+        dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                month = month+1;
+                Log.d(TAG, "onDateSet: mm yyyy: " + day + "/" + month + "/" + year);
+
+                String date = makeDateString (day, month, year);
+                monthSchedule.setText(date);
+
+            }
+        };
+
         return view;
+    }
+
+    private String makeDateString(int day, int month, int year) {
+        return getMonthFormat(month) + " " + year;
+    }
+
+    private String getMonthFormat(int month) {
+        if (month==1)
+            return "January";
+        if (month==2)
+            return "February";
+        if (month==3)
+            return "March";
+        if (month==4)
+            return "April";
+        if (month==5)
+            return "May";
+        if (month==6)
+            return "June";
+        if (month==7)
+            return "July";
+        if (month==8)
+            return "August";
+        if (month==9)
+            return "September";
+        if (month==10)
+            return "October";
+        if (month==11)
+            return "November";
+        if (month==12)
+            return "December";
+
+        return "January";
     }
 
     public class SelectedDateFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener{

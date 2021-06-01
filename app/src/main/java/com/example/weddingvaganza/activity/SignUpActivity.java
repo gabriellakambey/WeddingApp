@@ -7,14 +7,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.weddingvaganza.R;
+import com.example.weddingvaganza.api.WeddingApi;
+import com.example.weddingvaganza.api.WeddingService;
+import com.example.weddingvaganza.model.LoginResponseModel;
 
 import java.util.Calendar;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class SignUpActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+    EditText etName, etPhoneNum, etEmail, etPass, etConfirmPass, etCouple, etDate;
     private Button btn_regis;
     private TextView textDate;
 
@@ -23,11 +33,46 @@ public class SignUpActivity extends AppCompatActivity implements DatePickerDialo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        etName = findViewById(R.id.et_name);
+        etPhoneNum = findViewById(R.id.et_phoneNumber);
+        etEmail = findViewById(R.id.et_emailRegis);
+        etPass = findViewById(R.id.et_passwordRegis);
+        etConfirmPass = findViewById(R.id.et_passwordConfirm);
+        etCouple = findViewById(R.id.et_coupleName);
+        etDate = findViewById(R.id.textDateSignUp);
         btn_regis = findViewById(R.id.btn_regis);
 
         btn_regis.setOnClickListener(v-> {
-            Intent regis = new Intent(SignUpActivity.this, SignInActivity.class);
-            startActivity(regis);
+//            Intent regis = new Intent(SignUpActivity.this, SignInActivity.class);
+//            startActivity(regis);
+
+            String name = etName.getText().toString();
+            String phoneNum = etPhoneNum.getText().toString();
+            String email = etEmail.getText().toString();
+            String password = etPass.getText().toString();
+            String confirmPass = etConfirmPass.getText().toString();
+            String couple = etCouple.getText().toString();
+            String date = etDate.getText().toString();
+
+            WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
+            Call<LoginResponseModel> call = weddingService.register(name, phoneNum, email, password, confirmPass, couple, date);
+            call.enqueue(new Callback<LoginResponseModel>() {
+                @Override
+                public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
+                    LoginResponseModel loginResponseModel = response.body();
+                    if (loginResponseModel.getStatus().equals("success")) {
+                        Intent regis = new Intent(SignUpActivity.this, SignInActivity.class);
+                        startActivity(regis);
+                    } else {
+                        Toast.makeText(SignUpActivity.this, "Failed to Sign Up", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<LoginResponseModel> call, Throwable t) {
+                    Toast.makeText(SignUpActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                }
+            });
         });
 
         TextView textView = findViewById(R.id.tv_signIn);

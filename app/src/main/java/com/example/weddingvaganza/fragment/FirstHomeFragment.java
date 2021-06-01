@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.weddingvaganza.R;
+import com.example.weddingvaganza.activity.AddCategoryActivity;
 
 public class FirstHomeFragment extends Fragment {
 
@@ -20,7 +21,11 @@ public class FirstHomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_first_home, container, false);
 
-
+        Button button = view.findViewById(R.id.btn_makeList);
+        button.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), AddCategoryActivity.class);
+            startActivity(intent);
+        });
 
         return view;
     }

@@ -55,7 +55,7 @@
             android:textColor="@color/white"/>
 
         <EditText
-            android:id="@+id/et_password"
+            android:id="@+id/et_phoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"
@@ -101,6 +101,7 @@
             android:textColor="@color/white"/>
 
         <com.xwray.passwordview.PasswordView
+            android:id="@+id/et_passwordRegis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Your Password"
@@ -139,6 +140,7 @@
             android:textColor="@color/white"/>
 
         <com.xwray.passwordview.PasswordView
+            android:id="@+id/et_passwordConfirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Your Password"
@@ -162,7 +164,7 @@
             android:textColor="@color/white"/>
 
         <EditText
-            android:id="@+id/et_brideGroomName"
+            android:id="@+id/et_coupleName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"

@@ -72,6 +72,7 @@
                     android:textColor="@color/navy"
                     android:layout_marginTop="10dp"/>
                 <EditText
+                    android:id="@+id/et_categoryTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
@@ -92,6 +93,7 @@
                     android:textColor="@color/navy"
                     android:layout_marginTop="15dp"/>
                 <EditText
+                    android:id="@+id/et_scheduleTitleCat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
@@ -163,7 +165,7 @@
                     android:layout_marginTop="5dp">
 
                     <EditText
-                        android:id="@+id/noteScheduleCategory"
+                        android:id="@+id/et_noteCategory"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/transparent_background"
@@ -176,6 +178,7 @@
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/btn_saveCategory"
                     android:layout_width="100dp"
                     android:layout_height="45dp"
                     android:layout_marginTop="20dp"

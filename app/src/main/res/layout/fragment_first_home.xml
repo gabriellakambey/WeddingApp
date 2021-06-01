@@ -30,7 +30,7 @@
             android:textAlignment="center"/>
 
         <Button
-            android:id="@+id/make_list"
+            android:id="@+id/btn_makeList"
             android:layout_width="180dp"
             android:layout_height="45dp"
             android:layout_marginTop="10dp"

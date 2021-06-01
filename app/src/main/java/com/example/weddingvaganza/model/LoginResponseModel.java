@@ -1,6 +1,6 @@
 package com.example.weddingvaganza.model;
 
-public class LoginRespondModel {
+public class LoginResponseModel {
     private String status;
     private UserModel userModel;
 
