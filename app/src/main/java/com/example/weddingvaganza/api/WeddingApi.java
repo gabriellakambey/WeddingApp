@@ -11,7 +11,7 @@ public class WeddingApi {
     private static Retrofit retrofit;
     private static  final  String BASE_URL = "http://10.0.2.2:8088/";
 
-    public static Retrofit getRetrofitInstance(){
+    public static Retrofit getRetrofit(){
         if (retrofit == null) {
             HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
             httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
