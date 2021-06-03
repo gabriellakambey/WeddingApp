@@ -12,7 +12,7 @@ import retrofit2.http.Query;
 public interface WeddingService {
 
     @GET("login")
-    Call<LoginResponseModel> login(@Query("email_user") String email_user, @Query("password_user") String password_user);
+    Call<LoginResponseModel> login(@Query("email") String email_user, @Query("password") String password_user);
 
     @POST("register")
     Call<LoginResponseModel> register(@Field("name") String name, @Field("phoneNum") String phoneNum,
