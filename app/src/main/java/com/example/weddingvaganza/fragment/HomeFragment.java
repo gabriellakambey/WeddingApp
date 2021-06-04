@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment {
         CountdownView countdownView = view.findViewById(R.id.countDown);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        String countDate = "31-05-2021 00:00:00";
+        String countDate = "31-07-2021 00:00:00";
         Date now = new Date();
 
         try {
@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        fragment = new FirstHomeFragment();
+        fragment = new FinalHomeFragment();
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fl_home, fragment);

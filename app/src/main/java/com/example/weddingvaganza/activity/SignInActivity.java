@@ -15,8 +15,6 @@ import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.LoginResponseModel;
 import com.xwray.passwordview.PasswordView;
 
-import org.jetbrains.annotations.NotNull;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -56,8 +54,8 @@ public class SignInActivity extends AppCompatActivity {
             call.enqueue(new Callback<LoginResponseModel>() {
                 @Override
                 public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
-                    LoginResponseModel loginResponseModel = response.body();
-                    if (loginResponseModel.getStatus().equals("done")){
+                    LoginResponseModel loginRespondModel = response.body();
+                    if (loginRespondModel.getStatus().equals("done")){
                         Intent login = new Intent(SignInActivity.this, HomeActivity.class);
                         startActivity(login);
                         finish();
