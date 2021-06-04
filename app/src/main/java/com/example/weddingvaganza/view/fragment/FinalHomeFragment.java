@@ -1,4 +1,4 @@
-package com.example.weddingvaganza.fragment;
+package com.example.weddingvaganza.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.example.weddingvaganza.R;
-import com.example.weddingvaganza.activity.BudgetActivity;
-import com.example.weddingvaganza.activity.GuestsActivity;
-import com.example.weddingvaganza.activity.VendorActivity;
+import com.example.weddingvaganza.view.activity.BudgetActivity;
+import com.example.weddingvaganza.view.activity.GuestsActivity;
+import com.example.weddingvaganza.view.activity.VendorActivity;
 
 public class FinalHomeFragment extends Fragment {
 

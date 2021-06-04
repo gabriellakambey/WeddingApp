@@ -1,4 +1,4 @@
-package com.example.weddingvaganza.fragment;
+package com.example.weddingvaganza.view.fragment;
 
 import android.os.Bundle;
 

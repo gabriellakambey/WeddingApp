@@ -1,4 +1,4 @@
-package com.example.weddingvaganza.activity;
+package com.example.weddingvaganza.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -45,32 +45,32 @@ public class SignInActivity extends AppCompatActivity {
         });
 
         btn_login.setOnClickListener(v-> {
-//            Intent login = new Intent(SignInActivity.this, HomeActivity.class);
-//            startActivity(login);
-//            finish();
+            Intent login = new Intent(SignInActivity.this, HomeActivity.class);
+            startActivity(login);
+            finish();
 
-            String email_user = et_email.getText().toString();
-            String password_user = et_password.getText().toString();
-
-            Call<LoginResponseModel> call = weddingService.login(email_user, password_user);
-            call.enqueue(new Callback<LoginResponseModel>() {
-                @Override
-                public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
-                    LoginResponseModel loginResponseModel = response.body();
-                    if (loginResponseModel.getStatus().equals("done")){
-                        Intent login = new Intent(SignInActivity.this, HomeActivity.class);
-                        startActivity(login);
-                        finish();
-                    } else {
-                        Toast.makeText(SignInActivity.this, "Failed Login", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<LoginResponseModel> call, Throwable t) {
-                    Toast.makeText(SignInActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
-                }
-            });
+//            String email_user = et_email.getText().toString();
+//            String password_user = et_password.getText().toString();
+//
+//            Call<LoginResponseModel> call = weddingService.login(email_user, password_user);
+//            call.enqueue(new Callback<LoginResponseModel>() {
+//                @Override
+//                public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
+//                    LoginResponseModel loginResponseModel = response.body();
+//                    if (loginResponseModel.getStatus().equals("done")){
+//                        Intent login = new Intent(SignInActivity.this, HomeActivity.class);
+//                        startActivity(login);
+//                        finish();
+//                    } else {
+//                        Toast.makeText(SignInActivity.this, "Failed Login", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call<LoginResponseModel> call, Throwable t) {
+//                    Toast.makeText(SignInActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+//                }
+//            });
         });
     }
 }

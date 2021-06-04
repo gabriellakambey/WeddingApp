@@ -16,16 +16,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WeddingVaganza">
-        <activity android:name=".activity.VendorActivity"></activity>
-        <activity android:name=".activity.BudgetActivity" />
-        <activity android:name=".activity.GuestsActivity" />
-        <activity android:name=".activity.AddRundownActivity" />
-        <activity android:name=".activity.AddCategoryActivity" />
-        <activity android:name=".activity.AddScheduleActivity" />
-        <activity android:name=".activity.HomeActivity" />
-        <activity android:name=".activity.SignUpActivity" />
-        <activity android:name=".activity.SignInActivity" />
-        <activity android:name=".activity.SplashScreen">
+        <activity android:name=".view.activity.VendorActivity"></activity>
+        <activity android:name=".view.activity.BudgetActivity" />
+        <activity android:name=".view.activity.GuestsActivity" />
+        <activity android:name=".view.activity.AddRundownActivity" />
+        <activity android:name=".view.activity.AddCategoryActivity" />
+        <activity android:name=".view.activity.AddScheduleActivity" />
+        <activity android:name=".view.activity.HomeActivity" />
+        <activity android:name=".view.activity.SignUpActivity" />
+        <activity android:name=".view.activity.SignInActivity" />
+        <activity android:name=".view.activity.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
