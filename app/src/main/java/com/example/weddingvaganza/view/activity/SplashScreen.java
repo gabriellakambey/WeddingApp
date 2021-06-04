@@ -1,4 +1,4 @@
-package com.example.weddingvaganza.activity;
+package com.example.weddingvaganza.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

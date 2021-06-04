@@ -1,4 +1,4 @@
-package com.example.weddingvaganza.activity;
+package com.example.weddingvaganza.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
-import com.example.weddingvaganza.fragment.CategoryFragment;
+import com.example.weddingvaganza.view.fragment.CategoryFragment;
 import com.example.weddingvaganza.model.AddCategoryResponse;
 
 import java.util.Calendar;

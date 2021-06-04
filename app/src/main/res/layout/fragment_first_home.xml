@@ -1,45 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_champagne"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.FirstHomeFragment">
+    android:background="@color/navy"
+    tools:context=".view.fragment.FirstHomeFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_notes"/>
-
-        <TextView
+        <LinearLayout
+            android:id="@+id/header_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Wedding preparation list is empty"
-            android:textSize="16dp"
-            android:fontFamily="@font/poppins_bold"
-            android:textColor="@color/navy"
-            android:textStyle="bold"
-            android:textAlignment="center"/>
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_makeList"
-            android:layout_width="180dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="10dp"
-            android:text="Make a List"
-            android:fontFamily="@font/poppins_semi_bold"
-            android:textColor="@color/white"
-            android:background="@drawable/button_gold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:text="TONI &amp; TINA"
+                android:textColor="@color/white"
+                android:textSize="32sp" />
 
-    </LinearLayout>
+            <cn.iwgang.countdownview.CountdownView
+                android:id="@+id/countDown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:isHideTimeBackground="false"
+                app:isShowDay="true"
+                app:isShowHour="true"
+                app:isShowMinute="true"
+                app:isShowSecond="true"
+                app:isTimeTextBold="true"
+                app:timeBgColor="@color/white"
+                app:timeBgRadius="4dp"
+                app:timeTextColor="@color/navy"
+                app:timeTextSize="20dp" />
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="133dp">
 
-</RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="days"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+
+                <RelativeLayout
+                    android:layout_width="11dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="hours"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+
+                <RelativeLayout
+                    android:layout_width="9dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="mins"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+
+                <RelativeLayout
+                    android:layout_width="12dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="secs"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/snell_roundhand"
+                android:text="Until The Wedding"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/header_home"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_champagne"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_notes" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Wedding preparation list is empty"
+                android:textAlignment="center"
+                android:textColor="@color/navy"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_makeList"
+                android:layout_width="180dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_gold"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="Make a List"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

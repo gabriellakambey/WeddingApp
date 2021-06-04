@@ -1,4 +1,4 @@
-package com.example.weddingvaganza.fragment;
+package com.example.weddingvaganza.view.fragment;
 
 import android.os.Bundle;
 
@@ -8,19 +8,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.weddingvaganza.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 import cn.iwgang.countdownview.CountdownView;
 

@@ -1,4 +1,4 @@
-package com.example.weddingvaganza.fragment;
+package com.example.weddingvaganza.view.fragment;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -23,7 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.weddingvaganza.R;
-import com.example.weddingvaganza.activity.AddScheduleActivity;
+import com.example.weddingvaganza.view.activity.AddScheduleActivity;
 
 import java.util.Calendar;
 

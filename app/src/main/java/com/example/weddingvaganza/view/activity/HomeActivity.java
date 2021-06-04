@@ -1,4 +1,4 @@
-package com.example.weddingvaganza.activity;
+package com.example.weddingvaganza.view.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,9 +10,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.weddingvaganza.R;
-import com.example.weddingvaganza.fragment.HomeFragment;
-import com.example.weddingvaganza.fragment.ProfileFragment;
-import com.example.weddingvaganza.fragment.TodoListFragment;
+import com.example.weddingvaganza.view.fragment.FinalHomeFragment;
+import com.example.weddingvaganza.view.fragment.FirstHomeFragment;
+import com.example.weddingvaganza.view.fragment.HomeFragment;
+import com.example.weddingvaganza.view.fragment.ProfileFragment;
+import com.example.weddingvaganza.view.fragment.TodoListFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -32,7 +34,10 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
         //home fragment as main fragment
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frame_layout, new HomeFragment()).commit();
+                .replace(R.id.frame_layout, new FinalHomeFragment()).commit();
+
+//        getSupportFragmentManager().beginTransaction()
+//                .replace(R.id.fl_home, new FirstHomeFragment()).commit();
     }
 
     Fragment fragment = null;
@@ -41,7 +46,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home:
-                fragment = new HomeFragment();
+                fragment = new FirstHomeFragment();
                 fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frame_layout, fragment);

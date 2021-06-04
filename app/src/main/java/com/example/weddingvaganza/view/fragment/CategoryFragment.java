@@ -1,11 +1,10 @@
-package com.example.weddingvaganza.fragment;
+package com.example.weddingvaganza.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -20,7 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.weddingvaganza.R;
-import com.example.weddingvaganza.activity.AddCategoryActivity;
+import com.example.weddingvaganza.view.activity.AddCategoryActivity;
 
 
 public class CategoryFragment extends Fragment {

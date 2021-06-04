@@ -1,4 +1,4 @@
-package com.example.weddingvaganza.fragment;
+package com.example.weddingvaganza.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.weddingvaganza.R;
-import com.example.weddingvaganza.activity.AddRundownActivity;
+import com.example.weddingvaganza.view.activity.AddRundownActivity;
 
 
 public class RundownFragment extends Fragment {

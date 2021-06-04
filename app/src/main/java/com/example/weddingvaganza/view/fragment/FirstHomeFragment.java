@@ -1,4 +1,4 @@
-package com.example.weddingvaganza.fragment;
+package com.example.weddingvaganza.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.weddingvaganza.R;
-import com.example.weddingvaganza.activity.AddCategoryActivity;
+import com.example.weddingvaganza.view.activity.AddCategoryActivity;
 
 public class FirstHomeFragment extends Fragment {
 

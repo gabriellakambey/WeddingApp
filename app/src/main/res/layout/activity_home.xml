@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.HomeActivity">
+    tools:context=".view.activity.HomeActivity">
 
     <FrameLayout
         android:id="@+id/frame_layout"
@@ -18,8 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/white"
-        app:menu="@menu/menu_bawah"
+        app:itemIconTint="@drawable/color_menu_bawah"
         app:itemTextColor="@drawable/color_menu_bawah"
-        app:itemIconTint="@drawable/color_menu_bawah"/>
+        app:menu="@menu/menu_bawah" />
 
 </RelativeLayout>

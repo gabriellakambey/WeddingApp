@@ -1,438 +1,558 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.FinalHomeFragment">
+    tools:context=".view.fragment.FinalHomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/bg_champagne">
+        android:background="@color/navy"
+        android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/header_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Menu"
-                android:layout_marginStart="30dp"
-                android:textColor="@color/navy"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:text="TONI &amp; TINA"
+                android:textColor="@color/white"
+                android:textSize="32sp" />
 
-            <androidx.cardview.widget.CardView
+            <cn.iwgang.countdownview.CountdownView
+                android:id="@+id/countDown"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="6dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginHorizontal="30dp">
+                android:layout_marginTop="8dp"
+                app:isHideTimeBackground="false"
+                app:isShowDay="true"
+                app:isShowHour="true"
+                app:isShowMinute="true"
+                app:isShowSecond="true"
+                app:isTimeTextBold="true"
+                app:timeBgColor="@color/white"
+                app:timeBgRadius="4dp"
+                app:timeTextColor="@color/navy"
+                app:timeTextSize="20dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="133dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="days"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+
+                <RelativeLayout
+                    android:layout_width="11dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="hours"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+
+                <RelativeLayout
+                    android:layout_width="9dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="mins"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+
+                <RelativeLayout
+                    android:layout_width="12dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="secs"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/snell_roundhand"
+                android:text="Until The Wedding"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_champagne"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="20dp"
-                    android:gravity="center">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginRight="25dp"
-                        android:gravity="center">
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Menu"
+                        android:textColor="@color/navy"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
 
-                        <ImageButton
-                            android:id="@+id/ib_guests"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/ic_guests"
-                            android:background="@drawable/button_champagne"/>
-
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:text="Guests"
-                            android:textColor="@color/black"
-                            android:textSize="14sp"
-                            android:textAlignment="center"/>
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginRight="25dp"
-                        android:gravity="center">
-
-                        <ImageButton
-                            android:id="@+id/ib_budget"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/ic_budget"
-                            android:background="@drawable/button_champagne"/>
-
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:text="Budget"
-                            android:textColor="@color/black"
-                            android:textSize="14sp"
-                            android:textAlignment="center"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center">
-
-                        <ImageButton
-                            android:id="@+id/ib_vendor"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/ic_vendors"
-                            android:background="@drawable/button_champagne"/>
-
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="wrap_content"
-                            android:text="Vendor"
-                            android:textColor="@color/black"
-                            android:textSize="14sp"
-                            android:textAlignment="center"/>
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="To The Wedding"
-                android:layout_marginStart="30dp"
-                android:textColor="@color/navy"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"/>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="130dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="6dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginHorizontal="30dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <ProgressBar
-                            android:id="@+id/progress_bar"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_marginRight="10dp"
-                            android:indeterminateOnly="false"
-                            android:progressDrawable="@drawable/circular_bar_progress"
-                            tools:progress="60"/>
-
-                        <TextView
-                            android:id="@+id/tv_progress_bar"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:text="50%"
-                            android:textColor="@color/navy"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
-
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Wedding Progress"
-                            android:fontFamily="@font/snell_roundhand"
-                            android:textStyle="bold"
-                            android:textSize="20sp"
-                            android:textColor="@color/navy"/>
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginTop="5dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="6dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:gravity="center"
                             android:orientation="horizontal"
-                            android:gravity="center">
+                            android:padding="20dp">
 
-                            <TextView
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Task"
-                                android:textSize="14sp"
-                                android:textColor="@color/gold"/>
+                                android:layout_marginRight="25dp"
+                                android:gravity="center"
+                                android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/tv_cekTask"
+                                <ImageButton
+                                    android:id="@+id/ib_guests"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:background="@drawable/button_champagne"
+                                    android:src="@drawable/ic_guests" />
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="Guests"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text=" 25"
-                                android:textSize="14sp"
-                                android:textColor="@color/gold"/>
+                                android:layout_marginRight="25dp"
+                                android:gravity="center"
+                                android:orientation="vertical">
 
-                            <TextView
+                                <ImageButton
+                                    android:id="@+id/ib_budget"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:background="@drawable/button_champagne"
+                                    android:src="@drawable/ic_budget" />
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="Budget"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="/"
-                                android:textSize="14sp"
-                                android:textColor="@color/gold"/>
+                                android:gravity="center"
+                                android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/tv_totTask"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="50"
-                                android:textSize="14sp"
-                                android:textColor="@color/gold"/>
+                                <ImageButton
+                                    android:id="@+id/ib_vendor"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:background="@drawable/button_champagne"
+                                    android:src="@drawable/ic_vendors" />
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="Vendor"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
 
                         </LinearLayout>
 
-                    </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Guests"
-                android:layout_marginStart="30dp"
-                android:textColor="@color/navy"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"/>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="130dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="6dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginHorizontal="30dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="20dp"
+                        android:text="To The Wedding"
+                        android:textColor="@color/navy"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="29dp"
-                            android:layout_marginRight="30dp"
-                            android:text="0"
-                            android:textSize="25dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/navy"
-                            android:textAlignment="center"/>
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="29dp"
-                            android:layout_marginRight="30dp"
-                            android:text="0"
-                            android:textSize="25dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/navy"
-                            android:textAlignment="center"/>
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="29dp"
-                            android:text="0"
-                            android:textSize="25dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/navy"
-                            android:textAlignment="center"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:layout_marginTop="5dp">
+                        android:layout_height="130dp"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginTop="5dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="6dp">
 
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="29dp"
-                            android:layout_marginRight="30dp"
-                            android:text="On-list"
-                            android:fontFamily="@font/snell_roundhand"
-                            android:textSize="16dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/gold"
-                            android:textAlignment="center"/>
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="29dp"
-                            android:layout_marginRight="30dp"
-                            android:text="Invited"
-                            android:textSize="16dp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/snell_roundhand"
-                            android:textColor="@color/gold"
-                            android:textAlignment="center"/>
-                        <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="29dp"
-                            android:text="Check-in"
-                            android:fontFamily="@font/snell_roundhand"
-                            android:textSize="16dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/gold"
-                            android:textAlignment="center"/>
-                    </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <ProgressBar
+                                    android:id="@+id/progress_bar"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginRight="10dp"
+                                    android:indeterminateOnly="false"
+                                    android:progressDrawable="@drawable/circular_bar_progress"
+                                    tools:progress="60" />
+
+                                <TextView
+                                    android:id="@+id/tv_progress_bar"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:text="50%"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                                    android:textColor="@color/navy" />
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="10dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/snell_roundhand"
+                                    android:text="Wedding Progress"
+                                    android:textColor="@color/navy"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Task"
+                                        android:textColor="@color/gold"
+                                        android:textSize="14sp" />
+
+                                    <TextView
+                                        android:id="@+id/tv_cekTask"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=" 25"
+                                        android:textColor="@color/gold"
+                                        android:textSize="14sp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="/"
+                                        android:textColor="@color/gold"
+                                        android:textSize="14sp" />
+
+                                    <TextView
+                                        android:id="@+id/tv_totTask"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="50"
+                                        android:textColor="@color/gold"
+                                        android:textSize="14sp" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Budget"
-                android:layout_marginStart="30dp"
-                android:textColor="@color/navy"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"/>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="130dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="6dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginHorizontal="30dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:layout_marginTop="5dp">
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Guests"
+                        android:textColor="@color/navy"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="30dp"
-                            android:text="Our Budget"
-                            android:textSize="16dp"
-                            android:fontFamily="@font/snell_roundhand"
-                            android:textStyle="bold"
-                            android:textColor="@color/gold"
-                            android:textAlignment="center"/>
-                        <TextView
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:text="Cost"
-                            android:textSize="16dp"
-                            android:fontFamily="@font/snell_roundhand"
-                            android:textStyle="bold"
-                            android:textColor="@color/gold"
-                            android:textAlignment="center"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
+                        android:layout_height="130dp"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginTop="5dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="6dp">
 
-                        <TextView
-                            android:id="@+id/tv_our_budget"
-                            android:layout_width="150dp"
-                            android:layout_height="29dp"
-                            android:layout_marginRight="30dp"
-                            android:text="IDR 0"
-                            android:textSize="25dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/navy"
-                            android:textAlignment="center"/>
-                        <TextView
-                            android:id="@+id/tv_cost"
-                            android:layout_width="150dp"
-                            android:layout_height="29dp"
-                            android:text="IDR 0"
-                            android:textSize="25dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/navy"
-                            android:textAlignment="center"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                    </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="29dp"
+                                    android:layout_marginRight="30dp"
+                                    android:text="0"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/navy"
+                                    android:textSize="25dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="29dp"
+                                    android:layout_marginRight="30dp"
+                                    android:text="0"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/navy"
+                                    android:textSize="25dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="29dp"
+                                    android:text="0"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/navy"
+                                    android:textSize="25dp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="29dp"
+                                    android:layout_marginRight="30dp"
+                                    android:fontFamily="@font/snell_roundhand"
+                                    android:text="On-list"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/gold"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="29dp"
+                                    android:layout_marginRight="30dp"
+                                    android:fontFamily="@font/snell_roundhand"
+                                    android:text="Invited"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/gold"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="60dp"
+                                    android:layout_height="29dp"
+                                    android:fontFamily="@font/snell_roundhand"
+                                    android:text="Check-in"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/gold"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="30dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Budget"
+                        android:textColor="@color/navy"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
 
-        </LinearLayout>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginTop="5dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="6dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="30dp"
+                                    android:fontFamily="@font/snell_roundhand"
+                                    android:text="Our Budget"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/gold"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/snell_roundhand"
+                                    android:text="Cost"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/gold"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_our_budget"
+                                    android:layout_width="150dp"
+                                    android:layout_height="29dp"
+                                    android:layout_marginRight="30dp"
+                                    android:text="IDR 0"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/navy"
+                                    android:textSize="25dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tv_cost"
+                                    android:layout_width="150dp"
+                                    android:layout_height="29dp"
+                                    android:text="IDR 0"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/navy"
+                                    android:textSize="25dp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
 
-
-</androidx.core.widget.NestedScrollView>
+</FrameLayout>
