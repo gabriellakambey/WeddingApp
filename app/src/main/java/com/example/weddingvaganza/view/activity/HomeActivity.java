@@ -34,10 +34,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
         //home fragment as main fragment
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frame_layout, new FinalHomeFragment()).commit();
-
-//        getSupportFragmentManager().beginTransaction()
-//                .replace(R.id.fl_home, new FirstHomeFragment()).commit();
+                .replace(R.id.frame_layout, new FirstHomeFragment()).commit();
     }
 
     Fragment fragment = null;
@@ -46,7 +43,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home:
-                fragment = new FirstHomeFragment();
+                fragment = new FinalHomeFragment();
                 fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frame_layout, fragment);

@@ -46,16 +46,16 @@ public class SignUpActivity extends AppCompatActivity implements DatePickerDialo
 //            Intent regis = new Intent(SignUpActivity.this, SignInActivity.class);
 //            startActivity(regis);
 
-            String name = etName.getText().toString();
-            String phoneNum = etPhoneNum.getText().toString();
-            String email = etEmail.getText().toString();
-            String password = etPass.getText().toString();
+            String nama_user = etName.getText().toString();
+            String email_user = etEmail.getText().toString();
+            String password_user = etPass.getText().toString();
             String confirmPass = etConfirmPass.getText().toString();
-            String couple = etCouple.getText().toString();
-            String date = etDate.getText().toString();
+            String nomorhp_user = etPhoneNum.getText().toString();
+            String nama_pasangan_user = etCouple.getText().toString();
+            String tgl_pernikahan = etDate.getText().toString();
 
             WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-            Call<LoginResponseModel> call = weddingService.register(name, phoneNum, email, password, confirmPass, couple, date);
+            Call<LoginResponseModel> call = weddingService.register(nama_user, email_user, password_user, nomorhp_user, nama_pasangan_user, tgl_pernikahan);
             call.enqueue(new Callback<LoginResponseModel>() {
                 @Override
                 public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
@@ -63,6 +63,7 @@ public class SignUpActivity extends AppCompatActivity implements DatePickerDialo
                     if (loginResponseModel.getStatus().equals("success")) {
                         Intent regis = new Intent(SignUpActivity.this, SignInActivity.class);
                         startActivity(regis);
+                        finish();
                     } else {
                         Toast.makeText(SignUpActivity.this, "Failed to Sign Up", Toast.LENGTH_SHORT).show();
                     }

@@ -1,4 +1,4 @@
-package com.example.weddingvaganza.activity;
+package com.example.weddingvaganza.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,8 @@ import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.LoginResponseModel;
+import com.example.weddingvaganza.view.activity.HomeActivity;
+import com.example.weddingvaganza.view.activity.SignUpActivity;
 import com.xwray.passwordview.PasswordView;
 
 import org.jetbrains.annotations.NotNull;
