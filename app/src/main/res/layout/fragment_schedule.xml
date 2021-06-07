@@ -16,8 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_dateSchedule"
@@ -31,7 +31,7 @@
 
             <RelativeLayout
                 android:layout_width="20dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
             <ImageView
                 android:id="@+id/calendarSchedule"
@@ -42,11 +42,11 @@
         </LinearLayout>
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/scheduleFull"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="vertical"
             android:layout_below="@id/headerSchedule"
-            android:id="@+id/scheduleFull">
+            android:scrollbars="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -56,72 +56,26 @@
                 android:background="@drawable/border_shadow"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/titleSchedule1"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_categoryOnSchedule"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Prewedding"
-                    android:textColor="@color/navy"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:layout_marginTop="15dp" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_schedule1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp" />
-
-                <TextView
-                    android:id="@+id/titleSchedule2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Blessing of Church"
-                    android:textColor="@color/navy"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_schedule2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp" />
-
-                <TextView
-                    android:id="@+id/titleSchedule3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Wedding Ceremony"
-                    android:textColor="@color/navy"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_schedule3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp" />
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
 
         <Button
-            android:layout_marginEnd="10dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="50dp"
+            android:id="@+id/btn_addSchedule"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/ic_rounded_cross"
-            android:id="@+id/btn_addSchedule"/>
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/ic_rounded_cross" />
     </RelativeLayout>
 
 

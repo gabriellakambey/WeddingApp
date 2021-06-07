@@ -55,7 +55,7 @@ public class SignUpActivity extends AppCompatActivity implements DatePickerDialo
             String tgl_pernikahan = etDate.getText().toString();
 
             WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-            Call<LoginResponseModel> call = weddingService.register(nama_user, email_user, password_user, nomorhp_user, nama_pasangan_user, tgl_pernikahan);
+            Call<LoginResponseModel> call = weddingService.register(nama_user, nomorhp_user, email_user, password_user, nama_pasangan_user, tgl_pernikahan);
             call.enqueue(new Callback<LoginResponseModel>() {
                 @Override
                 public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {

@@ -16,6 +16,7 @@ import com.example.weddingvaganza.view.activity.GuestsActivity;
 import com.example.weddingvaganza.view.activity.VendorActivity;
 
 public class FinalHomeFragment extends Fragment {
+    private ImageButton ibGuests, ibBudget, ibVendor;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -23,19 +24,19 @@ public class FinalHomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_final_home, container, false);
 
-        ImageButton ibGuests = view.findViewById(R.id.ib_guests);
+        ibGuests = view.findViewById(R.id.ib_guests);
         ibGuests.setOnClickListener(v -> {
             Intent guests = new Intent(getActivity(), GuestsActivity.class);
             startActivity(guests);
         });
 
-        ImageButton ibBudget = view.findViewById(R.id.ib_guests);
+        ibBudget = view.findViewById(R.id.ib_budget);
         ibBudget.setOnClickListener(v -> {
             Intent budget = new Intent(getActivity(), BudgetActivity.class);
             startActivity(budget);
         });
 
-        ImageButton ibVendor = view.findViewById(R.id.ib_guests);
+        ibVendor = view.findViewById(R.id.ib_vendor);
         ibVendor.setOnClickListener(v -> {
             Intent vendor = new Intent(getActivity(), VendorActivity.class);
             startActivity(vendor);

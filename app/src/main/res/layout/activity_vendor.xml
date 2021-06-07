@@ -1,46 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".view.activity.VendorActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tb_vendor"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:background="@color/navy"
         app:contentInsetEnd="0dp"
-        app:contentInsetStart="0dp"
+        app:contentInsetLeft="0dp"
         app:contentInsetRight="0dp"
-        app:contentInsetLeft="0dp">
+        app:contentInsetStart="0dp">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fontFamily="@font/snell_roundhand_bold"
+            android:gravity="center"
             android:text="Vendor"
-            android:fontFamily="@font/snell_roundhand"
-            android:textSize="32dp"
-            android:textStyle="bold"
             android:textColor="@color/white"
-            android:gravity="center"/>
+            android:textSize="32sp" />
+
     </androidx.appcompat.widget.Toolbar>
 
-    <com.google.android.material.tabs.TabLayout
-        android:layout_width="match_parent"
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tl_vendor"
-        app:tabGravity="fill"
-        app:tabTextColor="@color/navy"
-        app:tabSelectedTextColor="@color/gold"
-        app:tabIndicatorColor="@color/gold"/>
+        android:layout_centerInParent="true"
+        android:text="Vendor Activity"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
-    <androidx.viewpager.widget.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/white"
-        android:id="@+id/vp_vendor"/>
 
-</LinearLayout>
+</RelativeLayout>
