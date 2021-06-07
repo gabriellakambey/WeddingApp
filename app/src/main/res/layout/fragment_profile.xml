@@ -1,16 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".view.fragment.ProfileFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Profile"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</RelativeLayout>
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingTop="40dp"
+            app:contentScrim="@color/white"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+            app:title="Wedding Vaganza">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                app:layout_collapseMode="pin">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center"
+                    android:text="TONI &amp; TINA"
+                    android:textColor="@color/white"
+                    android:textSize="32sp" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.core.widget.NestedScrollView>
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/header_home"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginVertical="30dp"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/poppins_bold"-->
+<!--            android:gravity="center"-->
+<!--            android:text="TONI &amp; TINA"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="32sp" />-->
+
+<!--        <cn.iwgang.countdownview.CountdownView-->
+<!--            android:id="@+id/countDown"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            app:isHideTimeBackground="false"-->
+<!--            app:isShowDay="true"-->
+<!--            app:isShowHour="true"-->
+<!--            app:isShowMinute="true"-->
+<!--            app:isShowSecond="true"-->
+<!--            app:isTimeTextBold="true"-->
+<!--            app:timeBgColor="@color/white"-->
+<!--            app:timeBgRadius="4dp"-->
+<!--            app:timeTextColor="@color/navy"-->
+<!--            app:timeTextSize="20dp" />-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="133dp">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/poppins_medium"-->
+<!--                android:text="days"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="11sp" />-->
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="11dp"-->
+<!--                android:layout_height="match_parent" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/poppins_medium"-->
+<!--                android:text="hours"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="11sp" />-->
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="9dp"-->
+<!--                android:layout_height="match_parent" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/poppins_medium"-->
+<!--                android:text="mins"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="11sp" />-->
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="12dp"-->
+<!--                android:layout_height="match_parent" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/poppins_medium"-->
+<!--                android:text="secs"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="11sp" />-->
+
+<!--        </LinearLayout>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:fontFamily="@font/snell_roundhand"-->
+<!--            android:text="Until The Wedding"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="20sp" />-->
+
+<!--    </LinearLayout>-->
+
+    <!--    <TextView-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        android:text="Profile"-->
+    <!--        android:textSize="30sp"-->
+    <!--        android:textStyle="bold" />-->
+
+</LinearLayout>

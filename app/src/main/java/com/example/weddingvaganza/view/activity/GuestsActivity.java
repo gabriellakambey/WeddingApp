@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.widget.Button;
 
 import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.adapter.GuestsPagerAdapter;
@@ -22,6 +23,11 @@ public class GuestsActivity extends AppCompatActivity {
 
         tabLayout = findViewById(R.id.tl_guests);
         viewPager2 = findViewById(R.id.vp_guests);
+
+        Button btnBack = findViewById(R.id.btnBackGuests);
+        btnBack.setOnClickListener(v -> {
+            onBack();
+        });
 
         FragmentManager fm = getSupportFragmentManager();
         guestsAdapter = new GuestsPagerAdapter(fm, getLifecycle());
@@ -55,6 +61,17 @@ public class GuestsActivity extends AppCompatActivity {
             }
         });
         
+    }
+
+    private void onBack() {
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (count == 0){
+            super.onBackPressed();
+        }
+        else {
+            getSupportFragmentManager().popBackStack();
+        }
     }
 
 

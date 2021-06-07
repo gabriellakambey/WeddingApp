@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.widget.Button;
 
 import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.adapter.BudgetPagerAdapter;
@@ -22,6 +23,11 @@ public class BudgetActivity extends AppCompatActivity {
 
         tabLayout = findViewById(R.id.tl_budget);
         viewPager2 = findViewById(R.id.vp_budget);
+
+        Button btnBack = findViewById(R.id.btnBackBudget);
+        btnBack.setOnClickListener(v -> {
+            onBack();
+        });
 
         FragmentManager fm = getSupportFragmentManager();
         budgetAdapter = new BudgetPagerAdapter(fm, getLifecycle());
@@ -53,5 +59,16 @@ public class BudgetActivity extends AppCompatActivity {
                 tabLayout.selectTab(tabLayout.getTabAt(position));
             }
         });
+    }
+
+    private void onBack() {
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (count == 0){
+            super.onBackPressed();
+        }
+        else {
+            getSupportFragmentManager().popBackStack();
+        }
     }
 }
