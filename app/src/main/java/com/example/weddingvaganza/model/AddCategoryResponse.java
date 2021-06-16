@@ -1,6 +1,7 @@
 package com.example.weddingvaganza.model;
 
 public class AddCategoryResponse {
+
     private String status;
     private CategoryModel categoryModel;
 

@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WeddingVaganza">
-        <activity android:name=".view.activity.VendorActivity"></activity>
+        <activity android:name=".view.activity.ScheduleFromCategoryActivity"></activity>
+        <activity android:name=".view.activity.VendorActivity" />
         <activity android:name=".view.activity.BudgetActivity" />
         <activity android:name=".view.activity.GuestsActivity" />
         <activity android:name=".view.activity.AddRundownActivity" />

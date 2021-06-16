@@ -64,6 +64,7 @@ public class SignUpActivity extends AppCompatActivity implements DatePickerDialo
                         Intent regis = new Intent(SignUpActivity.this, SignInActivity.class);
                         startActivity(regis);
                         finish();
+                        Toast.makeText(SignUpActivity.this, "Sign Up Success", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(SignUpActivity.this, "Failed to Sign Up", Toast.LENGTH_SHORT).show();
                     }

@@ -4,99 +4,126 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.ImageView;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.weddingvaganza.R;
+import com.example.weddingvaganza.api.WeddingApi;
+import com.example.weddingvaganza.api.WeddingService;
+import com.example.weddingvaganza.model.AddScheduleResponse;
+import com.example.weddingvaganza.model.CategoryModel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class AddScheduleActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private Spinner spinner;
-    private String[] list = {
-            "Select the Category",
-            "Prewedding",
-            "Blessing of Church", "Wedding Ceremony"
-    };
     private Button btnBack;
-    private ImageView datePicker;
+    private LinearLayout datePicker;
     private TextView textDate;
+    EditText etDate, etTitle, etNote;
+
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_schedule);
-        spinner = findViewById(R.id.spinner_category);
-        btnBack = findViewById(R.id.btnBack);
+        spinner = findViewById(R.id.spinner_addSchedule);
+        btnBack = findViewById(R.id.btn_BackAddSchedule);
 
+
+        // button back
         btnBack.setOnClickListener(v -> {
             onBack();
         });
 
-        textDate = findViewById(R.id.textDate);
-        datePicker = findViewById(R.id.datePicker);
-        textDate.setOnClickListener(v -> {
+        // date picker
+        textDate = findViewById(R.id.td_addSchedule);
+        datePicker = findViewById(R.id.dp_addSchedule);
+        datePicker.setOnClickListener(v -> {
             showDatePickerDialog();
         });
-        final List<String> listCategory = new ArrayList<>(Arrays.asList(list));
 
-        // Initializing an ArrayAdapter
-        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
-                this,R.layout.spinner_item_category,listCategory){
-            @Override
-            public boolean isEnabled(int position){
-                if(position == 0)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            @Override
-            public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                if(position == 0){
-                    // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
-                }
-                else {
-                    tv.setTextColor(Color.BLACK);
-                }
-                return view;
-            }
-        };
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item_category);
-        spinner.setAdapter(spinnerArrayAdapter);
+        // retrofit spinner
+        List<CategoryModel> category = new ArrayList<>();
+        ArrayAdapter<CategoryModel> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, category);
+        WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
+        Call<List<CategoryModel>> call = weddingService.getCategory();
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        call.enqueue(new Callback<List<CategoryModel>>() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItemText = (String) parent.getItemAtPosition(position);
-                if(position > 0){
+            public void onResponse(Call<List<CategoryModel>> call, Response<List<CategoryModel>> response) {
+                if (response.isSuccessful()) {
+                    for (CategoryModel post : response.body()) {
+
+                        String title = post.getCategoryTitle();
+                        int id = post.getCategoryId();
+                        CategoryModel categoryModel = new CategoryModel(id, title);
+                        category.add(categoryModel);
+
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinner.setAdapter(adapter);
+                    }
                 }
+
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onFailure(Call<List<CategoryModel>> call, Throwable t) {
 
             }
         });
+
+        // button save
+        etDate = findViewById(R.id.td_addSchedule);
+        etTitle = findViewById(R.id.et_titleAddSchedule);
+        etNote = findViewById(R.id.et_noteAddSchedule);
+
+        Button btnSave = findViewById(R.id.btn_saveAddSchedule);
+        btnSave.setOnClickListener(v -> {
+            String date = etDate.getText().toString();
+            String title = etTitle.getText().toString();
+            String note = etNote.getText().toString();
+
+            // get selected item id
+            int selectedId = spinner.getSelectedItemPosition();
+            CategoryModel getItemId = (CategoryModel) spinner.getItemAtPosition(selectedId);
+            int categoryId = getItemId.getCategoryId();
+
+//            int categoryId = 1;
+
+            WeddingService weddingService1 = WeddingApi.getRetrofit().create(WeddingService.class);
+            Call<AddScheduleResponse> responseCall = weddingService1.addNewSchedule(date, title, categoryId, note);
+            responseCall.enqueue(new Callback<AddScheduleResponse>() {
+                @Override
+                public void onResponse(Call<AddScheduleResponse> call, Response<AddScheduleResponse> response) {
+                    AddScheduleResponse addScheduleResponse = response.body();
+                    if (addScheduleResponse.getStatus().equals("success")) {
+                        Toast.makeText(AddScheduleActivity.this, "Success add " + title, Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(AddScheduleActivity.this, "Failed add data", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<AddScheduleResponse> call, Throwable t) {
+                    Toast.makeText(AddScheduleActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
+
     }
 
     private void showDatePickerDialog() {

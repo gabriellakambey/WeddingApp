@@ -1,10 +1,12 @@
 package com.example.weddingvaganza.model;
 
-public class UserModel {
+import java.io.Serializable;
+
+public class UserModel implements Serializable {
 //    {
 //        "status": "success",
 //            "personModel": {
-//        "userId": 2,
+//                "userId": 2,
 //                "userName": "ujicoba2",
 //                "userEmail": "ujicoba2@gmail.com",
 //                "userPassword": "ujicoba2",
@@ -76,5 +78,11 @@ public class UserModel {
 
     public void setNomorHp(String nomorHp) {
         this.nomorHp = nomorHp;
+    }
+
+    public UserModel(int userId, String userCouple, String tglPernikahan) {
+        this.userId = userId;
+        this.userCouple = userCouple;
+        this.tglPernikahan = tglPernikahan;
     }
 }

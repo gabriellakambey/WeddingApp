@@ -13,6 +13,7 @@ import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.LoginResponseModel;
+import com.example.weddingvaganza.model.UserModel;
 import com.example.weddingvaganza.view.activity.HomeActivity;
 import com.example.weddingvaganza.view.activity.SignUpActivity;
 import com.xwray.passwordview.PasswordView;
@@ -47,32 +48,34 @@ public class SignInActivity extends AppCompatActivity {
         });
 
         btn_login.setOnClickListener(v-> {
-            Intent login = new Intent(SignInActivity.this, HomeActivity.class);
-            startActivity(login);
-            finish();
+//            Intent login = new Intent(SignInActivity.this, HomeActivity.class);
+//            startActivity(login);
+//            finish();
 
-//            String email_user = et_email.getText().toString();
-//            String password_user = et_password.getText().toString();
-//
-//            Call<LoginResponseModel> call = weddingService.login(email_user, password_user);
-//            call.enqueue(new Callback<LoginResponseModel>() {
-//                @Override
-//                public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
-//                    LoginResponseModel loginRespondModel = response.body();
-//                    if (loginRespondModel.getStatus().equals("done")){
-//                        Intent login = new Intent(SignInActivity.this, HomeActivity.class);
-//                        startActivity(login);
-//                        finish();
-//                    } else {
-//                        Toast.makeText(SignInActivity.this, "Failed Login", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(Call<LoginResponseModel> call, Throwable t) {
-//                    Toast.makeText(SignInActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
-//                }
-//            });
+            String email_user = et_email.getText().toString();
+            String password_user = et_password.getText().toString();
+
+            Call<LoginResponseModel> call = weddingService.login(email_user, password_user);
+            call.enqueue(new Callback<LoginResponseModel>() {
+                @Override
+                public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
+                    LoginResponseModel loginRespondModel = response.body();
+                    if (loginRespondModel.getStatus().equals("success")){
+                        Intent login = new Intent(SignInActivity.this, HomeActivity.class);
+                        startActivity(login);
+                        finish();
+                        Toast.makeText(SignInActivity.this, "Success Login", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(SignInActivity.this, "Failed Login", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<LoginResponseModel> call, Throwable t) {
+                    Toast.makeText(SignInActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                }
+            });
+
         });
     }
 }

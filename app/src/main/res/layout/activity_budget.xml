@@ -42,6 +42,12 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tl_budget"
         android:layout_width="match_parent"

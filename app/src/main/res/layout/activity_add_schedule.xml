@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,7 +8,7 @@
     tools:context=".view.fragment.TodoListFragment">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tb_list"
+        android:id="@+id/toolbar_todolist"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:background="@color/navy"
@@ -19,178 +19,203 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="10dp">
 
             <Button
-                android:id="@+id/btnBack"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:id="@+id/btn_BackAddSchedule"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="10dp"
                 android:background="@drawable/ic_rounded_back" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:fontFamily="@font/snell_roundhand_bold"
                 android:gravity="center"
                 android:text="To-do List"
                 android:textColor="@color/white"
-                android:textSize="28sp"
-                android:textStyle="bold" />
-
+                android:textSize="32sp" />
         </RelativeLayout>
+
     </androidx.appcompat.widget.Toolbar>
 
-    <TextView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="Add Schedule"
-        android:textColor="@color/navy"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/border_shadow"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="@font/roboto_regular"
-            android:text="Date"
-            android:textColor="@color/navy"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:id="@+id/datePicker"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/round_navy"
-            android:orientation="horizontal"
-            android:padding="13dp">
-
-            <EditText
-                android:id="@+id/textDate"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/transparent_background"
-                android:hint="dd/mm/yyyy"
-                android:inputType="date" />
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_calendar" />
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="@font/roboto_regular"
-            android:text="Title"
-            android:textColor="@color/navy"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+        android:layout_below="@+id/toolbar_todolist">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/round_navy"
-            android:orientation="horizontal"
-            android:padding="13dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/titleAddSchedule"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/transparent_background"
-                android:hint="Enter the Title"
-                android:inputType="text" />
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Add Schedule"
+                android:textColor="@color/navy"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="15dp"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Date"
+                        android:textColor="@color/navy"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/dp_addSchedule"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/round_navy"
+                        android:orientation="horizontal"
+                        android:padding="13dp">
+
+                        <EditText
+                            android:id="@+id/td_addSchedule"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/transparent_background"
+                            android:hint="dd/mm/yyyy"
+                            android:inputType="date" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_calendar" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Title"
+                        android:textColor="@color/navy"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/round_navy"
+                        android:orientation="horizontal"
+                        android:padding="13dp">
+
+                        <EditText
+                            android:id="@+id/et_titleAddSchedule"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/transparent_background"
+                            android:hint="Enter the Title"
+                            android:inputType="text" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Category Event"
+                        android:textColor="@color/navy"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/round_navy"
+                        android:orientation="horizontal"
+                        android:padding="3dp">
+
+                        <Spinner
+                            android:id="@+id/spinner_addSchedule"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:autofillHints="Select the Category"
+                            android:entries="@array/category" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Note"
+                        android:textColor="@color/navy"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/round_navy"
+                        android:orientation="horizontal"
+                        android:padding="13dp">
+
+                        <EditText
+                            android:id="@+id/et_noteAddSchedule"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/transparent_background"
+                            android:hint="Write note for the schedule"
+                            android:inputType="textLongMessage" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_saveAddSchedule"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:background="@drawable/button_gold"
+                        android:fontFamily="@font/roboto_regular"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="5dp"
+                        android:text="Save"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="@font/roboto_regular"
-            android:text="Category Event"
-            android:textColor="@color/navy"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+    </androidx.core.widget.NestedScrollView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/round_navy"
-            android:orientation="horizontal"
-            android:padding="3dp">
-
-            <Spinner
-                android:id="@+id/spinner_category"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints="Select the Category"
-                android:entries="@array/category" />
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="@font/roboto_regular"
-            android:text="Note"
-            android:textColor="@color/navy"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/round_navy"
-            android:orientation="horizontal"
-            android:padding="13dp">
-
-            <EditText
-                android:id="@+id/noteSchedule"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/transparent_background"
-                android:hint="Write note for the schedule"
-                android:inputType="textLongMessage" />
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btnSaveSchedule"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:background="@drawable/button_gold"
-            android:fontFamily="@font/roboto_regular"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="5dp"
-            android:text="Save"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

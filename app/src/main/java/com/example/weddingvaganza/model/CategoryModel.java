@@ -1,49 +1,62 @@
 package com.example.weddingvaganza.model;
 
-public class CategoryModel {
-    private int id_category;
-    private String category_title;
-    private String schedule_title;
-    private String date;
-    private String note_category;
+import java.io.Serializable;
 
-    public int getId_category() {
-        return id_category;
+public class CategoryModel implements Serializable {
+    private int categoryId;
+    private String categoryTitle;
+    private String scheduleTitle;
+    private String categoryDate;
+    private String noteCategory;
+
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setId_category(int id_category) {
-        this.id_category = id_category;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public String getCategory_title() {
-        return category_title;
+    public String getCategoryTitle() {
+        return categoryTitle;
     }
 
-    public void setCategory_title(String category_title) {
-        this.category_title = category_title;
+    public void setCategoryTitle(String categoryTitle) {
+        this.categoryTitle = categoryTitle;
     }
 
-    public String getSchedule_title() {
-        return schedule_title;
+    public String getScheduleTitle() {
+        return scheduleTitle;
     }
 
-    public void setSchedule_title(String schedule_title) {
-        this.schedule_title = schedule_title;
+    public void setScheduleTitle(String scheduleTitle) {
+        this.scheduleTitle = scheduleTitle;
     }
 
-    public String getDate() {
-        return date;
+    public String getCategoryDate() {
+        return categoryDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setCategoryDate(String categoryDate) {
+        this.categoryDate = categoryDate;
     }
 
-    public String getNote_category() {
-        return note_category;
+    public String getNoteCategory() {
+        return noteCategory;
     }
 
-    public void setNote_category(String note_category) {
-        this.note_category = note_category;
+    public void setNoteCategory(String noteCategory) {
+        this.noteCategory = noteCategory;
     }
+
+    public CategoryModel(int categoryId ,String categoryTitle) {
+        this.categoryId = categoryId;
+        this.categoryTitle = categoryTitle;
+    }
+
+    public String toString(){
+        return categoryTitle;
+    }
+
+
 }

@@ -1,6 +1,7 @@
 package com.example.weddingvaganza.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -26,31 +27,31 @@ import retrofit2.Response;
 
 public class AddCategoryActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     EditText etCatTitle, etScheduleTitle, etDate, etNote;
-    private TextView textDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_category);
 
+        // button back
         Button btnBackCategory = findViewById(R.id.btnBackCategory);
-
         btnBackCategory.setOnClickListener(v -> {
             onBack();
         });
 
-        textDate = findViewById(R.id.textDateCategory);
-        ImageView datePicker = findViewById(R.id.datePickerCategory);
+        // calendar date pricker
+        ImageView datePicker = findViewById(R.id.dp_addCategory);
         datePicker.setOnClickListener(v -> {
             showDatePickerDialog();
         });
 
-        etCatTitle = findViewById(R.id.et_categoryTitle);
-        etScheduleTitle = findViewById(R.id.et_scheduleTitleCat);
-        etDate = findViewById(R.id.textDateCategory);
-        etNote = findViewById(R.id.et_noteCategory);
+        // button save add category
+        etCatTitle = findViewById(R.id.et_titleAddCategory);
+        etScheduleTitle = findViewById(R.id.et_scheduleAddCategory);
+        etDate = findViewById(R.id.et_dateAddCategory);
+        etNote = findViewById(R.id.et_noteAddCategory);
 
-        Button btnSave = findViewById(R.id.btn_saveCategory);
+        Button btnSave = findViewById(R.id.btn_saveAddCategory);
         btnSave.setOnClickListener(v -> {
             String title = etCatTitle.getText().toString();
             String schedule = etScheduleTitle.getText().toString();
@@ -58,14 +59,13 @@ public class AddCategoryActivity extends AppCompatActivity implements DatePicker
             String note = etNote.getText().toString();
 
             WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-            Call<AddCategoryResponse> call = weddingService.addCategory(title, schedule, date, note);
+            Call<AddCategoryResponse> call = weddingService.addCategory(title);
             call.enqueue(new Callback<AddCategoryResponse>() {
                 @Override
                 public void onResponse(Call<AddCategoryResponse> call, Response<AddCategoryResponse> response) {
                     AddCategoryResponse addCategoryResponse = response.body();
                     if (addCategoryResponse.getStatus().equals("success")) {
-                        Intent intent = new Intent(AddCategoryActivity.this, CategoryFragment.class);
-                        startActivity(intent);
+                        Toast.makeText(AddCategoryActivity.this, "Success Add Category", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(AddCategoryActivity.this, "Failed Add Category", Toast.LENGTH_SHORT).show();
                     }
@@ -103,6 +103,6 @@ public class AddCategoryActivity extends AppCompatActivity implements DatePicker
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         String date = dayOfMonth + "/" + month + "/" + year;
-        textDate.setText(date);
+        etDate.setText(date);
     }
 }

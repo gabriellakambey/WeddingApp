@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/addCategory"
     tools:context=".view.activity.AddCategoryActivity">
 
     <LinearLayout
@@ -17,13 +18,15 @@
             android:layout_height="65dp"
             android:background="@color/navy"
             app:contentInsetEnd="0dp"
-            app:contentInsetStart="0dp"
+            app:contentInsetLeft="0dp"
             app:contentInsetRight="0dp"
-            app:contentInsetLeft="0dp">
+            app:contentInsetStart="0dp">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="10dp">
+
                 <Button
                     android:id="@+id/btnBackCategory"
                     android:layout_width="30dp"
@@ -35,167 +38,168 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:text="Category Event"
-                    android:textSize="26dp"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/snell_roundhand_bold"
                     android:gravity="center"
-                    android:textColor="@color/white"/>
+                    android:text="Category Event"
+                    android:textColor="@color/white"
+                    android:textSize="32sp" />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Category"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:textColor="@color/navy"
+            android:layout_marginHorizontal="30dp"
             android:layout_marginTop="15dp"
-            android:layout_marginHorizontal="30dp"/>
+            android:text="Add Category"
+            android:textColor="@color/navy"
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="15dp"
             app:cardCornerRadius="10dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="20dp">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Category Title"
-                    android:textSize="14dp"
                     android:textColor="@color/navy"
-                    android:layout_marginTop="10dp"/>
+                    android:textSize="14dp" />
+
                 <EditText
-                    android:id="@+id/et_categoryTitle"
+                    android:id="@+id/et_titleAddCategory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:maxLines="1"
-                    android:inputType="text"
-                    android:textColor="@color/navy"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/round_navy"
                     android:hint="Enter the category title"
-                    android:textColorHint="@color/hint"
-                    android:layout_marginTop="5dp"
-                    android:padding="15dp"
-                    android:background="@drawable/round_navy"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Schedule Title"
-                    android:textSize="14dp"
-                    android:textColor="@color/navy"
-                    android:layout_marginTop="15dp"/>
-                <EditText
-                    android:id="@+id/et_scheduleTitleCat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:maxLines="1"
                     android:inputType="text"
-                    android:textColor="@color/navy"
-                    android:hint="Enter the schedule title"
-                    android:textColorHint="@color/hint"
-                    android:layout_marginTop="5dp"
+                    android:maxLines="1"
                     android:padding="15dp"
-                    android:background="@drawable/round_navy"/>
+                    android:textColor="@color/navy"
+                    android:textColorHint="@color/hint"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Date"
-                    android:textSize="14dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Schedule Title"
                     android:textColor="@color/navy"
-                    android:layout_marginTop="15dp"/>
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:id="@+id/et_scheduleAddCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/round_navy"
+                    android:hint="Enter the schedule title"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="15dp"
+                    android:textColor="@color/navy"
+                    android:textColorHint="@color/hint"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Date"
+                    android:textColor="@color/navy"
+                    android:textSize="14dp" />
 
                 <LinearLayout
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginTop="5dp"
-                    android:background="@drawable/round_navy">
+                    android:background="@drawable/round_navy"
+                    android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/textDateCategory"
+                        android:id="@+id/et_dateAddCategory"
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
-                        android:textSize="13sp"
-                        android:maxLines="1"
-                        android:inputType="date"
-                        android:textColor="@color/navy"
-                        android:hint="dd/mm/yyyy"
-                        android:textColorHint="@color/hint"
-                        android:padding="12dp"
                         android:layout_marginStart="5dp"
-                        android:background="@drawable/transparent_background"/>
+                        android:background="@drawable/transparent_background"
+                        android:hint="dd/mm/yyyy"
+                        android:inputType="date"
+                        android:maxLines="1"
+                        android:padding="12dp"
+                        android:textColor="@color/navy"
+                        android:textColorHint="@color/hint"
+                        android:textSize="13sp" />
 
                     <RelativeLayout
                         android:layout_width="15dp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
 
                     <ImageView
-                        android:id="@+id/datePickerCategory"
+                        android:id="@+id/dp_addCategory"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_calendar"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_calendar" />
 
                 </LinearLayout>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
                     android:text="Note"
-                    android:textSize="14dp"
                     android:textColor="@color/navy"
-                    android:layout_marginTop="15dp"/>
+                    android:textSize="14dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/round_navy"
                     android:orientation="horizontal"
-                    android:padding="13dp"
-                    android:layout_marginTop="5dp">
+                    android:padding="13dp">
 
                     <EditText
-                        android:id="@+id/et_noteCategory"
+                        android:id="@+id/et_noteAddCategory"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/transparent_background"
                         android:hint="Write note for the schedule"
-                        android:textColorHint="@color/hint"
+                        android:inputType="textLongMessage"
                         android:textColor="@color/navy"
-                        android:textSize="12dp"
-                        android:inputType="textLongMessage" />
+                        android:textColorHint="@color/hint"
+                        android:textSize="12dp" />
 
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/btn_saveCategory"
+                    android:id="@+id/btn_saveAddCategory"
                     android:layout_width="100dp"
                     android:layout_height="45dp"
+                    android:layout_gravity="right"
                     android:layout_marginTop="20dp"
-                    android:text="Save"
-                    android:textColor="@color/white"
                     android:background="@drawable/button_gold"
-                    android:layout_gravity="right"/>
+                    android:text="Save"
+                    android:textColor="@color/white" />
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"/>
+            android:layout_height="30dp" />
 
     </LinearLayout>
 

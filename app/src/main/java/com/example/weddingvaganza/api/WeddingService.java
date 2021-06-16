@@ -1,7 +1,14 @@
 package com.example.weddingvaganza.api;
 
 import com.example.weddingvaganza.model.AddCategoryResponse;
+import com.example.weddingvaganza.model.AddRundownResponse;
+import com.example.weddingvaganza.model.AddScheduleResponse;
+import com.example.weddingvaganza.model.CategoryModel;
 import com.example.weddingvaganza.model.LoginResponseModel;
+import com.example.weddingvaganza.model.RundownModel;
+import com.example.weddingvaganza.model.ScheduleModel;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -21,7 +28,26 @@ public interface WeddingService {
                                       @Field("email") String email_user, @Field("password") String password_user,
                                       @Field("couple") String nama_pasangan_user, @Field("tanggal") String tgl_pernikahan);
 
-    @POST("category")
-    Call<AddCategoryResponse> addCategory(@Query("title") String title, @Query("schedule") String schedule,
-                                          @Query("date") String date, @Query("note") String note);
+    @GET("category2/all")
+    Call<List<CategoryModel>> getCategory();
+
+    @POST("categoryadd2")
+    Call<AddCategoryResponse> addCategory(@Query("title") String title);
+
+    @GET("todolist/all")
+    Call<List<ScheduleModel>> getAllSchedule();
+
+    @FormUrlEncoded
+    @POST("todolistadd")
+    Call<AddScheduleResponse> addNewSchedule (@Field("date") String date, @Field("title") String title,
+                                              @Field("category") int categoryId, @Field("note") String note);
+
+    @GET("rundown/all")
+    Call<List<RundownModel>> getRundown();
+
+    @POST("rundownadd")
+    Call<AddRundownResponse> addRundown(@Query("time") String time, @Query("title") String title,
+                                        @Query("category") int categoryId, @Query("note") String note,
+                                        @Query("pj") String pj);
+
 }
