@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.model.CategoryModel;
+import com.example.weddingvaganza.model.ScheduleModel;
 
 import java.util.List;
 
@@ -22,10 +23,10 @@ import static com.example.weddingvaganza.R.color.*;
 
 public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapter.ViewHolder>{
 
-    private List<CategoryModel> schedule;
+    private List<ScheduleModel> schedule;
     private Context context;
 
-    public void setData(List<CategoryModel> schedule) {
+    public void setData(List<ScheduleModel> schedule) {
         this.schedule = schedule;
         notifyDataSetChanged();
     }
@@ -39,6 +40,9 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        ScheduleModel scheduleModel = schedule.get(position);
+        String title = scheduleModel.getTitleSchedule();
+        holder.checkBox.setText(title);
 
 //        CategoryModel categoryModel = schedule.get(position);
 //        String title = categoryModel.getScheduleTitle();
@@ -57,14 +61,11 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             checkBox = itemView.findViewById(R.id.cb_listSchedule);
-            checkBox.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (checkBox.isChecked()) {
-                        checkBox.setTextColor(itemView.getResources().getColor(gold));
-                    } else {
-                        checkBox.setTextColor(itemView.getResources().getColor(navy));
-                    }
+            checkBox.setOnClickListener(v -> {
+                if (checkBox.isChecked()) {
+                    checkBox.setTextColor(itemView.getResources().getColor(gold));
+                } else {
+                    checkBox.setTextColor(itemView.getResources().getColor(navy));
                 }
             });
         }

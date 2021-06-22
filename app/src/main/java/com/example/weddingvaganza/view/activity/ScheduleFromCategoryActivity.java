@@ -18,6 +18,7 @@ import com.example.weddingvaganza.adapter.ListScheduleAdapter;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.CategoryModel;
+import com.example.weddingvaganza.model.ScheduleModel;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.List;
@@ -31,10 +32,10 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity {
     TextView categoryTitle, monthYear;
     Button btnAdd, btnBack;
     ImageView calendar;
-    CheckBox checkBox;
     RecyclerView recyclerView;
     CategoryModel categoryModel;
     ListScheduleAdapter adapter;
+    int currentCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +63,7 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity {
             categoryModel = (CategoryModel) intent.getSerializableExtra("data");
 
             String title = categoryModel.getCategoryTitle();
-            int user = categoryModel.getUserId();
-            int currentCategory = categoryModel.getCategoryId();
+            currentCategory = categoryModel.getCategoryId();
             categoryTitle.setText(title);
         }
 
@@ -82,22 +82,23 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity {
     private void getSchedule() {
         int currentUserId = Prefs.getInt("user_id", 0);
         WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-        Call<List<CategoryModel>> call = weddingService.getCategory(currentUserId);
-        call.enqueue(new Callback<List<CategoryModel>>() {
+        Call<List<ScheduleModel>> call = weddingService.getScheduleByCategory(currentUserId, currentCategory);
+        call.enqueue(new Callback<List<ScheduleModel>>() {
             @Override
-            public void onResponse(Call<List<CategoryModel>> call, Response<List<CategoryModel>> response) {
+            public void onResponse(Call<List<ScheduleModel>> call, Response<List<ScheduleModel>> response) {
                 if (response.isSuccessful()) {
-                    List<CategoryModel> categoryModels = response.body();
-                    adapter.setData(categoryModels);
+                    List<ScheduleModel> scheduleModels = response.body();
+                    adapter.setData(scheduleModels);
                     recyclerView.setAdapter(adapter);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<CategoryModel>> call, Throwable t) {
+            public void onFailure(Call<List<ScheduleModel>> call, Throwable t) {
 
             }
         });
+
     }
 
     private void onBack() {

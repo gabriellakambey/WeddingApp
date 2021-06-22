@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +34,8 @@ import retrofit2.Response;
 
 public class FinalHomeFragment extends Fragment {
     private ImageButton ibGuests, ibBudget, ibVendor;
-    TextView tvTotTask;
+    private TextView tvTotTask, tvPresentase, tvCekTask;
+    private ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,17 +71,31 @@ public class FinalHomeFragment extends Fragment {
 
         // wedding progress
         tvTotTask = view.findViewById(R.id.tv_totTask);
+        tvPresentase = view.findViewById(R.id.tv_progress_bar);
+        tvCekTask = view.findViewById(R.id.tv_cekTask);
+        progressBar = view.findViewById(R.id.progress_bar);
 
-        int userId = Prefs.getInt("user_id", 0);
+        int currentUserId = Prefs.getInt("user_id", 0);
         WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-        Call<List<ScheduleModel>> call = weddingService.getAllSchedule();
+        Call<List<ScheduleModel>> call = weddingService.getSchedule(currentUserId);
         call.enqueue(new Callback<List<ScheduleModel>>() {
             @Override
             public void onResponse(Call<List<ScheduleModel>> call, Response<List<ScheduleModel>> response) {
                 List<ScheduleModel> scheduleModels = response.body();
                 int totalTask = scheduleModels.size();
-                String tot = totalTask + "task";
+                int totCekTask = 1;
+                int presentaseTask  = (totCekTask * 100)/totalTask;
+                progressBar.setProgress(presentaseTask);
+
+                String presentase = presentaseTask + "%";
+                tvPresentase.setText(presentase);
+
+                String tot = String.valueOf(totalTask);
                 tvTotTask.setText(tot);
+
+                String cek = String.valueOf(totCekTask);
+                tvCekTask.setText(cek);
+
                 Toast.makeText(getContext(), "Total task: "+totalTask, Toast.LENGTH_SHORT).show();
             }
 

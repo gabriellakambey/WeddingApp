@@ -277,9 +277,10 @@
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                        <FrameLayout
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center">
 
                             <ProgressBar
                                 android:id="@+id/progress_bar"
@@ -288,18 +289,19 @@
                                 android:layout_marginRight="10dp"
                                 android:indeterminateOnly="false"
                                 android:progressDrawable="@drawable/circular_bar_progress"
-                                tools:progress="60" />
+                                tools:progress="100" />
 
                             <TextView
                                 android:id="@+id/tv_progress_bar"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
+                                android:textAlignment="center"
+                                android:layout_gravity="center"
                                 android:text="50%"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                                 android:textColor="@color/navy" />
 
-                        </RelativeLayout>
+                        </FrameLayout>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -326,7 +328,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Task"
+                                    android:text="Task "
                                     android:textColor="@color/gold"
                                     android:textSize="14sp" />
 

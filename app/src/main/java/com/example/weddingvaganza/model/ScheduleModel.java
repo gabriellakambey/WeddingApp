@@ -6,6 +6,8 @@ public class ScheduleModel {
     private String titleSchedule;
     private int idCategory;
     private String noteSchedule;
+    private int userId;
+    private boolean status;
 
     public int getScheduleId() {
         return scheduleId;
@@ -45,5 +47,21 @@ public class ScheduleModel {
 
     public void setNoteSchedule(String noteSchedule) {
         this.noteSchedule = noteSchedule;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

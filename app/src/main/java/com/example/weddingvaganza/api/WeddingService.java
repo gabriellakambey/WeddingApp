@@ -29,6 +29,7 @@ public interface WeddingService {
                                       @Field("email") String email_user, @Field("password") String password_user,
                                       @Field("couple") String nama_pasangan_user, @Field("tanggal") String tgl_pernikahan);
 
+    // category response
     @GET("category/all")
     Call<List<CategoryModel>> getAllCategory();
 
@@ -38,18 +39,24 @@ public interface WeddingService {
     @POST("categoryadd")
     Call<AddCategoryResponse> addCategory(@Query("title") String title, @Query("user") int currentUserId);
 
+
+    // schedule response
     @GET("todolist/all")
     Call<List<ScheduleModel>> getAllSchedule();
 
-////    @FormUrlEncoded
-//    @GET("todolist/user/")
-//    Call<List<ScheduleModel>> getSchedule(@Query("id") int userId);
+    @GET("todolist/user/{id}")
+    Call<List<ScheduleModel>> getSchedule(@Query("id") int currentUserId);
+
+    @GET("todolist/user={id}&category={id}")
+    Call<List<ScheduleModel>> getScheduleByCategory(@Path("id") int currentUserId, @Path("id") int currentCategory);
 
     @FormUrlEncoded
     @POST("todolistadd")
     Call<AddScheduleResponse> addNewSchedule (@Field("date") String date, @Field("title") String title,
                                               @Field("category") int categoryId, @Field("note") String note);
 
+
+    // rundown response
     @GET("rundown/all")
     Call<List<RundownModel>> getRundown();
 
