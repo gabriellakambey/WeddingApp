@@ -20,6 +20,7 @@ import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.AddRundownResponse;
 import com.example.weddingvaganza.model.AddScheduleResponse;
 import com.example.weddingvaganza.model.CategoryModel;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -83,10 +84,11 @@ public class AddRundownActivity extends AppCompatActivity {
         });
 
         // retrofit spinner
+        int currentUserId = Prefs.getInt("user_id", 0);
         List<CategoryModel> category = new ArrayList<>();
         ArrayAdapter<CategoryModel> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, category);
         WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-        Call<List<CategoryModel>> call = weddingService.getCategory();
+        Call<List<CategoryModel>> call = weddingService.getCategory(currentUserId);
 
         call.enqueue(new Callback<List<CategoryModel>>() {
             @Override

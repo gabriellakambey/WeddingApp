@@ -40,9 +40,9 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        CategoryModel categoryModel = schedule.get(position);
-        String title = categoryModel.getScheduleTitle();
-        holder.checkBox.setText(title);
+//        CategoryModel categoryModel = schedule.get(position);
+//        String title = categoryModel.getScheduleTitle();
+//        holder.checkBox.setText(title);
 
     }
 

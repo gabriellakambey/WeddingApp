@@ -2,6 +2,7 @@ package com.example.weddingvaganza.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -16,9 +17,12 @@ import com.example.weddingvaganza.model.LoginResponseModel;
 import com.example.weddingvaganza.model.UserModel;
 import com.example.weddingvaganza.view.activity.HomeActivity;
 import com.example.weddingvaganza.view.activity.SignUpActivity;
+import com.pixplicity.easyprefs.library.Prefs;
 import com.xwray.passwordview.PasswordView;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,13 +65,25 @@ public class SignInActivity extends AppCompatActivity {
                 public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
                     LoginResponseModel loginRespondModel = response.body();
                     if (loginRespondModel.getStatus().equals("success")){
+                        int activeUserId = loginRespondModel.getUserModel().getUserId();
+                        String activeUserCouple = loginRespondModel.getUserModel().getUserCouple();
+                        String activeCoupleDate = loginRespondModel.getUserModel().getTglPernikahan();
+
+                        Prefs.putInt("user_id", activeUserId);
+                        Prefs.putString("couple_name", activeUserCouple);
+                        Prefs.putString("wedding_date", activeCoupleDate);
+                        
                         Intent login = new Intent(SignInActivity.this, HomeActivity.class);
                         startActivity(login);
                         finish();
+
                         Toast.makeText(SignInActivity.this, "Success Login", Toast.LENGTH_SHORT).show();
+
                     } else {
+
                         Toast.makeText(SignInActivity.this, "Failed Login", Toast.LENGTH_SHORT).show();
                     }
+
                 }
 
                 @Override

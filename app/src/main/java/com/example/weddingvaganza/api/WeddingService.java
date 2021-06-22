@@ -15,6 +15,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface WeddingService {
@@ -28,14 +29,21 @@ public interface WeddingService {
                                       @Field("email") String email_user, @Field("password") String password_user,
                                       @Field("couple") String nama_pasangan_user, @Field("tanggal") String tgl_pernikahan);
 
-    @GET("category2/all")
-    Call<List<CategoryModel>> getCategory();
+    @GET("category/all")
+    Call<List<CategoryModel>> getAllCategory();
 
-    @POST("categoryadd2")
-    Call<AddCategoryResponse> addCategory(@Query("title") String title);
+    @GET("category/user/{id}")
+    Call<List<CategoryModel>> getCategory(@Path("id") int currentUserId);
+
+    @POST("categoryadd")
+    Call<AddCategoryResponse> addCategory(@Query("title") String title, @Query("user") int currentUserId);
 
     @GET("todolist/all")
     Call<List<ScheduleModel>> getAllSchedule();
+
+////    @FormUrlEncoded
+//    @GET("todolist/user/")
+//    Call<List<ScheduleModel>> getSchedule(@Query("id") int userId);
 
     @FormUrlEncoded
     @POST("todolistadd")

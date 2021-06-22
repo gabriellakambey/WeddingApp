@@ -18,6 +18,7 @@ import com.example.weddingvaganza.adapter.ListScheduleAdapter;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.CategoryModel;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.List;
 
@@ -61,7 +62,8 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity {
             categoryModel = (CategoryModel) intent.getSerializableExtra("data");
 
             String title = categoryModel.getCategoryTitle();
-            String schedule = categoryModel.getScheduleTitle();
+            int user = categoryModel.getUserId();
+            int currentCategory = categoryModel.getCategoryId();
             categoryTitle.setText(title);
         }
 
@@ -78,8 +80,9 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity {
     }
 
     private void getSchedule() {
+        int currentUserId = Prefs.getInt("user_id", 0);
         WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-        Call<List<CategoryModel>> call = weddingService.getCategory();
+        Call<List<CategoryModel>> call = weddingService.getCategory(currentUserId);
         call.enqueue(new Callback<List<CategoryModel>>() {
             @Override
             public void onResponse(Call<List<CategoryModel>> call, Response<List<CategoryModel>> response) {

@@ -31,6 +31,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_coupleFinalHome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
@@ -41,7 +42,7 @@
                     android:textSize="32sp" />
 
                 <cn.iwgang.countdownview.CountdownView
-                    android:id="@+id/countDown"
+                    android:id="@+id/cd_finalHome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"

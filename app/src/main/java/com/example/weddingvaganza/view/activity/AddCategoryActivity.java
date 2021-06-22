@@ -18,6 +18,7 @@ import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.view.fragment.CategoryFragment;
 import com.example.weddingvaganza.model.AddCategoryResponse;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.Calendar;
 
@@ -58,8 +59,9 @@ public class AddCategoryActivity extends AppCompatActivity implements DatePicker
             String date = etDate.getText().toString();
             String note = etNote.getText().toString();
 
+            int userId = Prefs.getInt("user_id", 0);
             WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-            Call<AddCategoryResponse> call = weddingService.addCategory(title);
+            Call<AddCategoryResponse> call = weddingService.addCategory(title, userId);
             call.enqueue(new Callback<AddCategoryResponse>() {
                 @Override
                 public void onResponse(Call<AddCategoryResponse> call, Response<AddCategoryResponse> response) {

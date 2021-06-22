@@ -25,6 +25,7 @@ import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.CategoryModel;
 import com.example.weddingvaganza.view.activity.ScheduleFromCategoryActivity;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,8 +59,9 @@ public class ListCategoryFragment extends Fragment implements ListCategoryAdapte
     }
 
     private void getAllCategory() {
+        int currentUserId = Prefs.getInt("user_id", 0);
         WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-        Call<List<CategoryModel>> call = weddingService.getCategory();
+        Call<List<CategoryModel>> call = weddingService.getCategory(currentUserId);
         call.enqueue(new Callback<List<CategoryModel>>() {
             @Override
             public void onResponse(Call<List<CategoryModel>> call, Response<List<CategoryModel>> response) {

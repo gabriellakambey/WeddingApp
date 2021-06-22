@@ -19,6 +19,7 @@ import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.AddScheduleResponse;
 import com.example.weddingvaganza.model.CategoryModel;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -57,10 +58,11 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
         });
 
         // retrofit spinner
+        int currentUserId = Prefs.getInt("user_id", 0);
         List<CategoryModel> category = new ArrayList<>();
         ArrayAdapter<CategoryModel> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, category);
         WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-        Call<List<CategoryModel>> call = weddingService.getCategory();
+        Call<List<CategoryModel>> call = weddingService.getCategory(currentUserId);
 
         call.enqueue(new Callback<List<CategoryModel>>() {
             @Override
@@ -148,6 +150,7 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        month = month + 1;
         String date = dayOfMonth + "/" + month + "/" + year;
         textDate.setText(date);
     }

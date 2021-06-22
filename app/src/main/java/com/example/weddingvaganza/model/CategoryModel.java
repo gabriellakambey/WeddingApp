@@ -5,9 +5,7 @@ import java.io.Serializable;
 public class CategoryModel implements Serializable {
     private int categoryId;
     private String categoryTitle;
-    private String scheduleTitle;
-    private String categoryDate;
-    private String noteCategory;
+    private int userId;
 
     public int getCategoryId() {
         return categoryId;
@@ -25,31 +23,15 @@ public class CategoryModel implements Serializable {
         this.categoryTitle = categoryTitle;
     }
 
-    public String getScheduleTitle() {
-        return scheduleTitle;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setScheduleTitle(String scheduleTitle) {
-        this.scheduleTitle = scheduleTitle;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public String getCategoryDate() {
-        return categoryDate;
-    }
-
-    public void setCategoryDate(String categoryDate) {
-        this.categoryDate = categoryDate;
-    }
-
-    public String getNoteCategory() {
-        return noteCategory;
-    }
-
-    public void setNoteCategory(String noteCategory) {
-        this.noteCategory = noteCategory;
-    }
-
-    public CategoryModel(int categoryId ,String categoryTitle) {
+    public CategoryModel(int categoryId , String categoryTitle) {
         this.categoryId = categoryId;
         this.categoryTitle = categoryTitle;
     }

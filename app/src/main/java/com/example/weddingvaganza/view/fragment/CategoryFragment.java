@@ -30,6 +30,10 @@ import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.AddCategoryResponse;
 import com.example.weddingvaganza.model.CategoryModel;
 import com.example.weddingvaganza.view.activity.AddCategoryActivity;
+import com.example.weddingvaganza.view.activity.HomeActivity;
+import com.example.weddingvaganza.view.activity.SignInActivity;
+import com.example.weddingvaganza.view.dialog.AddCategoryDialog;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.List;
 
@@ -38,7 +42,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class CategoryFragment extends Fragment {
+public class CategoryFragment extends Fragment implements AddCategoryDialog.CategoryDialogListener{
 
     Fragment fragment;
     FragmentManager fragmentManager;
@@ -54,11 +58,8 @@ public class CategoryFragment extends Fragment {
 
         dialog = new Dialog(getContext());
         LinearLayout addCategory = view.findViewById(R.id.add_category);
-        addCategory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addCategoryDialog();
-            }
+        addCategory.setOnClickListener(v -> {
+            openDialog();
         });
 
         return view;
@@ -69,8 +70,9 @@ public class CategoryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // show fragment when data exist
+        int currentUserId = Prefs.getInt("user_id", 0);
         WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-        Call<List<CategoryModel>> call = weddingService.getCategory();
+        Call<List<CategoryModel>> call = weddingService.getCategory(currentUserId);
         call.enqueue(new Callback<List<CategoryModel>>() {
             @Override
             public void onResponse(Call<List<CategoryModel>> call, Response<List<CategoryModel>> response) {
@@ -121,44 +123,14 @@ public class CategoryFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    private void addCategoryDialog() {
-        dialog.setContentView(R.layout.dialog_addcategory);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        // button close dialog
-        ImageView close = dialog.findViewById(R.id.iv_closeDialogCategory);
-        close.setOnClickListener(v -> {
-            dialog.dismiss();
-        });
-
-        // button add category
-        EditText etCatTitle = dialog.findViewById(R.id.et_addCategory);
-        Button save = dialog.findViewById(R.id.btn_addCategory);
-        save.setOnClickListener(v -> {
-            String title = etCatTitle.getText().toString();
-
-            WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-            Call<AddCategoryResponse> call = weddingService.addCategory(title);
-            call.enqueue(new Callback<AddCategoryResponse>() {
-                @Override
-                public void onResponse(Call<AddCategoryResponse> call, Response<AddCategoryResponse> response) {
-                    AddCategoryResponse addCategoryResponse = response.body();
-                    if (addCategoryResponse.getStatus().equals("success")) {
-                        Toast.makeText(getContext(), "Success Add Category", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getContext(), "Failed Add Category", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<AddCategoryResponse> call, Throwable t) {
-                    Toast.makeText(getContext(), "Server Error", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-        });
+    public void openDialog() {
+        AddCategoryDialog addCategoryDialog = new AddCategoryDialog();
+        addCategoryDialog.show(getFragmentManager(), "add category");
+    }
 
 
-        dialog.show();
+    @Override
+    public void onAddCategory(String title) {
+
     }
 }

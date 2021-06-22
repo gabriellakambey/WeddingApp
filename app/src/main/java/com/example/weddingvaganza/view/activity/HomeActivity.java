@@ -20,6 +20,7 @@ import com.example.weddingvaganza.view.fragment.HomeFragment;
 import com.example.weddingvaganza.view.fragment.ProfileFragment;
 import com.example.weddingvaganza.view.fragment.TodoListFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.List;
 
@@ -43,6 +44,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         menu_bawah.setOnNavigationItemSelectedListener(this);
         
         // home fragment as main fragment
+        int userId = Prefs.getInt("user_id", 0);
         WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
         Call<List<ScheduleModel>> call = weddingService.getAllSchedule();
         call.enqueue(new Callback<List<ScheduleModel>>() {
@@ -69,6 +71,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home:
+                int userId = Prefs.getInt("user_id", 0);
                 WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
                 Call<List<ScheduleModel>> call = weddingService.getAllSchedule();
                 call.enqueue(new Callback<List<ScheduleModel>>() {

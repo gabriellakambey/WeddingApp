@@ -2,9 +2,11 @@ package com.example.weddingvaganza.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -17,17 +19,20 @@ import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.LoginResponseModel;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SignUpActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class SignUpActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
     EditText etName, etPhoneNum, etEmail, etPass, etConfirmPass, etCouple, etDate;
     private Button btn_regis;
     private TextView textDate;
 
+    @SuppressLint({"CutPasteId", "SimpleDateFormat"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,6 +106,7 @@ public class SignUpActivity extends AppCompatActivity implements DatePickerDialo
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        month = month + 1;
         String date = dayOfMonth + "/" + month + "/" + year;
         textDate.setText(date);
     }
