@@ -203,6 +203,7 @@
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="5dp"
                         android:text="Save"
+                        android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
 

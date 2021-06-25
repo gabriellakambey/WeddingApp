@@ -13,18 +13,29 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.adapter.PagerAdapter;
 import com.example.weddingvaganza.adapter.TodoListAdapter;
+import com.example.weddingvaganza.api.WeddingApi;
+import com.example.weddingvaganza.api.WeddingService;
+import com.example.weddingvaganza.model.CategoryModel;
 import com.google.android.material.tabs.TabLayout;
+import com.pixplicity.easyprefs.library.Prefs;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TodoListFragment extends Fragment {
 
     TabLayout tabLayout;
     ViewPager2 viewPager2;
     ViewPager viewPager;
-    TodoListAdapter adapter;
+    PagerAdapter adapter;
 
 
     @Override
@@ -38,7 +49,7 @@ public class TodoListFragment extends Fragment {
         viewPager = view.findViewById(R.id.viewPager);
 
 
-        PagerAdapter adapter = new PagerAdapter(getActivity().getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        adapter = new PagerAdapter(getActivity().getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         adapter.AddFragment(new CategoryFragment(),"Category");
         adapter.AddFragment(new ScheduleFragment(),"Schedule");
         adapter.AddFragment(new RundownFragment(),"Rundown");

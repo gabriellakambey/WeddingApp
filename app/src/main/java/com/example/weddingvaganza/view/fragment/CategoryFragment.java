@@ -1,9 +1,6 @@
 package com.example.weddingvaganza.view.fragment;
 
 import android.app.Dialog;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,30 +8,28 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.weddingvaganza.R;
+import com.example.weddingvaganza.adapter.ListCategoryAdapter;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.AddCategoryResponse;
 import com.example.weddingvaganza.model.CategoryModel;
-import com.example.weddingvaganza.view.activity.AddCategoryActivity;
-import com.example.weddingvaganza.view.activity.HomeActivity;
-import com.example.weddingvaganza.view.activity.SignInActivity;
 import com.example.weddingvaganza.view.dialog.AddCategoryDialog;
 import com.pixplicity.easyprefs.library.Prefs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -48,7 +43,8 @@ public class CategoryFragment extends Fragment implements AddCategoryDialog.Cate
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     Dialog dialog;
-    List<CategoryModel> categoryModelList;
+    ListCategoryAdapter adapter;
+    RecyclerView recyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -95,7 +91,6 @@ public class CategoryFragment extends Fragment implements AddCategoryDialog.Cate
             }
         });
 
-        //
     }
 
     // enable toolbar menu in this fragment
@@ -125,12 +120,15 @@ public class CategoryFragment extends Fragment implements AddCategoryDialog.Cate
 
     public void openDialog() {
         AddCategoryDialog addCategoryDialog = new AddCategoryDialog();
+
+        addCategoryDialog.setListener((AddCategoryDialog.CategoryDialogListener)this);
+
         addCategoryDialog.show(getFragmentManager(), "add category");
     }
 
 
     @Override
-    public void onAddCategory(String title) {
-
+    public void onAddCategory() {
+        adapter.notifyDataSetChanged();
     }
 }

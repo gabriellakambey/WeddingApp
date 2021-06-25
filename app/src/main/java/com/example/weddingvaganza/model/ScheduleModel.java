@@ -7,7 +7,7 @@ public class ScheduleModel {
     private int idCategory;
     private String noteSchedule;
     private int userId;
-    private boolean status;
+    private String status;
 
     public int getScheduleId() {
         return scheduleId;
@@ -57,11 +57,11 @@ public class ScheduleModel {
         this.userId = userId;
     }
 
-    public boolean isStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

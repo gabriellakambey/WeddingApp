@@ -25,6 +25,12 @@ public class ListCategoryAdapter extends RecyclerView.Adapter<ListCategoryAdapte
         this.clickedItem = clickedItem;
     }
 
+    public void refreshCategory (Context context, List<CategoryModel> categoryList) {
+        this.context = context;
+        this.categoryList = categoryList;
+        notifyDataSetChanged();
+    }
+
     public void setData(List<CategoryModel> categoryList) {
         this.categoryList = categoryList;
         notifyDataSetChanged();

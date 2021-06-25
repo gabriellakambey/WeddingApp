@@ -140,6 +140,7 @@
                 android:background="@drawable/button_gold"
                 android:fontFamily="@font/poppins_semi_bold"
                 android:text="Make a List"
+                android:textAllCaps="false"
                 android:textColor="@color/white" />
         </LinearLayout>
 

@@ -33,9 +33,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FinalHomeFragment extends Fragment {
-    private ImageButton ibGuests, ibBudget, ibVendor;
-    private TextView tvTotTask, tvPresentase, tvCekTask;
-    private ProgressBar progressBar;
+    ImageButton ibGuests, ibBudget, ibVendor;
+    TextView tvTotTask, tvPresentase, tvCekTask;
+    ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

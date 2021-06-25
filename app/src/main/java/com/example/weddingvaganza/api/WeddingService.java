@@ -53,7 +53,8 @@ public interface WeddingService {
     @FormUrlEncoded
     @POST("todolistadd")
     Call<AddScheduleResponse> addNewSchedule (@Field("date") String date, @Field("title") String title,
-                                              @Field("category") int categoryId, @Field("note") String note);
+                                              @Field("category") int categoryId, @Field("note") String note,
+                                              @Field("user") int currentUserId, @Field("status") String checked);
 
 
     // rundown response
@@ -63,6 +64,6 @@ public interface WeddingService {
     @POST("rundownadd")
     Call<AddRundownResponse> addRundown(@Query("time") String time, @Query("title") String title,
                                         @Query("category") int categoryId, @Query("note") String note,
-                                        @Query("pj") String pj);
+                                        @Query("pj") String pj, @Query("user") int currentUserId);
 
 }

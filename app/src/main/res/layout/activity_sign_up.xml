@@ -226,6 +226,7 @@
             android:layout_height="45dp"
             android:layout_marginTop="24dp"
             android:text="Sign Up"
+            android:textAllCaps="false"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/navy"

@@ -25,6 +25,7 @@ import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.CategoryModel;
 import com.example.weddingvaganza.view.activity.ScheduleFromCategoryActivity;
+import com.example.weddingvaganza.view.dialog.AddCategoryDialog;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ListCategoryFragment extends Fragment implements ListCategoryAdapter.ClickedItem{
+public class ListCategoryFragment extends Fragment implements ListCategoryAdapter.ClickedItem {
     RecyclerView recyclerView;
     ListCategoryAdapter adapter;
 
@@ -86,4 +87,5 @@ public class ListCategoryFragment extends Fragment implements ListCategoryAdapte
         startActivity(new Intent(getActivity(), ScheduleFromCategoryActivity.class).putExtra("data", categoryModel));
 
     }
+
 }

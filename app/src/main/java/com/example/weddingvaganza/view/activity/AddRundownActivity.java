@@ -2,6 +2,7 @@ package com.example.weddingvaganza.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -41,7 +42,9 @@ public class AddRundownActivity extends AppCompatActivity {
     private EditText timeRundown;
     private EditText etTime, etTitle, etPersonIC, etNote;
     int Hour, Minute;
+    int currentUserId = Prefs.getInt("user_id", 0);
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +87,7 @@ public class AddRundownActivity extends AppCompatActivity {
         });
 
         // retrofit spinner
-        int currentUserId = Prefs.getInt("user_id", 0);
+        spinner = findViewById(id.spinner_addRundown);
         List<CategoryModel> category = new ArrayList<>();
         ArrayAdapter<CategoryModel> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, category);
         WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
@@ -133,15 +136,15 @@ public class AddRundownActivity extends AppCompatActivity {
             int categoryId = getItemId.getCategoryId();
 
             WeddingService weddingService1 = WeddingApi.getRetrofit().create(WeddingService.class);
-            Call<AddRundownResponse> call1 = weddingService1.addRundown(time, title, categoryId, note, pj);
+            Call<AddRundownResponse> call1 = weddingService1.addRundown(time, title, categoryId, note, pj, currentUserId);
             call1.enqueue(new Callback<AddRundownResponse>() {
                 @Override
                 public void onResponse(Call<AddRundownResponse> call, Response<AddRundownResponse> response) {
                     AddRundownResponse addRundownResponse = response.body();
                     if (addRundownResponse.getStatus().equals("success")) {
-                        Toast.makeText(AddRundownActivity.this, "Success add schedule", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddRundownActivity.this, "Success add rundown", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(AddRundownActivity.this, "Failed add schedule", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddRundownActivity.this, "Failed add rundown", Toast.LENGTH_SHORT).show();
                     }
                 }
 

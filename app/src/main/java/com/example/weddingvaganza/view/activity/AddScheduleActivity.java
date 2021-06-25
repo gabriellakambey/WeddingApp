@@ -35,6 +35,7 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
     private LinearLayout datePicker;
     private TextView textDate;
     EditText etDate, etTitle, etNote;
+    private int currentUserId = Prefs.getInt("user_id", 0);
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -58,7 +59,6 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
         });
 
         // retrofit spinner
-        int currentUserId = Prefs.getInt("user_id", 0);
         List<CategoryModel> category = new ArrayList<>();
         ArrayAdapter<CategoryModel> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, category);
         WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
@@ -103,17 +103,16 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
             int selectedId = spinner.getSelectedItemPosition();
             CategoryModel getItemId = (CategoryModel) spinner.getItemAtPosition(selectedId);
             int categoryId = getItemId.getCategoryId();
-
-//            int categoryId = 1;
+            String checked = "";
 
             WeddingService weddingService1 = WeddingApi.getRetrofit().create(WeddingService.class);
-            Call<AddScheduleResponse> responseCall = weddingService1.addNewSchedule(date, title, categoryId, note);
+            Call<AddScheduleResponse> responseCall = weddingService1.addNewSchedule(date, title, categoryId, note, currentUserId, checked);
             responseCall.enqueue(new Callback<AddScheduleResponse>() {
                 @Override
                 public void onResponse(Call<AddScheduleResponse> call, Response<AddScheduleResponse> response) {
                     AddScheduleResponse addScheduleResponse = response.body();
                     if (addScheduleResponse.getStatus().equals("success")) {
-                        Toast.makeText(AddScheduleActivity.this, "Success add " + title, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddScheduleActivity.this, "Success add data", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(AddScheduleActivity.this, "Failed add data", Toast.LENGTH_SHORT).show();
                     }

@@ -16,7 +16,6 @@ import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.ScheduleModel;
 import com.example.weddingvaganza.view.fragment.FinalHomeFragment;
 import com.example.weddingvaganza.view.fragment.FirstHomeFragment;
-import com.example.weddingvaganza.view.fragment.HomeFragment;
 import com.example.weddingvaganza.view.fragment.ProfileFragment;
 import com.example.weddingvaganza.view.fragment.TodoListFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
