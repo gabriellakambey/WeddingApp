@@ -94,13 +94,6 @@ public class CategoryFragment extends Fragment implements AddCategoryDialog.Cate
         });
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-
-    }
-
     public void openDialog() {
         AddCategoryDialog addCategoryDialog = new AddCategoryDialog();
 
@@ -111,7 +104,7 @@ public class CategoryFragment extends Fragment implements AddCategoryDialog.Cate
 
     @Override
     public void onAddCategory() {
-        adapter.notifyDataSetChanged();
+        getAllCategory();
     }
 
     @Override

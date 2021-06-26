@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -34,6 +35,7 @@ import com.example.weddingvaganza.model.CategoryModel;
 import com.example.weddingvaganza.model.CategoryScheduleModel;
 import com.example.weddingvaganza.view.activity.AddScheduleActivity;
 import com.pixplicity.easyprefs.library.Prefs;
+import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import java.util.Calendar;
 import java.util.List;
@@ -43,7 +45,7 @@ import retrofit2.Call;
 import static android.content.ContentValues.TAG;
 
 
-public class ScheduleFragment extends DialogFragment {
+public class ScheduleFragment extends DialogFragment implements AddScheduleActivity.AddScheduleListener {
 
     private TextView monthSchedule;
     private ImageView calendarSchedule;
@@ -67,44 +69,45 @@ public class ScheduleFragment extends DialogFragment {
         // button add schedule
         Button btn_addSchedule = view.findViewById(R.id.btn_addSchedule);
         btn_addSchedule.setOnClickListener(v -> {
+//            AddScheduleActivity addScheduleActivity = new AddScheduleActivity();
+//            addScheduleActivity.setListener((AddScheduleActivity.AddScheduleListener)this);
+
             Intent intent = new Intent(getActivity(), AddScheduleActivity.class);
             startActivity(intent);
         });
 
         // show dialog calendar date picker
-        calendarSchedule = view.findViewById(R.id.calendarSchedule);
         monthSchedule = view.findViewById(R.id.tv_dateSchedule);
+        Calendar currentMonthYear = Calendar.getInstance();
+        int currentMonth = currentMonthYear.get(Calendar.MONTH);
+        currentMonth = currentMonth +1;
+        int currentYear = currentMonthYear.get(Calendar.YEAR);
+        monthSchedule.setText(makeMonthYearString(currentMonth, currentYear));
 
-        calendarSchedule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
+        calendarSchedule = view.findViewById(R.id.calendarSchedule);
+        calendarSchedule.setOnClickListener(v -> {
+            final Calendar today = Calendar.getInstance();
+            int year = today.get(Calendar.YEAR);
+            int month = today.get(Calendar.MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(getContext(), android.R.style.Theme_DeviceDefault_Dialog, dateSetListener, year, month, day);
+            MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(getContext(),
+                    new MonthPickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(int selectedMonth, int selectedYear) {
+                            selectedMonth = selectedMonth + 1;
+                            String selected = makeMonthYearString (selectedMonth, selectedYear);
+                            monthSchedule.setText(selected);
+                        }
+                    }, year, month);
 
-                dialog.show();
-
-            }
+            builder.setActivatedMonth(month)
+                    .setMinYear(year-1)
+                    .setActivatedYear(year)
+                    .setMaxYear(2030)
+                    .setTitle("Select Month and Year")
+                    .build()
+                    .show();
         });
-
-        // set text month and year picker
-        dateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int day) {
-                month = month+1;
-                Log.d(TAG, "onDateSet: mm yyyy: " + day + "/" + month + "/" + year);
-
-                String date = makeDateString (day, month, year);
-                monthSchedule.setText(date);
-
-            }
-        };
-
-
-        // recyclerview
 
         return view;
     }
@@ -115,8 +118,8 @@ public class ScheduleFragment extends DialogFragment {
         Call<List<CategoryModel>> call = weddingService.getCategory(currentUserId);
     }
 
-    private String makeDateString(int day, int month, int year) {
-        return getMonthFormat(month) + " " + year;
+    private String makeMonthYearString(int selectedMonth, int selectedYear) {
+        return getMonthFormat(selectedMonth) + " " + selectedYear;
     }
 
     private String getMonthFormat(int month) {
@@ -148,5 +151,8 @@ public class ScheduleFragment extends DialogFragment {
         return "January";
     }
 
-
+    @Override
+    public void onAddSchedule() {
+//        getCategory();
+    }
 }

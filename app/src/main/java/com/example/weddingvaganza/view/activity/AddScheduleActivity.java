@@ -1,15 +1,20 @@
 package com.example.weddingvaganza.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +24,7 @@ import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.AddScheduleResponse;
 import com.example.weddingvaganza.model.CategoryModel;
+import com.example.weddingvaganza.view.fragment.ScheduleFragment;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
@@ -36,6 +42,9 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
     private TextView textDate;
     EditText etDate, etTitle, etNote;
     private int currentUserId = Prefs.getInt("user_id", 0);
+    String checked;
+    AddScheduleListener listener;
+    WeddingService weddingService;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -44,7 +53,6 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
         setContentView(R.layout.activity_add_schedule);
         spinner = findViewById(R.id.spinner_addSchedule);
         btnBack = findViewById(R.id.btn_BackAddSchedule);
-
 
         // button back
         btnBack.setOnClickListener(v -> {
@@ -61,7 +69,7 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
         // retrofit spinner
         List<CategoryModel> category = new ArrayList<>();
         ArrayAdapter<CategoryModel> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, category);
-        WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
+        weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
         Call<List<CategoryModel>> call = weddingService.getCategory(currentUserId);
 
         call.enqueue(new Callback<List<CategoryModel>>() {
@@ -103,16 +111,26 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
             int selectedId = spinner.getSelectedItemPosition();
             CategoryModel getItemId = (CategoryModel) spinner.getItemAtPosition(selectedId);
             int categoryId = getItemId.getCategoryId();
-            String checked = "";
 
-            WeddingService weddingService1 = WeddingApi.getRetrofit().create(WeddingService.class);
-            Call<AddScheduleResponse> responseCall = weddingService1.addNewSchedule(date, title, categoryId, note, currentUserId, checked);
+            checked  = "false";
+            weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
+            Call<AddScheduleResponse> responseCall = weddingService.addNewSchedule(date, title, categoryId, note, currentUserId, checked);
             responseCall.enqueue(new Callback<AddScheduleResponse>() {
                 @Override
                 public void onResponse(Call<AddScheduleResponse> call, Response<AddScheduleResponse> response) {
                     AddScheduleResponse addScheduleResponse = response.body();
                     if (addScheduleResponse.getStatus().equals("success")) {
+
+//                        RelativeLayout relativeLayout = findViewById(R.id.rl_addScheduleLayout);
+//                        relativeLayout.setVisibility(View.GONE);
+//
+//                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//                        fragmentTransaction.replace(R.id.fl_addScheduleLayout, new ScheduleFragment()).commit();
+
+//                        listener.onAddSchedule();
                         Toast.makeText(AddScheduleActivity.this, "Success add data", Toast.LENGTH_SHORT).show();
+                        onBackPressed();
+
                     } else {
                         Toast.makeText(AddScheduleActivity.this, "Failed add data", Toast.LENGTH_SHORT).show();
                     }
@@ -152,5 +170,13 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
         month = month + 1;
         String date = dayOfMonth + "/" + month + "/" + year;
         textDate.setText(date);
+    }
+
+    public void setListener(AddScheduleListener listener) {
+        this.listener = listener;
+    }
+
+    public interface AddScheduleListener {
+        void onAddSchedule();
     }
 }

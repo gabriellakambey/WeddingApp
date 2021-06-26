@@ -77,11 +77,8 @@ public class AddCategoryDialog extends AppCompatDialogFragment {
                 public void onResponse(Call<AddCategoryResponse> call, Response<AddCategoryResponse> response) {
                     AddCategoryResponse addCategoryResponse = response.body();
                     if (addCategoryResponse.getStatus().equals("success")) {
-                        List<CategoryModel> newCategoryList = new ArrayList<>();
-                        newCategoryList.add(addCategoryResponse.getCategoryModel());
 
                         listener.onAddCategory();
-
                         Toast.makeText(getContext(), "Success Add Category", Toast.LENGTH_SHORT).show();
                         alertDialog.dismiss();
 

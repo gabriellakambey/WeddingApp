@@ -52,9 +52,6 @@ public class SignInActivity extends AppCompatActivity {
         });
 
         btn_login.setOnClickListener(v-> {
-//            Intent login = new Intent(SignInActivity.this, HomeActivity.class);
-//            startActivity(login);
-//            finish();
 
             String email_user = et_email.getText().toString();
             String password_user = et_password.getText().toString();
@@ -68,6 +65,7 @@ public class SignInActivity extends AppCompatActivity {
                         int activeUserId = loginRespondModel.getUserModel().getUserId();
                         String activeUserCouple = loginRespondModel.getUserModel().getUserCouple();
                         String activeCoupleDate = loginRespondModel.getUserModel().getTglPernikahan();
+                        String activeUserName = loginRespondModel.getUserModel().getUserName();
 
                         Prefs.putInt("user_id", activeUserId);
                         Prefs.putString("couple_name", activeUserCouple);
@@ -77,7 +75,7 @@ public class SignInActivity extends AppCompatActivity {
                         startActivity(login);
                         finish();
 
-                        Toast.makeText(SignInActivity.this, "Success Login", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignInActivity.this, "Welcome Back, "+activeUserName, Toast.LENGTH_SHORT).show();
 
                     } else {
 

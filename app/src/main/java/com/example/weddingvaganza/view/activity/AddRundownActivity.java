@@ -143,6 +143,7 @@ public class AddRundownActivity extends AppCompatActivity {
                     AddRundownResponse addRundownResponse = response.body();
                     if (addRundownResponse.getStatus().equals("success")) {
                         Toast.makeText(AddRundownActivity.this, "Success add rundown", Toast.LENGTH_SHORT).show();
+                        onBackPressed();
                     } else {
                         Toast.makeText(AddRundownActivity.this, "Failed add rundown", Toast.LENGTH_SHORT).show();
                     }

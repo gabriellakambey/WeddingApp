@@ -13,83 +13,26 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="vertical"
-            android:id="@+id/scheduleFull">
+            android:scrollbars="vertical">
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_categoryOnRundown"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/border_shadow"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/titleSchedule1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Prewedding"
-                    android:textColor="@color/navy"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_schedule1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp" />
-
-                <TextView
-                    android:id="@+id/titleSchedule2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Blessing of Church"
-                    android:textColor="@color/navy"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_schedule2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp" />
-
-                <TextView
-                    android:id="@+id/titleSchedule3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Wedding Ceremony"
-                    android:textColor="@color/navy"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_schedule3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp" />
-            </LinearLayout>
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp" />
 
         </androidx.core.widget.NestedScrollView>
 
         <Button
-            android:layout_marginEnd="10dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="50dp"
+            android:id="@+id/btn_addRundown"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/ic_rounded_cross"
-            android:id="@+id/btn_addRundown"/>
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/ic_rounded_cross" />
 
     </RelativeLayout>
 

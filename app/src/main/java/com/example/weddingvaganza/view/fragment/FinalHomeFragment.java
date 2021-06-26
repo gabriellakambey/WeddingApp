@@ -95,8 +95,6 @@ public class FinalHomeFragment extends Fragment {
 
                 String cek = String.valueOf(totCekTask);
                 tvCekTask.setText(cek);
-
-                Toast.makeText(getContext(), "Total task: "+totalTask, Toast.LENGTH_SHORT).show();
             }
 
             @Override
