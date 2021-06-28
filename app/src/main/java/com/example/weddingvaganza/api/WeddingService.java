@@ -4,6 +4,7 @@ import com.example.weddingvaganza.model.AddCategoryResponse;
 import com.example.weddingvaganza.model.AddRundownResponse;
 import com.example.weddingvaganza.model.AddScheduleResponse;
 import com.example.weddingvaganza.model.CategoryModel;
+import com.example.weddingvaganza.model.GuestGroupModel;
 import com.example.weddingvaganza.model.LoginResponseModel;
 import com.example.weddingvaganza.model.RundownModel;
 import com.example.weddingvaganza.model.ScheduleModel;
@@ -65,5 +66,12 @@ public interface WeddingService {
     Call<AddRundownResponse> addRundown(@Query("time") String time, @Query("title") String title,
                                         @Query("category") int categoryId, @Query("note") String note,
                                         @Query("pj") String pj, @Query("user") int currentUserId);
+
+
+    // guests response
+    @GET("guestclass/all")
+    Call<List<GuestGroupModel>> getGuestGroup();
+
+
 
 }
