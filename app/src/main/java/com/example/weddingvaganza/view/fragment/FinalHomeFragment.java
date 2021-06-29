@@ -77,7 +77,7 @@ public class FinalHomeFragment extends Fragment {
 
         int currentUserId = Prefs.getInt("user_id", 0);
         WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-        Call<List<ScheduleModel>> call = weddingService.getSchedule(currentUserId);
+        Call<List<ScheduleModel>> call = weddingService.getAllSchedule();
         call.enqueue(new Callback<List<ScheduleModel>>() {
             @Override
             public void onResponse(Call<List<ScheduleModel>> call, Response<List<ScheduleModel>> response) {

@@ -82,7 +82,7 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity {
     private void getSchedule() {
         int currentUserId = Prefs.getInt("user_id", 0);
         WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-        Call<List<ScheduleModel>> call = weddingService.getScheduleByCategory(currentUserId, currentCategory);
+        Call<List<ScheduleModel>> call = weddingService.getAllSchedule();
         call.enqueue(new Callback<List<ScheduleModel>>() {
             @Override
             public void onResponse(Call<List<ScheduleModel>> call, Response<List<ScheduleModel>> response) {

@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.weddingvaganza.R;
-import com.example.weddingvaganza.view.activity.AddCategoryActivity;
+import com.example.weddingvaganza.view.activity.AddScheduleActivity;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import java.text.ParseException;
@@ -59,7 +59,7 @@ public class FirstHomeFragment extends Fragment {
         // button add a list
         Button button = view.findViewById(R.id.btn_makeList);
         button.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), AddCategoryActivity.class);
+            Intent intent = new Intent(getActivity(), AddScheduleActivity.class);
             startActivity(intent);
         });
 

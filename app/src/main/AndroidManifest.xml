@@ -17,13 +17,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WeddingVaganza">
-        <activity android:name=".view.activity.GuestListActivity"></activity>
+        <activity android:name=".view.activity.AddGuestActivity"></activity>
+        <activity android:name=".view.activity.GuestListActivity" />
         <activity android:name=".view.activity.ScheduleFromCategoryActivity" />
         <activity android:name=".view.activity.VendorActivity" />
         <activity android:name=".view.activity.BudgetActivity" />
         <activity android:name=".view.activity.GuestsActivity" />
         <activity android:name=".view.activity.AddRundownActivity" />
-        <activity android:name=".view.activity.AddCategoryActivity" />
         <activity android:name=".view.activity.AddScheduleActivity" />
         <activity android:name=".view.activity.HomeActivity" />
         <activity android:name=".view.activity.SignUpActivity" />

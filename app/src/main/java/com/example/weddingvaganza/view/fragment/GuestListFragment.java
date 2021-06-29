@@ -11,13 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.adapter.GuestGroupAdapter;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.GuestGroupModel;
+import com.example.weddingvaganza.view.activity.AddGuestActivity;
 import com.example.weddingvaganza.view.activity.GuestListActivity;
+import com.example.weddingvaganza.view.activity.HomeActivity;
+import com.example.weddingvaganza.view.activity.SignInActivity;
 
 import java.util.List;
 
@@ -26,7 +30,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class GuestListFragment extends Fragment implements GuestGroupAdapter.ClickedItem{
-
+    LinearLayout addGuest;
     RecyclerView recyclerView;
     GuestGroupAdapter adapter;
     WeddingService weddingService;
@@ -36,6 +40,13 @@ public class GuestListFragment extends Fragment implements GuestGroupAdapter.Cli
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_guest_list, container, false);
+
+        // button add guest
+        addGuest = view.findViewById(R.id.add_guest);
+        addGuest.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), AddGuestActivity.class);
+            startActivity(intent);
+        });
 
         // recycler list guest group
         recyclerView = view.findViewById(R.id.rv_listGuestGroup);
