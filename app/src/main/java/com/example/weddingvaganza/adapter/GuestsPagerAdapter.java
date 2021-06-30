@@ -8,6 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.weddingvaganza.view.fragment.GuestListFragment;
 import com.example.weddingvaganza.view.fragment.GuestsBookFragment;
+import com.example.weddingvaganza.view.fragment.InvitationFirstFragment;
 import com.example.weddingvaganza.view.fragment.InvitationFragment;
 
 public class GuestsPagerAdapter extends FragmentStateAdapter {
@@ -21,7 +22,7 @@ public class GuestsPagerAdapter extends FragmentStateAdapter {
         switch (position)
         {
             case 1 :
-                return new InvitationFragment();
+                return new InvitationFirstFragment();
             case 2 :
                 return new GuestsBookFragment();
         }

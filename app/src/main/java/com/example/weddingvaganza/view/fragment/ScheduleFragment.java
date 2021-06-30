@@ -76,7 +76,7 @@ public class ScheduleFragment extends DialogFragment implements AddScheduleActiv
             startActivity(intent);
         });
 
-        // show dialog calendar date picker
+        // set current month and year
         monthSchedule = view.findViewById(R.id.tv_dateSchedule);
         Calendar currentMonthYear = Calendar.getInstance();
         int currentMonth = currentMonthYear.get(Calendar.MONTH);
@@ -84,6 +84,7 @@ public class ScheduleFragment extends DialogFragment implements AddScheduleActiv
         int currentYear = currentMonthYear.get(Calendar.YEAR);
         monthSchedule.setText(makeMonthYearString(currentMonth, currentYear));
 
+        // month year picker dialog
         calendarSchedule = view.findViewById(R.id.calendarSchedule);
         calendarSchedule.setOnClickListener(v -> {
             final Calendar today = Calendar.getInstance();

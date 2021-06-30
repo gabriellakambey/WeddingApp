@@ -20,7 +20,9 @@ import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.CategoryModel;
 import com.example.weddingvaganza.model.ScheduleModel;
 import com.pixplicity.easyprefs.library.Prefs;
+import com.whiteelephant.monthpicker.MonthPickerDialog;
 
+import java.util.Calendar;
 import java.util.List;
 
 import retrofit2.Call;
@@ -67,6 +69,40 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity {
             categoryTitle.setText(title);
         }
 
+        // set current month and year
+        monthYear = findViewById(R.id.tv_dateSchdFrmCat);
+        Calendar currentMonthYear = Calendar.getInstance();
+        int currentMonth = currentMonthYear.get(Calendar.MONTH);
+        currentMonth = currentMonth +1;
+        int currentYear = currentMonthYear.get(Calendar.YEAR);
+        monthYear.setText(makeMonthYearString(currentMonth, currentYear));
+
+        // month year picker dialog
+        calendar = findViewById(R.id.iv_calendarSchdFrmCat);
+        calendar.setOnClickListener(v -> {
+            final Calendar today = Calendar.getInstance();
+            int year = today.get(Calendar.YEAR);
+            int month = today.get(Calendar.MONTH);
+
+            MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(this,
+                    new MonthPickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(int selectedMonth, int selectedYear) {
+                            selectedMonth = selectedMonth + 1;
+                            String selected = makeMonthYearString (selectedMonth, selectedYear);
+                            monthYear.setText(selected);
+                        }
+                    }, year, month);
+
+            builder.setActivatedMonth(month)
+                    .setMinYear(year-1)
+                    .setActivatedYear(year)
+                    .setMaxYear(2030)
+                    .setTitle("Select Month and Year")
+                    .build()
+                    .show();
+        });
+
         // recyclerview
         recyclerView = findViewById(R.id.rv_schdFrmCat);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -110,5 +146,38 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity {
         else {
             getSupportFragmentManager().popBackStack();
         }
+    }
+
+    private String makeMonthYearString(int selectedMonth, int selectedYear) {
+        return getMonthFormat(selectedMonth) + " " + selectedYear;
+    }
+
+    private String getMonthFormat(int month) {
+        if (month==1)
+            return "January";
+        if (month==2)
+            return "February";
+        if (month==3)
+            return "March";
+        if (month==4)
+            return "April";
+        if (month==5)
+            return "May";
+        if (month==6)
+            return "June";
+        if (month==7)
+            return "July";
+        if (month==8)
+            return "August";
+        if (month==9)
+            return "September";
+        if (month==10)
+            return "October";
+        if (month==11)
+            return "November";
+        if (month==12)
+            return "December";
+
+        return "January";
     }
 }
