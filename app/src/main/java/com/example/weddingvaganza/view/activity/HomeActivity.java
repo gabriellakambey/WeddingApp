@@ -32,6 +32,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     BottomNavigationView menu_bawah;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
+    int userId = Prefs.getInt("user_id", 0);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +44,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         menu_bawah.setOnNavigationItemSelectedListener(this);
         
         // home fragment as main fragment
-        int userId = Prefs.getInt("user_id", 0);
         WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-        Call<List<ScheduleModel>> call = weddingService.getAllSchedule();
+        Call<List<ScheduleModel>> call = weddingService.getSchedule(userId);
         call.enqueue(new Callback<List<ScheduleModel>>() {
             @Override
             public void onResponse(Call<List<ScheduleModel>> call, Response<List<ScheduleModel>> response) {
@@ -70,9 +70,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home:
-                int userId = Prefs.getInt("user_id", 0);
                 WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-                Call<List<ScheduleModel>> call = weddingService.getAllSchedule();
+                Call<List<ScheduleModel>> call = weddingService.getSchedule(userId);
                 call.enqueue(new Callback<List<ScheduleModel>>() {
                     @Override
                     public void onResponse(Call<List<ScheduleModel>> call, Response<List<ScheduleModel>> response) {

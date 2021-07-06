@@ -1,10 +1,13 @@
 package com.example.weddingvaganza.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class GuestGroupModel implements Serializable {
     private int classId;
-    private String kelas;
+    @SerializedName("kelas")
+    private String title;
 
     public int getClassId() {
         return classId;
@@ -14,16 +17,16 @@ public class GuestGroupModel implements Serializable {
         this.classId = classId;
     }
 
-    public String getKelas() {
-        return kelas;
+    public String getTitle() {
+        return title;
     }
 
-    public void setKelas(String kelas) {
-        this.kelas = kelas;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public GuestGroupModel(int classId, String kelas) {
+    public GuestGroupModel(int classId, String title) {
         this.classId = classId;
-        this.kelas = kelas;
+        this.title = title;
     }
 }

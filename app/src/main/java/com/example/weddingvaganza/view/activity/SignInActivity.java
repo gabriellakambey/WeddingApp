@@ -62,6 +62,7 @@ public class SignInActivity extends AppCompatActivity {
                 public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
                     LoginResponseModel loginRespondModel = response.body();
                     if (loginRespondModel.getStatus().equals("success")){
+
                         int activeUserId = loginRespondModel.getUserModel().getUserId();
                         String activeUserCouple = loginRespondModel.getUserModel().getUserCouple();
                         String activeCoupleDate = loginRespondModel.getUserModel().getTglPernikahan();

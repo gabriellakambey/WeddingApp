@@ -32,7 +32,7 @@ public class GuestListActivity extends AppCompatActivity {
         if (intent.getExtras() !=null) {
             guestGroupModel = (GuestGroupModel) intent.getSerializableExtra("data");
 
-            String title = guestGroupModel.getKelas();
+            String title = guestGroupModel.getTitle();
             int currentId = guestGroupModel.getClassId();
             toolbarTitle.setText(title);
         }

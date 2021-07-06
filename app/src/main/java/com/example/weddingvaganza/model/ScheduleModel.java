@@ -1,13 +1,21 @@
 package com.example.weddingvaganza.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ScheduleModel {
     private int scheduleId;
+    @SerializedName("date")
     private String dateSchedule;
+    @SerializedName("title")
     private String titleSchedule;
+    @SerializedName("categoryId")
     private int idCategory;
+    @SerializedName("note")
     private String noteSchedule;
     private int userId;
     private String status;
+    private int month;
+    private int year;
 
     public int getScheduleId() {
         return scheduleId;
@@ -63,5 +71,21 @@ public class ScheduleModel {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 }

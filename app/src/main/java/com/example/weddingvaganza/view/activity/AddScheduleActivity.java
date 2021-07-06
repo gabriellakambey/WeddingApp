@@ -45,6 +45,8 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
     String checked;
     AddScheduleListener listener;
     WeddingService weddingService;
+    int monthDate;
+    int yearDate;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -114,7 +116,7 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
 
             checked  = "false";
             weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-            Call<AddScheduleResponse> responseCall = weddingService.addNewSchedule(date, title, categoryId, note, currentUserId, checked);
+            Call<AddScheduleResponse> responseCall = weddingService.addNewSchedule(date, title, categoryId, note, currentUserId, checked, monthDate, yearDate);
             responseCall.enqueue(new Callback<AddScheduleResponse>() {
                 @Override
                 public void onResponse(Call<AddScheduleResponse> call, Response<AddScheduleResponse> response) {
@@ -168,6 +170,8 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         month = month + 1;
+        monthDate = month;
+        yearDate = year;
         String date = dayOfMonth + "/" + month + "/" + year;
         textDate.setText(date);
     }

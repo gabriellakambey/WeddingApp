@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class AddScheduleResponse {
 
     private String status;
-    @SerializedName("toDoListScheduleModel")
+    @SerializedName("toDoListSchedule")
     private ScheduleModel scheduleModel;
 
     public String getStatus() {

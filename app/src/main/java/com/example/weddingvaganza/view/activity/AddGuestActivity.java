@@ -33,6 +33,7 @@ public class AddGuestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_guest);
+        spinner = findViewById(R.id.spinner_addGuest);
 
         // button back
         btnBack = findViewById(R.id.btn_BackAddGuest);
@@ -41,7 +42,6 @@ public class AddGuestActivity extends AppCompatActivity {
         });
 
         // retrofit spinner
-        spinner = findViewById(R.id.spinner_addGuest);
         List<GuestGroupModel> guestGroup = new ArrayList<>();
         ArrayAdapter<GuestGroupModel> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, guestGroup);
         weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
@@ -53,7 +53,7 @@ public class AddGuestActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     for (GuestGroupModel post : response.body()) {
 
-                        String group = post.getKelas();
+                        String group = post.getTitle();
                         int currentId = post.getClassId();
                         GuestGroupModel guestGroupModel = new GuestGroupModel(currentId, group);
                         guestGroup.add(guestGroupModel);

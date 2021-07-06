@@ -1,5 +1,7 @@
 package com.example.weddingvaganza.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class UserModel implements Serializable {
@@ -21,6 +23,7 @@ public class UserModel implements Serializable {
     private String userEmail;
     private String userPassword;
     private String userCouple;
+    @SerializedName("date")
     private String tglPernikahan;
     private String nomorHp;
 

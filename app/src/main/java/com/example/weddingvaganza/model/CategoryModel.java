@@ -1,11 +1,15 @@
 package com.example.weddingvaganza.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class CategoryModel implements Serializable {
     private int categoryId;
+    @SerializedName("titleCategory")
     private String categoryTitle;
-    private int userId;
+    @SerializedName("fkUserId")
+    private UserModel userModel;
 
     public int getCategoryId() {
         return categoryId;
@@ -23,12 +27,12 @@ public class CategoryModel implements Serializable {
         this.categoryTitle = categoryTitle;
     }
 
-    public int getUserId() {
-        return userId;
+    public UserModel getUserModel() {
+        return userModel;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserModel(UserModel userModel) {
+        this.userModel = userModel;
     }
 
     public CategoryModel(int categoryId , String categoryTitle) {

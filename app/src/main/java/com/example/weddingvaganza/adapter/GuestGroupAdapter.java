@@ -41,7 +41,7 @@ public class GuestGroupAdapter extends RecyclerView.Adapter<GuestGroupAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         GuestGroupModel guestGroupModel = guestGroupModels.get(position);
-        String title = guestGroupModel.getKelas();
+        String title = guestGroupModel.getTitle();
         int currentId = guestGroupModel.getClassId();
 
         holder.textView.setText(title);

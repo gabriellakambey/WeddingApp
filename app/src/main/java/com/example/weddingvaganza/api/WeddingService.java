@@ -12,10 +12,12 @@ import com.example.weddingvaganza.model.ScheduleModel;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -31,38 +33,42 @@ public interface WeddingService {
                                       @Field("couple") String nama_pasangan_user, @Field("tanggal") String tgl_pernikahan);
 
     // category response
-    @GET("category/all")
-    Call<List<CategoryModel>> getAllCategory();
+    @GET("category/user/{userId}")
+    Call<List<CategoryModel>> getCategory(@Path("userId") int currentUserId);
 
-    @GET("category/user/{id}")
-    Call<List<CategoryModel>> getCategory(@Path("id") int currentUserId);
+    @GET("/category/id/{id}")
+    Call<List<CategoryModel>> getCategoryById (@Path("id") int categoryId);
 
     @POST("categoryadd")
     Call<AddCategoryResponse> addCategory(@Query("title") String title, @Query("user") int currentUserId);
 
 
     // schedule response
-    @GET("todolist/all")
-    Call<List<ScheduleModel>> getAllSchedule();
+    @GET("todolist/user/{userId}")
+    Call<List<ScheduleModel>> getSchedule(@Path("userId") int currentUserId);
 
-    @GET("todolist/user/{id}")
-    Call<List<ScheduleModel>> getSchedule(@Query("id") int currentUserId);
+    @GET("todolist/category/{categoryId}")
+    Call<List<ScheduleModel>> getScheduleByCategory (@Path("categoryId") int currentCategory);
 
-    @GET("todolist/user={id}&category={id}")
-    Call<List<ScheduleModel>> getScheduleByCategory(@Path("id") int currentUserId, @Path("id") int currentCategory);
+    @GET("todolist/month={month}&&year={year}")
+    Call<List<ScheduleModel>> getScheduleMonthYear (@Path("month") int monthDate, @Path("year") int yearDate);
 
     @FormUrlEncoded
     @POST("todolistadd")
     Call<AddScheduleResponse> addNewSchedule (@Field("date") String date, @Field("title") String title,
                                               @Field("category") int categoryId, @Field("note") String note,
-                                              @Field("user") int currentUserId, @Field("status") String checked);
+                                              @Field("user") int currentUserId, @Field("status") String checked,
+                                              @Field("month") int monthDate, @Field("year") int yearDate);
+
+    @PUT("todolist/status/edit/{id}")
+    Call<ScheduleModel> updateSchedule (@Path("id") int scheduleId, @Body ScheduleModel scheduleModel);
 
 
     // rundown response
-    @GET("rundown/all")
-    Call<List<RundownModel>> getRundown();
+    @GET("/rundownevent/user/{userId}")
+    Call<List<RundownModel>> getRundown(@Path("userId") int currentUserId);
 
-    @POST("rundownadd")
+    @POST("rundownevent")
     Call<AddRundownResponse> addRundown(@Query("time") String time, @Query("title") String title,
                                         @Query("category") int categoryId, @Query("note") String note,
                                         @Query("pj") String pj, @Query("user") int currentUserId);

@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class LoginResponseModel {
     private String status;
-    @SerializedName("personModel")
     private UserModel userModel;
 
     public String getStatus() {

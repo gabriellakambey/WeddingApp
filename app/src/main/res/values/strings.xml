@@ -8,6 +8,7 @@
         <item>Blessing of Church</item>
         <item>Wedding Ceremony</item>
     </string-array>
+
     <string name="title_activity_budget">BudgetActivity</string>
     <!--
     This string is used for square devices and overridden by hello_world in
