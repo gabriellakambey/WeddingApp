@@ -42,6 +42,8 @@ public class GuestsBookFragment extends Fragment {
             e.printStackTrace();
         }
 
+        //
+
         return view;
     }
 }
