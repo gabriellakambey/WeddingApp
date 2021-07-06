@@ -5,18 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class UserModel implements Serializable {
-//    {
-//        "status": "success",
-//            "personModel": {
-//                "userId": 2,
-//                "userName": "ujicoba2",
-//                "userEmail": "ujicoba2@gmail.com",
-//                "userPassword": "ujicoba2",
-//                "userCouple": "ujicoba2",
-//                "tglPernikahan": "085312345678",
-//                "nomorHp": "20/11/2021"
-//    }
-//    }
 
     private int userId;
     private String userName;
