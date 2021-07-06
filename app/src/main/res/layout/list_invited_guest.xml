@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/border_shadow"
         android:padding="10dp"
         app:cardCornerRadius="7dp">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/tv_listCategory"
+                android:id="@+id/tv_listInvitedGuest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Guest's Names"
@@ -26,16 +27,17 @@
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
-            <View
-                android:id="@+id/dotStatus"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/dot_invited" />
+            <TextView
+                android:id="@+id/tv_invitedGuestGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bride's Family"
+                android:textColor="@color/navy"
+                android:textSize="12sp"
+                android:layout_marginTop="5dp"/>
 
-        </RelativeLayout>
+
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 

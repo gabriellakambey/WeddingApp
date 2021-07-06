@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/tv_nameInvitedDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guest's Name"
+        android:textAlignment="center"
+        android:textColor="@color/navy"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/border_shadow"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textColor="@color/navy"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_mailInvitedDetail"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="guest@mail.com"
+                android:textColor="@color/navy"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Phone Number"
+                android:textColor="@color/navy"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_phoneInvitedDetail"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="0812 4598 1275"
+                android:textColor="@color/navy"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:textColor="@color/navy"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_addressInvitedDetail"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Manado City, North Sulawesi, Indonesia"
+                android:textColor="@color/navy"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_backInvitedDetail"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_gold"
+        android:text="Close"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+
+</LinearLayout>
