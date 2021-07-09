@@ -13,7 +13,9 @@ import android.widget.Toast;
 import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
+import com.example.weddingvaganza.model.AddGuestResponse;
 import com.example.weddingvaganza.model.GuestGroupModel;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,7 @@ public class AddGuestActivity extends AppCompatActivity {
     EditText etName, etEmail, etPhoneNum, etAddress;
     private Spinner spinner;
     WeddingService weddingService;
+    private int userId = Prefs.getInt("user_id", 0);
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -80,15 +83,32 @@ public class AddGuestActivity extends AppCompatActivity {
         btnSave.setOnClickListener(v -> {
             String name = etName.getText().toString();
             String email = etEmail.getText().toString();
-            String phoneNumber = etPhoneNum.getText().toString();
-            String address = etAddress.getText().toString();
+            String noHp = etPhoneNum.getText().toString();
+            String alamat = etAddress.getText().toString();
 
             // get selected item id on spinner
             int selectedId = spinner.getSelectedItemPosition();
             GuestGroupModel getItemId = (GuestGroupModel) spinner.getItemAtPosition(selectedId);
-            int groupId = getItemId.getClassId();
+            int kelasId = getItemId.getClassId();
 
-            Toast.makeText(this, "Grup Guest dengan id: "+groupId, Toast.LENGTH_SHORT).show();
+            weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
+            Call<AddGuestResponse> call1 = weddingService.addGuest(kelasId, name, noHp, email, userId, alamat);
+            call1.enqueue(new Callback<AddGuestResponse>() {
+                @Override
+                public void onResponse(Call<AddGuestResponse> call, Response<AddGuestResponse> response) {
+                    AddGuestResponse addGuestResponse = response.body();
+                    if (addGuestResponse.getStatus().equals("success")) {
+                        Toast.makeText(AddGuestActivity.this, "Success add guest", Toast.LENGTH_SHORT).show();
+                        onBackPressed();
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<AddGuestResponse> call, Throwable t) {
+
+                }
+            });
 
         });
     }

@@ -1,6 +1,7 @@
 package com.example.weddingvaganza.api;
 
 import com.example.weddingvaganza.model.AddCategoryResponse;
+import com.example.weddingvaganza.model.AddGuestResponse;
 import com.example.weddingvaganza.model.AddRundownResponse;
 import com.example.weddingvaganza.model.AddScheduleResponse;
 import com.example.weddingvaganza.model.CategoryModel;
@@ -77,6 +78,11 @@ public interface WeddingService {
     // guests response
     @GET("guestclass/all")
     Call<List<GuestGroupModel>> getGuestGroup();
+
+    @POST("/guestadd")
+    Call<AddGuestResponse> addGuest (@Query("kelas") int kelasId, @Query("nama") String nama,
+                                     @Query("noHp") String noHp, @Query("email") String email,
+                                     @Query("user") int userId, @Query("alamat") String alamat);
 
 
 
