@@ -103,7 +103,7 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity {
                     .show();
         });
 
-        // recyclerview
+        // recyclerview schedule
         recyclerView = findViewById(R.id.rv_schdFrmCat);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);

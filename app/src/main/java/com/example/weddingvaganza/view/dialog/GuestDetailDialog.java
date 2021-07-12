@@ -30,7 +30,7 @@ public class GuestDetailDialog extends AppCompatDialogFragment {
         final AlertDialog alertDialog = builder.create();
 
         // close button dialog
-        Button close = view.findViewById(R.id.btn_backGuestDetail);
+        Button close = view.findViewById(R.id.btn_inviteGuestDetail);
         close.setOnClickListener(v -> {
             alertDialog.dismiss();
         });
