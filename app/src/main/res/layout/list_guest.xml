@@ -1,43 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv_listGuest"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_marginBottom="5dp">
+    android:layout_height="40dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/border_shadow"
+    android:padding="10dp"
+    app:cardCornerRadius="7dp">
 
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@drawable/border_shadow"
-        android:padding="10dp"
-        app:cardCornerRadius="7dp">
+        android:layout_height="wrap_content"
+        android:padding="10dp">
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/tv_listGuest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp">
+            android:text="Guest's Names"
+            android:textColor="@color/navy"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tv_listGuest"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Guest's Names"
-                android:textColor="@color/navy"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+        <View
+            android:id="@+id/dotStatus"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/dot_invited" />
 
-            <View
-                android:id="@+id/dotStatus"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/dot_invited" />
+    </RelativeLayout>
 
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
-
-</LinearLayout>
+</androidx.cardview.widget.CardView>

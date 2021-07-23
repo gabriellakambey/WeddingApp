@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Button;
@@ -19,24 +20,27 @@ import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.GuestGroupModel;
 import com.example.weddingvaganza.model.GuestModel;
+import com.example.weddingvaganza.view.dialog.GuestDetailDialog;
 import com.pixplicity.easyprefs.library.Prefs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class GuestListActivity extends AppCompatActivity {
+public class GuestListActivity extends AppCompatActivity implements ListGuestAdapter.ClickedItem{
     Button btnBack;
-    TextView toolbarTitle;
+    TextView toolbarTitle, totalGuest;
     EditText searchView;
-    CharSequence search="";
     GuestGroupModel guestGroupModel;
     ListGuestAdapter adapter;
     RecyclerView recyclerView;
+    List<GuestModel> guestModels;
     private WeddingService weddingService;
-    int currentGroup;
+    int currentGroup, selectedGuest;
+    private int totGuest;
     private int currentUser = Prefs.getInt("user_id", 0);
 
     @Override
@@ -72,13 +76,11 @@ public class GuestListActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                adapter.getFilter().filter(s);
-                search = s;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                filter(s.toString());
             }
         });
 
@@ -88,9 +90,22 @@ public class GuestListActivity extends AppCompatActivity {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
-//        adapter = new ListGuestAdapter();
+        adapter = new ListGuestAdapter(this::ClickedGuest);
 
         getGuest();
+
+    }
+
+    private void filter(String text) {
+        List<GuestModel> filterList = new ArrayList<>();
+
+        for (GuestModel item : guestModels) {
+            if (item.getGuestNama().toLowerCase().contains(text.toLowerCase())) {
+                filterList.add(item);
+            }
+        }
+
+        adapter.getFilter(filterList);
     }
 
     private void getGuest() {
@@ -100,14 +115,15 @@ public class GuestListActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<GuestModel>> call, Response<List<GuestModel>> response) {
                 List<GuestModel> guestModels = response.body();
-                adapter = new ListGuestAdapter(guestModels);
+                totGuest = guestModels.size();
+                adapter.setGuestModels(guestModels);
                 recyclerView.setAdapter(adapter);
 
-//                if (response.isSuccessful()) {
-//                    List<GuestModel> guestModels = response.body();
-//                    adapter.setData(guestModels);
-//                    recyclerView.setAdapter(adapter);
-//                }
+                // set total guest on list
+                totalGuest = findViewById(R.id.tv_totGuests);
+                String total = totGuest + " guests";
+                totalGuest.setText(total);
+
             }
 
             @Override
@@ -126,5 +142,17 @@ public class GuestListActivity extends AppCompatActivity {
         else {
             getSupportFragmentManager().popBackStack();
         }
+    }
+
+    @Override
+    public void ClickedGuest(GuestModel guestModel) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("guest selected", guestModel);
+
+        GuestDetailDialog guestDetailDialog = new GuestDetailDialog();
+        guestDetailDialog.setArguments(bundle);
+        guestDetailDialog.show(getSupportFragmentManager(), "detail guest");
+
+
     }
 }

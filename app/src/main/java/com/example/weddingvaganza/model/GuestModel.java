@@ -1,12 +1,48 @@
 package com.example.weddingvaganza.model;
 
-public class GuestModel {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class GuestModel implements Parcelable {
     private int guestId;
     private int classId;
     private String guestNama;
     private String guestNoHp;
     private String guestEmail;
     private int userId;
+    private String homeAddress;
+
+    protected GuestModel(Parcel in) {
+        guestId = in.readInt();
+        classId = in.readInt();
+        guestNama = in.readString();
+        guestNoHp = in.readString();
+        guestEmail = in.readString();
+        userId = in.readInt();
+        homeAddress = in.readString();
+    }
+
+    public static final Creator<GuestModel> CREATOR = new Creator<GuestModel>() {
+        @Override
+        public GuestModel createFromParcel(Parcel in) {
+            return new GuestModel(in);
+        }
+
+        @Override
+        public GuestModel[] newArray(int size) {
+            return new GuestModel[size];
+        }
+    };
+
+    public String getHomeAddress() {
+        return homeAddress;
+    }
+
+    public void setHomeAddress(String homeAddress) {
+        this.homeAddress = homeAddress;
+    }
 
     public int getGuestId() {
         return guestId;
@@ -54,5 +90,21 @@ public class GuestModel {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(guestId);
+        dest.writeInt(classId);
+        dest.writeString(guestNama);
+        dest.writeString(guestNoHp);
+        dest.writeString(guestEmail);
+        dest.writeInt(userId);
+        dest.writeString(homeAddress);
     }
 }

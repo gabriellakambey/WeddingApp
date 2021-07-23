@@ -79,7 +79,7 @@
 
                 <EditText
                     android:id="@+id/et_timeAddRundown"
-                    android:layout_width="80dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/round_navy"

@@ -62,12 +62,12 @@ public interface WeddingService {
                                               @Field("user") int currentUserId, @Field("status") String checked,
                                               @Field("month") int monthDate, @Field("year") int yearDate);
 
-    @PUT("todolist/status/edit/{id}")
+    @PUT("todolist/update/{id}")
     Call<ScheduleModel> updateSchedule (@Path("id") int scheduleId, @Body ScheduleModel scheduleModel);
 
 
     // rundown response
-    @GET("/rundownevent/user/{userId}")
+    @GET("rundownevent/user/{userId}")
     Call<List<RundownModel>> getRundown(@Path("userId") int currentUserId);
 
     @POST("rundownevent")
@@ -82,6 +82,9 @@ public interface WeddingService {
 
     @GET("guest/class={classId}&&user={userId}")
     Call<List<GuestModel>> getGuest(@Path("classId") int currentGroup, @Path("userId") int currentUser);
+
+    @GET("/guest/id/{id}")
+    Call<GuestModel> getGuestDetail (@Path("id") int currentGuestId);
 
     @POST("/guestadd")
     Call<AddGuestResponse> addGuest (@Query("kelas") int kelasId, @Query("nama") String nama,

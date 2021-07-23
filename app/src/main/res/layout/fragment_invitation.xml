@@ -28,6 +28,32 @@
         android:textSize="16sp"
         android:textStyle="bold" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="5dp"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total guest: "
+            android:textColor="@color/navy"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_totInvitedGuest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10 guests"
+            android:textColor="@color/navy"
+            android:textSize="14sp" />
+
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_invitedGuest"
         android:layout_width="match_parent"

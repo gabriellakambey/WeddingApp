@@ -17,6 +17,10 @@ public class ScheduleModel {
     private int month;
     private int year;
 
+    public ScheduleModel(String status) {
+        this.status = status;
+    }
+
     public int getScheduleId() {
         return scheduleId;
     }

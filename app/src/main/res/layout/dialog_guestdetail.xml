@@ -118,15 +118,39 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_inviteGuestDetail"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/button_gold"
-        android:text="Invite"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="15dp">
+
+        <Button
+            android:id="@+id/btn_inviteGuestDetail"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@drawable/button_gold"
+            android:text="Invite"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+        <RelativeLayout
+            android:layout_width="15dp"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btn_closeGuestDetail"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@drawable/round_navy"
+            android:text="Close"
+            android:textAllCaps="false"
+            android:textColor="@color/navy"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
 
 </LinearLayout>
