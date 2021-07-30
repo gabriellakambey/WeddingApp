@@ -6,6 +6,10 @@ public class LoginResponseModel {
     private String status;
     private UserModel userModel;
 
+    public LoginResponseModel(String status, UserModel userModel){
+        this.status = status;
+        this.userModel = userModel;
+    }
     public String getStatus() {
         return status;
     }

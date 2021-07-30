@@ -16,7 +16,6 @@ public class BudgetActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager2 viewPager2;
     BudgetPagerAdapter budgetAdapter;
-    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +30,6 @@ public class BudgetActivity extends AppCompatActivity {
             onBack();
         });
 
-        recyclerView = findViewById(R.id.rv_category);
 
 
         FragmentManager fm = getSupportFragmentManager();

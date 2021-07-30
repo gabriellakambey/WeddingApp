@@ -71,9 +71,9 @@ public class UserModel implements Serializable {
         this.nomorHp = nomorHp;
     }
 
-//    public UserModel(int userId, String userCouple, String tglPernikahan) {
-//        this.userId = userId;
-//        this.userCouple = userCouple;
-//        this.tglPernikahan = tglPernikahan;
-//    }
+    public UserModel(int userId, String userCouple, String tglPernikahan) {
+        this.userId = userId;
+        this.userCouple = userCouple;
+        this.tglPernikahan = tglPernikahan;
+    }
 }
