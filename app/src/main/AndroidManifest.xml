@@ -17,7 +17,13 @@
         android:roundIcon="@drawable/logo_wedding_vaganza"
         android:supportsRtl="true"
         android:theme="@style/Theme.WeddingVaganza">
-        <activity android:name=".view.activity.CreateInvitationActivity"></activity>
+        <activity
+            android:name=".view.dialog.PaidListDialog"
+            android:exported="true" />
+        <activity
+            android:name=".view.activity.AddBudgetActivity"
+            android:exported="true" />
+        <activity android:name=".view.activity.CreateInvitationActivity" />
         <activity android:name=".view.activity.AddGuestActivity" />
         <activity android:name=".view.activity.GuestListActivity" />
         <activity android:name=".view.activity.ScheduleFromCategoryActivity" />

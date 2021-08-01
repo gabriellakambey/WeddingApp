@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_closeDialogCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_close" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:text="Catering for 100 pax"
+                    android:textAlignment="center"
+                    android:textColor="@color/navy"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="Cost / Estimate :"
+                    android:textColor="@color/navy"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_addCostEstimate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/round_navy"
+                    android:hint="2.000.000"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="15dp"
+                    android:textColor="@color/navy"
+                    android:textColorHint="@color/hint"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="Notes :"
+                    android:textColor="@color/navy"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_addNotes"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/round_navy"
+                    android:hint="Catering 20.000 pax"
+                    android:textAlignment="textStart"
+                    android:inputType="text"
+                    android:padding="15dp"
+                    android:textColor="@color/navy"
+                    android:textColorHint="@color/hint"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_chageCostEstimate"
+                        android:layout_width="150dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="right"
+                        android:background="@drawable/round_navy"
+                        android:text="Chage Cost / Budget"
+                        android:textAllCaps="false"
+                        android:textColor="@color/navy"
+                        android:textSize="14sp"
+                        android:layout_marginRight="10dp"/>
+
+                    <Button
+                        android:id="@+id/btn_paid"
+                        android:layout_width="100dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="right"
+                        android:background="@drawable/button_gold"
+                        android:text="Paid"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

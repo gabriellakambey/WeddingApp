@@ -14,7 +14,7 @@
             android:id="@+id/tv_totalBudget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total Budget"
+            android:text="Total Paid"
             android:textColor="@color/navy"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -107,7 +107,7 @@
             android:id="@+id/sv_rv">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_budgetItem"
+                android:id="@+id/rv_paidItem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
