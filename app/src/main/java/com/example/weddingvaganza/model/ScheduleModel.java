@@ -17,9 +17,16 @@ public class ScheduleModel {
     private int month;
     private int year;
 
-
-    public ScheduleModel(String status) {
+    public ScheduleModel(int scheduleId, String dateSchedule, String titleSchedule, int idCategory, String noteSchedule, int userId, String status, int month, int year) {
+        this.scheduleId = scheduleId;
+        this.dateSchedule = dateSchedule;
+        this.titleSchedule = titleSchedule;
+        this.idCategory = idCategory;
+        this.noteSchedule = noteSchedule;
+        this.userId = userId;
         this.status = status;
+        this.month = month;
+        this.year = year;
     }
 
     public int getScheduleId() {
