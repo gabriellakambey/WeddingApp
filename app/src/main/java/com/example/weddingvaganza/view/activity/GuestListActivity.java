@@ -75,12 +75,16 @@ public class GuestListActivity extends AppCompatActivity implements ListGuestAda
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                if (searchView.getText().toString().trim().equals("")){
+                    getGuest();
+                } else {
+                    guestName(s.toString());
+                }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                filter(s.toString());
+
             }
         });
 
@@ -90,22 +94,38 @@ public class GuestListActivity extends AppCompatActivity implements ListGuestAda
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new ListGuestAdapter(this::ClickedGuest);
+//        adapter.cobacoba(this);
+//       adapter = new ListGuestAdapter(this::ClickedGuest);
 
         getGuest();
 
     }
 
-    private void filter(String text) {
-        List<GuestModel> filterList = new ArrayList<>();
-
-        for (GuestModel item : guestModels) {
-            if (item.getGuestNama().toLowerCase().contains(text.toLowerCase())) {
-                filterList.add(item);
+    private void guestName(String text) {
+        weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
+        Call<List<GuestModel>> call = weddingService.findGuestName(text);
+        call.enqueue(new Callback<List<GuestModel>>() {
+            @Override
+            public void onResponse(Call<List<GuestModel>> call, Response<List<GuestModel>> response) {
+                List<GuestModel> guests = response.body();
+                adapter = new ListGuestAdapter(GuestListActivity.this, guests);
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
-        }
 
-        adapter.getFilter(filterList);
+            @Override
+            public void onFailure(Call<List<GuestModel>> call, Throwable t) {
+
+            }
+        });
+
+//        List<GuestModel> filterList = new ArrayList<>();
+//
+//        for (GuestModel item : guestModels) {
+//            if (item.getGuestNama().toLowerCase().contains(text.toLowerCase())) {
+//                filterList.add(item);
+//            }
+//        }
     }
 
     private void getGuest() {
@@ -115,8 +135,10 @@ public class GuestListActivity extends AppCompatActivity implements ListGuestAda
             @Override
             public void onResponse(Call<List<GuestModel>> call, Response<List<GuestModel>> response) {
                 List<GuestModel> guestModels = response.body();
+                adapter = new ListGuestAdapter(GuestListActivity.this, guestModels);
                 totGuest = guestModels.size();
                 adapter.setGuestModels(guestModels);
+                adapter.cobacoba(GuestListActivity.this::ClickedGuest);
                 recyclerView.setAdapter(adapter);
 
                 // set total guest on list

@@ -83,13 +83,16 @@ public interface WeddingService {
     @GET("guest/class={classId}&&user={userId}")
     Call<List<GuestModel>> getGuest(@Path("classId") int currentGroup, @Path("userId") int currentUser);
 
-    @GET("/guest/id/{id}")
+    @GET("guest/id/{id}")
     Call<GuestModel> getGuestDetail (@Path("id") int currentGuestId);
 
-    @POST("/guestadd")
+    @POST("guestadd")
     Call<AddGuestResponse> addGuest (@Query("kelas") int kelasId, @Query("nama") String nama,
                                      @Query("noHp") String noHp, @Query("email") String email,
                                      @Query("user") int userId, @Query("alamat") String alamat);
+
+    @GET("guest/name={guestNama}")
+    Call<List<GuestModel>> findGuestName(@Path("guestNama") String guestNama);
 
 
 }

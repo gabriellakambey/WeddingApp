@@ -2,6 +2,7 @@ package com.example.weddingvaganza.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,10 +27,20 @@ import retrofit2.Callback;
 
 public class ListGuestAdapter extends RecyclerView.Adapter<ListGuestAdapter.ViewHolder> {
 
+    private Context context;
     private List<GuestModel> guestModels;
     ClickedItem clickedItem;
 
-    public ListGuestAdapter(ClickedItem clickedItem) {
+   // public ListGuestAdapter(ClickedItem clickedItem) {
+   //     this.clickedItem = clickedItem;
+   // }
+
+    public ListGuestAdapter(Context context, List<GuestModel> guestModels) {
+        this.context = context;
+        this.guestModels = guestModels;
+    }
+
+    public void cobacoba(ClickedItem clickedItem) {
         this.clickedItem = clickedItem;
     }
 
@@ -44,7 +55,6 @@ public class ListGuestAdapter extends RecyclerView.Adapter<ListGuestAdapter.View
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View v = inflater.inflate(R.layout.list_guest, parent, false);
         ViewHolder viewHolder = new ViewHolder(v);
-
         return viewHolder;
     }
 
@@ -86,8 +96,8 @@ public class ListGuestAdapter extends RecyclerView.Adapter<ListGuestAdapter.View
     }
 
 
-    public void getFilter(List<GuestModel> filteredList) {
-        this.guestModels = filteredList;
+    public void getGuestName(List<GuestModel> guests) {
+        this.guestModels = guests;
         notifyDataSetChanged();
     }
 }

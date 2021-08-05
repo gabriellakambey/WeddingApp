@@ -17,6 +17,7 @@ public class ScheduleModel {
     private int month;
     private int year;
 
+
     public ScheduleModel(String status) {
         this.status = status;
     }
@@ -92,4 +93,5 @@ public class ScheduleModel {
     public void setYear(int year) {
         this.year = year;
     }
+
 }
