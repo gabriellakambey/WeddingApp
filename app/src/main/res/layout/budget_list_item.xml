@@ -9,10 +9,12 @@
         android:layout_height="wrap_content"
         android:padding="20dp"
         android:background="@drawable/round_grey"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/ll_totalBudget">
 
         <TextView
             android:layout_width="wrap_content"
+            android:id="@+id/tv_titleBudget"
             android:layout_height="wrap_content"
             android:text="Venue at FourPoint Ball Room"
             android:textColor="@color/navy"
@@ -34,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="2.000.000"
+                android:id="@+id/tv_totalBudget"
                 android:textColor="@color/navy"
                 android:textSize="14sp"/>
         </LinearLayout>

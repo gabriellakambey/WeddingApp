@@ -101,10 +101,10 @@
 
         <ScrollView
 
+            android:id="@+id/sv_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_budgetItem"
-            android:id="@+id/sv_rv">
+            android:layout_below="@+id/tv_budgetItem">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_budgetItem"
