@@ -52,6 +52,9 @@ public interface WeddingService {
     @GET("todolist/category/{categoryId}")
     Call<List<ScheduleModel>> getScheduleByCategory (@Path("categoryId") int currentCategory);
 
+    @GET("todolist/{id}")
+    Call<ScheduleModel> getScheduleById (@Path("id") int selectedSchedule);
+
     @GET("todolist/month={month}&&year={year}")
     Call<List<ScheduleModel>> getScheduleMonthYear (@Path("month") int monthDate, @Path("year") int yearDate);
 
