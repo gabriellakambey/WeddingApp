@@ -90,7 +90,7 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
                     updateStatusChecked();
                 } else {
                     checkBox.setTextColor(itemView.getResources().getColor(navy));
-                    updateStatusFalse();
+//                    updateStatusFalse();
                 }
             });
 
