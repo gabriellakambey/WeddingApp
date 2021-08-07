@@ -2,9 +2,9 @@ package com.example.weddingvaganza.model;
 
 public class BudgetModel {
     private String titleBudget;
-    private int totalBudget;
+    private String totalBudget;
 
-    public BudgetModel(String titleBudget,int totalBudget){
+    public BudgetModel(String titleBudget,String totalBudget){
         this.titleBudget = titleBudget;
         this.totalBudget = totalBudget;
     }
@@ -17,11 +17,11 @@ public class BudgetModel {
         this.titleBudget = titleBudget;
     }
 
-    public int getTotalBudget() {
+    public String getTotalBudget() {
         return totalBudget;
     }
 
-    public void setTotalBudget(int totalBudget) {
+    public void setTotalBudget(String totalBudget) {
         this.totalBudget = totalBudget;
     }
 }

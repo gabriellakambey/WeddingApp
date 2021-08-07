@@ -43,10 +43,12 @@ public class PaymentFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         paymentModels = new ArrayList<>();
-        paymentModels.add(new PaymentModel("Example Payment Title",2000000,2000000));
-        paymentModels.add(new PaymentModel("Example Payment Title",2000000,2000000));
-        paymentModels.add(new PaymentModel("Example Payment Title",2000000,2000000));
-        paymentModels.add(new PaymentModel("Example Payment Title",2000000,2000000));
-        paymentModels.add(new PaymentModel("Example Payment Title",2000000,2000000));
+        paymentModels.add(new PaymentModel("Example Payment Title","2000000","2000000"));
+        paymentModels.add(new PaymentModel("Example Payment Title","2000000","2000000"));
+        paymentModels.add(new PaymentModel("Example Payment Title","2000000","2000000"));
+        paymentModels.add(new PaymentModel("Example Payment Title","2000000","2000000"));
+        paymentModels.add(new PaymentModel("Example Payment Title","2000000","2000000"));
+
+
     }
 }

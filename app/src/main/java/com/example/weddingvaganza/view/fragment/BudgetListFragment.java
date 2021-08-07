@@ -42,11 +42,11 @@ public class BudgetListFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         budgetModels = new ArrayList<>();
-        budgetModels.add(new BudgetModel("Example Title Budget",2000000));
-        budgetModels.add(new BudgetModel("Example Title Budget",2000000));
-        budgetModels.add(new BudgetModel("Example Title Budget",2000000));
-        budgetModels.add(new BudgetModel("Example Title Budget",2000000));
-        budgetModels.add(new BudgetModel("Example Title Budget",2000000));
-        budgetModels.add(new BudgetModel("Example Title Budget",2000000));
+        budgetModels.add(new BudgetModel("Example Title Budget","2000000"));
+        budgetModels.add(new BudgetModel("Example Title Budget","2000000"));
+        budgetModels.add(new BudgetModel("Example Title Budget","2000000"));
+        budgetModels.add(new BudgetModel("Example Title Budget","2000000"));
+        budgetModels.add(new BudgetModel("Example Title Budget","2000000"));
+        budgetModels.add(new BudgetModel("Example Title Budget","2000000"));
     }
 }

@@ -20,20 +20,19 @@ import java.util.List;
 
 public class PaymentRecyclerViewAdapter extends RecyclerView.Adapter<PaymentRecyclerViewAdapter.MyViewHolder>{
 
-    Context context;
-    List<PaymentModel> paymentModels;
+    private List<PaymentModel> paymentModels;
 
     public PaymentRecyclerViewAdapter(Context context, List<PaymentModel> paymentModels){
-        this.context = context;
         this.paymentModels = paymentModels;
     }
 
     @NonNull
     @Override
     public PaymentRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v;
-        v = LayoutInflater.from(context).inflate(R.layout.paid_list_item,parent,false);
-        MyViewHolder viewHolder = new MyViewHolder(v);
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View listItem = layoutInflater.inflate(R.layout.paid_list_item,parent,false);
+        MyViewHolder viewHolder = new MyViewHolder(listItem);
+
         return viewHolder;
     }
 

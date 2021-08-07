@@ -17,21 +17,17 @@ import com.example.weddingvaganza.model.BudgetModel;
 import java.util.List;
 
 public class BudgetRecyclerViewAdapter extends RecyclerView.Adapter<BudgetRecyclerViewAdapter.MyViewHolder> {
-
-
-    Context context;
-    List<BudgetModel> budgetModels;
+    private List<BudgetModel> budgetModels;
 
     public  BudgetRecyclerViewAdapter(Context context, List<BudgetModel> budgetModels){
-        this.context = context;
         this.budgetModels = budgetModels;
     }
     @NonNull
     @Override
     public BudgetRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v;
-        v = LayoutInflater.from(context).inflate(R.layout.budget_list_item,parent,false);
-        MyViewHolder viewHolder = new MyViewHolder(v);
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View listItem = layoutInflater.inflate(R.layout.budget_list_item,parent,false);
+        MyViewHolder viewHolder =new MyViewHolder(listItem);
 
         return viewHolder;
     }

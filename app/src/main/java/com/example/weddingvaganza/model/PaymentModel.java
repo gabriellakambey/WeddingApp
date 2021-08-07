@@ -2,10 +2,10 @@ package com.example.weddingvaganza.model;
 
 public class PaymentModel {
     private String titlePaid;
-    private int totalPaid;
-    private int idBudget;
+    private String totalPaid;
+    private String idBudget;
 
-    public PaymentModel(String titlePaid, int totalPaid, int idBudget) {
+    public PaymentModel(String titlePaid, String totalPaid, String idBudget) {
         this.titlePaid = titlePaid;
         this.totalPaid = totalPaid;
         this.idBudget = idBudget;
@@ -20,19 +20,19 @@ public class PaymentModel {
     }
 
 
-    public int getTotalPaid() {
+    public String getTotalPaid() {
         return totalPaid;
     }
 
-    public void setTotalPaid(int totalPaid) {
+    public void setTotalPaid(String totalPaid) {
         this.totalPaid = totalPaid;
     }
 
-    public int getIdBudget() {
+    public String getIdBudget() {
         return idBudget;
     }
 
-    public void setIdBudget(int idBudget) {
+    public void setIdBudget(String idBudget) {
         this.idBudget = idBudget;
     }
 }
