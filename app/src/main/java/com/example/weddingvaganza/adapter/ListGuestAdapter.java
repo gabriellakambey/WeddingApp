@@ -2,6 +2,11 @@ package com.example.weddingvaganza.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -61,14 +67,29 @@ public class ListGuestAdapter extends RecyclerView.Adapter<ListGuestAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         GuestModel guestModel = guestModels.get(position);
+
         String guestName = guestModel.getGuestNama();
         holder.textView.setText(guestName);
+
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 clickedItem.ClickedGuest(guestModel);
             }
         });
+
+        // set dot color (status invited = green & not invited = yellow)
+        String guestStatus = guestModel.getStatus();
+        if (guestStatus.equals("invited")) {
+            GradientDrawable statusShape = (GradientDrawable) holder.view.getBackground();
+            statusShape.mutate();
+            statusShape.setColor(ContextCompat.getColor(context, R.color.green));
+        } else {
+            GradientDrawable statusShape = (GradientDrawable) holder.view.getBackground();
+            statusShape.mutate();
+            statusShape.setColor(ContextCompat.getColor(context, R.color.yellow));
+        }
+
 
     }
 

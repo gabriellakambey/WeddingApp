@@ -92,7 +92,8 @@ public interface WeddingService {
     @POST("guestadd")
     Call<AddGuestResponse> addGuest (@Query("kelas") int kelasId, @Query("nama") String nama,
                                      @Query("noHp") String noHp, @Query("email") String email,
-                                     @Query("user") int userId, @Query("alamat") String alamat);
+                                     @Query("user") int userId, @Query("alamat") String alamat,
+                                     @Query("status") String status);
 
     @GET("guest/name={guestNama}")
     Call<List<GuestModel>> findGuestName(@Path("guestNama") String guestNama);

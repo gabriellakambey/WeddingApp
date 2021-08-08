@@ -13,6 +13,7 @@ public class GuestModel implements Parcelable {
     private String guestEmail;
     private int userId;
     private String homeAddress;
+    private String status;
 
     protected GuestModel(Parcel in) {
         guestId = in.readInt();
@@ -22,6 +23,7 @@ public class GuestModel implements Parcelable {
         guestEmail = in.readString();
         userId = in.readInt();
         homeAddress = in.readString();
+        status = in.readString();
     }
 
     public static final Creator<GuestModel> CREATOR = new Creator<GuestModel>() {
@@ -35,14 +37,6 @@ public class GuestModel implements Parcelable {
             return new GuestModel[size];
         }
     };
-
-    public String getHomeAddress() {
-        return homeAddress;
-    }
-
-    public void setHomeAddress(String homeAddress) {
-        this.homeAddress = homeAddress;
-    }
 
     public int getGuestId() {
         return guestId;
@@ -92,6 +86,22 @@ public class GuestModel implements Parcelable {
         this.userId = userId;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getHomeAddress() {
+        return homeAddress;
+    }
+
+    public void setHomeAddress(String homeAddress) {
+        this.homeAddress = homeAddress;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -106,5 +116,6 @@ public class GuestModel implements Parcelable {
         dest.writeString(guestEmail);
         dest.writeInt(userId);
         dest.writeString(homeAddress);
+        dest.writeString(status);
     }
 }

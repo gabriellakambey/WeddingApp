@@ -78,7 +78,7 @@ public class GuestListActivity extends AppCompatActivity implements ListGuestAda
                 if (searchView.getText().toString().trim().equals("")){
                     getGuest();
                 } else {
-                    guestName(s.toString());
+                    searchGuestName(s.toString());
                 }
             }
 
@@ -101,7 +101,7 @@ public class GuestListActivity extends AppCompatActivity implements ListGuestAda
 
     }
 
-    private void guestName(String text) {
+    private void searchGuestName(String text) {
         weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
         Call<List<GuestModel>> call = weddingService.findGuestName(text);
         call.enqueue(new Callback<List<GuestModel>>() {

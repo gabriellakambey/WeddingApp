@@ -85,6 +85,7 @@ public class AddGuestActivity extends AppCompatActivity {
             String email = etEmail.getText().toString();
             String noHp = etPhoneNum.getText().toString();
             String alamat = etAddress.getText().toString();
+            String status = "not invited";
 
             // get selected item id on spinner
             int selectedId = spinner.getSelectedItemPosition();
@@ -92,7 +93,7 @@ public class AddGuestActivity extends AppCompatActivity {
             int kelasId = getItemId.getClassId();
 
             weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-            Call<AddGuestResponse> call1 = weddingService.addGuest(kelasId, name, noHp, email, userId, alamat);
+            Call<AddGuestResponse> call1 = weddingService.addGuest(kelasId, name, noHp, email, userId, alamat, status);
             call1.enqueue(new Callback<AddGuestResponse>() {
                 @Override
                 public void onResponse(Call<AddGuestResponse> call, Response<AddGuestResponse> response) {
