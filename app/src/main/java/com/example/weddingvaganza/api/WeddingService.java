@@ -10,6 +10,8 @@ import com.example.weddingvaganza.model.GuestModel;
 import com.example.weddingvaganza.model.LoginResponseModel;
 import com.example.weddingvaganza.model.RundownModel;
 import com.example.weddingvaganza.model.ScheduleModel;
+import com.example.weddingvaganza.model.UpdateScheduleModel;
+import com.example.weddingvaganza.model.schedulebyid.ScheduleByIdModel;
 
 import java.util.List;
 
@@ -53,7 +55,7 @@ public interface WeddingService {
     Call<List<ScheduleModel>> getScheduleByCategory (@Path("categoryId") int currentCategory);
 
     @GET("todolist/{id}")
-    Call<ScheduleModel> getScheduleById (@Path("id") int selectedSchedule);
+    Call<ScheduleByIdModel> getScheduleById (@Path("id") int selectedSchedule);
 
     @GET("todolist/month={month}&&year={year}")
     Call<List<ScheduleModel>> getScheduleMonthYear (@Path("month") int monthDate, @Path("year") int yearDate);
@@ -66,7 +68,7 @@ public interface WeddingService {
                                               @Field("month") int monthDate, @Field("year") int yearDate);
 
     @PUT("todolist/update/{id}")
-    Call<ScheduleModel> updateSchedule (@Path("id") int scheduleId, @Body ScheduleModel scheduleModel);
+    Call<ScheduleModel> updateSchedule (@Path("id") int scheduleId, @Body UpdateScheduleModel scheduleModel);
 
 
     // rundown response
