@@ -20,6 +20,7 @@ import com.example.weddingvaganza.model.CategoryModel;
 import com.example.weddingvaganza.model.ScheduleModel;
 import com.example.weddingvaganza.model.UpdateScheduleModel;
 import com.example.weddingvaganza.model.schedulebyid.ScheduleByIdModel;
+import com.example.weddingvaganza.view.dialog.AddCategoryDialog;
 import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import java.util.Calendar;
@@ -29,7 +30,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ScheduleFromCategoryActivity extends AppCompatActivity implements ListScheduleAdapter.ListScheduleCallback {
+public class ScheduleFromCategoryActivity extends AppCompatActivity implements ListScheduleAdapter.ListScheduleCallback, AddScheduleInCategoryActivity.ScheduleCategoryCallBack {
 
     TextView categoryTitle, monthYear;
     Button btnAdd, btnBack;
@@ -37,38 +38,46 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity implements L
     RecyclerView recyclerView;
     CategoryModel categoryModel;
     ListScheduleAdapter adapter;
-    private int currentCategory;
+    int currentCategoryId;
+    String currentCategoryTitle;
     ScheduleModel scheduleById;
     UpdateScheduleModel updateScheduleModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_from_category);
 
-        // button back
+        // BUTTON BACK
         btnBack = findViewById(R.id.btn_backSchedFrmCat);
         btnBack.setOnClickListener(v -> {
             onBack();
         });
 
-        // button add schedule
+        // BUTTON ADD SCHEDULE
         btnAdd = findViewById(R.id.btn_addSchdFrmCat);
         btnAdd.setOnClickListener(v -> {
-            Intent intent = new Intent(this, AddScheduleActivity.class);
+            AddScheduleInCategoryActivity activity = new AddScheduleInCategoryActivity();
+            activity.setListenerCallback(this::onAddScheduleInCategory);
+
+            Intent intent = new Intent(this, AddScheduleInCategoryActivity.class);
+            Bundle extras = new Bundle();
+            extras.putInt("category id", currentCategoryId);
+            extras.putString("category title", currentCategoryTitle);
+            intent.putExtras(extras);
             startActivity(intent);
         });
 
-        // set toolbar title
+        // SET TOOLBAR TITLE
         categoryTitle = findViewById(R.id.tv_toolbarCatTitle);
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
             categoryModel = (CategoryModel) intent.getSerializableExtra("data");
+            currentCategoryId = categoryModel.getCategoryId();
 
-            String title = categoryModel.getCategoryTitle();
-            currentCategory = categoryModel.getCategoryId();
-            categoryTitle.setText(title);
+            currentCategoryTitle = categoryModel.getCategoryTitle();
+            categoryTitle.setText(currentCategoryTitle);
+
         }
 
         // set current month and year
@@ -119,7 +128,7 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity implements L
 
     private void getSchedule() {
         WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-        Call<List<ScheduleModel>> call = weddingService.getScheduleByCategory(currentCategory);
+        Call<List<ScheduleModel>> call = weddingService.getScheduleByCategory(currentCategoryId);
         call.enqueue(new Callback<List<ScheduleModel>>() {
             @Override
             public void onResponse(Call<List<ScheduleModel>> call, Response<List<ScheduleModel>> response) {
@@ -157,12 +166,6 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity implements L
 
             }
         });
-
-
-//        Log.d("testoh", scheduleById.toString());
-//        ScheduleModel scheduleModel = scheduleById;
-//
-
     }
 
     private void updateStatus(Integer scheduleId) {
@@ -227,6 +230,10 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity implements L
     @Override
     public void onChecked(int scheduleId, Boolean isChecked) {
         getScheduleById(scheduleId, isChecked);
-//        Toast.makeText(this, scheduleId.toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onAddScheduleInCategory() {
+        getSchedule();
     }
 }

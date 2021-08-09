@@ -42,7 +42,7 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
     private TextView textDate;
     EditText etDate, etTitle, etNote;
     private int currentUserId = Prefs.getInt("user_id", 0);
-    String checked;
+    String status;
     AddScheduleListener listener;
     WeddingService weddingService;
     int monthDate;
@@ -99,13 +99,12 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
         });
 
         // button save
-        etDate = findViewById(R.id.td_addSchedule);
         etTitle = findViewById(R.id.et_titleAddSchedule);
         etNote = findViewById(R.id.et_noteAddSchedule);
 
         Button btnSave = findViewById(R.id.btn_saveAddSchedule);
         btnSave.setOnClickListener(v -> {
-            String date = etDate.getText().toString();
+            String date = textDate.getText().toString();
             String title = etTitle.getText().toString();
             String note = etNote.getText().toString();
 
@@ -114,9 +113,9 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
             CategoryModel getItemId = (CategoryModel) spinner.getItemAtPosition(selectedId);
             int categoryId = getItemId.getCategoryId();
 
-            checked  = "false";
+            status  = "unchecked";
             weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-            Call<AddScheduleResponse> responseCall = weddingService.addNewSchedule(date, title, categoryId, note, currentUserId, checked, monthDate, yearDate);
+            Call<AddScheduleResponse> responseCall = weddingService.addNewSchedule(date, title, categoryId, note, currentUserId, status, monthDate, yearDate);
             responseCall.enqueue(new Callback<AddScheduleResponse>() {
                 @Override
                 public void onResponse(Call<AddScheduleResponse> call, Response<AddScheduleResponse> response) {

@@ -16,7 +16,9 @@ import android.widget.Toast;
 import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
+import com.example.weddingvaganza.model.GuestGroupModel;
 import com.example.weddingvaganza.model.ScheduleModel;
+import com.example.weddingvaganza.model.ScheduleStatusModel;
 import com.example.weddingvaganza.view.activity.BudgetActivity;
 import com.example.weddingvaganza.view.activity.GuestsActivity;
 import com.example.weddingvaganza.view.activity.VendorActivity;
@@ -24,6 +26,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -43,12 +46,12 @@ public class FinalHomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_final_home, container, false);
 
-        // set couple name
+        // SET COUPLE NAME
         TextView tvCouple = view.findViewById(R.id.tv_coupleFinalHome);
         String coupleName = Prefs.getString("couple_name", null);
         tvCouple.setText(coupleName);
 
-        // set count down wedding date
+        // SET COUNT DOWN WEDDING DATE
         String weddingDate = Prefs.getString("wedding_date", null);
 
         CountdownView countdownView = view.findViewById(R.id.cd_finalHome);
@@ -69,21 +72,32 @@ public class FinalHomeFragment extends Fragment {
             e.printStackTrace();
         }
 
-        // wedding progress
+        // WEDDING PROGRESS
         tvTotTask = view.findViewById(R.id.tv_totTask);
         tvPresentase = view.findViewById(R.id.tv_progress_bar);
         tvCekTask = view.findViewById(R.id.tv_cekTask);
         progressBar = view.findViewById(R.id.progress_bar);
 
         int currentUserId = Prefs.getInt("user_id", 0);
+        List<ScheduleStatusModel> statusOk = new ArrayList<>();
         WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
         Call<List<ScheduleModel>> call = weddingService.getSchedule(currentUserId);
         call.enqueue(new Callback<List<ScheduleModel>>() {
             @Override
             public void onResponse(Call<List<ScheduleModel>> call, Response<List<ScheduleModel>> response) {
                 List<ScheduleModel> scheduleModels = response.body();
+
+                // count checked status
+                for (ScheduleModel post : scheduleModels) {
+                    String model = post.getStatus();
+                    if (model.equals("checked")) {
+                        ScheduleStatusModel statusModel = new ScheduleStatusModel(model);
+                        statusOk.add(statusModel);
+                    }
+                }
+
                 int totalTask = scheduleModels.size();
-                int totCekTask = 1;
+                int totCekTask = statusOk.size();
                 int presentaseTask  = (totCekTask * 100)/totalTask;
                 progressBar.setProgress(presentaseTask);
 

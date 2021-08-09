@@ -38,11 +38,8 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
     private List<ScheduleModel> schedule;
     private Context context;
     private ListScheduleCallback listScheduleCallback;
-    
-    int scheduleId, idCategory, userId, month, year;
-    String dateSchedule, titleSchedule, noteSchedule, statusSchedule;
-    ScheduleModel scheduleModel;
-    WeddingService weddingService;
+    int scheduleId;
+    String  titleSchedule, statusSchedule;
 
     public void setData(List<ScheduleModel> schedule) {
         this.schedule = schedule;
@@ -65,10 +62,11 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
         ScheduleModel scheduleModel = schedule.get(position);
 
         scheduleId = scheduleModel.getScheduleId();
-        statusSchedule = scheduleModel.getStatus();
+
         titleSchedule = scheduleModel.getTitleSchedule();
         holder.checkBox.setText(titleSchedule);
 
+        statusSchedule = scheduleModel.getStatus();
         if (statusSchedule.equals("checked")) {
             holder.checkBox.setChecked(true);
             holder.checkBox.setTextColor(ContextCompat.getColor(context, gold));

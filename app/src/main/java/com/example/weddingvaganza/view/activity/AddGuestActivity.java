@@ -64,6 +64,9 @@ public class AddGuestActivity extends AppCompatActivity {
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinner.setAdapter(adapter);
                     }
+
+                    int grup = guestGroup.size();
+                    Toast.makeText(AddGuestActivity.this, "banyaknya " + grup, Toast.LENGTH_SHORT).show();
                 }
             }
 
