@@ -72,6 +72,27 @@ public class FinalHomeFragment extends Fragment {
             e.printStackTrace();
         }
 
+        // menu guests
+        ibGuests = view.findViewById(R.id.ib_guests);
+        ibGuests.setOnClickListener(v -> {
+            Intent guests = new Intent(getActivity(), GuestsActivity.class);
+            startActivity(guests);
+        });
+
+        // menu budget
+        ibBudget = view.findViewById(R.id.ib_budget);
+        ibBudget.setOnClickListener(v -> {
+            Intent budget = new Intent(getActivity(), BudgetActivity.class);
+            startActivity(budget);
+        });
+
+        // menu vendor
+        ibVendor = view.findViewById(R.id.ib_vendor);
+        ibVendor.setOnClickListener(v -> {
+            Intent vendor = new Intent(getActivity(), VendorActivity.class);
+            startActivity(vendor);
+        });
+
         // WEDDING PROGRESS
         tvTotTask = view.findViewById(R.id.tv_totTask);
         tvPresentase = view.findViewById(R.id.tv_progress_bar);
@@ -117,26 +138,7 @@ public class FinalHomeFragment extends Fragment {
             }
         });
 
-        // menu guests
-        ibGuests = view.findViewById(R.id.ib_guests);
-        ibGuests.setOnClickListener(v -> {
-            Intent guests = new Intent(getActivity(), GuestsActivity.class);
-            startActivity(guests);
-        });
-
-        // menu budget
-        ibBudget = view.findViewById(R.id.ib_budget);
-        ibBudget.setOnClickListener(v -> {
-            Intent budget = new Intent(getActivity(), BudgetActivity.class);
-            startActivity(budget);
-        });
-
-        // menu vendor
-        ibVendor = view.findViewById(R.id.ib_vendor);
-        ibVendor.setOnClickListener(v -> {
-            Intent vendor = new Intent(getActivity(), VendorActivity.class);
-            startActivity(vendor);
-        });
+        //
 
         return view;
     }
