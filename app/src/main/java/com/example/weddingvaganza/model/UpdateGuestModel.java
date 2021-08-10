@@ -1,11 +1,6 @@
 package com.example.weddingvaganza.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import java.io.Serializable;
-
-public class GuestModel implements Parcelable {
+public class UpdateGuestModel {
     private int guestId;
     private int classId;
     private String guestNama;
@@ -15,7 +10,7 @@ public class GuestModel implements Parcelable {
     private String homeAddress;
     private String status;
 
-    public GuestModel(int guestId, int classId, String guestNama, String guestNoHp, String guestEmail, int userId, String homeAddress, String status) {
+    public UpdateGuestModel(int guestId, int classId, String guestNama, String guestNoHp, String guestEmail, int userId, String homeAddress, String status) {
         this.guestId = guestId;
         this.classId = classId;
         this.guestNama = guestNama;
@@ -25,29 +20,6 @@ public class GuestModel implements Parcelable {
         this.homeAddress = homeAddress;
         this.status = status;
     }
-
-    protected GuestModel(Parcel in) {
-        guestId = in.readInt();
-        classId = in.readInt();
-        guestNama = in.readString();
-        guestNoHp = in.readString();
-        guestEmail = in.readString();
-        userId = in.readInt();
-        homeAddress = in.readString();
-        status = in.readString();
-    }
-
-    public static final Creator<GuestModel> CREATOR = new Creator<GuestModel>() {
-        @Override
-        public GuestModel createFromParcel(Parcel in) {
-            return new GuestModel(in);
-        }
-
-        @Override
-        public GuestModel[] newArray(int size) {
-            return new GuestModel[size];
-        }
-    };
 
     public int getGuestId() {
         return guestId;
@@ -97,14 +69,6 @@ public class GuestModel implements Parcelable {
         this.userId = userId;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getHomeAddress() {
         return homeAddress;
     }
@@ -113,20 +77,11 @@ public class GuestModel implements Parcelable {
         this.homeAddress = homeAddress;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public String getStatus() {
+        return status;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(guestId);
-        dest.writeInt(classId);
-        dest.writeString(guestNama);
-        dest.writeString(guestNoHp);
-        dest.writeString(guestEmail);
-        dest.writeInt(userId);
-        dest.writeString(homeAddress);
-        dest.writeString(status);
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

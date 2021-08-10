@@ -10,6 +10,7 @@ import com.example.weddingvaganza.model.GuestModel;
 import com.example.weddingvaganza.model.LoginResponseModel;
 import com.example.weddingvaganza.model.RundownModel;
 import com.example.weddingvaganza.model.ScheduleModel;
+import com.example.weddingvaganza.model.UpdateGuestModel;
 import com.example.weddingvaganza.model.UpdateScheduleModel;
 import com.example.weddingvaganza.model.schedulebyid.ScheduleByIdModel;
 
@@ -36,7 +37,7 @@ public interface WeddingService {
                                       @Field("email") String email_user, @Field("password") String password_user,
                                       @Field("couple") String nama_pasangan_user, @Field("tanggal") String tgl_pernikahan);
 
-    // category response
+    // CATEGORY RESPONSE
     @GET("category/user/{userId}")
     Call<List<CategoryModel>> getCategory(@Path("userId") int currentUserId);
 
@@ -47,7 +48,7 @@ public interface WeddingService {
     Call<AddCategoryResponse> addCategory(@Query("title") String title, @Query("user") int currentUserId);
 
 
-    // schedule response
+    // SCHEDULE RESPONSE
     @GET("todolist/user/{userId}")
     Call<List<ScheduleModel>> getSchedule(@Path("userId") int currentUserId);
 
@@ -57,8 +58,8 @@ public interface WeddingService {
     @GET("todolist/{id}")
     Call<ScheduleByIdModel> getScheduleById (@Path("id") int selectedSchedule);
 
-    @GET("todolist/month={month}&&year={year}")
-    Call<List<ScheduleModel>> getScheduleMonthYear (@Path("month") int monthDate, @Path("year") int yearDate);
+    @GET("todolist/{month}/{year}/{categoryId}")
+    Call<List<ScheduleModel>> getScheduleMonthYear (@Path("month") int monthDate, @Path("year") int yearDate, @Path("categoryId") int categoryId);
 
     @FormUrlEncoded
     @POST("todolistadd")
@@ -71,7 +72,7 @@ public interface WeddingService {
     Call<ScheduleModel> updateSchedule (@Path("id") int scheduleId, @Body UpdateScheduleModel scheduleModel);
 
 
-    // rundown response
+    // RUNDOWN RESPONSE
     @GET("rundownevent/user/{userId}")
     Call<List<RundownModel>> getRundown(@Path("userId") int currentUserId);
 
@@ -81,7 +82,7 @@ public interface WeddingService {
                                         @Query("pj") String pj, @Query("user") int currentUserId);
 
 
-    // guests response
+    // GUEST RESPONSE
     @GET("guestclass/all")
     Call<List<GuestGroupModel>> getGuestGroup();
 
@@ -92,7 +93,10 @@ public interface WeddingService {
     Call<List<GuestModel>> getGuest(@Path("classId") int currentGroup, @Path("userId") int currentUser);
 
     @GET("guest/id/{id}")
-    Call<GuestModel> getGuestDetail (@Path("id") int currentGuestId);
+    Call<GuestModel> getGuestById (@Path("id") int currentGuestId);
+
+    @PUT("guest/update/{id}")
+    Call<GuestModel> putStatus (@Path("id") int guestId, @Body UpdateGuestModel updateGuestModel);
 
     @POST("guestadd")
     Call<AddGuestResponse> addGuest (@Query("kelas") int kelasId, @Query("nama") String nama,
@@ -102,6 +106,16 @@ public interface WeddingService {
 
     @GET("guest/name={guestNama}")
     Call<List<GuestModel>> findGuestName(@Path("guestNama") String guestNama);
+
+
+    // BUDGET RESPONSE
+    @GET("budgetlist/total={userId}")
+    Call<Integer> getBudgetTotal (@Path("userId") int userId);
+
+
+    // COST RESPONSE
+    @GET("paidlist/total={userId}")
+    Call<Integer> getCostTotal (@Path("userId") int userId);
 
 
 }

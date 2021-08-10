@@ -49,7 +49,6 @@ public class AddGuestActivity extends AppCompatActivity {
         ArrayAdapter<GuestGroupModel> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, guestGroup);
         weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
         Call<List<GuestGroupModel>> call = weddingService.getGuestGroup();
-
         call.enqueue(new Callback<List<GuestGroupModel>>() {
             @Override
             public void onResponse(Call<List<GuestGroupModel>> call, Response<List<GuestGroupModel>> response) {
@@ -64,9 +63,6 @@ public class AddGuestActivity extends AppCompatActivity {
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinner.setAdapter(adapter);
                     }
-
-                    int grup = guestGroup.size();
-                    Toast.makeText(AddGuestActivity.this, "banyaknya " + grup, Toast.LENGTH_SHORT).show();
                 }
             }
 

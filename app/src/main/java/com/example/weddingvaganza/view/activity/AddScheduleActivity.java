@@ -89,7 +89,6 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
                         spinner.setAdapter(adapter);
                     }
                 }
-
             }
 
             @Override

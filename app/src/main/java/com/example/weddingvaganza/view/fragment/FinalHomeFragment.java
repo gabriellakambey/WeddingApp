@@ -41,6 +41,7 @@ public class FinalHomeFragment extends Fragment {
     ImageButton ibGuests, ibBudget, ibVendor;
     TextView tvTotTask, tvPresentase, tvCekTask;
     TextView tvTotGuestList, tvTotGuestInvited, tvTotGuestCheckIn;
+    TextView tvBudget, tvCost;
     ProgressBar progressBar;
     int currentUserId = Prefs.getInt("user_id", 0);
     WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
@@ -169,12 +170,47 @@ public class FinalHomeFragment extends Fragment {
                 tvTotGuestInvited.setText(totalInvited);
 
                 // nnti rubah data totalCheckIn
-                String totalCheckIn = String.valueOf(guestStatusModels.size());
+//                String totalCheckIn = String.valueOf(guestStatusModels.size());
+                String totalCheckIn = "0";
                 tvTotGuestCheckIn.setText(totalCheckIn);
             }
 
             @Override
             public void onFailure(Call<List<GuestModel>> call, Throwable t) {
+
+            }
+        });
+
+        // OUR BUDGET INFO
+        tvBudget = view.findViewById(R.id.tv_our_budget);
+
+        Call<Integer> call2 = weddingService.getBudgetTotal(currentUserId);
+        call2.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                Integer totalBudget = response.body();
+                tvBudget.setText("IDR " + totalBudget);
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+
+            }
+        });
+
+        // COST INFO
+        tvCost = view.findViewById(R.id.tv_cost);
+
+        Call<Integer> call3 = weddingService.getCostTotal(currentUserId);
+        call3.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                Integer totalCost = response.body();
+                tvCost.setText("IDR " + totalCost);
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
 
             }
         });
