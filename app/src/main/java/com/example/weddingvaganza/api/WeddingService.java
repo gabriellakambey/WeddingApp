@@ -85,6 +85,9 @@ public interface WeddingService {
     @GET("guestclass/all")
     Call<List<GuestGroupModel>> getGuestGroup();
 
+    @GET("guest/user/{userId}")
+    Call<List<GuestModel>> getGuestByUserId(@Path("userId") int userId);
+
     @GET("guest/class={classId}&&user={userId}")
     Call<List<GuestModel>> getGuest(@Path("classId") int currentGroup, @Path("userId") int currentUser);
 

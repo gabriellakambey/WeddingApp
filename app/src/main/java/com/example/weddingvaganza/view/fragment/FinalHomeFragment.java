@@ -17,6 +17,8 @@ import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.GuestGroupModel;
+import com.example.weddingvaganza.model.GuestModel;
+import com.example.weddingvaganza.model.GuestStatusModel;
 import com.example.weddingvaganza.model.ScheduleModel;
 import com.example.weddingvaganza.model.ScheduleStatusModel;
 import com.example.weddingvaganza.view.activity.BudgetActivity;
@@ -38,7 +40,10 @@ import retrofit2.Response;
 public class FinalHomeFragment extends Fragment {
     ImageButton ibGuests, ibBudget, ibVendor;
     TextView tvTotTask, tvPresentase, tvCekTask;
+    TextView tvTotGuestList, tvTotGuestInvited, tvTotGuestCheckIn;
     ProgressBar progressBar;
+    int currentUserId = Prefs.getInt("user_id", 0);
+    WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -99,9 +104,7 @@ public class FinalHomeFragment extends Fragment {
         tvCekTask = view.findViewById(R.id.tv_cekTask);
         progressBar = view.findViewById(R.id.progress_bar);
 
-        int currentUserId = Prefs.getInt("user_id", 0);
-        List<ScheduleStatusModel> statusOk = new ArrayList<>();
-        WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
+        List<ScheduleStatusModel> scheduleStatusModels = new ArrayList<>();
         Call<List<ScheduleModel>> call = weddingService.getSchedule(currentUserId);
         call.enqueue(new Callback<List<ScheduleModel>>() {
             @Override
@@ -109,16 +112,16 @@ public class FinalHomeFragment extends Fragment {
                 List<ScheduleModel> scheduleModels = response.body();
 
                 // count checked status
-                for (ScheduleModel post : scheduleModels) {
-                    String model = post.getStatus();
-                    if (model.equals("checked")) {
-                        ScheduleStatusModel statusModel = new ScheduleStatusModel(model);
-                        statusOk.add(statusModel);
+                for (ScheduleModel model : scheduleModels) {
+                    String statusChecked = model.getStatus();
+                    if (statusChecked.equals("checked")) {
+                        ScheduleStatusModel statusModel = new ScheduleStatusModel(statusChecked);
+                        scheduleStatusModels.add(statusModel);
                     }
                 }
 
                 int totalTask = scheduleModels.size();
-                int totCekTask = statusOk.size();
+                int totCekTask = scheduleStatusModels.size();
                 int presentaseTask  = (totCekTask * 100)/totalTask;
                 progressBar.setProgress(presentaseTask);
 
@@ -138,7 +141,43 @@ public class FinalHomeFragment extends Fragment {
             }
         });
 
-        //
+        // GUEST INFO
+        tvTotGuestList = view.findViewById(R.id.tv_totGuestList);
+        tvTotGuestInvited = view.findViewById(R.id.tv_totGuestInvited);
+        tvTotGuestCheckIn = view.findViewById(R.id.tv_totGuestCheckIn);
+
+        List<GuestStatusModel> guestStatusModels = new ArrayList<>();
+        Call<List<GuestModel>> call1 = weddingService.getGuestByUserId(currentUserId);
+        call1.enqueue(new Callback<List<GuestModel>>() {
+            @Override
+            public void onResponse(Call<List<GuestModel>> call, Response<List<GuestModel>> response) {
+                List<GuestModel> guestModels = response.body();
+
+                // count invited status
+                for (GuestModel model : guestModels) {
+                    String statusInvited = model.getStatus();
+                    if (statusInvited.equals("invited")) {
+                        GuestStatusModel guestStatus = new GuestStatusModel(statusInvited);
+                        guestStatusModels.add(guestStatus);
+                    }
+                }
+
+                String totalGuest = String.valueOf(guestModels.size());
+                tvTotGuestList.setText(totalGuest);
+
+                String totalInvited = String.valueOf(guestStatusModels.size());
+                tvTotGuestInvited.setText(totalInvited);
+
+                // nnti rubah data totalCheckIn
+                String totalCheckIn = String.valueOf(guestStatusModels.size());
+                tvTotGuestCheckIn.setText(totalCheckIn);
+            }
+
+            @Override
+            public void onFailure(Call<List<GuestModel>> call, Throwable t) {
+
+            }
+        });
 
         return view;
     }
