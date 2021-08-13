@@ -1,19 +1,12 @@
 package com.example.weddingvaganza.view.dialog;
 
 import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,18 +15,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.weddingvaganza.R;
-import com.example.weddingvaganza.adapter.ListCategoryAdapter;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
-import com.example.weddingvaganza.model.AddCategoryResponse;
-import com.example.weddingvaganza.model.AddScheduleResponse;
-import com.example.weddingvaganza.model.CategoryModel;
-import com.example.weddingvaganza.view.activity.HomeActivity;
-import com.example.weddingvaganza.view.fragment.CategoryFragment;
+import com.example.weddingvaganza.model.responseModel.AddCategoryResponse;
 import com.pixplicity.easyprefs.library.Prefs;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -79,11 +64,11 @@ public class AddCategoryDialog extends AppCompatDialogFragment {
                     if (addCategoryResponse.getStatus().equals("success")) {
 
                         listener.onAddCategory();
-                        Toast.makeText(getContext(), "Success Add Category", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Success Add Category", Toast.LENGTH_SHORT).show();
                         alertDialog.dismiss();
 
                     } else {
-                        Toast.makeText(getContext(), "Failed Add Category", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Failed Add Category", Toast.LENGTH_SHORT).show();
                     }
                 }
 

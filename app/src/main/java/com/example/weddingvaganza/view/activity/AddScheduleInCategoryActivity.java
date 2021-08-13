@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
-import com.example.weddingvaganza.model.AddScheduleResponse;
+import com.example.weddingvaganza.model.responseModel.AddScheduleResponse;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.Calendar;

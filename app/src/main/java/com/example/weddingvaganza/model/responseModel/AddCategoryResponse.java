@@ -1,4 +1,6 @@
-package com.example.weddingvaganza.model;
+package com.example.weddingvaganza.model.responseModel;
+
+import com.example.weddingvaganza.model.CategoryModel;
 
 public class AddCategoryResponse {
 

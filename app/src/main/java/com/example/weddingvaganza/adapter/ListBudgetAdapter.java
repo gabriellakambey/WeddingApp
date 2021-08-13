@@ -1,7 +1,6 @@
 package com.example.weddingvaganza.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +15,24 @@ import com.example.weddingvaganza.model.BudgetModel;
 
 import java.util.List;
 
-public class BudgetRecyclerViewAdapter extends RecyclerView.Adapter<BudgetRecyclerViewAdapter.MyViewHolder> {
-    private List<BudgetModel> budgetModels;
+public class ListBudgetAdapter extends RecyclerView.Adapter<ListBudgetAdapter.MyViewHolder> {
 
-    public  BudgetRecyclerViewAdapter(Context context, List<BudgetModel> budgetModels){
+    List<BudgetModel> budgetModels;
+    Context context;
+
+    public ListBudgetAdapter(Context context, List<BudgetModel> budgetModels){
+        this.context = context;
         this.budgetModels = budgetModels;
     }
+
+    public void setBudgetModels(List<BudgetModel> budgetModels) {
+        this.budgetModels = budgetModels;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
-    public BudgetRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ListBudgetAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View listItem = layoutInflater.inflate(R.layout.budget_list_item,parent,false);
         MyViewHolder viewHolder =new MyViewHolder(listItem);
@@ -33,10 +41,14 @@ public class BudgetRecyclerViewAdapter extends RecyclerView.Adapter<BudgetRecycl
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BudgetRecyclerViewAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ListBudgetAdapter.MyViewHolder holder, int position) {
+        BudgetModel budgetModel = budgetModels.get(position);
 
-        holder.titleBudget.setText(budgetModels.get(position).getTitleBudget());
-        holder.totalBudget.setText(budgetModels.get(position).getTotalBudget());
+        String title = budgetModel.getTitleBudget();
+        int cost = budgetModel.getCostBudget();
+
+        holder.titleBudget.setText(title);
+        holder.totalBudget.setText("IDR " + cost);
 
     }
 
@@ -47,13 +59,11 @@ public class BudgetRecyclerViewAdapter extends RecyclerView.Adapter<BudgetRecycl
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        Context context = itemView.getContext();
-        private TextView titleBudget;
-        private TextView totalBudget;
-        private LinearLayout ll_totalBudget;
+        TextView titleBudget, totalBudget;
+        LinearLayout ll_totalBudget;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             titleBudget = itemView.findViewById(R.id.tv_titleBudget);
             totalBudget = itemView.findViewById(R.id.tv_totalBudget);
             ll_totalBudget = itemView.findViewById(R.id.ll_totalBudget);

@@ -77,19 +77,29 @@
                     android:textColor="@color/navy"
                     android:textSize="14dp" />
 
-                <EditText
-                    android:id="@+id/et_timeAddRundown"
+                <LinearLayout
+                    android:id="@+id/timeAddRundown"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/round_navy"
-                    android:hint="hh:mm"
-                    android:inputType="time"
-                    android:maxLines="1"
-                    android:padding="15dp"
-                    android:textColor="@color/navy"
-                    android:textColorHint="@color/hint"
-                    android:textSize="12sp" />
+                    android:padding="15dp">
+
+                    <TextView
+                        android:id="@+id/tv_timeAddRundown"
+                        android:layout_width="55dp"
+                        android:layout_height="wrap_content"
+                        android:text="hh:mm"
+                        android:textColor="@color/hint"
+                        android:textSize="12sp" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/ic_time" />
+
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -127,14 +137,15 @@
                     android:layout_marginTop="5dp"
                     android:background="@drawable/round_navy"
                     android:orientation="horizontal"
-                    android:padding="3dp">
+                    android:padding="15dp">
 
                     <Spinner
                         android:id="@+id/spinner_addRundown"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:autofillHints="Select the Category"
                         android:entries="@array/category" />
+
                 </LinearLayout>
 
                 <TextView

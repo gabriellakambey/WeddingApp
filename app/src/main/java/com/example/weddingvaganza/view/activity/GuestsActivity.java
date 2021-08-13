@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.weddingvaganza.R;
-import com.example.weddingvaganza.adapter.GuestsPagerAdapter;
+import com.example.weddingvaganza.adapter.pagerAdapter.GuestsPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class GuestsActivity extends AppCompatActivity {

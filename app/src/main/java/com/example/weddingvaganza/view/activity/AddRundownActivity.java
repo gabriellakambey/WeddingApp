@@ -11,22 +11,22 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
-import com.example.weddingvaganza.model.AddRundownResponse;
-import com.example.weddingvaganza.model.AddScheduleResponse;
+import com.example.weddingvaganza.model.responseModel.AddRundownResponse;
 import com.example.weddingvaganza.model.CategoryModel;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -39,8 +39,7 @@ import static com.example.weddingvaganza.R.*;
 public class AddRundownActivity extends AppCompatActivity {
     private Spinner spinner;
     private Button btnBack;
-    private EditText timeRundown;
-    private EditText etTime, etTitle, etPersonIC, etNote;
+    private EditText etTitle, etPersonIC, etNote;
     int Hour, Minute;
     int currentUserId = Prefs.getInt("user_id", 0);
 
@@ -57,8 +56,9 @@ public class AddRundownActivity extends AppCompatActivity {
         });
 
         // Set time
-        timeRundown = findViewById(id.et_timeAddRundown);
-        timeRundown.setOnClickListener(new View.OnClickListener() {
+        TextView timeRundown = findViewById(id.tv_timeAddRundown);
+        LinearLayout timePicker = findViewById(id.timeAddRundown);
+        timePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(AddRundownActivity.this,
@@ -74,7 +74,10 @@ public class AddRundownActivity extends AppCompatActivity {
                         try {
                             Date date = f24jam.parse(time);
                             SimpleDateFormat f12jam = new SimpleDateFormat("hh:mm aa");
+
                             timeRundown.setText(f12jam.format(date));
+                            timeRundown.setTextColor(Color.parseColor("#2C3E57"));
+
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
@@ -89,7 +92,7 @@ public class AddRundownActivity extends AppCompatActivity {
         // retrofit spinner
         spinner = findViewById(id.spinner_addRundown);
         List<CategoryModel> category = new ArrayList<>();
-        ArrayAdapter<CategoryModel> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, category);
+        ArrayAdapter<CategoryModel> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, category);
         WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
         Call<List<CategoryModel>> call = weddingService.getCategory(currentUserId);
 
@@ -118,14 +121,13 @@ public class AddRundownActivity extends AppCompatActivity {
         });
 
         // button save
-        etTime = findViewById(id.et_timeAddRundown);
         etTitle = findViewById(id.et_titleAddRundown);
         etPersonIC = findViewById(id.et_personAddRundown);
         etNote = findViewById(id.et_noteAddRundown);
 
         Button btnSave = findViewById(id.btn_saveAddRundown);
         btnSave.setOnClickListener(v -> {
-            String time = etTime.getText().toString();
+            String time = timeRundown.toString();
             String title = etTitle.getText().toString();
             String pj = etPersonIC.getText().toString();
             String note = etNote.getText().toString();

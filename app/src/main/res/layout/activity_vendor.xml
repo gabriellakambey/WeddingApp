@@ -45,8 +45,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Vendor Activity"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:layout_marginHorizontal="30dp"
+        android:text="This feature will be available soon"
+        android:textAlignment="center"
+        android:textColor="@color/navy"
+        android:textSize="16sp"
+        android:fontFamily="@font/poppins_regular" />
 
 </RelativeLayout>

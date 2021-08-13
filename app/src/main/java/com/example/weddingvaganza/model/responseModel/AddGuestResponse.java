@@ -1,5 +1,6 @@
-package com.example.weddingvaganza.model;
+package com.example.weddingvaganza.model.responseModel;
 
+import com.example.weddingvaganza.model.GuestModel;
 import com.google.gson.annotations.SerializedName;
 
 public class AddGuestResponse {

@@ -1,6 +1,7 @@
 package com.example.weddingvaganza.view.dialog;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +18,12 @@ import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.GuestModel;
-import com.example.weddingvaganza.model.UpdateGuestModel;
+import com.example.weddingvaganza.model.GuestStatusModel;
+import com.example.weddingvaganza.model.GuestUpdateModel;
+import com.example.weddingvaganza.view.activity.GuestListActivity;
 
-import org.jetbrains.annotations.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,8 +34,11 @@ public class GuestDetailDialog extends AppCompatDialogFragment {
     GuestModel guestModel;
     TextView guestName, status, email, phoneNumber, address;
     int guestId;
-    UpdateGuestModel updateGuestModel;
+    int currentGroup;
+    GuestUpdateModel guestUpdateModel;
     WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
+    DetailDialogListener listener;
+    AlertDialog alertDialog;
 
     @NonNull
     @Override
@@ -43,7 +50,7 @@ public class GuestDetailDialog extends AppCompatDialogFragment {
 
         builder.setView(view);
 
-        final AlertDialog alertDialog = builder.create();
+        alertDialog = builder.create();
 
         // CLOSE BUTTON DIALOG
         Button close = view.findViewById(R.id.btn_closeGuestDetail);
@@ -51,19 +58,13 @@ public class GuestDetailDialog extends AppCompatDialogFragment {
             alertDialog.dismiss();
         });
 
-        // INVITE BUTTON
-        Button invite = view.findViewById(R.id.btn_inviteGuestDetail);
-        invite.setOnClickListener(v -> {
-            String status = "invited";
-            updateGuestModel = new UpdateGuestModel(guestId, guestModel.getClassId(), guestModel.getGuestNama(),
-                    guestModel.getGuestNoHp(),guestModel.getGuestEmail(), guestModel.getUserId(),
-                    guestModel.getHomeAddress(), status);
-            updateStatusInvited();
-            alertDialog.dismiss();
-        });
-
         // SET DETAIL DATA
         guestModel = this.getArguments().getParcelable("guest selected");
+        List<GuestModel> model = new ArrayList<>();
+        model.add(guestModel);
+        for (GuestModel post : model) {
+            currentGroup = post.getClassId();
+        }
 
         guestName = view.findViewById(R.id.tv_nameGuestDetail);
         status = view.findViewById(R.id.tv_statusGuestDetail);
@@ -78,22 +79,62 @@ public class GuestDetailDialog extends AppCompatDialogFragment {
         phoneNumber.setText(guestModel.getGuestNoHp());
         address.setText(guestModel.getHomeAddress());
 
+        // INVITE BUTTON
+        Button invite = view.findViewById(R.id.btn_inviteGuestDetail);
+        invite.setOnClickListener(v -> {
+//            startActivity(new Intent(getActivity(), GuestListActivity.class));
+            getGuestById();
+            alertDialog.dismiss();
+            startActivity(new Intent(getActivity(), GuestListActivity.class));
+        });
+
         return alertDialog;
     }
 
-    private void updateStatusInvited() {
-        Call<GuestModel> call = weddingService.putStatus(guestId, updateGuestModel);
+    private void getGuestById() {
+        Call<GuestModel> call = weddingService.getGuestById(guestId);
         call.enqueue(new Callback<GuestModel>() {
             @Override
             public void onResponse(Call<GuestModel> call, Response<GuestModel> response) {
-                Toast.makeText(getContext(), "Guest Invited", Toast.LENGTH_SHORT).show();
+                GuestModel data = response.body();
+
+                String status = "invited";
+                guestUpdateModel = new GuestUpdateModel(data.getGuestId(), data.getClassId(), data.getGuestNama(),
+                        data.getGuestNoHp(), data.getGuestEmail(), data.getUserId(), data.getHomeAddress(), status);
+
+                updateStatusInvited();
             }
 
             @Override
             public void onFailure(Call<GuestModel> call, Throwable t) {
-                Toast.makeText(getContext(), "Error Invite Guest", Toast.LENGTH_SHORT).show();
+
             }
         });
+    }
+
+    private void updateStatusInvited() {
+        Call<GuestUpdateModel> call = weddingService.putStatus(guestId, guestUpdateModel);
+        call.enqueue(new Callback<GuestUpdateModel>() {
+            @Override
+            public void onResponse(Call<GuestUpdateModel> call, Response<GuestUpdateModel> response) {
+                listener.closeDialog();
+                Toast.makeText(getContext(), "Guest Invited", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<GuestUpdateModel> call, Throwable t) {
+                Toast.makeText(getContext(), "Error Invite Guest", Toast.LENGTH_SHORT).show();
+//                startActivity(new Intent(getActivity(), GuestListActivity.class));
+            }
+        });
+    }
+
+    public interface DetailDialogListener {
+        public void closeDialog ();
+    }
+
+    public void setListener (DetailDialogListener listener) {
+        this.listener = listener;
     }
 
 }

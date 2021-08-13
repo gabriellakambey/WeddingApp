@@ -29,4 +29,8 @@ public class GuestGroupModel implements Serializable {
         this.classId = classId;
         this.title = title;
     }
+
+    public String toString(){
+        return title;
+    }
 }

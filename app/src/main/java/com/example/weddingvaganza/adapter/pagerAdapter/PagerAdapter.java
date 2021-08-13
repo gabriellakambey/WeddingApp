@@ -1,4 +1,4 @@
-package com.example.weddingvaganza.adapter;
+package com.example.weddingvaganza.adapter.pagerAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

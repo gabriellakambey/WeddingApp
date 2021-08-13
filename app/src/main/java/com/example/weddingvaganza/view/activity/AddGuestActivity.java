@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
-import com.example.weddingvaganza.model.AddGuestResponse;
+import com.example.weddingvaganza.model.responseModel.AddGuestResponse;
 import com.example.weddingvaganza.model.GuestGroupModel;
 import com.pixplicity.easyprefs.library.Prefs;
 
@@ -36,7 +36,6 @@ public class AddGuestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_guest);
-        spinner = findViewById(R.id.spinner_addGuest);
 
         // button back
         btnBack = findViewById(R.id.btn_BackAddGuest);
@@ -45,20 +44,20 @@ public class AddGuestActivity extends AppCompatActivity {
         });
 
         // retrofit spinner
-        List<GuestGroupModel> guestGroup = new ArrayList<>();
-        ArrayAdapter<GuestGroupModel> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, guestGroup);
+        spinner = findViewById(R.id.spinner_addGuest);
+        List<GuestGroupModel> group = new ArrayList<>();
+        ArrayAdapter<GuestGroupModel> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, group);
         weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
         Call<List<GuestGroupModel>> call = weddingService.getGuestGroup();
         call.enqueue(new Callback<List<GuestGroupModel>>() {
             @Override
             public void onResponse(Call<List<GuestGroupModel>> call, Response<List<GuestGroupModel>> response) {
                 if (response.isSuccessful()) {
-                    for (GuestGroupModel post : response.body()) {
-
-                        String group = post.getTitle();
-                        int currentId = post.getClassId();
-                        GuestGroupModel guestGroupModel = new GuestGroupModel(currentId, group);
-                        guestGroup.add(guestGroupModel);
+                    for (GuestGroupModel model : response.body()) {
+                        String title = model.getTitle();
+                        int id = model.getClassId();
+                        GuestGroupModel guestGroupModel = new GuestGroupModel(id, title);
+                        group.add(guestGroupModel);
 
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinner.setAdapter(adapter);

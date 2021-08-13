@@ -4,36 +4,25 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.adapter.ListCategoryAdapter;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
-import com.example.weddingvaganza.model.AddCategoryResponse;
 import com.example.weddingvaganza.model.CategoryModel;
 import com.example.weddingvaganza.view.activity.ScheduleFromCategoryActivity;
 import com.example.weddingvaganza.view.dialog.AddCategoryDialog;
 import com.pixplicity.easyprefs.library.Prefs;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;

@@ -1,6 +1,6 @@
 package com.example.weddingvaganza.model;
 
-public class UpdateScheduleModel {
+public class ScheduleUpdateModel {
 
 //    {
 //        "scheduleId": 1,
@@ -24,7 +24,7 @@ public class UpdateScheduleModel {
     private int month;
     private int year;
 
-    public UpdateScheduleModel(int scheduleId, String date, String title, int categoryId, String note, int userId, String status, int month, int year) {
+    public ScheduleUpdateModel(int scheduleId, String date, String title, int categoryId, String note, int userId, String status, int month, int year) {
         this.scheduleId = scheduleId;
         this.date = date;
         this.title = title;

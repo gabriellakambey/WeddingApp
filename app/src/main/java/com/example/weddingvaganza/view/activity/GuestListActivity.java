@@ -10,8 +10,10 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.weddingvaganza.R;
@@ -30,7 +32,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class GuestListActivity extends AppCompatActivity implements ListGuestAdapter.ClickedItem{
+public class GuestListActivity extends AppCompatActivity implements ListGuestAdapter.ClickedItem, GuestDetailDialog.DetailDialogListener {
     Button btnBack;
     TextView toolbarTitle, totalGuest;
     EditText searchView;
@@ -94,16 +96,13 @@ public class GuestListActivity extends AppCompatActivity implements ListGuestAda
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
-//        adapter.cobacoba(this);
-//       adapter = new ListGuestAdapter(this::ClickedGuest);
-
         getGuest();
 
     }
 
     private void searchGuestName(String text) {
         weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-        Call<List<GuestModel>> call = weddingService.findGuestName(text);
+        Call<List<GuestModel>> call = weddingService.findGuestName(currentGroup, text);
         call.enqueue(new Callback<List<GuestModel>>() {
             @Override
             public void onResponse(Call<List<GuestModel>> call, Response<List<GuestModel>> response) {
@@ -118,14 +117,6 @@ public class GuestListActivity extends AppCompatActivity implements ListGuestAda
 
             }
         });
-
-//        List<GuestModel> filterList = new ArrayList<>();
-//
-//        for (GuestModel item : guestModels) {
-//            if (item.getGuestNama().toLowerCase().contains(text.toLowerCase())) {
-//                filterList.add(item);
-//            }
-//        }
     }
 
     private void getGuest() {
@@ -138,13 +129,23 @@ public class GuestListActivity extends AppCompatActivity implements ListGuestAda
                 adapter = new ListGuestAdapter(GuestListActivity.this, guestModels);
                 totGuest = guestModels.size();
                 adapter.setGuestModels(guestModels);
-                adapter.cobacoba(GuestListActivity.this::ClickedGuest);
+                adapter.clickedListener(GuestListActivity.this::ClickedGuest);
+
                 recyclerView.setAdapter(adapter);
 
                 // set total guest on list
-                totalGuest = findViewById(R.id.tv_totGuests);
-                String total = totGuest + " guests";
-                totalGuest.setText(total);
+                if (totGuest != 0) {
+                    String total = totGuest + " guests";
+
+                    totalGuest = findViewById(R.id.tv_totGuests);
+                    totalGuest.setText(total);
+                } else {
+                    LinearLayout totalGuestList = findViewById(R.id.totalGuestList);
+                    totalGuestList.setVisibility(View.GONE);
+
+                    TextView textView = findViewById(R.id.tv_noGuestList);
+                    textView.setVisibility(View.VISIBLE);
+                }
 
             }
 
@@ -172,9 +173,17 @@ public class GuestListActivity extends AppCompatActivity implements ListGuestAda
         bundle.putParcelable("guest selected", guestModel);
 
         GuestDetailDialog guestDetailDialog = new GuestDetailDialog();
+
         guestDetailDialog.setArguments(bundle);
+
+        guestDetailDialog.setListener(this::closeDialog);
+
         guestDetailDialog.show(getSupportFragmentManager(), "detail guest");
 
+    }
 
+    @Override
+    public void closeDialog() {
+        getGuest();
     }
 }

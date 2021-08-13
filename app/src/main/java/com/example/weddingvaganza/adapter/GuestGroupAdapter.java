@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,7 +46,7 @@ public class GuestGroupAdapter extends RecyclerView.Adapter<GuestGroupAdapter.Vi
         int currentId = guestGroupModel.getClassId();
 
         holder.textView.setText(title);
-        holder.imageView.setOnClickListener(v -> {
+        holder.relativeLayout.setOnClickListener(v -> {
             listener.ClickedGuestGroup(guestGroupModel);
         });
 
@@ -62,12 +63,12 @@ public class GuestGroupAdapter extends RecyclerView.Adapter<GuestGroupAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
-        ImageView imageView;
+        RelativeLayout relativeLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.tv_listGuestGroup);
-            imageView = itemView.findViewById(R.id.iv_moreGuestGroup);
+            relativeLayout = itemView.findViewById(R.id.rl_moreGuestGroup);
         }
     }
 }

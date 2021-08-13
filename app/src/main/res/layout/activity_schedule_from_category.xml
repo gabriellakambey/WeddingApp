@@ -67,17 +67,17 @@
                     android:fontFamily="@font/roboto_regular"
                     android:text="April 2021"
                     android:textColor="@color/navy"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <RelativeLayout
-                    android:layout_width="20dp"
+                    android:layout_width="15dp"
                     android:layout_height="wrap_content" />
 
                 <ImageView
                     android:id="@+id/iv_calendarSchdFrmCat"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="end"
                     android:src="@drawable/ic_calendar" />
             </LinearLayout>

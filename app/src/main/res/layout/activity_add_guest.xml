@@ -106,12 +106,12 @@
                     android:layout_marginTop="5dp"
                     android:background="@drawable/round_navy"
                     android:orientation="horizontal"
-                    android:padding="3dp">
+                    android:padding="15dp">
 
                     <Spinner
                         android:id="@+id/spinner_addGuest"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:autofillHints="Select the Guest Group" />
                 </LinearLayout>
 

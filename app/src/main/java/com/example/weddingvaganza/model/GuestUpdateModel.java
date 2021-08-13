@@ -1,6 +1,6 @@
 package com.example.weddingvaganza.model;
 
-public class UpdateGuestModel {
+public class GuestUpdateModel {
     private int guestId;
     private int classId;
     private String guestNama;
@@ -10,7 +10,7 @@ public class UpdateGuestModel {
     private String homeAddress;
     private String status;
 
-    public UpdateGuestModel(int guestId, int classId, String guestNama, String guestNoHp, String guestEmail, int userId, String homeAddress, String status) {
+    public GuestUpdateModel(int guestId, int classId, String guestNama, String guestNoHp, String guestEmail, int userId, String homeAddress, String status) {
         this.guestId = guestId;
         this.classId = classId;
         this.guestNama = guestNama;

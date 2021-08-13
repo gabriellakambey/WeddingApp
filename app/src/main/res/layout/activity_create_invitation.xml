@@ -289,32 +289,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Date"
+                    android:text="Wedding Date"
                     android:textColor="@color/navy"
                     android:textSize="14dp" />
 
                 <LinearLayout
-                    android:id="@+id/dp_createInvitation"
-                    android:layout_width="200dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/round_navy"
                     android:orientation="horizontal"
                     android:padding="13dp">
 
-                    <EditText
+                    <TextView
                         android:id="@+id/td_createInvitation"
-                        android:layout_width="150dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/transparent_background"
-                        android:hint="dd/mm/yyyy"
-                        android:inputType="date"
-                        android:textSize="12sp" />
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_calendar" />
+                        android:text="dd/mm/yyyy"
+                        android:textSize="12sp"
+                        android:textColor="@color/navy"/>
 
                 </LinearLayout>
 
@@ -326,19 +320,29 @@
                     android:textColor="@color/navy"
                     android:textSize="14dp" />
 
-                <EditText
-                    android:id="@+id/et_timeInvitation"
+                <LinearLayout
+                    android:id="@+id/tp_timeInvitation"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:background="@drawable/round_navy"
-                    android:hint="hh:mm"
-                    android:inputType="time"
-                    android:maxLines="1"
                     android:padding="15dp"
-                    android:textColor="@color/navy"
-                    android:textColorHint="@color/hint"
-                    android:textSize="12sp" />
+                    android:background="@drawable/round_navy">
+
+                    <TextView
+                        android:id="@+id/tv_timeInvitation"
+                        android:layout_width="55dp"
+                        android:layout_height="wrap_content"
+                        android:text="hh:mm"
+                        android:textColor="@color/hint"
+                        android:textSize="12sp"/>
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:background="@drawable/ic_time"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -404,7 +408,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/transparent_background"
-                        android:hint="Write note for the schedule"
+                        android:hint="Write the detail of location address"
                         android:inputType="textLongMessage"
                         android:textColor="@color/navy"
                         android:textColorHint="@color/hint"

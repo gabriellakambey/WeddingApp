@@ -37,16 +37,12 @@ public class ListGuestAdapter extends RecyclerView.Adapter<ListGuestAdapter.View
     private List<GuestModel> guestModels;
     ClickedItem clickedItem;
 
-   // public ListGuestAdapter(ClickedItem clickedItem) {
-   //     this.clickedItem = clickedItem;
-   // }
-
     public ListGuestAdapter(Context context, List<GuestModel> guestModels) {
         this.context = context;
         this.guestModels = guestModels;
     }
 
-    public void cobacoba(ClickedItem clickedItem) {
+    public void clickedListener(ClickedItem clickedItem) {
         this.clickedItem = clickedItem;
     }
 

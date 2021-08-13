@@ -2,10 +2,7 @@ package com.example.weddingvaganza.view.fragment;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
@@ -13,22 +10,10 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.weddingvaganza.R;
-import com.example.weddingvaganza.adapter.PagerAdapter;
-import com.example.weddingvaganza.adapter.TodoListAdapter;
-import com.example.weddingvaganza.api.WeddingApi;
-import com.example.weddingvaganza.api.WeddingService;
-import com.example.weddingvaganza.model.CategoryModel;
+import com.example.weddingvaganza.adapter.pagerAdapter.PagerAdapter;
 import com.google.android.material.tabs.TabLayout;
-import com.pixplicity.easyprefs.library.Prefs;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class TodoListFragment extends Fragment {
 

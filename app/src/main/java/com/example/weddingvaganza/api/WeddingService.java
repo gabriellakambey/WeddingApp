@@ -1,17 +1,21 @@
 package com.example.weddingvaganza.api;
 
-import com.example.weddingvaganza.model.AddCategoryResponse;
-import com.example.weddingvaganza.model.AddGuestResponse;
-import com.example.weddingvaganza.model.AddRundownResponse;
-import com.example.weddingvaganza.model.AddScheduleResponse;
+import com.example.weddingvaganza.model.OurBudgetModel;
+import com.example.weddingvaganza.model.responseModel.AddBudgetResponse;
+import com.example.weddingvaganza.model.responseModel.AddCategoryResponse;
+import com.example.weddingvaganza.model.responseModel.AddGuestResponse;
+import com.example.weddingvaganza.model.responseModel.AddRundownResponse;
+import com.example.weddingvaganza.model.responseModel.AddScheduleResponse;
+import com.example.weddingvaganza.model.BudgetModel;
 import com.example.weddingvaganza.model.CategoryModel;
 import com.example.weddingvaganza.model.GuestGroupModel;
 import com.example.weddingvaganza.model.GuestModel;
+import com.example.weddingvaganza.model.GuestUpdateModel;
+import com.example.weddingvaganza.model.InvitationModel;
 import com.example.weddingvaganza.model.LoginResponseModel;
 import com.example.weddingvaganza.model.RundownModel;
 import com.example.weddingvaganza.model.ScheduleModel;
-import com.example.weddingvaganza.model.UpdateGuestModel;
-import com.example.weddingvaganza.model.UpdateScheduleModel;
+import com.example.weddingvaganza.model.ScheduleUpdateModel;
 import com.example.weddingvaganza.model.schedulebyid.ScheduleByIdModel;
 
 import java.util.List;
@@ -69,7 +73,7 @@ public interface WeddingService {
                                               @Field("month") int monthDate, @Field("year") int yearDate);
 
     @PUT("todolist/update/{id}")
-    Call<ScheduleModel> updateSchedule (@Path("id") int scheduleId, @Body UpdateScheduleModel scheduleModel);
+    Call<ScheduleModel> updateSchedule (@Path("id") int scheduleId, @Body ScheduleUpdateModel scheduleModel);
 
 
     // RUNDOWN RESPONSE
@@ -96,7 +100,7 @@ public interface WeddingService {
     Call<GuestModel> getGuestById (@Path("id") int currentGuestId);
 
     @PUT("guest/update/{id}")
-    Call<GuestModel> putStatus (@Path("id") int guestId, @Body UpdateGuestModel updateGuestModel);
+    Call<GuestUpdateModel> putStatus (@Path("id") int guestId, @Body GuestUpdateModel guestUpdateModel);
 
     @POST("guestadd")
     Call<AddGuestResponse> addGuest (@Query("kelas") int kelasId, @Query("nama") String nama,
@@ -104,18 +108,35 @@ public interface WeddingService {
                                      @Query("user") int userId, @Query("alamat") String alamat,
                                      @Query("status") String status);
 
-    @GET("guest/name={guestNama}")
-    Call<List<GuestModel>> findGuestName(@Path("guestNama") String guestNama);
+    @GET("guest/class={classId}&&name={guestNama}")
+    Call<List<GuestModel>> findGuestName(@Path("classId") int classId, @Path("guestNama") String guestNama);
+
+
+    // INVITATION RESPONSE
+    @GET("forminvitation/user/{userId}")
+    Call<List<InvitationModel>> getInvitation (@Path("userId") int userId);
+
 
 
     // BUDGET RESPONSE
     @GET("budgetlist/total={userId}")
     Call<Integer> getBudgetTotal (@Path("userId") int userId);
 
+    @GET("budgetlist/user/{userId}")
+    Call<List<BudgetModel>> getBudgetList (@Path("userId") int userId);
+
+    @POST("budgetlist/add")
+    Call<AddBudgetResponse> addBudget(@Query("title") String title, @Query("total") int total,
+                                      @Query("user") int userId, @Query("note") String note);
+
+    @GET("ourbudget/user/{userId}")
+    Call<List<OurBudgetModel>> getOurBudget(@Path("userId") int userId);
 
     // COST RESPONSE
     @GET("paidlist/total={userId}")
     Call<Integer> getCostTotal (@Path("userId") int userId);
+
+
 
 
 }

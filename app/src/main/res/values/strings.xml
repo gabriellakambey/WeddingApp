@@ -4,7 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string-array name="category">
-        <item>Prewedding</item>
+        <item>Select category event..</item>
         <item>Blessing of Church</item>
         <item>Wedding Ceremony</item>
     </string-array>

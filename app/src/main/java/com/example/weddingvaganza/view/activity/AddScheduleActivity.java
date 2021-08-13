@@ -1,20 +1,15 @@
 package com.example.weddingvaganza.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,9 +17,8 @@ import android.widget.Toast;
 import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
-import com.example.weddingvaganza.model.AddScheduleResponse;
+import com.example.weddingvaganza.model.responseModel.AddScheduleResponse;
 import com.example.weddingvaganza.model.CategoryModel;
-import com.example.weddingvaganza.view.fragment.ScheduleFragment;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
@@ -53,6 +47,7 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_schedule);
+
         spinner = findViewById(R.id.spinner_addSchedule);
         btnBack = findViewById(R.id.btn_BackAddSchedule);
 
@@ -70,7 +65,7 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
 
         // retrofit spinner
         List<CategoryModel> category = new ArrayList<>();
-        ArrayAdapter<CategoryModel> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, category);
+        ArrayAdapter<CategoryModel> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, category);
         weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
         Call<List<CategoryModel>> call = weddingService.getCategory(currentUserId);
 

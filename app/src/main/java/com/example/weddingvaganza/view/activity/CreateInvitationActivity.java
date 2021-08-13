@@ -12,18 +12,19 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.weddingvaganza.R;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class CreateInvitationActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class CreateInvitationActivity extends AppCompatActivity {
 
-    EditText textDate, timePicker;
     int Hour, Minute;
 
     @Override
@@ -31,21 +32,20 @@ public class CreateInvitationActivity extends AppCompatActivity implements DateP
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_invitation);
 
-        // button back
+        // BUTTON BACK
         Button btnBack = findViewById(R.id.btn_BackCreateInvitation);
         btnBack.setOnClickListener(v -> {
             onBack();
         });
 
-        // date picker
-        textDate = findViewById(R.id.td_createInvitation);
-        LinearLayout datePicker = findViewById(R.id.dp_createInvitation);
-        datePicker.setOnClickListener(v -> {
-            showDatePickerDialog();
-        });
+        // SET THE WEDDING DATE
+        String weddingDate = Prefs.getString("wedding_date", null);
+        TextView textDate = findViewById(R.id.td_createInvitation);
+        textDate.setText(weddingDate);
 
-        // time picker
-        timePicker = findViewById(R.id.et_timeInvitation);
+        // TIME PICKER
+        TextView timeSet = findViewById(R.id.tv_timeInvitation);
+        LinearLayout timePicker = findViewById(R.id.tp_timeInvitation);
         timePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +62,10 @@ public class CreateInvitationActivity extends AppCompatActivity implements DateP
                         try {
                             Date date = f24jam.parse(time);
                             SimpleDateFormat f12jam = new SimpleDateFormat("hh:mm aa");
-                            timePicker.setText(f12jam.format(date));
+
+                            timeSet.setText(f12jam.format(date));
+                            timeSet.setTextColor(Color.parseColor("#2C3E57"));
+
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
@@ -87,19 +90,4 @@ public class CreateInvitationActivity extends AppCompatActivity implements DateP
         }
     }
 
-    private void showDatePickerDialog() {
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
-                this,
-                Calendar.getInstance().get(Calendar.YEAR),
-                Calendar.getInstance().get(Calendar.MONTH),
-                Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-        datePickerDialog.show();
-    }
-
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        month = month + 1;
-        String date = dayOfMonth + "/" + month + "/" + year;
-        textDate.setText(date);
-    }
 }

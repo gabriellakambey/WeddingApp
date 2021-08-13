@@ -1,35 +1,19 @@
 package com.example.weddingvaganza.adapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weddingvaganza.R;
-import com.example.weddingvaganza.api.WeddingApi;
-import com.example.weddingvaganza.api.WeddingService;
-import com.example.weddingvaganza.model.CategoryModel;
 import com.example.weddingvaganza.model.ScheduleModel;
-import com.example.weddingvaganza.model.UpdateScheduleModel;
-import com.google.gson.annotations.SerializedName;
-import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static com.example.weddingvaganza.R.color.*;
 

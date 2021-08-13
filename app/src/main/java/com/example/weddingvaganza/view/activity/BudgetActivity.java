@@ -2,14 +2,13 @@ package com.example.weddingvaganza.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.weddingvaganza.R;
-import com.example.weddingvaganza.adapter.BudgetPagerAdapter;
+import com.example.weddingvaganza.adapter.pagerAdapter.BudgetPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class BudgetActivity extends AppCompatActivity {
@@ -29,8 +28,6 @@ public class BudgetActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> {
             onBack();
         });
-
-
 
         FragmentManager fm = getSupportFragmentManager();
         budgetAdapter = new BudgetPagerAdapter(fm, getLifecycle());

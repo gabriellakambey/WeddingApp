@@ -26,7 +26,7 @@
                 android:layout_marginHorizontal="10dp">
 
                 <Button
-                    android:id="@+id/btn_BackAddGuest"
+                    android:id="@+id/btn_BackAddBudget"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_centerVertical="true"
@@ -78,7 +78,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/et_nameAddBudgetTitle"
+                    android:id="@+id/et_titleAddBudget"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -101,7 +101,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/et_nameAddCostEstimate"
+                    android:id="@+id/et_costAddBudget"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -133,7 +133,7 @@
                     android:padding="13dp">
 
                     <EditText
-                        android:id="@+id/et_addressAddGuest"
+                        android:id="@+id/et_noteAddBudget"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/transparent_background"

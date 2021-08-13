@@ -55,37 +55,6 @@
                         android:textStyle="bold" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Our Budget:"
-                        android:textAlignment="center"
-                        android:textColor="@color/navy"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="IDR"
-                        android:textColor="@color/navy"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tv_ourBudget"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="50.000.000"
-                        android:textColor="@color/navy"
-                        android:textSize="14sp" />
-                </LinearLayout>
             </LinearLayout>
 
             <TextView
@@ -100,7 +69,6 @@
                 android:textStyle="bold" />
 
             <ScrollView
-
                 android:id="@+id/sv_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

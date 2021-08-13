@@ -1,4 +1,6 @@
-package com.example.weddingvaganza.model;
+package com.example.weddingvaganza.model.responseModel;
+
+import com.example.weddingvaganza.model.RundownModel;
 
 public class AddRundownResponse {
     private String status;

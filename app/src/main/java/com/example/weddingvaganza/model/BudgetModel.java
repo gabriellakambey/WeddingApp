@@ -1,12 +1,19 @@
 package com.example.weddingvaganza.model;
 
-public class BudgetModel {
-    private String titleBudget;
-    private String totalBudget;
+import com.google.gson.annotations.SerializedName;
 
-    public BudgetModel(String titleBudget,String totalBudget){
+public class BudgetModel {
+
+    @SerializedName("titleBudget")
+    private String titleBudget;
+    @SerializedName("totalBudget")
+    private int costBudget;
+    private String note;
+    private int userId;
+
+    public BudgetModel(String titleBudget,int costBudget){
         this.titleBudget = titleBudget;
-        this.totalBudget = totalBudget;
+        this.costBudget = costBudget;
     }
 
     public String getTitleBudget() {
@@ -17,11 +24,27 @@ public class BudgetModel {
         this.titleBudget = titleBudget;
     }
 
-    public String getTotalBudget() {
-        return totalBudget;
+    public int getCostBudget() {
+        return costBudget;
     }
 
-    public void setTotalBudget(String totalBudget) {
-        this.totalBudget = totalBudget;
+    public void setCostBudget(int costBudget) {
+        this.costBudget = costBudget;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

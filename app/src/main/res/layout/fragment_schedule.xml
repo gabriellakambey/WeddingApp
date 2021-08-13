@@ -29,7 +29,7 @@
                 android:textStyle="bold" />
 
             <RelativeLayout
-                android:layout_width="20dp"
+                android:layout_width="15dp"
                 android:layout_height="wrap_content" />
 
             <ImageView

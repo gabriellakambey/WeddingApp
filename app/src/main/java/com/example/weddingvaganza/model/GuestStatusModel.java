@@ -13,6 +13,7 @@ public class GuestStatusModel {
     private String homeAddress;
     private String status;
 
+
     public GuestStatusModel(String status) {
         this.status = status;
     }

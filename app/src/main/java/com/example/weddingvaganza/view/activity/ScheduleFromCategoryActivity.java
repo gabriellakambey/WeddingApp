@@ -18,9 +18,8 @@ import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.CategoryModel;
 import com.example.weddingvaganza.model.ScheduleModel;
-import com.example.weddingvaganza.model.UpdateScheduleModel;
+import com.example.weddingvaganza.model.ScheduleUpdateModel;
 import com.example.weddingvaganza.model.schedulebyid.ScheduleByIdModel;
-import com.example.weddingvaganza.view.dialog.AddCategoryDialog;
 import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import java.util.Calendar;
@@ -41,7 +40,7 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity implements L
     int currentCategoryId;
     String currentCategoryTitle;
     ScheduleModel scheduleById;
-    UpdateScheduleModel updateScheduleModel;
+    ScheduleUpdateModel scheduleUpdateModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,7 +156,7 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity implements L
             public void onResponse(Call<ScheduleByIdModel> call, Response<ScheduleByIdModel> response) {
                 ScheduleByIdModel data = response.body();
                 String status = isChecked ? "checked" : "unchecked";
-                updateScheduleModel = new UpdateScheduleModel(scheduleId, data.getDate(), data.getTitle(), data.getFkCategoryId().getCategoryId(), data.getNote(), data.getFkUserId().getUserId(), status, data.getMonth(), data.getYear());
+                scheduleUpdateModel = new ScheduleUpdateModel(scheduleId, data.getDate(), data.getTitle(), data.getFkCategoryId().getCategoryId(), data.getNote(), data.getFkUserId().getUserId(), status, data.getMonth(), data.getYear());
                 updateStatus(scheduleId);
             }
 
@@ -170,7 +169,7 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity implements L
 
     private void updateStatus(Integer scheduleId) {
         WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-        Call<ScheduleModel> call = weddingService.updateSchedule(scheduleId, updateScheduleModel);
+        Call<ScheduleModel> call = weddingService.updateSchedule(scheduleId, scheduleUpdateModel);
         call.enqueue(new Callback<ScheduleModel>() {
             @Override
             public void onResponse(Call<ScheduleModel> call, Response<ScheduleModel> response) {
