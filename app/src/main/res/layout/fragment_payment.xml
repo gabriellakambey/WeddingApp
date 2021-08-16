@@ -1,90 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.fragment.BudgetListFragment">
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.fragment.BudgetListFragment">
+        android:padding="20dp">
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/tv_totalBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Paid"
+            android:textColor="@color/navy"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/ll_totalBudget"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="20dp">
+            android:layout_height="70dp"
+            android:layout_below="@id/tv_totalBudget"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/round_grey"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <TextView
-                android:id="@+id/tv_totalBudget"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total Paid"
-                android:textColor="@color/navy"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:id="@+id/ll_totalBudget"
+                android:id="@+id/tv_totalBudgetUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_totalBudget"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/round_grey"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="IDR"
-                        android:textAlignment="center"
-                        android:textColor="@color/navy"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_totalBudgetUp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="6.000.000"
-                        android:textColor="@color/navy"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/tv_budgetItem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/ll_totalBudget"
-                android:layout_marginTop="10dp"
-                android:text="Your Budget Item"
+                android:text="IDR 6.000.000"
+                android:textAlignment="center"
                 android:textColor="@color/navy"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <ScrollView
-                android:id="@+id/sv_rv"
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_budgetItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_totalBudget"
+            android:layout_marginTop="10dp"
+            android:text="Your Budget Item"
+            android:textColor="@color/navy"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ScrollView
+            android:id="@+id/sv_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_budgetItem">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_paidItem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_budgetItem">
+                android:layout_marginTop="10dp" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_paidItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    />
-
-            </ScrollView>
+        </ScrollView>
 
 
-        </RelativeLayout>
+    </RelativeLayout>
 
 
-    </FrameLayout>
+</FrameLayout>

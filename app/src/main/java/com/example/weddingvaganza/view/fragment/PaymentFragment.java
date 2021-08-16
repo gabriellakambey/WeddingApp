@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.weddingvaganza.R;
-import com.example.weddingvaganza.adapter.PaymentRecyclerViewAdapter;
+import com.example.weddingvaganza.adapter.PaymentAdapter;
 import com.example.weddingvaganza.model.PaymentModel;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class PaymentFragment extends Fragment {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_payment, container, false);
         recyclerView = v.findViewById(R.id.rv_paidItem);
-        PaymentRecyclerViewAdapter recyclerViewAdapter = new PaymentRecyclerViewAdapter(getContext(),paymentModels);
+        PaymentAdapter recyclerViewAdapter = new PaymentAdapter(getContext(),paymentModels);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(recyclerViewAdapter);
 

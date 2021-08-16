@@ -27,7 +27,7 @@
             <LinearLayout
                 android:id="@+id/ll_totalBudget"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/round_grey"
                 android:orientation="vertical"

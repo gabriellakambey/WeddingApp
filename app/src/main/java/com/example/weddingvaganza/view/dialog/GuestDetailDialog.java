@@ -82,10 +82,8 @@ public class GuestDetailDialog extends AppCompatDialogFragment {
         // INVITE BUTTON
         Button invite = view.findViewById(R.id.btn_inviteGuestDetail);
         invite.setOnClickListener(v -> {
-//            startActivity(new Intent(getActivity(), GuestListActivity.class));
             getGuestById();
             alertDialog.dismiss();
-            startActivity(new Intent(getActivity(), GuestListActivity.class));
         });
 
         return alertDialog;
@@ -118,13 +116,11 @@ public class GuestDetailDialog extends AppCompatDialogFragment {
             @Override
             public void onResponse(Call<GuestUpdateModel> call, Response<GuestUpdateModel> response) {
                 listener.closeDialog();
-                Toast.makeText(getContext(), "Guest Invited", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<GuestUpdateModel> call, Throwable t) {
-                Toast.makeText(getContext(), "Error Invite Guest", Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(getActivity(), GuestListActivity.class));
+
             }
         });
     }
