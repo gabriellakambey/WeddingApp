@@ -60,13 +60,11 @@ public class ListBudgetAdapter extends RecyclerView.Adapter<ListBudgetAdapter.My
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView titleBudget, totalBudget;
-        LinearLayout ll_totalBudget;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             titleBudget = itemView.findViewById(R.id.tv_titleBudget);
             totalBudget = itemView.findViewById(R.id.tv_totalBudget);
-            ll_totalBudget = itemView.findViewById(R.id.ll_totalBudget);
         }
     }
 }

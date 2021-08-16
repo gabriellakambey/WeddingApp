@@ -21,20 +21,20 @@ import java.util.List;
 public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.MyViewHolder>{
 
     Context context;
-    private List<PaymentModel> paymentModels;
+    List<BudgetModel> budgetModels;
     ClickedItem clickedItem;
 
-    public PaymentAdapter(Context context, List<PaymentModel> paymentModels){
+    public PaymentAdapter(Context context, List<BudgetModel> budgetModels){
         this.context = context;
-        this.paymentModels = paymentModels;
+        this.budgetModels = budgetModels;
     }
 
     public void clickedListener (ClickedItem clickedItem) {
         this.clickedItem = clickedItem;
     }
 
-    public void setPaymentModels (List<PaymentModel> paymentModels) {
-        this.paymentModels = paymentModels;
+    public void setPaymentModels (List<BudgetModel> budgetModels) {
+        this.budgetModels = budgetModels;
         notifyDataSetChanged();
     }
 
@@ -49,33 +49,45 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull PaymentAdapter.MyViewHolder holder, int position) {
+        BudgetModel budgetModel = budgetModels.get(position);
 
-        holder.titlePaid.setText(paymentModels.get(position).getTitlePaid());
-        holder.totalPaid.setText(paymentModels.get(position).getTotalPaid());
-        holder.estimateBudget.setText(paymentModels.get(position).getIdBudget());
-        holder.cardView.setOnClickListener(v -> {
-            //DIALOG FRAGMENT
+        String title = budgetModel.getTitleBudget();
+        int estimate = budgetModel.getCostBudget();
+        int paid = budgetModel.getCostBudget();
+
+        holder.titlePaid.setText(title);
+        holder.estimateBudget.setText("IDR " + estimate);
+
+        // set paid text color
+        holder.totalPaid.setText("IDR " + paid);
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickedItem.ClickedPayment(budgetModel);
+            }
         });
+
     }
 
     @Override
     public int getItemCount() {
-        return paymentModels.size();
+        return budgetModels.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView titlePaid;
-        TextView totalPaid;
         TextView estimateBudget;
+        TextView totalPaid;
         CardView cardView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             titlePaid = itemView.findViewById(R.id.tv_titlePaid);
-            totalPaid = itemView.findViewById(R.id.tv_totalPaid);
             estimateBudget = itemView.findViewById(R.id.tv_estimateBudget);
+            totalPaid = itemView.findViewById(R.id.tv_totalPaid);
             cardView = itemView.findViewById(R.id.cv_itemBudget);
         }
     }

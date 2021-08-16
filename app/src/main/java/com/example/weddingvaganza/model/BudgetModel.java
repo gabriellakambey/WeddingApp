@@ -1,8 +1,11 @@
 package com.example.weddingvaganza.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class BudgetModel {
+public class BudgetModel implements Parcelable {
 
     @SerializedName("titleBudget")
     private String titleBudget;
@@ -15,6 +18,25 @@ public class BudgetModel {
         this.titleBudget = titleBudget;
         this.costBudget = costBudget;
     }
+
+    protected BudgetModel(Parcel in) {
+        titleBudget = in.readString();
+        costBudget = in.readInt();
+        note = in.readString();
+        userId = in.readInt();
+    }
+
+    public static final Creator<BudgetModel> CREATOR = new Creator<BudgetModel>() {
+        @Override
+        public BudgetModel createFromParcel(Parcel in) {
+            return new BudgetModel(in);
+        }
+
+        @Override
+        public BudgetModel[] newArray(int size) {
+            return new BudgetModel[size];
+        }
+    };
 
     public String getTitleBudget() {
         return titleBudget;
@@ -46,5 +68,18 @@ public class BudgetModel {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(titleBudget);
+        dest.writeInt(costBudget);
+        dest.writeString(note);
+        dest.writeInt(userId);
     }
 }

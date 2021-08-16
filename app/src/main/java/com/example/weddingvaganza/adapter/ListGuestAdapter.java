@@ -89,10 +89,6 @@ public class ListGuestAdapter extends RecyclerView.Adapter<ListGuestAdapter.View
 
     }
 
-    public interface ClickedItem {
-        public void ClickedGuest(GuestModel guestModel);
-    }
-
     @Override
     public int getItemCount() {
         return guestModels.size();
@@ -112,9 +108,7 @@ public class ListGuestAdapter extends RecyclerView.Adapter<ListGuestAdapter.View
         }
     }
 
-
-    public void getGuestName(List<GuestModel> guests) {
-        this.guestModels = guests;
-        notifyDataSetChanged();
+    public interface ClickedItem {
+        public void ClickedGuest(GuestModel guestModel);
     }
 }
