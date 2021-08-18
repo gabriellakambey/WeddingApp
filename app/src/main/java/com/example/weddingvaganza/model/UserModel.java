@@ -14,6 +14,7 @@ public class UserModel implements Serializable {
     @SerializedName("date")
     private String tglPernikahan;
     private String nomorHp;
+    private int ourBudget;
 
     public int getUserId() {
         return userId;
@@ -69,6 +70,14 @@ public class UserModel implements Serializable {
 
     public void setNomorHp(String nomorHp) {
         this.nomorHp = nomorHp;
+    }
+
+    public int getOurBudget() {
+        return ourBudget;
+    }
+
+    public void setOurBudget(int ourBudget) {
+        this.ourBudget = ourBudget;
     }
 
     public UserModel(int userId, String userCouple, String tglPernikahan) {

@@ -1,44 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:id="@+id/cv_listInvitedGuest"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="60dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/border_shadow"
+    android:padding="10dp"
+    app:cardCornerRadius="7dp">
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/border_shadow"
-        android:padding="10dp"
-        app:cardCornerRadius="7dp">
+        android:orientation="vertical"
+        android:padding="10dp">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tv_listInvitedGuest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:text="Guest's Names"
+            android:textColor="@color/navy"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tv_listInvitedGuest"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Guest's Names"
-                android:textColor="@color/navy"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_invitedGuestGroup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Bride's Family"
-                android:textColor="@color/navy"
-                android:textSize="12sp"
-                android:layout_marginTop="5dp"/>
+        <TextView
+            android:id="@+id/tv_invitedGuestGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Bride's Family"
+            android:textColor="@color/navy"
+            android:textSize="12sp" />
 
 
-        </LinearLayout>
+    </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
-
-</LinearLayout>
+</androidx.cardview.widget.CardView>

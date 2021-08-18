@@ -1,444 +1,451 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".view.activity.CreateInvitationActivity">
 
-    <LinearLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_addInvitation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tb_addInvitation"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="@color/navy"
-            app:contentInsetEnd="0dp"
-            app:contentInsetLeft="0dp"
-            app:contentInsetRight="0dp"
-            app:contentInsetStart="0dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="10dp">
-
-                <Button
-                    android:id="@+id/btn_BackCreateInvitation"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="10dp"
-                    android:background="@drawable/ic_rounded_back" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/snell_roundhand_bold"
-                    android:gravity="center"
-                    android:text="Invitation"
-                    android:textColor="@color/white"
-                    android:textSize="32sp" />
-            </RelativeLayout>
-
-        </androidx.appcompat.widget.Toolbar>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="15dp"
-            android:text="Groom's Data"
-            android:textColor="@color/navy"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="10dp"
-            app:cardCornerRadius="10dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Full Name"
-                    android:textColor="@color/navy"
-                    android:textSize="14dp" />
-
-                <EditText
-                    android:id="@+id/et_groomName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/round_navy"
-                    android:hint="Enter the groom's full name"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:padding="15dp"
-                    android:textColor="@color/navy"
-                    android:textColorHint="@color/hint"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Father's Name"
-                    android:textColor="@color/navy"
-                    android:textSize="14dp" />
-
-                <EditText
-                    android:id="@+id/et_groomFather"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/round_navy"
-                    android:hint="Enter groom's father full name"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:padding="15dp"
-                    android:textColor="@color/navy"
-                    android:textColorHint="@color/hint"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Mother's Name"
-                    android:textColor="@color/navy"
-                    android:textSize="14dp" />
-
-                <EditText
-                    android:id="@+id/et_groomMother"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/round_navy"
-                    android:hint="Enter groom's father full name"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:padding="15dp"
-                    android:textColor="@color/navy"
-                    android:textColorHint="@color/hint"
-                    android:textSize="12sp" />
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="15dp"
-            android:text="Bride's Data"
-            android:textColor="@color/navy"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="10dp"
-            app:cardCornerRadius="10dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Full Name"
-                    android:textColor="@color/navy"
-                    android:textSize="14dp" />
-
-                <EditText
-                    android:id="@+id/et_brideName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/round_navy"
-                    android:hint="Enter the bride's full name"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:padding="15dp"
-                    android:textColor="@color/navy"
-                    android:textColorHint="@color/hint"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Father's Name"
-                    android:textColor="@color/navy"
-                    android:textSize="14dp" />
-
-                <EditText
-                    android:id="@+id/et_brideFather"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/round_navy"
-                    android:hint="Enter bride's father full name"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:padding="15dp"
-                    android:textColor="@color/navy"
-                    android:textColorHint="@color/hint"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Mother's Name"
-                    android:textColor="@color/navy"
-                    android:textSize="14dp" />
-
-                <EditText
-                    android:id="@+id/et_brideMother"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/round_navy"
-                    android:hint="Enter bride's father full name"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:padding="15dp"
-                    android:textColor="@color/navy"
-                    android:textColorHint="@color/hint"
-                    android:textSize="12sp" />
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="15dp"
-            android:text="Schedule Event"
-            android:textColor="@color/navy"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="10dp"
-            app:cardCornerRadius="10dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Event Category"
-                    android:textColor="@color/navy"
-                    android:textSize="14dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/round_navy"
-                    android:orientation="horizontal"
-                    android:padding="3dp">
-
-                    <Spinner
-                        android:id="@+id/spinner_invitation"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:autofillHints="Select the Category"
-                        android:entries="@array/category" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Wedding Date"
-                    android:textColor="@color/navy"
-                    android:textSize="14dp" />
-
-                <LinearLayout
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/round_navy"
-                    android:orientation="horizontal"
-                    android:padding="13dp">
-
-                    <TextView
-                        android:id="@+id/td_createInvitation"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/transparent_background"
-                        android:text="dd/mm/yyyy"
-                        android:textSize="12sp"
-                        android:textColor="@color/navy"/>
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Time"
-                    android:textColor="@color/navy"
-                    android:textSize="14dp" />
-
-                <LinearLayout
-                    android:id="@+id/tp_timeInvitation"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:padding="15dp"
-                    android:background="@drawable/round_navy">
-
-                    <TextView
-                        android:id="@+id/tv_timeInvitation"
-                        android:layout_width="55dp"
-                        android:layout_height="wrap_content"
-                        android:text="hh:mm"
-                        android:textColor="@color/hint"
-                        android:textSize="12sp"/>
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:background="@drawable/ic_time"
-                        android:layout_gravity="center"/>
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Location"
-                    android:textColor="@color/navy"
-                    android:textSize="14dp" />
-
-                <LinearLayout
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/round_navy"
-                    android:orientation="horizontal"
-                    android:padding="13dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_search"
-                        android:layout_marginRight="5dp"/>
-
-                    <EditText
-                        android:id="@+id/et_locationInvitation"
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/transparent_background"
-                        android:hint="Search location"
-                        android:inputType="text"
-                        android:textSize="12sp"
-                        android:paddingEnd="20dp"/>
-
-                    <ImageView
-                        android:id="@+id/iv_maps"
-                        android:layout_width="20dp"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_map"
-                        android:layout_gravity="right"
-                        android:layout_marginLeft="5dp"/>
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Note"
-                    android:textColor="@color/navy"
-                    android:textSize="14dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/round_navy"
-                    android:orientation="horizontal"
-                    android:padding="13dp">
-
-                    <EditText
-                        android:id="@+id/et_noteInvitation"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/transparent_background"
-                        android:hint="Write the detail of location address"
-                        android:inputType="textLongMessage"
-                        android:textColor="@color/navy"
-                        android:textColorHint="@color/hint"
-                        android:textSize="12dp" />
-
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <Button
-            android:id="@+id/btn_saveDataInvitation"
-            android:layout_width="200dp"
-            android:layout_height="45dp"
-            android:layout_gravity="right"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="35dp"
-            android:background="@drawable/button_gold"
-            android:text="Choose Template Invitation"
-            android:textAllCaps="false"
-            android:textColor="@color/white" />
+        android:layout_height="65dp"
+        android:background="@color/navy"
+        app:contentInsetEnd="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetStart="0dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="10dp">
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/btn_BackCreateInvitation"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/ic_rounded_back" />
 
-</androidx.core.widget.NestedScrollView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/snell_roundhand_bold"
+                android:gravity="center"
+                android:text="Invitation"
+                android:textColor="@color/white"
+                android:textSize="32sp" />
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="15dp"
+                android:text="Groom's Data"
+                android:textColor="@color/navy"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Full Name"
+                        android:textColor="@color/navy"
+                        android:textSize="14dp" />
+
+                    <EditText
+                        android:id="@+id/et_groomName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_navy"
+                        android:hint="Enter the groom's full name"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="15dp"
+                        android:textColor="@color/navy"
+                        android:textColorHint="@color/hint"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Father's Name"
+                        android:textColor="@color/navy"
+                        android:textSize="14dp" />
+
+                    <EditText
+                        android:id="@+id/et_groomFather"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_navy"
+                        android:hint="Enter groom's father full name"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="15dp"
+                        android:textColor="@color/navy"
+                        android:textColorHint="@color/hint"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Mother's Name"
+                        android:textColor="@color/navy"
+                        android:textSize="14dp" />
+
+                    <EditText
+                        android:id="@+id/et_groomMother"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_navy"
+                        android:hint="Enter groom's father full name"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="15dp"
+                        android:textColor="@color/navy"
+                        android:textColorHint="@color/hint"
+                        android:textSize="12sp" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="15dp"
+                android:text="Bride's Data"
+                android:textColor="@color/navy"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Full Name"
+                        android:textColor="@color/navy"
+                        android:textSize="14dp" />
+
+                    <EditText
+                        android:id="@+id/et_brideName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_navy"
+                        android:hint="Enter the bride's full name"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="15dp"
+                        android:textColor="@color/navy"
+                        android:textColorHint="@color/hint"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Father's Name"
+                        android:textColor="@color/navy"
+                        android:textSize="14dp" />
+
+                    <EditText
+                        android:id="@+id/et_brideFather"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_navy"
+                        android:hint="Enter bride's father full name"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="15dp"
+                        android:textColor="@color/navy"
+                        android:textColorHint="@color/hint"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Mother's Name"
+                        android:textColor="@color/navy"
+                        android:textSize="14dp" />
+
+                    <EditText
+                        android:id="@+id/et_brideMother"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_navy"
+                        android:hint="Enter bride's father full name"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="15dp"
+                        android:textColor="@color/navy"
+                        android:textColorHint="@color/hint"
+                        android:textSize="12sp" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="15dp"
+                android:text="Schedule Event"
+                android:textColor="@color/navy"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Event Category"
+                        android:textColor="@color/navy"
+                        android:textSize="14dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_navy"
+                        android:orientation="horizontal"
+                        android:padding="15dp">
+
+                        <Spinner
+                            android:id="@+id/spinner_invitation"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:autofillHints="Select the Category"
+                            android:entries="@array/category" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Wedding Date"
+                        android:textColor="@color/navy"
+                        android:textSize="14dp" />
+
+                    <LinearLayout
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_navy"
+                        android:orientation="horizontal"
+                        android:padding="13dp">
+
+                        <TextView
+                            android:id="@+id/td_createInvitation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/transparent_background"
+                            android:text="dd/mm/yyyy"
+                            android:textColor="@color/navy"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Time"
+                        android:textColor="@color/navy"
+                        android:textSize="14dp" />
+
+                    <LinearLayout
+                        android:id="@+id/tp_timeInvitation"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_navy"
+                        android:padding="15dp">
+
+                        <TextView
+                            android:id="@+id/tv_timeInvitation"
+                            android:layout_width="55dp"
+                            android:layout_height="wrap_content"
+                            android:text="hh:mm"
+                            android:textColor="@color/hint"
+                            android:textSize="12sp" />
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_time" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Location"
+                        android:textColor="@color/navy"
+                        android:textSize="14dp" />
+
+                    <LinearLayout
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_navy"
+                        android:orientation="horizontal"
+                        android:padding="13dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:src="@drawable/ic_search" />
+
+                        <EditText
+                            android:id="@+id/et_locationInvitation"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/transparent_background"
+                            android:hint="Search location"
+                            android:inputType="text"
+                            android:paddingEnd="20dp"
+                            android:textSize="12sp" />
+
+                        <ImageView
+                            android:id="@+id/iv_maps"
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_marginLeft="5dp"
+                            android:src="@drawable/ic_map" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Note"
+                        android:textColor="@color/navy"
+                        android:textSize="14dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/round_navy"
+                        android:orientation="horizontal"
+                        android:padding="13dp">
+
+                        <EditText
+                            android:id="@+id/et_noteInvitation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/transparent_background"
+                            android:hint="Write the detail of location address"
+                            android:inputType="textLongMessage"
+                            android:textColor="@color/navy"
+                            android:textColorHint="@color/hint"
+                            android:textSize="12dp" />
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btn_saveDataInvitation"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/button_gold"
+                android:text="Choose Template Invitation"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

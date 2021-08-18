@@ -18,20 +18,31 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.weddingvaganza.R;
+import com.example.weddingvaganza.api.WeddingApi;
+import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.BudgetModel;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class PaidListDialog extends AppCompatDialogFragment {
 
     AlertDialog alertDialog;
-    BudgetModel budgetModel;
+    BudgetModel budgetModel, updateBudgetModel;
     TextView tvTitle, tvCost, tvNote;
     EditText etPaid;
     LinearLayout linearLayout;
     Button btnChange, btnPaid, btnCancel;
     Integer costUpdate;
+    String title, note;
+    int cost, budgetId;
+    PaidDialogListener listener;
+    int userId = Prefs.getInt("user_id", 0);
 
     @NonNull
     @Override
@@ -54,9 +65,10 @@ public class PaidListDialog extends AppCompatDialogFragment {
         // SET DATA
         budgetModel = this.getArguments().getParcelable("budget selected");
 
-        String title = budgetModel.getTitleBudget();
-        int cost = budgetModel.getCostBudget();
-        String note = budgetModel.getNote();
+        budgetId = budgetModel.getBudgetId();
+        title = budgetModel.getTitleBudget();
+        cost = budgetModel.getCostBudget();
+        note = budgetModel.getNote();
 
         tvTitle = view.findViewById(R.id.tv_titlePaidDetail);
         tvTitle.setText(title);
@@ -92,12 +104,41 @@ public class PaidListDialog extends AppCompatDialogFragment {
             if (linearLayout.getVisibility() == View.VISIBLE) {
                 costUpdate = Integer.parseInt(etPaid.getText().toString());
             } else {
-                costUpdate = budgetModel.getCostBudget();
+                costUpdate = budgetModel.getPaid();
             }
+//            Toast.makeText(getContext(), "ini datanya: " + costUpdate, Toast.LENGTH_SHORT).show();
 
-            Toast.makeText(getContext(), "ini datanya: " + costUpdate, Toast.LENGTH_SHORT).show();
+            updateBudgetModel = new BudgetModel(budgetModel.getBudgetId(), title, cost, note, "true", costUpdate, userId);
+
+            updateStatusBudget();
+
+            alertDialog.dismiss();
         });
 
         return alertDialog;
+    }
+
+    private void updateStatusBudget() {
+        WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
+        Call<BudgetModel> call = weddingService.updateStatusBudget(budgetId, updateBudgetModel);
+        call.enqueue(new Callback<BudgetModel>() {
+            @Override
+            public void onResponse(Call<BudgetModel> call, Response<BudgetModel> response) {
+                listener.refreshTotalPaid();
+            }
+
+            @Override
+            public void onFailure(Call<BudgetModel> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public interface PaidDialogListener {
+        public void refreshTotalPaid();
+    }
+
+    public void setListener (PaidDialogListener listener) {
+        this.listener = listener;
     }
 }

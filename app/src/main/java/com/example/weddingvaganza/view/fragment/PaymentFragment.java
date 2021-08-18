@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.adapter.PaymentAdapter;
@@ -28,11 +29,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PaymentFragment extends Fragment implements PaymentAdapter.ClickedItem {
+public class PaymentFragment extends Fragment implements PaymentAdapter.ClickedItem, PaidListDialog.PaidDialogListener {
 
     private RecyclerView rv_payment;
     private List<BudgetModel> budgetModels;
     PaymentAdapter adapter;
+    TextView tvTotalPaid;
     int userId = Prefs.getInt("user_id", 0);
     WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
 
@@ -43,8 +45,8 @@ public class PaymentFragment extends Fragment implements PaymentAdapter.ClickedI
         View v = inflater.inflate(R.layout.fragment_payment, container, false);
 
         // SET TOTAL PAID
-
-
+        tvTotalPaid = v.findViewById(R.id.tv_totalBudgetUp);
+        setTotalPaid();
 
         // RECYCLER VIEW LIST PAYMENT
         rv_payment = v.findViewById(R.id.rv_paidItem);
@@ -56,6 +58,22 @@ public class PaymentFragment extends Fragment implements PaymentAdapter.ClickedI
 
         return v;
 
+    }
+
+    private void setTotalPaid() {
+        Call<Integer> call = weddingService.getCostTotal("true", userId);
+        call.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                Integer total = response.body();
+                tvTotalPaid.setText("IDR " + total);
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+
+            }
+        });
     }
 
     private void getPaidList() {
@@ -86,6 +104,14 @@ public class PaymentFragment extends Fragment implements PaymentAdapter.ClickedI
 
         paidListDialog.setArguments(bundle);
 
+        paidListDialog.setListener(this::refreshTotalPaid);
+
         paidListDialog.show(getActivity().getSupportFragmentManager(), "paid");
+    }
+
+    @Override
+    public void refreshTotalPaid() {
+        getPaidList();
+        setTotalPaid();
     }
 }

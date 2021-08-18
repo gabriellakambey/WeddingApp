@@ -43,11 +43,11 @@ public class AddBudgetActivity extends AppCompatActivity {
         Button btnSave = findViewById(R.id.btn_saveAddBudget);
         btnSave.setOnClickListener(v -> {
             String title = etTitle.getText().toString();
-            int total = Integer.parseInt(etCost.getText().toString());
+            int cost = Integer.parseInt(etCost.getText().toString());
             String note = etNote.getText().toString();
 
             WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-            Call<AddBudgetResponse> call = weddingService.addBudget(title, total, userId, note);
+            Call<AddBudgetResponse> call = weddingService.addBudget(title, cost, note, "false", cost, userId);
             call.enqueue(new Callback<AddBudgetResponse>() {
                 @Override
                 public void onResponse(Call<AddBudgetResponse> call, Response<AddBudgetResponse> response) {

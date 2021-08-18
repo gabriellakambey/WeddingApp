@@ -107,7 +107,7 @@
                     android:layout_marginTop="5dp"
                     android:background="@drawable/round_navy"
                     android:hint="Enter the price estimate"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:maxLines="1"
                     android:padding="15dp"
                     android:textColor="@color/navy"

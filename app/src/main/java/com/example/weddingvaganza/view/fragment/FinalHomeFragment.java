@@ -21,6 +21,7 @@ import com.example.weddingvaganza.model.GuestModel;
 import com.example.weddingvaganza.model.GuestStatusModel;
 import com.example.weddingvaganza.model.ScheduleModel;
 import com.example.weddingvaganza.model.ScheduleStatusModel;
+import com.example.weddingvaganza.model.UserModel;
 import com.example.weddingvaganza.view.activity.BudgetActivity;
 import com.example.weddingvaganza.view.activity.GuestsActivity;
 import com.example.weddingvaganza.view.activity.VendorActivity;
@@ -184,16 +185,24 @@ public class FinalHomeFragment extends Fragment {
         // OUR BUDGET INFO
         tvBudget = view.findViewById(R.id.tv_our_budget);
 
-        Call<Integer> call2 = weddingService.getBudgetTotal(currentUserId);
-        call2.enqueue(new Callback<Integer>() {
+        Call<UserModel> modelCall = weddingService.getOurBudget(currentUserId);
+        modelCall.enqueue(new Callback<UserModel>() {
             @Override
-            public void onResponse(Call<Integer> call, Response<Integer> response) {
-                Integer totalBudget = response.body();
-                tvBudget.setText("IDR " + totalBudget);
+            public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                UserModel userModel = response.body();
+                int ourBudget = userModel.getOurBudget();
+
+                if (Math.abs(ourBudget / 1000000) >= 1) {
+                    tvBudget.setText("IDR " + (ourBudget / 1000000) + "M");
+                } else if (Math.abs(ourBudget / 1000) >= 1) {
+                    tvBudget.setText("IDR " + (ourBudget / 1000) + "K");
+                } else {
+                    tvBudget.setText("IDR " + ourBudget);
+                }
             }
 
             @Override
-            public void onFailure(Call<Integer> call, Throwable t) {
+            public void onFailure(Call<UserModel> call, Throwable t) {
 
             }
         });
@@ -201,12 +210,19 @@ public class FinalHomeFragment extends Fragment {
         // COST INFO
         tvCost = view.findViewById(R.id.tv_cost);
 
-        Call<Integer> call3 = weddingService.getCostTotal(currentUserId);
+        Call<Integer> call3 = weddingService.getCostTotal("true", currentUserId);
         call3.enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
                 Integer totalCost = response.body();
-                tvCost.setText("IDR " + totalCost);
+
+                if (Math.abs(totalCost / 1000000) >= 1) {
+                    tvCost.setText("IDR " + (totalCost / 1000000) + "M");
+                } else if (Math.abs(totalCost / 1000) >= 1) {
+                    tvCost.setText("IDR " + (totalCost / 1000) + "K");
+                } else {
+                    tvCost.setText("IDR " + totalCost);
+                }
             }
 
             @Override

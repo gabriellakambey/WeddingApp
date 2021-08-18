@@ -34,7 +34,7 @@
                 android:id="@+id/tv_totalBudgetUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="IDR 6.000.000"
+                android:text="IDR 0"
                 android:textAlignment="center"
                 android:textColor="@color/navy"
                 android:textSize="20sp"

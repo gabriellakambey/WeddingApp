@@ -1,6 +1,7 @@
 package com.example.weddingvaganza.api;
 
 import com.example.weddingvaganza.model.OurBudgetModel;
+import com.example.weddingvaganza.model.UserModel;
 import com.example.weddingvaganza.model.responseModel.AddBudgetResponse;
 import com.example.weddingvaganza.model.responseModel.AddCategoryResponse;
 import com.example.weddingvaganza.model.responseModel.AddGuestResponse;
@@ -39,7 +40,8 @@ public interface WeddingService {
     @POST("register")
     Call<LoginResponseModel> register(@Field("name") String nama_user, @Field("nomorHp") String nomorhp_user,
                                       @Field("email") String email_user, @Field("password") String password_user,
-                                      @Field("couple") String nama_pasangan_user, @Field("tanggal") String tgl_pernikahan);
+                                      @Field("couple") String nama_pasangan_user, @Field("tanggal") String tgl_pernikahan,
+                                      @Field("budget") int budget);
 
     // CATEGORY RESPONSE
     @GET("category/user/{userId}")
@@ -111,6 +113,8 @@ public interface WeddingService {
     @GET("guest/class={classId}&&name={guestNama}")
     Call<List<GuestModel>> findGuestName(@Path("classId") int classId, @Path("guestNama") String guestNama);
 
+    @GET("guest/status={status}&&user={userId}")
+    Call<List<GuestModel>> getInvitedGuest(@Path("status") String status, @Path("userId") int userId);
 
     // INVITATION RESPONSE
     @GET("forminvitation/user/{userId}")
@@ -119,22 +123,30 @@ public interface WeddingService {
 
 
     // BUDGET RESPONSE
-    @GET("budgetlist/total={userId}")
+    @GET("budgetlist/cost/total={userId}")
     Call<Integer> getBudgetTotal (@Path("userId") int userId);
 
     @GET("budgetlist/user/{userId}")
     Call<List<BudgetModel>> getBudgetList (@Path("userId") int userId);
 
     @POST("budgetlist/add")
-    Call<AddBudgetResponse> addBudget(@Query("title") String title, @Query("total") int total,
-                                      @Query("user") int userId, @Query("note") String note);
+    Call<AddBudgetResponse> addBudget(@Query("title") String title, @Query("cost") int cost,
+                                      @Query("note") String note, @Query("status") String status,
+                                      @Query("paid") int paid, @Query("user") int user);
 
-    @GET("ourbudget/user/{userId}")
-    Call<List<OurBudgetModel>> getOurBudget(@Path("userId") int userId);
+    @PUT("budgetlist/update/{id}")
+    Call<BudgetModel> updateStatusBudget(@Path("id") int id, @Body BudgetModel budgetModel);
+
+    // OUR BUDGET RESPONSE
+    @GET("person/id/{id}")
+    Call<UserModel> getOurBudget(@Path("id") int id);
+
+    @PUT("ourbudget/update/{id}")
+    Call<OurBudgetModel> updateOurBudget(@Path("id") int id, @Body OurBudgetModel ourBudgetModel);
 
     // COST RESPONSE
-    @GET("paidlist/total={userId}")
-    Call<Integer> getCostTotal (@Path("userId") int userId);
+    @GET("budgetlist/paid/status={status}&&user={userId}")
+    Call<Integer> getCostTotal (@Path("status") String status, @Path("userId") int userId);
 
 
 

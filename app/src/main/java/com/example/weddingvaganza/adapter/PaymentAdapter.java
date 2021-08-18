@@ -1,6 +1,7 @@
 package com.example.weddingvaganza.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weddingvaganza.R;
@@ -53,13 +55,20 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.MyViewHo
 
         String title = budgetModel.getTitleBudget();
         int estimate = budgetModel.getCostBudget();
-        int paid = budgetModel.getCostBudget();
+        int paid = budgetModel.getPaid();
 
         holder.titlePaid.setText(title);
         holder.estimateBudget.setText("IDR " + estimate);
 
         // set paid text color
-        holder.totalPaid.setText("IDR " + paid);
+        String status = budgetModel.getStatus();
+        if (status.equals("true")) {
+            holder.totalPaid.setText("IDR " + paid);
+            holder.totalPaid.setTextColor(Color.BLUE);
+        } else {
+            holder.totalPaid.setText("IDR " + paid);
+            holder.totalPaid.setTextColor(ContextCompat.getColor(context, R.color.yellow));
+        }
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override

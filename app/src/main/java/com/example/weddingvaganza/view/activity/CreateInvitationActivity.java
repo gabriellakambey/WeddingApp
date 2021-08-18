@@ -8,24 +8,38 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.weddingvaganza.R;
+import com.example.weddingvaganza.api.WeddingApi;
+import com.example.weddingvaganza.api.WeddingService;
+import com.example.weddingvaganza.model.CategoryModel;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CreateInvitationActivity extends AppCompatActivity {
 
     int Hour, Minute;
+    Spinner spinner;
+    WeddingService weddingService;
+    private int userId = Prefs.getInt("user_id", 0);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +50,34 @@ public class CreateInvitationActivity extends AppCompatActivity {
         Button btnBack = findViewById(R.id.btn_BackCreateInvitation);
         btnBack.setOnClickListener(v -> {
             onBack();
+        });
+
+        // SPINNER RETROFIT
+        spinner = findViewById(R.id.spinner_invitation);
+        List<CategoryModel> categoryModels = new ArrayList<>();
+        ArrayAdapter<CategoryModel> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, categoryModels);
+        weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
+        Call<List<CategoryModel>> call = weddingService.getCategory(userId);
+        call.enqueue(new Callback<List<CategoryModel>>() {
+            @Override
+            public void onResponse(Call<List<CategoryModel>> call, Response<List<CategoryModel>> response) {
+                if (response.isSuccessful()) {
+                    for (CategoryModel model : response.body()) {
+                        String title = model.getCategoryTitle();
+                        int id = model.getCategoryId();
+                        CategoryModel categoryModel = new CategoryModel(id, title);
+                        categoryModels.add(categoryModel);
+
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinner.setAdapter(adapter);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<CategoryModel>> call, Throwable t) {
+
+            }
         });
 
         // SET THE WEDDING DATE

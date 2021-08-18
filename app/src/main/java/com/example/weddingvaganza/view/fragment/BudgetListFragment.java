@@ -1,9 +1,9 @@
 package com.example.weddingvaganza.view.fragment;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,11 +20,11 @@ import com.example.weddingvaganza.adapter.ListBudgetAdapter;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.BudgetModel;
-import com.example.weddingvaganza.model.OurBudgetModel;
+import com.example.weddingvaganza.model.UserModel;
 import com.example.weddingvaganza.view.activity.AddBudgetActivity;
+import com.example.weddingvaganza.view.dialog.OurBudgetDialog;
 import com.pixplicity.easyprefs.library.Prefs;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,12 +32,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class BudgetListFragment extends Fragment implements AddBudgetActivity.RefreshBudgetListener {
+public class BudgetListFragment extends Fragment implements OurBudgetDialog.OurBudgetDialogListener,AddBudgetActivity.RefreshBudgetListener {
 
     private RecyclerView rv_budgetList;
     private List<BudgetModel> budgetModels;
     ListBudgetAdapter adapter;
     TextView etTotal, etOurBudget;
+    Dialog dialog;
     int userId = Prefs.getInt("user_id", 0);
     WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
 
@@ -58,9 +59,10 @@ public class BudgetListFragment extends Fragment implements AddBudgetActivity.Re
         });
 
         // BUTTON EDIT "OUR BUDGET"
+        dialog = new Dialog(getContext());
         ImageView editBudget = v.findViewById(R.id.iv_editBudget);
         editBudget.setOnClickListener(v1 -> {
-
+            openDialog();
         });
 
         // SET TOTAL BUDGET
@@ -84,25 +86,29 @@ public class BudgetListFragment extends Fragment implements AddBudgetActivity.Re
         return v;
     }
 
-    private void setOurBudget() {
-        Call<List<OurBudgetModel>> call = weddingService.getOurBudget(userId);
-        call.enqueue(new Callback<List<OurBudgetModel>>() {
-            @Override
-            public void onResponse(Call<List<OurBudgetModel>> call, Response<List<OurBudgetModel>> response) {
-                List<OurBudgetModel> ourBudgetModel = response.body();
-                int ourBudget = 0;
-                for (OurBudgetModel model : ourBudgetModel) {
-                    ourBudget = model.getBudget();
-                }
+    private void openDialog() {
+        OurBudgetDialog ourBudgetDialog = new OurBudgetDialog();
 
-                etOurBudget.setText("IDR " + ourBudget);
+        ourBudgetDialog.setListener((OurBudgetDialog.OurBudgetDialogListener)this);
+
+        ourBudgetDialog.show(getFragmentManager(), "add our budget");
+    }
+
+    private void setOurBudget() {
+        Call<UserModel> call = weddingService.getOurBudget(userId);
+        call.enqueue(new Callback<UserModel>() {
+            @Override
+            public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                UserModel model = response.body();
+                etOurBudget.setText("IDR " + model.getOurBudget());
             }
 
             @Override
-            public void onFailure(Call<List<OurBudgetModel>> call, Throwable t) {
+            public void onFailure(Call<UserModel> call, Throwable t) {
 
             }
         });
+
     }
 
     private void setTotalBudget() {
@@ -142,7 +148,10 @@ public class BudgetListFragment extends Fragment implements AddBudgetActivity.Re
     @Override
     public void refreshBudget() {
         getBudget();
-//        setTotalBudget();
-//        setOurBudget();
+    }
+
+    @Override
+    public void onAddOurBudget() {
+        setOurBudget();
     }
 }
