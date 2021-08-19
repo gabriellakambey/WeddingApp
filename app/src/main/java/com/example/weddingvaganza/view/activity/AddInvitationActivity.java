@@ -2,7 +2,6 @@ package com.example.weddingvaganza.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -10,8 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,7 +23,6 @@ import com.pixplicity.easyprefs.library.Prefs;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -34,7 +30,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CreateInvitationActivity extends AppCompatActivity {
+public class AddInvitationActivity extends AppCompatActivity {
 
     int Hour, Minute;
     Spinner spinner;
@@ -91,7 +87,7 @@ public class CreateInvitationActivity extends AppCompatActivity {
         timePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TimePickerDialog timePickerDialog = new TimePickerDialog(CreateInvitationActivity.this,
+                TimePickerDialog timePickerDialog = new TimePickerDialog(AddInvitationActivity.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth
                         ,new TimePickerDialog.OnTimeSetListener() {
                     @Override

@@ -11,8 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.weddingvaganza.R;
-import com.example.weddingvaganza.view.activity.CreateInvitationActivity;
-import com.example.weddingvaganza.view.activity.ScheduleFromCategoryActivity;
+import com.example.weddingvaganza.view.activity.AddInvitationActivity;
 
 
 public class InvitationFirstFragment extends Fragment {
@@ -25,7 +24,7 @@ public class InvitationFirstFragment extends Fragment {
 
         Button button = view.findViewById(R.id.btn_createInvit);
         button.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), CreateInvitationActivity.class);
+            Intent intent = new Intent(getActivity(), AddInvitationActivity.class);
             startActivity(intent);
         });
 

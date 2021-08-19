@@ -24,7 +24,7 @@
         <activity
             android:name=".view.activity.AddBudgetActivity"
             android:exported="true" />
-        <activity android:name=".view.activity.CreateInvitationActivity" />
+        <activity android:name=".view.activity.AddInvitationActivity" />
         <activity android:name=".view.activity.AddGuestActivity" />
         <activity android:name=".view.activity.GuestListActivity" />
         <activity android:name=".view.activity.ScheduleFromCategoryActivity" />
