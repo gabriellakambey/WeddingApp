@@ -24,6 +24,7 @@ import com.example.weddingvaganza.model.ScheduleStatusModel;
 import com.example.weddingvaganza.model.UserModel;
 import com.example.weddingvaganza.view.activity.BudgetActivity;
 import com.example.weddingvaganza.view.activity.GuestsActivity;
+import com.example.weddingvaganza.view.activity.InvitationTemplateActivity;
 import com.example.weddingvaganza.view.activity.VendorActivity;
 import com.pixplicity.easyprefs.library.Prefs;
 
@@ -96,7 +97,7 @@ public class FinalHomeFragment extends Fragment {
         // menu vendor
         ibVendor = view.findViewById(R.id.ib_vendor);
         ibVendor.setOnClickListener(v -> {
-            Intent vendor = new Intent(getActivity(), VendorActivity.class);
+            Intent vendor = new Intent(getActivity(), InvitationTemplateActivity.class);
             startActivity(vendor);
         });
 
