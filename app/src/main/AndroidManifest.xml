@@ -8,6 +8,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:name=".EasyPerfsLib"
         android:allowBackup="true"
@@ -17,11 +21,13 @@
         android:roundIcon="@drawable/logo_wedding_vaganza"
         android:supportsRtl="true"
         android:theme="@style/Theme.WeddingVaganza">
-        <activity android:name=".view.activity.InvitationTemplateActivity"></activity>
+        <activity android:name=".view.activity.MapsActivity"></activity>
+        <activity android:name=".view.activity.InvitationTemplateActivity"/>
+
         <activity android:name=".view.activity.AddScheduleInCategoryActivity" />
-        <activity
-            android:name=".view.dialog.PaidListDialog"
-            android:exported="true" />
+<!--        <activity-->
+<!--            android:name=".view.dialog.PaidListDialog"-->
+<!--            android:exported="true" />-->
         <activity
             android:name=".view.activity.AddBudgetActivity"
             android:exported="true" />
@@ -44,6 +50,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBKL6Ev5g9e-mlIt-pVqm71kJbrjxQNEO0" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

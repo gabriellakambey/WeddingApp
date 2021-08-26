@@ -2,22 +2,31 @@ package com.example.weddingvaganza.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.CategoryModel;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.api.Api;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import java.text.ParseException;
@@ -32,6 +41,28 @@ import retrofit2.Response;
 
 public class AddInvitationActivity extends AppCompatActivity {
 
+    private static final String TAG = "AddInvitationActivity";
+
+    private static final int ERROR_DIALOG_REQUEST = 9001;
+
+    public boolean isServicesOk() {
+        Log.d(TAG, "isServicesOk: checking google services version");
+
+        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(AddInvitationActivity.this);
+
+        if (available == ConnectionResult.SUCCESS) {
+            Log.d(TAG, "isServicesOk: Google Play Services is working");
+            return true;
+        } else if (GoogleApiAvailability.getInstance().isUserResolvableError(available)) {
+            Log.d(TAG, "isServicesOk: an error occured but can fix it");
+            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(AddInvitationActivity.this, available, ERROR_DIALOG_REQUEST);
+            dialog.show();
+        } else {
+            Toast.makeText(this, "Can't make map request", Toast.LENGTH_SHORT).show();
+        }
+        return false;
+    }
+
     int Hour, Minute;
     Spinner spinner;
     WeddingService weddingService;
@@ -41,6 +72,14 @@ public class AddInvitationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_invitation);
+
+        // OPEN MAP BUTTON
+        if (isServicesOk()) {
+            ImageView ivMaps = findViewById(R.id.iv_maps);
+            ivMaps.setOnClickListener(v -> {
+                startActivity(new Intent(AddInvitationActivity.this, MapsActivity.class));
+            });
+        }
 
         // BUTTON BACK
         Button btnBack = findViewById(R.id.btn_BackCreateInvitation);
@@ -114,6 +153,10 @@ public class AddInvitationActivity extends AppCompatActivity {
                 timePickerDialog.show();
             }
         });
+
+        // BUTTON SAVE
+        EditText location = findViewById(R.id.et_locationInvitation);
+        location.setText(getIntent().getStringExtra("title location"));
 
     }
 
