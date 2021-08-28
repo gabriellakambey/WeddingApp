@@ -53,7 +53,7 @@ public class BudgetListFragment extends Fragment implements OurBudgetDialog.OurB
         Button btnAdd = v.findViewById(R.id.btn_addBudget);
         btnAdd.setOnClickListener(v1 -> {
             AddBudgetActivity activity = new AddBudgetActivity();
-            activity.setListener(this::getBudget);
+            activity.setListener(this::refreshBudget);
             Intent n = new Intent(getActivity(), activity.getClass());
             startActivity(n);
         });
@@ -76,9 +76,8 @@ public class BudgetListFragment extends Fragment implements OurBudgetDialog.OurB
 
         // RECYCLER VIEW LIST BUDGET
         rv_budgetList = v.findViewById(R.id.rv_budgetItem);
-        adapter = new ListBudgetAdapter(getContext(),budgetModels);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+//        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rv_budgetList.setLayoutManager(layoutManager);
 
         getBudget();

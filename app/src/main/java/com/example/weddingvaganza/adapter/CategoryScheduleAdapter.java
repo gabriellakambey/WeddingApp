@@ -32,7 +32,7 @@ public class CategoryScheduleAdapter extends RecyclerView.Adapter<CategorySchedu
     @Override
     public void onBindViewHolder(@NonNull CategoryScheduleAdapter.ViewHolder holder, int position) {
         CategoryScheduleModel categoryScheduleModel = categoryScheduleModelList.get(position);
-        String catTitle = categoryScheduleModel.getCategoryTitle();
+        String catTitle = categoryScheduleModel.getTitleCategory();
         int categoryId = categoryScheduleModel.getCategoryId();
 
         holder.tvCategory.setText(catTitle);

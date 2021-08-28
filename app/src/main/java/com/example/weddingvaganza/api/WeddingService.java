@@ -1,10 +1,12 @@
 package com.example.weddingvaganza.api;
 
+import com.example.weddingvaganza.model.CategoryRundownModel;
 import com.example.weddingvaganza.model.OurBudgetModel;
 import com.example.weddingvaganza.model.UserModel;
 import com.example.weddingvaganza.model.responseModel.AddBudgetResponse;
 import com.example.weddingvaganza.model.responseModel.AddCategoryResponse;
 import com.example.weddingvaganza.model.responseModel.AddGuestResponse;
+import com.example.weddingvaganza.model.responseModel.AddInvitationResponse;
 import com.example.weddingvaganza.model.responseModel.AddRundownResponse;
 import com.example.weddingvaganza.model.responseModel.AddScheduleResponse;
 import com.example.weddingvaganza.model.BudgetModel;
@@ -23,6 +25,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -85,7 +88,12 @@ public interface WeddingService {
     @POST("rundownevent")
     Call<AddRundownResponse> addRundown(@Query("time") String time, @Query("title") String title,
                                         @Query("category") int categoryId, @Query("note") String note,
-                                        @Query("pj") String pj, @Query("user") int currentUserId);
+                                        @Query("pj") String pj, @Query("user") int currentUserId,
+                                        @Query("status") String status);
+
+    @GET("rundowncategory/{userId}")
+    Call<List<CategoryRundownModel>> getRundownCategory(@Path("userId") int userId);
+
 
 
     // GUEST RESPONSE
@@ -116,9 +124,23 @@ public interface WeddingService {
     @GET("guest/status={status}&&user={userId}")
     Call<List<GuestModel>> getInvitedGuest(@Path("status") String status, @Path("userId") int userId);
 
+
+
     // INVITATION RESPONSE
     @GET("forminvitation/user/{userId}")
     Call<List<InvitationModel>> getInvitation (@Path("userId") int userId);
+
+    @POST("forminvitationadd")
+    Call<AddInvitationResponse> postInvitation (@Query("grooms") String grooms, @Query("groomsFather") String groomsFather, @Query("groomsMother") String groomsMother,
+                                                @Query("brides") String brides, @Query("bridesFather") String bridesFather, @Query("bridesMother") String bridesMother,
+                                                @Query("category") int category, @Query("date") String date, @Query("time") String time, @Query("locationTitle") String locationTitle,
+                                                @Query("longitude") double longitude, @Query("latitude") double latitude, @Query("note") String note, @Query("user") int user, @Query("template") String template);
+
+    @PUT("invitation/update/{id}")
+    Call<InvitationModel> updateTemplate (@Path("id") int id, @Body InvitationModel invitationModel);
+
+    @DELETE("forminvitation/delete/{id}")
+    Call<InvitationModel> deleteInvitation (@Path("id") int invitationId);
 
 
 
@@ -137,12 +159,16 @@ public interface WeddingService {
     @PUT("budgetlist/update/{id}")
     Call<BudgetModel> updateStatusBudget(@Path("id") int id, @Body BudgetModel budgetModel);
 
+
+
     // OUR BUDGET RESPONSE
     @GET("person/id/{id}")
     Call<UserModel> getOurBudget(@Path("id") int id);
 
     @PUT("ourbudget/update/{id}")
     Call<OurBudgetModel> updateOurBudget(@Path("id") int id, @Body OurBudgetModel ourBudgetModel);
+
+
 
     // COST RESPONSE
     @GET("budgetlist/paid/status={status}&&user={userId}")

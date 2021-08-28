@@ -1,9 +1,11 @@
 package com.example.weddingvaganza.model.responseModel;
 
 import com.example.weddingvaganza.model.RundownModel;
+import com.google.gson.annotations.SerializedName;
 
 public class AddRundownResponse {
     private String status;
+    @SerializedName("rundownEvent")
     private RundownModel rundownModel;
 
     public String getStatus() {

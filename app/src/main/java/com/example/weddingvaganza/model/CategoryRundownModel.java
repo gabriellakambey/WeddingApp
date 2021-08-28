@@ -1,18 +1,20 @@
 package com.example.weddingvaganza.model;
 
+import com.example.weddingvaganza.model.RundownModel;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class  CategoryScheduleModel {
-    private int categoryId;
-    private String titleCategory;
-    @SerializedName("scheduleModel")
-    private List<ScheduleModel> scheduleModelList;
+public class CategoryRundownModel {
 
-    public CategoryScheduleModel(String titleCategory, List<ScheduleModel> scheduleModels) {
+    private  int categoryId;
+    private String titleCategory;
+    @SerializedName("rundown")
+    private List<RundownModel> rundownModelList;
+
+    public CategoryRundownModel(String titleCategory, List<RundownModel> rundownModelList) {
         this.titleCategory = titleCategory;
-        this.scheduleModelList = scheduleModels;
+        this.rundownModelList = rundownModelList;
     }
 
     public int getCategoryId() {
@@ -31,11 +33,11 @@ public class  CategoryScheduleModel {
         this.titleCategory = titleCategory;
     }
 
-    public List<ScheduleModel> getScheduleModels() {
-        return scheduleModelList;
+    public List<RundownModel> getRundownModelList() {
+        return rundownModelList;
     }
 
-    public void setScheduleModels(List<ScheduleModel> scheduleModels) {
-        this.scheduleModelList = scheduleModels;
+    public void setRundownModelList(List<RundownModel> rundownModelList) {
+        this.rundownModelList = rundownModelList;
     }
 }

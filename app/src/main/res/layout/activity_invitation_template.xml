@@ -43,13 +43,15 @@
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="120dp"
         android:layout_below="@id/tb_invitationTemplate"
+        android:layout_marginHorizontal="15dp"
         android:layout_marginTop="20dp"
         android:columnCount="2"
-        android:rowCount="4">
+        android:rowCount="1">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cv_template1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="0"
@@ -68,14 +70,16 @@
                 app:cardCornerRadius="5dp">
 
                 <ImageView
+                    android:id="@+id/iv_template1"
                     android:layout_width="160dp"
-                    android:layout_height="80dp"
+                    android:layout_height="85dp"
                     android:background="@drawable/template1" />
             </androidx.cardview.widget.CardView>
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cv_template2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="0"
@@ -94,143 +98,29 @@
                 app:cardCornerRadius="5dp">
 
                 <ImageView
+                    android:id="@+id/iv_template2"
                     android:layout_width="160dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/template1" />
-            </androidx.cardview.widget.CardView>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="1"
-            android:layout_rowWeight="1"
-            android:layout_column="0"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                app:cardCornerRadius="5dp">
-
-                <ImageView
-                    android:layout_width="160dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/template1" />
-            </androidx.cardview.widget.CardView>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="1"
-            android:layout_rowWeight="1"
-            android:layout_column="1"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                app:cardCornerRadius="5dp">
-
-                <ImageView
-                    android:layout_width="160dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/template1" />
-            </androidx.cardview.widget.CardView>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="2"
-            android:layout_rowWeight="1"
-            android:layout_column="1"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                app:cardCornerRadius="5dp">
-
-                <ImageView
-                    android:layout_width="160dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/template1" />
-            </androidx.cardview.widget.CardView>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="2"
-            android:layout_rowWeight="1"
-            android:layout_column="0"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                app:cardCornerRadius="5dp">
-
-                <ImageView
-                    android:layout_width="160dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/template1" />
-            </androidx.cardview.widget.CardView>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="3"
-            android:layout_rowWeight="1"
-            android:layout_column="0"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                app:cardCornerRadius="5dp">
-
-                <ImageView
-                    android:layout_width="160dp"
-                    android:layout_height="80dp"
+                    android:layout_height="85dp"
                     android:background="@drawable/template1" />
             </androidx.cardview.widget.CardView>
 
         </androidx.cardview.widget.CardView>
 
     </GridLayout>
+
+    <Button
+        android:id="@+id/btn_completeInvitation"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_gold"
+        android:text="Complete Invitation"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
 
 </RelativeLayout>

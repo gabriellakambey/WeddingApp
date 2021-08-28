@@ -48,8 +48,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     // widgets
     private EditText etSearch;
-    private ImageView ivGps, ivSearch, ivClose;
-    private Button btnGetLocation;
+    private ImageView ivGps;
+    private ImageView ivSearch;
+    private ImageView ivClose;
 
     // vars
     private Boolean mLocationPermissionsGranted = false;
@@ -58,7 +59,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     // parse data variable
     String titleLoc;
-    float getLatitudeLoc, getLongitudeLoc;
+    double getLatitudeLoc, getLongitudeLoc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +73,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         ivClose = findViewById(R.id.iv_closeMaps);
         ivSearch = findViewById(R.id.iv_searchMaps);
 
-        btnGetLocation = findViewById(R.id.btn_getLocation);
+        // BUTTON BACK
+        ImageView ivBack = findViewById(R.id.iv_backMaps);
+        ivBack.setOnClickListener(v -> {
+            onBack();
+        });
+
+        // BUTTON SET LOCATION
+        Button btnGetLocation = findViewById(R.id.btn_getLocation);
         btnGetLocation.setOnClickListener(v -> {
             Intent intent = new Intent(MapsActivity.this, AddInvitationActivity.class);
             intent.putExtra("title location", titleLoc);
@@ -134,8 +142,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             Address address = addressList.get(0);
 
             titleLoc = address.getAddressLine(0);
-            getLatitudeLoc = (float) address.getLatitude();
-            getLongitudeLoc = (float) address.getLongitude();
+            getLatitudeLoc = address.getLatitude();
+            getLongitudeLoc = address.getLongitude();
 
             Log.d(TAG, "geoLocate: found a location: " + address.toString());
 
@@ -254,6 +262,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             mMap.getUiSettings().setMyLocationButtonEnabled(false);
 
             init();
+        }
+    }
+
+    private void onBack() {
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+        } else {
+            getSupportFragmentManager().popBackStack();
         }
     }
 }

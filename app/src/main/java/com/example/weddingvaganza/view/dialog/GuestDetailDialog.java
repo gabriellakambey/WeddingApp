@@ -81,7 +81,7 @@ public class GuestDetailDialog extends AppCompatDialogFragment {
 
         // INVITE BUTTON
         Button invite = view.findViewById(R.id.btn_inviteGuestDetail);
-        invite.setOnClickListener(v -> {
+        invite.setOnClickListener(v1 -> {
             getGuestById();
             alertDialog.dismiss();
         });

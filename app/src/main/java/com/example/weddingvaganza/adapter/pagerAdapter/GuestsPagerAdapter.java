@@ -63,6 +63,7 @@ public class GuestsPagerAdapter extends FragmentStateAdapter {
                 return new GuestsBookFragment();
         }
         return new GuestListFragment();
+
     }
 
     @Override

@@ -42,6 +42,8 @@ public class AddRundownActivity extends AppCompatActivity {
     private EditText etTitle, etPersonIC, etNote;
     int Hour, Minute;
     int currentUserId = Prefs.getInt("user_id", 0);
+    onAddRundown listener;
+    TextView timeRundown;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -56,7 +58,7 @@ public class AddRundownActivity extends AppCompatActivity {
         });
 
         // Set time
-        TextView timeRundown = findViewById(id.tv_timeAddRundown);
+        timeRundown = findViewById(id.tv_timeAddRundown);
         LinearLayout timePicker = findViewById(id.timeAddRundown);
         timePicker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,14 +140,15 @@ public class AddRundownActivity extends AppCompatActivity {
             int categoryId = getItemId.getCategoryId();
 
             WeddingService weddingService1 = WeddingApi.getRetrofit().create(WeddingService.class);
-            Call<AddRundownResponse> call1 = weddingService1.addRundown(time, title, categoryId, note, pj, currentUserId);
+            Call<AddRundownResponse> call1 = weddingService1.addRundown(time, title, categoryId, note, pj, currentUserId, "false");
             call1.enqueue(new Callback<AddRundownResponse>() {
                 @Override
                 public void onResponse(Call<AddRundownResponse> call, Response<AddRundownResponse> response) {
                     AddRundownResponse addRundownResponse = response.body();
                     if (addRundownResponse.getStatus().equals("success")) {
+                        listener.refreshRundown();
                         Toast.makeText(AddRundownActivity.this, "Success add rundown", Toast.LENGTH_SHORT).show();
-                        onBackPressed();
+                        onBack();
                     } else {
                         Toast.makeText(AddRundownActivity.this, "Failed add rundown", Toast.LENGTH_SHORT).show();
                     }
@@ -173,4 +176,11 @@ public class AddRundownActivity extends AppCompatActivity {
         }
     }
 
+    public void setListener (onAddRundown listener) {
+        this.listener = listener;
+    }
+
+    public interface onAddRundown {
+        public void refreshRundown();
+    }
 }

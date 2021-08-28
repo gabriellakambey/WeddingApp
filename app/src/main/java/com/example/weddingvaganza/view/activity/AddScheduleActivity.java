@@ -122,7 +122,7 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
 //                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 //                        fragmentTransaction.replace(R.id.fl_addScheduleLayout, new ScheduleFragment()).commit();
 
-//                        listener.onAddSchedule();
+                        listener.onAddSchedule();
                         Toast.makeText(AddScheduleActivity.this, "Success add data", Toast.LENGTH_SHORT).show();
                         onBackPressed();
 
@@ -167,10 +167,6 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
         yearDate = year;
         String date = dayOfMonth + "/" + month + "/" + year;
         textDate.setText(date);
-    }
-
-    public void setListener(AddScheduleListener listener) {
-        this.listener = listener;
     }
 
     public interface AddScheduleListener {

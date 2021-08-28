@@ -53,9 +53,9 @@ public class AddBudgetActivity extends AppCompatActivity {
                 public void onResponse(Call<AddBudgetResponse> call, Response<AddBudgetResponse> response) {
                     AddBudgetResponse addBudgetResponse = response.body();
                     if (addBudgetResponse.getStatus().equals("success")) {
-
                         listener.refreshBudget();
                         Toast.makeText(AddBudgetActivity.this, "Success add budget", Toast.LENGTH_SHORT).show();
+                        onBack();
                     }
                 }
 

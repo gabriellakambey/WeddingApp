@@ -24,6 +24,8 @@ import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.CategoryModel;
+import com.example.weddingvaganza.model.InvitationModel;
+import com.example.weddingvaganza.model.responseModel.AddInvitationResponse;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.Api;
@@ -66,12 +68,22 @@ public class AddInvitationActivity extends AppCompatActivity {
     int Hour, Minute;
     Spinner spinner;
     WeddingService weddingService;
-    private int userId = Prefs.getInt("user_id", 0);
+    EditText etGroomName, etGroomFather, etGroomMother, etBrideName, etBrideFather, etBrideMother, etLocation, etNote;
+    String titleLocation, date;
+    double latitude, longitude;
+    Button btnSave;
+
+    int userId = Prefs.getInt("user_id", 0);
+    String weddingDate = Prefs.getString("wedding_date", null);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_invitation);
+
+        titleLocation = getIntent().getStringExtra("title location");
+        latitude = getIntent().getDoubleExtra("latitude location", 0);
+        longitude = getIntent().getDoubleExtra("longitude location", 0);
 
         // OPEN MAP BUTTON
         if (isServicesOk()) {
@@ -83,7 +95,7 @@ public class AddInvitationActivity extends AppCompatActivity {
 
         // BUTTON BACK
         Button btnBack = findViewById(R.id.btn_BackCreateInvitation);
-        btnBack.setOnClickListener(v -> {
+        btnBack.setOnClickListener(v1 -> {
             onBack();
         });
 
@@ -116,7 +128,6 @@ public class AddInvitationActivity extends AppCompatActivity {
         });
 
         // SET THE WEDDING DATE
-        String weddingDate = Prefs.getString("wedding_date", null);
         TextView textDate = findViewById(R.id.td_createInvitation);
         textDate.setText(weddingDate);
 
@@ -128,7 +139,7 @@ public class AddInvitationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(AddInvitationActivity.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth
-                        ,new TimePickerDialog.OnTimeSetListener() {
+                        , new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         Hour = hourOfDay;
@@ -137,36 +148,99 @@ public class AddInvitationActivity extends AppCompatActivity {
                         String time = Hour + ":" + Minute;
                         SimpleDateFormat f24jam = new SimpleDateFormat("HH:mm");
                         try {
-                            Date date = f24jam.parse(time);
+                            Date mDate = f24jam.parse(time);
                             SimpleDateFormat f12jam = new SimpleDateFormat("hh:mm aa");
 
-                            timeSet.setText(f12jam.format(date));
+                            date = f12jam.format(mDate);
+
+                            timeSet.setText(date);
                             timeSet.setTextColor(Color.parseColor("#2C3E57"));
 
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
                     }
-                },12,0,false);
+                }, 12, 0, false);
                 timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                timePickerDialog.updateTime(Hour,Minute);
+                timePickerDialog.updateTime(Hour, Minute);
                 timePickerDialog.show();
             }
         });
 
         // BUTTON SAVE
-        EditText location = findViewById(R.id.et_locationInvitation);
-        location.setText(getIntent().getStringExtra("title location"));
+        etGroomName = findViewById(R.id.et_groomName);
+        etGroomFather = findViewById(R.id.et_groomFather);
+        etGroomMother = findViewById(R.id.et_groomMother);
+        etBrideName = findViewById(R.id.et_brideName);
+        etBrideFather = findViewById(R.id.et_brideFather);
+        etBrideMother = findViewById(R.id.et_brideMother);
+        etLocation = findViewById(R.id.et_locationInvitation);
+        etLocation.setText(getIntent().getStringExtra("title location"));
+        etNote = findViewById(R.id.et_noteInvitation);
 
+        btnSave = findViewById(R.id.btn_nextInvitation);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addInvitationData();
+
+            }
+        });
+
+    }
+
+    private void addInvitationData() {
+        String grooms = etGroomName.getText().toString();
+        String groomsFather = etGroomFather.getText().toString();
+        String groomsMother = etGroomMother.getText().toString();
+        String brides = etBrideName.getText().toString();
+        String bridesFather = etBrideFather.getText().toString();
+        String bridesMother = etBrideMother.getText().toString();
+        String locationTitle = etLocation.getText().toString();
+        String note = etNote.getText().toString();
+        String template = "null";
+
+        // get category id in spinner
+        int selectedId = spinner.getSelectedItemPosition();
+        CategoryModel getItemId = (CategoryModel) spinner.getItemAtPosition(selectedId);
+        int category = getItemId.getCategoryId();
+
+        weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
+        Call<AddInvitationResponse> call1 = weddingService.postInvitation(grooms, groomsFather, groomsMother,
+                brides, bridesFather, bridesMother, category, weddingDate, date, locationTitle, longitude, latitude,
+                note, userId, template);
+        call1.enqueue(new Callback<AddInvitationResponse>() {
+            @Override
+            public void onResponse(Call<AddInvitationResponse> call, Response<AddInvitationResponse> response) {
+                AddInvitationResponse addInvitationResponse = response.body();
+
+                if (addInvitationResponse.getStatus().equals("success")) {
+                    InvitationModel parseInvitationModel = addInvitationResponse.getInvitationModel();
+
+                    Toast.makeText(AddInvitationActivity.this, "Success add data", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(AddInvitationActivity.this, InvitationTemplateActivity.class);
+                    intent.putExtra("invitation model", parseInvitationModel);
+                    startActivity(intent);
+
+                } else {
+                    Toast.makeText(AddInvitationActivity.this, "Failed add data", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddInvitationResponse> call, Throwable t) {
+                Toast.makeText(AddInvitationActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void onBack() {
         int count = getSupportFragmentManager().getBackStackEntryCount();
 
-        if (count == 0){
+        if (count == 0) {
             super.onBackPressed();
-        }
-        else {
+        } else {
             getSupportFragmentManager().popBackStack();
         }
     }
