@@ -1,11 +1,14 @@
 package com.example.weddingvaganza.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weddingvaganza.R;
@@ -17,26 +20,36 @@ public class CategoryScheduleAdapter extends RecyclerView.Adapter<CategorySchedu
 
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
     private List<CategoryScheduleModel> categoryScheduleModelList;
+    private Context context;
 
     public CategoryScheduleAdapter(List<CategoryScheduleModel> categoryScheduleModelList) {
         this.categoryScheduleModelList = categoryScheduleModelList;
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_category_schedule, parent, false);
-        return new ViewHolder(view);
+        context = parent.getContext();
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.list_category_schedule, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull CategoryScheduleAdapter.ViewHolder holder, int position) {
         CategoryScheduleModel categoryScheduleModel = categoryScheduleModelList.get(position);
-        String catTitle = categoryScheduleModel.getTitleCategory();
-        int categoryId = categoryScheduleModel.getCategoryId();
 
-        holder.tvCategory.setText(catTitle);
+        holder.tvCategory.setText(categoryScheduleModel.getTitleCategory());
 
+        // set recycler view list schedule
+        LinearLayoutManager layoutManager = new LinearLayoutManager(holder.rvSchedule.getContext(), LinearLayoutManager.VERTICAL, false);
+        layoutManager.setInitialPrefetchItemCount(categoryScheduleModel.getScheduleModels().size());
+
+        ListScheduleAdapter listScheduleAdapter = new ListScheduleAdapter(categoryScheduleModel.getScheduleModels());
+
+        holder.rvSchedule.setLayoutManager(layoutManager);
+        holder.rvSchedule.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
+        holder.rvSchedule.setAdapter(listScheduleAdapter);
+        holder.rvSchedule.setRecycledViewPool(viewPool);
 
     }
 

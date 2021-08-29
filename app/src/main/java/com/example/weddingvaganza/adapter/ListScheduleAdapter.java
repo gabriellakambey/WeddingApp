@@ -17,20 +17,20 @@ import java.util.List;
 
 import static com.example.weddingvaganza.R.color.*;
 
-public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapter.ViewHolder>{
+public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapter.ViewHolder> {
 
     private List<ScheduleModel> schedule;
     private Context context;
     private ListScheduleCallback listScheduleCallback;
     int scheduleId;
-    String  titleSchedule, statusSchedule;
+    String titleSchedule, statusSchedule;
 
-    public void setData(List<ScheduleModel> schedule) {
-        this.schedule = schedule;
+    public ListScheduleAdapter(List<ScheduleModel> scheduleModels) {
+        this.schedule = scheduleModels;
         notifyDataSetChanged();
     }
 
-    public void setListener(ListScheduleCallback listScheduleCallback){
+    public void setListener(ListScheduleCallback listScheduleCallback) {
         this.listScheduleCallback = listScheduleCallback;
     }
 
@@ -38,7 +38,7 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        return new ListScheduleAdapter.ViewHolder(LayoutInflater.from(context).inflate(R.layout.list_schedule,parent,false));
+        return new ListScheduleAdapter.ViewHolder(LayoutInflater.from(context).inflate(R.layout.list_schedule, parent, false));
     }
 
     @Override
@@ -54,7 +54,7 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
         if (statusSchedule.equals("checked")) {
             holder.checkBox.setChecked(true);
             holder.checkBox.setTextColor(ContextCompat.getColor(context, gold));
-        } else{
+        } else {
             holder.checkBox.setChecked(false);
             holder.checkBox.setTextColor(ContextCompat.getColor(context, navy));
         }
@@ -85,11 +85,9 @@ public class ListScheduleAdapter extends RecyclerView.Adapter<ListScheduleAdapte
         }
     }
 
-    public interface ListScheduleCallback{
+    public interface ListScheduleCallback {
         public void onChecked(int scheduleId, Boolean isChecked);
     }
-
-
 
 
 }

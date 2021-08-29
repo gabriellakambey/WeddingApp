@@ -41,6 +41,8 @@ import java.util.Calendar;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.content.ContentValues.TAG;
 
@@ -57,66 +59,88 @@ public class ScheduleFragment extends DialogFragment implements AddScheduleActiv
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view  = inflater.inflate(R.layout.fragment_schedule, container, false);
+        View view = inflater.inflate(R.layout.fragment_schedule, container, false);
 
-        // recycler view category with schedule
-        recyclerView = view.findViewById(R.id.rv_categoryOnSchedule);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        getCategory();
-
-        // button add schedule
+        // BUTTON ADD SCHEDULE
         Button btn_addSchedule = view.findViewById(R.id.btn_addSchedule);
         btn_addSchedule.setOnClickListener(v -> {
-//            AddScheduleActivity addScheduleActivity = new AddScheduleActivity();
-//            addScheduleActivity.setListener((AddScheduleActivity.AddScheduleListener)this);
+            AddScheduleActivity addScheduleActivity = new AddScheduleActivity();
+            addScheduleActivity.setListener(this::onAddSchedule);
 
-            Intent intent = new Intent(getActivity(), AddScheduleActivity.class);
+            Intent intent = new Intent(getActivity(), addScheduleActivity.getClass());
             startActivity(intent);
         });
 
-        // set current month and year
+        // SET CURRENT MONTH YEAR
         monthSchedule = view.findViewById(R.id.tv_dateSchedule);
         Calendar currentMonthYear = Calendar.getInstance();
         int currentMonth = currentMonthYear.get(Calendar.MONTH);
-        currentMonth = currentMonth +1;
+        currentMonth = currentMonth + 1;
         int currentYear = currentMonthYear.get(Calendar.YEAR);
         monthSchedule.setText(makeMonthYearString(currentMonth, currentYear));
 
-        // month year picker dialog
+        // OPEN MONTH YEAR PICKER DIALOG
         calendarSchedule = view.findViewById(R.id.calendarSchedule);
         calendarSchedule.setOnClickListener(v -> {
-            final Calendar today = Calendar.getInstance();
-            int year = today.get(Calendar.YEAR);
-            int month = today.get(Calendar.MONTH);
-
-            MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(getContext(),
-                    new MonthPickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(int selectedMonth, int selectedYear) {
-                            selectedMonth = selectedMonth + 1;
-                            String selected = makeMonthYearString (selectedMonth, selectedYear);
-                            monthSchedule.setText(selected);
-                        }
-                    }, year, month);
-
-            builder.setActivatedMonth(month)
-                    .setMinYear(year-1)
-                    .setActivatedYear(year)
-                    .setMaxYear(2030)
-                    .setTitle("Select Month and Year")
-                    .build()
-                    .show();
+            monthYearPickerDialog();
         });
+
+        // RECYCLER VIEW SCHEDULE IN CATEGORY
+        recyclerView = view.findViewById(R.id.rv_categoryOnSchedule);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+
+        getScheduleInRundown();
 
         return view;
     }
 
-    private void getCategory() {
+    private void getScheduleInRundown() {
         int currentUserId = Prefs.getInt("user_id", 0);
+
         WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-        Call<List<CategoryModel>> call = weddingService.getCategory(currentUserId);
+        Call<List<CategoryScheduleModel>> call = weddingService.getScheduleCategory(currentUserId);
+        call.enqueue(new Callback<List<CategoryScheduleModel>>() {
+            @Override
+            public void onResponse(Call<List<CategoryScheduleModel>> call, Response<List<CategoryScheduleModel>> response) {
+                if (response.isSuccessful()) {
+                    List<CategoryScheduleModel> categoryScheduleModelList = response.body();
+                    adapter = new CategoryScheduleAdapter(categoryScheduleModelList);
+                    recyclerView.setAdapter(adapter);
+                } else {
+                    Toast.makeText(getContext(), "Get data failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<CategoryScheduleModel>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void monthYearPickerDialog() {
+        final Calendar today = Calendar.getInstance();
+        int year = today.get(Calendar.YEAR);
+        int month = today.get(Calendar.MONTH);
+
+        MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(getContext(),
+                new MonthPickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(int selectedMonth, int selectedYear) {
+                        selectedMonth = selectedMonth + 1;
+                        String selected = makeMonthYearString(selectedMonth, selectedYear);
+                        monthSchedule.setText(selected);
+                    }
+                }, year, month);
+
+        builder.setActivatedMonth(month)
+                .setMinYear(year - 1)
+                .setActivatedYear(year)
+                .setMaxYear(2030)
+                .setTitle("Select Month and Year")
+                .build()
+                .show();
     }
 
     private String makeMonthYearString(int selectedMonth, int selectedYear) {
@@ -124,29 +148,29 @@ public class ScheduleFragment extends DialogFragment implements AddScheduleActiv
     }
 
     private String getMonthFormat(int month) {
-        if (month==1)
+        if (month == 1)
             return "January";
-        if (month==2)
+        if (month == 2)
             return "February";
-        if (month==3)
+        if (month == 3)
             return "March";
-        if (month==4)
+        if (month == 4)
             return "April";
-        if (month==5)
+        if (month == 5)
             return "May";
-        if (month==6)
+        if (month == 6)
             return "June";
-        if (month==7)
+        if (month == 7)
             return "July";
-        if (month==8)
+        if (month == 8)
             return "August";
-        if (month==9)
+        if (month == 9)
             return "September";
-        if (month==10)
+        if (month == 10)
             return "October";
-        if (month==11)
+        if (month == 11)
             return "November";
-        if (month==12)
+        if (month == 12)
             return "December";
 
         return "January";
@@ -154,6 +178,6 @@ public class ScheduleFragment extends DialogFragment implements AddScheduleActiv
 
     @Override
     public void onAddSchedule() {
-//        getCategory();
+        getScheduleInRundown();
     }
 }

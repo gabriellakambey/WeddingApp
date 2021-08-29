@@ -115,16 +115,9 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
                 public void onResponse(Call<AddScheduleResponse> call, Response<AddScheduleResponse> response) {
                     AddScheduleResponse addScheduleResponse = response.body();
                     if (addScheduleResponse.getStatus().equals("success")) {
-
-//                        RelativeLayout relativeLayout = findViewById(R.id.rl_addScheduleLayout);
-//                        relativeLayout.setVisibility(View.GONE);
-//
-//                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                        fragmentTransaction.replace(R.id.fl_addScheduleLayout, new ScheduleFragment()).commit();
-
                         listener.onAddSchedule();
                         Toast.makeText(AddScheduleActivity.this, "Success add data", Toast.LENGTH_SHORT).show();
-                        onBackPressed();
+                        onBack();
 
                     } else {
                         Toast.makeText(AddScheduleActivity.this, "Failed add data", Toast.LENGTH_SHORT).show();
@@ -167,6 +160,10 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
         yearDate = year;
         String date = dayOfMonth + "/" + month + "/" + year;
         textDate.setText(date);
+    }
+
+    public void setListener (AddScheduleListener listener) {
+        this.listener = listener;
     }
 
     public interface AddScheduleListener {

@@ -1,6 +1,7 @@
 package com.example.weddingvaganza.api;
 
 import com.example.weddingvaganza.model.CategoryRundownModel;
+import com.example.weddingvaganza.model.CategoryScheduleModel;
 import com.example.weddingvaganza.model.OurBudgetModel;
 import com.example.weddingvaganza.model.UserModel;
 import com.example.weddingvaganza.model.responseModel.AddBudgetResponse;
@@ -79,6 +80,10 @@ public interface WeddingService {
 
     @PUT("todolist/update/{id}")
     Call<ScheduleModel> updateSchedule (@Path("id") int scheduleId, @Body ScheduleUpdateModel scheduleModel);
+
+    @GET("schedulecategory/{userId}")
+    Call<List<CategoryScheduleModel>> getScheduleCategory(@Path("userId") int userId);
+
 
 
     // RUNDOWN RESPONSE
