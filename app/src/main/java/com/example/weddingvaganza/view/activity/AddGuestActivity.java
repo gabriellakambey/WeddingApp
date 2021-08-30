@@ -100,6 +100,8 @@ public class AddGuestActivity extends AppCompatActivity {
                         Toast.makeText(AddGuestActivity.this, "Success add guest", Toast.LENGTH_SHORT).show();
                         onBackPressed();
 
+                    } else {
+                        Toast.makeText(AddGuestActivity.this, "Failed add guest", Toast.LENGTH_SHORT).show();
                     }
                 }
 

@@ -47,7 +47,6 @@ public class CategoryScheduleAdapter extends RecyclerView.Adapter<CategorySchedu
         ListScheduleAdapter listScheduleAdapter = new ListScheduleAdapter(categoryScheduleModel.getScheduleModels());
 
         holder.rvSchedule.setLayoutManager(layoutManager);
-        holder.rvSchedule.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
         holder.rvSchedule.setAdapter(listScheduleAdapter);
         holder.rvSchedule.setRecycledViewPool(viewPool);
 

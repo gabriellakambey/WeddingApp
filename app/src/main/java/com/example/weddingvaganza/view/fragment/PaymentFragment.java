@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.weddingvaganza.R;
@@ -35,6 +37,8 @@ public class PaymentFragment extends Fragment implements PaymentAdapter.ClickedI
     private List<BudgetModel> budgetModels;
     PaymentAdapter adapter;
     TextView tvTotalPaid;
+    RelativeLayout finalPayment;
+    LinearLayout firstPayment;
     int userId = Prefs.getInt("user_id", 0);
     WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
 
@@ -43,6 +47,11 @@ public class PaymentFragment extends Fragment implements PaymentAdapter.ClickedI
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_payment, container, false);
+
+        // PAYMENT VIEW IN CONDITION
+        finalPayment = v.findViewById(R.id.rl_finalPayment);
+        firstPayment = v.findViewById(R.id.ll_firstPayment);
+        getPaymentSize();
 
         // SET TOTAL PAID
         tvTotalPaid = v.findViewById(R.id.tv_totalBudgetUp);
@@ -58,6 +67,28 @@ public class PaymentFragment extends Fragment implements PaymentAdapter.ClickedI
 
         return v;
 
+    }
+
+    private void getPaymentSize() {
+        Call<List<BudgetModel>> call = weddingService.getBudgetList(userId);
+        call.enqueue(new Callback<List<BudgetModel>>() {
+            @Override
+            public void onResponse(Call<List<BudgetModel>> call, Response<List<BudgetModel>> response) {
+                List<BudgetModel> modelList = response.body();
+                if (modelList.size() != 0) {
+                    finalPayment.setVisibility(View.VISIBLE);
+                    firstPayment.setVisibility(View.GONE);
+                } else {
+                    firstPayment.setVisibility(View.VISIBLE);
+                    finalPayment.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<BudgetModel>> call, Throwable t) {
+
+            }
+        });
     }
 
     private void setTotalPaid() {

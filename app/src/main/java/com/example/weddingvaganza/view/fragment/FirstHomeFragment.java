@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.weddingvaganza.R;
+import com.example.weddingvaganza.view.activity.AddCategoryScheduleActivity;
 import com.example.weddingvaganza.view.activity.AddScheduleActivity;
 import com.pixplicity.easyprefs.library.Prefs;
 
@@ -56,10 +57,10 @@ public class FirstHomeFragment extends Fragment {
         }
 
 
-        // button add a list
+        // BUTTON ADD CATEGORY SCHEDULE
         Button button = view.findViewById(R.id.btn_makeList);
         button.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), AddScheduleActivity.class);
+            Intent intent = new Intent(getContext(), AddCategoryScheduleActivity.class);
             startActivity(intent);
         });
 

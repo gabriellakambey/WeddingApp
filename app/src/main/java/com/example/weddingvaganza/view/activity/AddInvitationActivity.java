@@ -1,5 +1,6 @@
 package com.example.weddingvaganza.view.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
@@ -81,15 +82,14 @@ public class AddInvitationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_invitation);
 
-        titleLocation = getIntent().getStringExtra("title location");
-        latitude = getIntent().getDoubleExtra("latitude location", 0);
-        longitude = getIntent().getDoubleExtra("longitude location", 0);
 
         // OPEN MAP BUTTON
         if (isServicesOk()) {
             ImageView ivMaps = findViewById(R.id.iv_maps);
             ivMaps.setOnClickListener(v -> {
-                startActivity(new Intent(AddInvitationActivity.this, MapsActivity.class));
+//                startActivity(new Intent(AddInvitationActivity.this, MapsActivity.class));
+                Intent intent = new Intent(AddInvitationActivity.this, MapsActivity.class);
+                startActivityForResult(intent, 1);
             });
         }
 
@@ -174,8 +174,6 @@ public class AddInvitationActivity extends AppCompatActivity {
         etBrideName = findViewById(R.id.et_brideName);
         etBrideFather = findViewById(R.id.et_brideFather);
         etBrideMother = findViewById(R.id.et_brideMother);
-        etLocation = findViewById(R.id.et_locationInvitation);
-        etLocation.setText(getIntent().getStringExtra("title location"));
         etNote = findViewById(R.id.et_noteInvitation);
 
         btnSave = findViewById(R.id.btn_nextInvitation);
@@ -183,10 +181,24 @@ public class AddInvitationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addInvitationData();
-
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                titleLocation = data.getStringExtra("title location");
+                latitude = data.getDoubleExtra("latitude location", 0);
+                longitude = data.getDoubleExtra("longitude location", 0);
+
+                etLocation = findViewById(R.id.et_locationInvitation);
+                etLocation.setText(titleLocation);
+            }
+        }
     }
 
     private void addInvitationData() {
@@ -215,12 +227,13 @@ public class AddInvitationActivity extends AppCompatActivity {
                 AddInvitationResponse addInvitationResponse = response.body();
 
                 if (addInvitationResponse.getStatus().equals("success")) {
-                    InvitationModel parseInvitationModel = addInvitationResponse.getInvitationModel();
+//                    InvitationModel parseInvitationModel = addInvitationResponse.getInvitationModel();
 
                     Toast.makeText(AddInvitationActivity.this, "Success add data", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(AddInvitationActivity.this, InvitationTemplateActivity.class);
-                    intent.putExtra("invitation model", parseInvitationModel);
+//                    intent.putExtra("invitation model", parseInvitationModel);
+                    intent.putExtra("category id", category);
                     startActivity(intent);
 
                 } else {

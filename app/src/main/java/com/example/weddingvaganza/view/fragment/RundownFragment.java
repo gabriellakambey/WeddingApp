@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.weddingvaganza.R;
@@ -25,6 +27,7 @@ import com.example.weddingvaganza.adapter.CategoryRundownAdapter;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.CategoryRundownModel;
+import com.example.weddingvaganza.model.RundownModel;
 import com.example.weddingvaganza.view.activity.AddBudgetActivity;
 import com.example.weddingvaganza.view.activity.AddRundownActivity;
 import com.pixplicity.easyprefs.library.Prefs;
@@ -35,12 +38,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.app.Activity.RESULT_OK;
 
-public class RundownFragment extends Fragment implements AddRundownActivity.onAddRundown {
+
+public class RundownFragment extends Fragment {
     private static final String TAG = "RundownFragment";
+
+    int currentUserId = Prefs.getInt("user_id", 0);
 
     RecyclerView recyclerView;
     CategoryRundownAdapter adapter;
+    LinearLayout firstRundown;
+    RelativeLayout finalRundown;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,13 +57,27 @@ public class RundownFragment extends Fragment implements AddRundownActivity.onAd
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_rundown, container, false);
 
+        // RUNDOWN VIEW IN CONDITION
+        firstRundown = view.findViewById(R.id.ll_firstRundown);
+        finalRundown = view.findViewById(R.id.rl_finalRundown);
+        getRundownSize();
+
+        // BUTTON CREATE RUNDOWN
+        Button btnCreate = view.findViewById(R.id.btn_createRundown);
+        btnCreate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AddRundownActivity.class);
+                startActivityForResult(intent, 1);
+            }
+        });
+
         // BUTTON ADD RUNDOWN
         Button btn_addRundown = view.findViewById(R.id.btn_addRundown);
         btn_addRundown.setOnClickListener(v -> {
-            AddRundownActivity addRundownActivity = new AddRundownActivity();
-            addRundownActivity.setListener(this::refreshRundown);
-            Intent intent = new Intent(getActivity(), addRundownActivity.getClass());
-            startActivity(intent);
+            Intent intent = new Intent(getContext(), AddRundownActivity.class);
+            startActivityForResult(intent, 1);
+
         });
 
         // RECYCLERVIEW
@@ -65,6 +88,40 @@ public class RundownFragment extends Fragment implements AddRundownActivity.onAd
         getRundownInCategory();
 
         return view;
+    }
+
+    private void getRundownSize() {
+        WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
+        Call<List<RundownModel>> call = weddingService.getRundown(currentUserId);
+        call.enqueue(new Callback<List<RundownModel>>() {
+            @Override
+            public void onResponse(Call<List<RundownModel>> call, Response<List<RundownModel>> response) {
+                List<RundownModel> rundownModels = response.body();
+                if (rundownModels.size() != 0) {
+                    finalRundown.setVisibility(View.VISIBLE);
+                    firstRundown.setVisibility(View.GONE);
+                } else {
+                    finalRundown.setVisibility(View.GONE);
+                    firstRundown.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<RundownModel>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1){
+            if (resultCode == RESULT_OK) {
+                getRundownInCategory();
+                getRundownSize();
+            }
+        }
     }
 
     private void getRundownInCategory() {
@@ -92,8 +149,4 @@ public class RundownFragment extends Fragment implements AddRundownActivity.onAd
         });
     }
 
-    @Override
-    public void refreshRundown() {
-        getRundownInCategory();
-    }
 }

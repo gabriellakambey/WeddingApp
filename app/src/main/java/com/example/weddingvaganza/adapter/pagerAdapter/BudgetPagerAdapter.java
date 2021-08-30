@@ -10,6 +10,7 @@ import com.example.weddingvaganza.view.fragment.BudgetListFragment;
 import com.example.weddingvaganza.view.fragment.PaymentFragment;
 
 public class BudgetPagerAdapter extends FragmentStateAdapter {
+
     public BudgetPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
     }

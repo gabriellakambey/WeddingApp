@@ -6,9 +6,11 @@
     tools:context=".view.fragment.BudgetListFragment">
 
     <RelativeLayout
+        android:id="@+id/rl_finalBudget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/totalBudget"
@@ -97,15 +99,15 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="vertical"
             android:layout_above="@id/btn_addBudget"
-            android:layout_below="@id/totalBudget">
+            android:layout_below="@id/totalBudget"
+            android:scrollbars="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_budgetItem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp" />
 
         </ScrollView>
 
@@ -120,5 +122,39 @@
             android:background="@drawable/ic_rounded_cross" />
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_firstBudget"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="There is no budget list data yet. Make a list to manage your budget"
+            android:textAlignment="center"
+            android:textColor="@color/navy"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_createBudget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="70dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_gold"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Add Budget"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
 </FrameLayout>

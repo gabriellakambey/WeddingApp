@@ -29,8 +29,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SignInActivity extends AppCompatActivity {
-    private Button btn_login;
-    private TextView tv_signUp;
     private EditText et_email;
     private PasswordView et_password;
 
@@ -39,60 +37,60 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-
-        btn_login = findViewById(R.id.btn_login);
-        tv_signUp = findViewById(R.id.tv_signUp);
-        et_email = findViewById(R.id.et_email);
-        et_password = findViewById(R.id.et_password);
-
+        // BUTTON SIGN UP
+        TextView tv_signUp = findViewById(R.id.tv_signUp);
         tv_signUp.setOnClickListener(v-> {
             Intent regis = new Intent(getApplicationContext(), SignUpActivity.class);
             startActivity(regis);
         });
 
+        // BUTTON LOGIN
+        et_email = findViewById(R.id.et_email);
+        et_password = findViewById(R.id.et_password);
+
+        Button btn_login = findViewById(R.id.btn_login);
         btn_login.setOnClickListener(v-> {
-//            Intent login = new Intent(SignInActivity.this, HomeActivity.class);
-//            startActivity(login);
-//            finish();
+            onButtonLoginClicked();
+        });
+    }
 
-            String email_user = et_email.getText().toString();
-            String password_user = et_password.getText().toString();
+    private void onButtonLoginClicked() {
+        String email_user = et_email.getText().toString();
+        String password_user = et_password.getText().toString();
 
-            Call<LoginResponseModel> call = weddingService.login(email_user, password_user);
-            call.enqueue(new Callback<LoginResponseModel>() {
-                @Override
-                public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
-                    LoginResponseModel loginRespondModel = response.body();
-                    if (loginRespondModel.getStatus().equals("success")){
+        WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
+        Call<LoginResponseModel> call = weddingService.login(email_user, password_user);
+        call.enqueue(new Callback<LoginResponseModel>() {
+            @Override
+            public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
+                LoginResponseModel loginRespondModel = response.body();
+                if (loginRespondModel.getStatus().equals("success")){
 
-                        int activeUserId = loginRespondModel.getUserModel().getUserId();
-                        String activeUserCouple = loginRespondModel.getUserModel().getUserCouple();
-                        String activeCoupleDate = loginRespondModel.getUserModel().getTglPernikahan();
+                    int activeUserId = loginRespondModel.getUserModel().getUserId();
+                    String activeUserCouple = loginRespondModel.getUserModel().getUserCouple();
+                    String activeCoupleDate = loginRespondModel.getUserModel().getTglPernikahan();
 
-                        Prefs.putInt("user_id", activeUserId);
-                        Prefs.putString("couple_name", activeUserCouple);
-                        Prefs.putString("wedding_date", activeCoupleDate);
-                        
-                        Intent login = new Intent(SignInActivity.this, HomeActivity.class);
-                        startActivity(login);
-                        finish();
+                    Prefs.putInt("user_id", activeUserId);
+                    Prefs.putString("couple_name", activeUserCouple);
+                    Prefs.putString("wedding_date", activeCoupleDate);
 
-                        Toast.makeText(SignInActivity.this, "Success Login", Toast.LENGTH_SHORT).show();
+                    Intent login = new Intent(SignInActivity.this, HomeActivity.class);
+                    startActivity(login);
+                    finish();
 
-                    } else {
+                    Toast.makeText(SignInActivity.this, "Success Login", Toast.LENGTH_SHORT).show();
 
-                        Toast.makeText(SignInActivity.this, "Failed Login", Toast.LENGTH_SHORT).show();
-                    }
+                } else {
 
+                    Toast.makeText(SignInActivity.this, "Failed Login", Toast.LENGTH_SHORT).show();
                 }
 
-                @Override
-                public void onFailure(Call<LoginResponseModel> call, Throwable t) {
-                    Toast.makeText(SignInActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
-                }
-            });
+            }
 
+            @Override
+            public void onFailure(Call<LoginResponseModel> call, Throwable t) {
+                Toast.makeText(SignInActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }

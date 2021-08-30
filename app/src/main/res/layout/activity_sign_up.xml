@@ -10,213 +10,291 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp">
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="24dp"
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="200px"
             android:layout_height="200px"
-            android:layout_marginTop="50dp"
             android:layout_gravity="center"
-            android:src="@drawable/logo_wedding_vaganza"/>
+            android:layout_marginTop="50dp"
+            android:src="@drawable/logo_wedding_vaganza" />
 
         <TextView
-            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:text="Name"
+            android:textColor="@color/white"
             android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/validate_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:text="* Validate name"
+            android:textColor="#ED4337"
+            android:textSize="12sp"
             android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:visibility="gone"/>
 
         <EditText
             android:id="@+id/et_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:maxLines="1"
-            android:inputType="text"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/round_champagne"
             android:hint="Enter Your Name"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="15dp"
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
-            android:layout_marginTop="5dp"
-            android:padding="15dp"
-            android:background="@drawable/round_champagne"/>
+            android:textSize="14sp" />
 
         <TextView
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:text="Phone Number (WhatsApp)"
+            android:textColor="@color/white"
             android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/validate_phoneNum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:text="* Validate phone number"
+            android:textColor="#ED4337"
+            android:textSize="12sp"
             android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:visibility="gone"/>
 
         <EditText
             android:id="@+id/et_phoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:maxLines="1"
-            android:inputType="phone"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/round_champagne"
             android:hint="Enter Your Phone Number"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:padding="15dp"
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
-            android:layout_marginTop="5dp"
-            android:padding="15dp"
-            android:background="@drawable/round_champagne"/>
+            android:textSize="14sp" />
 
         <TextView
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:text="Email"
+            android:textColor="@color/white"
             android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/validate_emailRegis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:text="* Validate email"
+            android:textColor="#ED4337"
+            android:textSize="12sp"
             android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:visibility="gone"/>
 
         <EditText
             android:id="@+id/et_emailRegis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:maxLines="1"
-            android:inputType="textEmailAddress"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/round_champagne"
             android:hint="Enter Your Email Address"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:padding="15dp"
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
-            android:layout_marginTop="5dp"
-            android:padding="15dp"
-            android:background="@drawable/round_champagne"/>
+            android:textSize="14sp" />
 
         <TextView
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:text="Password"
+            android:textColor="@color/white"
             android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/validate_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:text="* Validate password"
+            android:textColor="#ED4337"
+            android:textSize="12sp"
             android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:visibility="gone"/>
 
         <com.xwray.passwordview.PasswordView
             android:id="@+id/et_passwordRegis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Your Password"
-            android:textColorHint="@color/hint"
-            android:textColor="@color/white"
-            android:inputType="textPassword"
-            android:textSize="14sp"
             android:layout_marginTop="5dp"
-            android:padding="15dp"
             android:background="@drawable/round_champagne"
-            app:useStrikeThrough="true"
-            android:drawableTint="@color/white"/>
+            android:drawableTint="@color/white"
+            android:hint="Enter Your Password"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/hint"
+            android:textSize="14sp"
+            app:useStrikeThrough="true" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp">
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="11sp"
-                android:text="Minimum 6 characters, consists of letters and numbers"
-                android:textColor="@color/white"/>
+                android:text="Minimum 8 characters"
+                android:textColor="@color/white"
+                android:textSize="11sp" />
 
         </LinearLayout>
 
         <TextView
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:text="Confirm Password"
+            android:textColor="@color/white"
             android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/validate_confirmPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:text="* Validate confirm password"
+            android:textColor="#ED4337"
+            android:textSize="12sp"
             android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:visibility="gone"/>
 
         <com.xwray.passwordview.PasswordView
             android:id="@+id/et_passwordConfirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Your Password"
-            android:textColorHint="@color/hint"
-            android:textColor="@color/white"
-            android:inputType="textPassword"
-            android:textSize="14sp"
             android:layout_marginTop="5dp"
-            android:padding="15dp"
             android:background="@drawable/round_champagne"
-            app:useStrikeThrough="true"
-            android:drawableTint="@color/white"/>
+            android:drawableTint="@color/white"
+            android:hint="Enter Your Password"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/hint"
+            android:textSize="14sp"
+            app:useStrikeThrough="true" />
 
         <TextView
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:text="Bride's &amp; Groom's Name"
+            android:textColor="@color/white"
             android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/validate_coupleName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:text="* Validate couple name"
+            android:textColor="#ED4337"
+            android:textSize="12sp"
             android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:visibility="gone"/>
 
         <EditText
             android:id="@+id/et_coupleName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:maxLines="1"
-            android:inputType="text"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/round_champagne"
             android:hint="Ex: Alex &amp; Kyle"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="15dp"
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
-            android:layout_marginTop="5dp"
-            android:padding="15dp"
-            android:background="@drawable/round_champagne"/>
+            android:textSize="14sp" />
 
         <TextView
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:text="The Wedding Date"
+            android:textColor="@color/white"
             android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/validate_wedDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:text="* Validate wedding date"
+            android:textColor="#ED4337"
+            android:textSize="12sp"
             android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:visibility="gone"/>
 
         <LinearLayout
+            android:id="@+id/ll_dateSignUp"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="5dp"
-            android:background="@drawable/round_champagne">
+            android:background="@drawable/round_champagne"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/textDateSignUp"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:textSize="13sp"
-                android:maxLines="1"
-                android:inputType="date"
-                android:textColor="@color/white"
-                android:hint="dd/mm/yyyy"
-                android:textColorHint="@color/hint"
-                android:padding="12dp"
                 android:layout_marginStart="5dp"
-                android:background="@drawable/transparent_background"/>
+                android:background="@drawable/transparent_background"
+                android:hint="dd/mm/yyyy"
+                android:inputType="date"
+                android:maxLines="1"
+                android:padding="12dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/hint"
+                android:textSize="13sp" />
 
             <RelativeLayout
                 android:layout_width="15dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
             <ImageView
                 android:id="@+id/datePickerSignUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_calendar_light"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:src="@drawable/ic_calendar_light" />
 
         </LinearLayout>
 
@@ -224,14 +302,14 @@
             android:id="@+id/btn_regis"
             android:layout_width="180dp"
             android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"
+            android:background="@drawable/button_champagne"
             android:text="Sign Up"
             android:textAllCaps="false"
-            android:textSize="18sp"
-            android:textStyle="bold"
             android:textColor="@color/navy"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/button_champagne"/>
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -242,22 +320,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="11sp"
                 android:text="Already have an account?"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:textSize="11sp" />
 
             <RelativeLayout
                 android:layout_width="5dp"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
             <TextView
                 android:id="@+id/tv_signIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="11sp"
                 android:text="Sign In"
-                android:textStyle="bold"
-                android:textColor="@color/champagne"/>
+                android:textColor="@color/champagne"
+                android:textSize="11sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 

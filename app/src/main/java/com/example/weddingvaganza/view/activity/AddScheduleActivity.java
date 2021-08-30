@@ -1,9 +1,11 @@
 package com.example.weddingvaganza.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,17 +32,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AddScheduleActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+
+    private final int currentUserId = Prefs.getInt("user_id", 0);
+
     private Spinner spinner;
-    private Button btnBack;
-    private LinearLayout datePicker;
-    private TextView textDate;
-    EditText etDate, etTitle, etNote;
-    private int currentUserId = Prefs.getInt("user_id", 0);
-    String status;
-    AddScheduleListener listener;
-    WeddingService weddingService;
+    TextView textDate;
     int monthDate;
     int yearDate;
+    EditText etTitle, etNote;
+    String status, date;
+    WeddingService weddingService;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -48,27 +49,39 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_schedule);
 
-        spinner = findViewById(R.id.spinner_addSchedule);
-        btnBack = findViewById(R.id.btn_BackAddSchedule);
-
-        // button back
+        // BUTTON BACK
+        Button btnBack = findViewById(R.id.btn_BackAddSchedule);
         btnBack.setOnClickListener(v -> {
             onBack();
         });
 
-        // date picker
+        // DATE PICKER
         textDate = findViewById(R.id.td_addSchedule);
-        datePicker = findViewById(R.id.dp_addSchedule);
+        LinearLayout datePicker = findViewById(R.id.dp_addSchedule);
         datePicker.setOnClickListener(v -> {
             showDatePickerDialog();
         });
 
-        // retrofit spinner
+        // RETROFIT SPINNER
+        spinner = findViewById(R.id.spinner_addSchedule);
+        getSpinnerData();
+
+        // BUTTON SAVE
+        etTitle = findViewById(R.id.et_titleAddSchedule);
+        etNote = findViewById(R.id.et_noteAddSchedule);
+
+        Button btnSave = findViewById(R.id.btn_saveAddSchedule);
+        btnSave.setOnClickListener(v -> {
+            onClickedBtnSave();
+        });
+
+    }
+
+    private void getSpinnerData() {
         List<CategoryModel> category = new ArrayList<>();
         ArrayAdapter<CategoryModel> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, category);
         weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
         Call<List<CategoryModel>> call = weddingService.getCategory(currentUserId);
-
         call.enqueue(new Callback<List<CategoryModel>>() {
             @Override
             public void onResponse(Call<List<CategoryModel>> call, Response<List<CategoryModel>> response) {
@@ -91,46 +104,41 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
 
             }
         });
+    }
 
-        // button save
-        etTitle = findViewById(R.id.et_titleAddSchedule);
-        etNote = findViewById(R.id.et_noteAddSchedule);
+    private void onClickedBtnSave() {
+        String date = textDate.getText().toString();
+        String title = etTitle.getText().toString();
+        String note = etNote.getText().toString();
 
-        Button btnSave = findViewById(R.id.btn_saveAddSchedule);
-        btnSave.setOnClickListener(v -> {
-            String date = textDate.getText().toString();
-            String title = etTitle.getText().toString();
-            String note = etNote.getText().toString();
+        // get selected item id
+        int selectedId = spinner.getSelectedItemPosition();
+        CategoryModel getItemId = (CategoryModel) spinner.getItemAtPosition(selectedId);
+        int categoryId = getItemId.getCategoryId();
 
-            // get selected item id
-            int selectedId = spinner.getSelectedItemPosition();
-            CategoryModel getItemId = (CategoryModel) spinner.getItemAtPosition(selectedId);
-            int categoryId = getItemId.getCategoryId();
+        status  = "unchecked";
+        weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
+        Call<AddScheduleResponse> responseCall = weddingService.addNewSchedule(date, title, categoryId, note, currentUserId, status, monthDate, yearDate);
+        responseCall.enqueue(new Callback<AddScheduleResponse>() {
+            @Override
+            public void onResponse(Call<AddScheduleResponse> call, Response<AddScheduleResponse> response) {
+                AddScheduleResponse addScheduleResponse = response.body();
+                if (addScheduleResponse.getStatus().equals("success")) {
+                    Toast.makeText(AddScheduleActivity.this, "Success add data", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent();
+                    setResult(RESULT_OK, intent);
+                    finish();
 
-            status  = "unchecked";
-            weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-            Call<AddScheduleResponse> responseCall = weddingService.addNewSchedule(date, title, categoryId, note, currentUserId, status, monthDate, yearDate);
-            responseCall.enqueue(new Callback<AddScheduleResponse>() {
-                @Override
-                public void onResponse(Call<AddScheduleResponse> call, Response<AddScheduleResponse> response) {
-                    AddScheduleResponse addScheduleResponse = response.body();
-                    if (addScheduleResponse.getStatus().equals("success")) {
-                        listener.onAddSchedule();
-                        Toast.makeText(AddScheduleActivity.this, "Success add data", Toast.LENGTH_SHORT).show();
-                        onBack();
-
-                    } else {
-                        Toast.makeText(AddScheduleActivity.this, "Failed add data", Toast.LENGTH_SHORT).show();
-                    }
+                } else {
+                    Toast.makeText(AddScheduleActivity.this, "Failed add data", Toast.LENGTH_SHORT).show();
                 }
+            }
 
-                @Override
-                public void onFailure(Call<AddScheduleResponse> call, Throwable t) {
-                    Toast.makeText(AddScheduleActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
-                }
-            });
+            @Override
+            public void onFailure(Call<AddScheduleResponse> call, Throwable t) {
+                Toast.makeText(AddScheduleActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+            }
         });
-
     }
 
     private void showDatePickerDialog() {
@@ -145,10 +153,9 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
     private void onBack() {
         int count = getSupportFragmentManager().getBackStackEntryCount();
 
-        if (count == 0){
+        if (count == 0) {
             super.onBackPressed();
-        }
-        else {
+        } else {
             getSupportFragmentManager().popBackStack();
         }
     }
@@ -158,15 +165,9 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
         month = month + 1;
         monthDate = month;
         yearDate = year;
-        String date = dayOfMonth + "/" + month + "/" + year;
+        date = dayOfMonth + "/" + month + "/" + year;
         textDate.setText(date);
+        textDate.setTextColor(ContextCompat.getColor(this, R.color.navy));
     }
 
-    public void setListener (AddScheduleListener listener) {
-        this.listener = listener;
-    }
-
-    public interface AddScheduleListener {
-        void onAddSchedule();
-    }
 }

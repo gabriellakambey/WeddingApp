@@ -47,6 +47,12 @@ public interface WeddingService {
                                       @Field("couple") String nama_pasangan_user, @Field("tanggal") String tgl_pernikahan,
                                       @Field("budget") int budget);
 
+    // USER RESPONSE
+    @GET("person/id/{id}")
+    Call<UserModel> getUser(@Path("id") int userId);
+
+
+
     // CATEGORY RESPONSE
     @GET("category/user/{userId}")
     Call<List<CategoryModel>> getCategory(@Path("userId") int currentUserId);
@@ -54,8 +60,9 @@ public interface WeddingService {
     @GET("/category/id/{id}")
     Call<List<CategoryModel>> getCategoryById (@Path("id") int categoryId);
 
+    @FormUrlEncoded
     @POST("categoryadd")
-    Call<AddCategoryResponse> addCategory(@Query("title") String title, @Query("user") int currentUserId);
+    Call<AddCategoryResponse> addCategory(@Field("title") String title, @Field("user") int currentUserId);
 
 
     // SCHEDULE RESPONSE
@@ -90,11 +97,12 @@ public interface WeddingService {
     @GET("rundownevent/user/{userId}")
     Call<List<RundownModel>> getRundown(@Path("userId") int currentUserId);
 
-    @POST("rundownevent")
-    Call<AddRundownResponse> addRundown(@Query("time") String time, @Query("title") String title,
-                                        @Query("category") int categoryId, @Query("note") String note,
-                                        @Query("pj") String pj, @Query("user") int currentUserId,
-                                        @Query("status") String status);
+    @FormUrlEncoded
+    @POST("rundownadd")
+    Call<AddRundownResponse> addRundown(@Field("time") String time, @Field("title") String title,
+                                        @Field("category") int categoryId, @Query("note") String note,
+                                        @Field("pj") String pj, @Field("user") int user,
+                                        @Field("status") String status);
 
     @GET("rundowncategory/{userId}")
     Call<List<CategoryRundownModel>> getRundownCategory(@Path("userId") int userId);

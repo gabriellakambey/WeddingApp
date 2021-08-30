@@ -34,7 +34,7 @@ public class BudgetActivity extends AppCompatActivity {
         viewPager2.setAdapter(budgetAdapter);
 
         tabLayout.addTab(tabLayout.newTab().setText("Budget List"));
-        tabLayout.addTab(tabLayout.newTab().setText("Payment"));
+        tabLayout.addTab(tabLayout.newTab().setText("Paid"));
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

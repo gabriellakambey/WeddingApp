@@ -50,16 +50,15 @@ public class GuestsPagerAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
 
-        switch (position)
-        {
-            case 1 :
+        switch (position) {
+            case 1:
                 if (invitationModels.size() != 0) {
                     return new InvitationFragment();
                 } else {
                     return new InvitationFirstFragment();
                 }
 
-            case 2 :
+            case 2:
                 return new GuestsBookFragment();
         }
         return new GuestListFragment();

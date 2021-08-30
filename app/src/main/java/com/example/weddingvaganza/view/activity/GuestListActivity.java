@@ -108,8 +108,8 @@ public class GuestListActivity extends AppCompatActivity implements ListGuestAda
             public void onResponse(Call<List<GuestModel>> call, Response<List<GuestModel>> response) {
                 List<GuestModel> guests = response.body();
                 adapter = new ListGuestAdapter(GuestListActivity.this, guests);
-                recyclerView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
+                recyclerView.setAdapter(adapter);
             }
 
             @Override

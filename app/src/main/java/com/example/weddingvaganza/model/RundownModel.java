@@ -7,7 +7,6 @@ public class RundownModel {
     private String time;
     @SerializedName("titleRundown")
     private String rundownTitle;
-    @SerializedName("category")
     private int categoryId;
     @SerializedName("noteRundown")
     private String rundownNote;

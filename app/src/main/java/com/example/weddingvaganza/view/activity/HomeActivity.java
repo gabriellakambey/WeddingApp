@@ -16,6 +16,7 @@ import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.ScheduleModel;
 import com.example.weddingvaganza.view.fragment.FinalHomeFragment;
 import com.example.weddingvaganza.view.fragment.FirstHomeFragment;
+import com.example.weddingvaganza.view.fragment.FirstTodoListFragment;
 import com.example.weddingvaganza.view.fragment.ProfileFragment;
 import com.example.weddingvaganza.view.fragment.TodoListFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -33,24 +34,28 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     int userId = Prefs.getInt("user_id", 0);
+    WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        //bottom nav
+        // BOTTOM NAVIGATION MENU
         menu_bawah = findViewById(R.id.menu_bawah);
         menu_bawah.setOnNavigationItemSelectedListener(this);
         
-        // home fragment as main fragment
-        WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
+        // SET HOME AS MAIN FRAGMENT
+        setHomeAsMain();
+    }
+
+    private void setHomeAsMain() {
         Call<List<ScheduleModel>> call = weddingService.getSchedule(userId);
         call.enqueue(new Callback<List<ScheduleModel>>() {
             @Override
             public void onResponse(Call<List<ScheduleModel>> call, Response<List<ScheduleModel>> response) {
                 List<ScheduleModel> scheduleModels = response.body();
-                if (scheduleModels.size()==0) {
+                if (scheduleModels.size() == 0) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new FirstHomeFragment()).commit();
                 } else {
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new FinalHomeFragment()).commit();
@@ -62,6 +67,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 Toast.makeText(HomeActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     Fragment fragment = null;
@@ -70,7 +76,6 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home:
-                WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
                 Call<List<ScheduleModel>> call = weddingService.getSchedule(userId);
                 call.enqueue(new Callback<List<ScheduleModel>>() {
                     @Override
@@ -78,17 +83,13 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                         List<ScheduleModel> scheduleModels = response.body();
                         if (scheduleModels.size()==0) {
                             fragment = new FirstHomeFragment();
-                            fragmentManager = getSupportFragmentManager();
-                            fragmentTransaction = fragmentManager.beginTransaction();
-                            fragmentTransaction.replace(R.id.frame_layout, fragment);
-                            fragmentTransaction.commit();
                         } else {
                             fragment = new FinalHomeFragment();
-                            fragmentManager = getSupportFragmentManager();
-                            fragmentTransaction = fragmentManager.beginTransaction();
-                            fragmentTransaction.replace(R.id.frame_layout, fragment);
-                            fragmentTransaction.commit();
                         }
+                        fragmentManager = getSupportFragmentManager();
+                        fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.frame_layout, fragment);
+                        fragmentTransaction.commit();
                     }
 
                     @Override
@@ -101,11 +102,28 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 
 
             case R.id.todoList:
-                fragment = new TodoListFragment();
-                fragmentManager = getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frame_layout, fragment);
-                fragmentTransaction.commit();
+                Call<List<ScheduleModel>> call1 = weddingService.getSchedule(userId);
+                call1.enqueue(new Callback<List<ScheduleModel>>() {
+                    @Override
+                    public void onResponse(Call<List<ScheduleModel>> call, Response<List<ScheduleModel>> response) {
+                        List<ScheduleModel> scheduleModels = response.body();
+                        if (scheduleModels.size()==0) {
+                            fragment = new FirstTodoListFragment();
+                        } else {
+                            fragment = new TodoListFragment();
+                        }
+                        fragmentManager = getSupportFragmentManager();
+                        fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.frame_layout, fragment);
+                        fragmentTransaction.commit();
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<ScheduleModel>> call, Throwable t) {
+
+                    }
+                });
                 break;
 
 

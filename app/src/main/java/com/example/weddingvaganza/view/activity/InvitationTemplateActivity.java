@@ -5,6 +5,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
+import com.example.weddingvaganza.model.CategoryModel;
 import com.example.weddingvaganza.model.InvitationModel;
 import com.example.weddingvaganza.view.dialog.AddCategoryDialog;
 import com.example.weddingvaganza.view.dialog.SuccessInvitationDialog;
@@ -35,14 +37,12 @@ public class InvitationTemplateActivity extends AppCompatActivity {
 
     CardView cvTemplate1, cvTemplate2;
     Button btnComplete;
-    List<InvitationModel> invitationModels;
-    InvitationModel getInvitationData, updateInvitationModel;
+    InvitationModel updateInvitationModel;
 
     // var for invitation data
-    int invitationId, categoryId, invId;
+    int invitationId, categoryId;
     String groomName, groomFather, groomMother, brideName, brideFather, brideMother, date, time, location, note, template;
     double longitude, latitude;
-    String coba;
 
     // api needed
     WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
@@ -53,7 +53,7 @@ public class InvitationTemplateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invitation_template);
 
-        getInvitationId();
+        getDataInvitation();
 
         // BUTTON BACK
         Button btnBack = findViewById(R.id.btn_backInvitationTemplate);
@@ -71,7 +71,6 @@ public class InvitationTemplateActivity extends AppCompatActivity {
         btnComplete = findViewById(R.id.btn_completeInvitation);
         btnComplete.setOnClickListener(v -> {
             updateDataInvitation();
-
         });
     }
 
@@ -80,10 +79,7 @@ public class InvitationTemplateActivity extends AppCompatActivity {
         call.enqueue(new Callback<InvitationModel>() {
             @Override
             public void onResponse(Call<InvitationModel> call, Response<InvitationModel> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(InvitationTemplateActivity.this, "invitation id; " + invId + " lokasi: "+coba, Toast.LENGTH_SHORT).show();
-//                    onBack();
-                }
+                onBack();
             }
 
             @Override
@@ -94,7 +90,6 @@ public class InvitationTemplateActivity extends AppCompatActivity {
     }
 
     private void updateDataInvitation() {
-        getDataInvitation();
 
         updateInvitationModel = new InvitationModel(invitationId, groomName, groomFather, groomMother,
                 brideName, brideFather, brideMother, categoryId, date, time, location, longitude, latitude,
@@ -104,7 +99,7 @@ public class InvitationTemplateActivity extends AppCompatActivity {
         call.enqueue(new Callback<InvitationModel>() {
             @Override
             public void onResponse(Call<InvitationModel> call, Response<InvitationModel> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     openDialog();
                 } else {
                     Toast.makeText(InvitationTemplateActivity.this, "Failed complete your invitation", Toast.LENGTH_SHORT).show();
@@ -119,57 +114,30 @@ public class InvitationTemplateActivity extends AppCompatActivity {
     }
 
     private void getDataInvitation() {
-//        getInvitationId();
-
-        getInvitationData = getIntent().getParcelableExtra("invitation model");
-
-        invitationModels = new ArrayList<>();
-        invitationModels.add(getInvitationData);
-        for (InvitationModel model : invitationModels) {
-            categoryId = model.getIdCategory();
-        }
-
-        groomName = getInvitationData.getGroomsName();
-        groomFather = getInvitationData.getGroomsFather();
-        groomMother = getInvitationData.getGroomsMother();
-        brideName = getInvitationData.getBridesName();
-        brideFather = getInvitationData.getBridesFather();
-        brideMother = getInvitationData.getBridesMother();
-        date = getInvitationData.getDateInvitation();
-        time = getInvitationData.getTimeInvitation();
-        location = getInvitationData.getTitleLocation();
-        longitude = getInvitationData.getLongitude();
-        latitude = getInvitationData.getLatitude();
-        note = getInvitationData.getNoteInvitation();
-        template = "Default Template";
-
-    }
-
-    private void getInvitationId() {
         Call<List<InvitationModel>> call = weddingService.getInvitation(currentUserId);
         call.enqueue(new Callback<List<InvitationModel>>() {
             @Override
             public void onResponse(Call<List<InvitationModel>> call, Response<List<InvitationModel>> response) {
                 List<InvitationModel> modelList = response.body();
                 InvitationModel data = modelList.get(0);
-                List<InvitationModel> modelList1 = new ArrayList<>();
-                modelList1.add(data);
-                for (InvitationModel model : modelList1) {
-                    invId = model.getIdInvitation();
-                    coba = model.getTitleLocation();
-                }
 
 
+                invitationId = data.getIdInvitation();
+                groomName = data.getGroomsName();
+                groomFather = data.getGroomsFather();
+                groomMother = data.getGroomsMother();
+                brideName = data.getBridesName();
+                brideFather = data.getBridesFather();
+                brideMother = data.getBridesMother();
+                categoryId = getIntent().getIntExtra("category id", 0);
+                date = data.getDateInvitation();
+                time = data.getTimeInvitation();
+                location = data.getTitleLocation();
+                longitude = data.getLongitude();
+                latitude = data.getLatitude();
+                note = data.getNoteInvitation();
+                template = "Default Template";
 
-//                if (response.isSuccessful()) {
-//
-//
-////                    for (InvitationModel model : modelList) {
-//////                        invitationId = model.getIdInvitation();
-////                    }
-//                } else {
-//                    Toast.makeText(InvitationTemplateActivity.this, "can't get invitation id", Toast.LENGTH_SHORT).show();
-//                }
             }
 
             @Override
@@ -178,6 +146,7 @@ public class InvitationTemplateActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     private void openDialog() {

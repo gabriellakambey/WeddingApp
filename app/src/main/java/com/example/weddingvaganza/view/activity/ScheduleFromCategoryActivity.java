@@ -20,6 +20,7 @@ import com.example.weddingvaganza.model.CategoryModel;
 import com.example.weddingvaganza.model.ScheduleModel;
 import com.example.weddingvaganza.model.ScheduleUpdateModel;
 import com.example.weddingvaganza.model.schedulebyid.ScheduleByIdModel;
+import com.pixplicity.easyprefs.library.Prefs;
 import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import java.util.Calendar;
@@ -37,10 +38,12 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity implements L
     RecyclerView recyclerView;
     CategoryModel categoryModel;
     ListScheduleAdapter adapter;
-    int currentCategoryId;
+    int currentCategoryId, getSelectedMonth, getSelectedYear;
     String currentCategoryTitle;
     ScheduleModel scheduleById;
     ScheduleUpdateModel scheduleUpdateModel;
+
+    WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,15 +59,21 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity implements L
         // BUTTON ADD SCHEDULE
         btnAdd = findViewById(R.id.btn_addSchdFrmCat);
         btnAdd.setOnClickListener(v -> {
-            AddScheduleInCategoryActivity activity = new AddScheduleInCategoryActivity();
-            activity.setListenerCallback(this::onAddScheduleInCategory);
 
             Intent intent = new Intent(this, AddScheduleInCategoryActivity.class);
-            Bundle extras = new Bundle();
-            extras.putInt("category id", currentCategoryId);
-            extras.putString("category title", currentCategoryTitle);
-            intent.putExtras(extras);
-            startActivity(intent);
+            intent.putExtra("category id", currentCategoryId);
+            intent.putExtra("category title", currentCategoryTitle);
+            startActivityForResult(intent, 1);
+
+//            AddScheduleInCategoryActivity activity = new AddScheduleInCategoryActivity();
+//            activity.setListenerCallback(this::onAddScheduleInCategory);
+//
+//            Intent intent = new Intent(this, AddScheduleInCategoryActivity.class);
+//            Bundle extras = new Bundle();
+//            extras.putInt("category id", currentCategoryId);
+//            extras.putString("category title", currentCategoryTitle);
+//            intent.putExtras(extras);
+//            startActivity(intent);
         });
 
         // SET TOOLBAR TITLE
@@ -99,6 +108,9 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity implements L
                         @Override
                         public void onDateSet(int selectedMonth, int selectedYear) {
                             selectedMonth = selectedMonth + 1;
+                            getSelectedMonth = selectedMonth;
+                            getSelectedYear = selectedYear;
+
                             String selected = makeMonthYearString(selectedMonth, selectedYear);
                             monthYear.setText(selected);
                         }
@@ -121,10 +133,30 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity implements L
 
         getSchedule();
 
+
+    }
+
+    private void showScheduleByMonthYear() {
+        Call<List<ScheduleModel>> call = weddingService.getScheduleMonthYear(getSelectedMonth, getSelectedYear, currentCategoryId);
+        call.enqueue(new Callback<List<ScheduleModel>>() {
+            @Override
+            public void onResponse(Call<List<ScheduleModel>> call, Response<List<ScheduleModel>> response) {
+                if (response.isSuccessful()) {
+                    List<ScheduleModel> modelList = response.body();
+                    adapter = new ListScheduleAdapter(modelList);
+                    adapter.setListener(ScheduleFromCategoryActivity.this::onChecked);
+                    recyclerView.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ScheduleModel>> call, Throwable t) {
+
+            }
+        });
     }
 
     private void getSchedule() {
-        WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
         Call<List<ScheduleModel>> call = weddingService.getScheduleByCategory(currentCategoryId);
         call.enqueue(new Callback<List<ScheduleModel>>() {
             @Override
@@ -146,8 +178,6 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity implements L
     }
 
     private void getScheduleById(int scheduleId, Boolean isChecked) {
-
-        WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
         Call<ScheduleByIdModel> call1 = weddingService.getScheduleById(scheduleId);
         call1.enqueue(new Callback<ScheduleByIdModel>() {
             @Override
@@ -166,7 +196,6 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity implements L
     }
 
     private void updateStatus(Integer scheduleId) {
-        WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
         Call<ScheduleModel> call = weddingService.updateSchedule(scheduleId, scheduleUpdateModel);
         call.enqueue(new Callback<ScheduleModel>() {
             @Override

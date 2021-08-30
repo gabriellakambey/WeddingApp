@@ -82,11 +82,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         // BUTTON SET LOCATION
         Button btnGetLocation = findViewById(R.id.btn_getLocation);
         btnGetLocation.setOnClickListener(v -> {
-            Intent intent = new Intent(MapsActivity.this, AddInvitationActivity.class);
+            Intent intent = new Intent();
             intent.putExtra("title location", titleLoc);
             intent.putExtra("latitude location", getLatitudeLoc);
             intent.putExtra("longitude location", getLongitudeLoc);
-            startActivity(intent);
+            setResult(RESULT_OK, intent);
+            finish();
         });
 
         getLocationPermission();

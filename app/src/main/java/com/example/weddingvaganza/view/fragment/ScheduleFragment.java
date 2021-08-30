@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,16 +45,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
 
 
-public class ScheduleFragment extends DialogFragment implements AddScheduleActivity.AddScheduleListener {
+public class ScheduleFragment extends Fragment {
 
     private TextView monthSchedule;
     private ImageView calendarSchedule;
-    private DatePickerDialog.OnDateSetListener dateSetListener;
     RecyclerView recyclerView;
     CategoryScheduleAdapter adapter;
+    int currentUserId = Prefs.getInt("user_id", 0);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,21 +64,20 @@ public class ScheduleFragment extends DialogFragment implements AddScheduleActiv
         View view = inflater.inflate(R.layout.fragment_schedule, container, false);
 
         // BUTTON ADD SCHEDULE
-        Button btn_addSchedule = view.findViewById(R.id.btn_addSchedule);
-        btn_addSchedule.setOnClickListener(v -> {
-            AddScheduleActivity addScheduleActivity = new AddScheduleActivity();
-            addScheduleActivity.setListener(this::onAddSchedule);
-
-            Intent intent = new Intent(getActivity(), addScheduleActivity.getClass());
-            startActivity(intent);
+        Button btnAddSchedule = view.findViewById(R.id.btn_addSchedule);
+        btnAddSchedule.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), AddScheduleActivity.class);
+            startActivityForResult(intent, 1);
         });
 
         // SET CURRENT MONTH YEAR
         monthSchedule = view.findViewById(R.id.tv_dateSchedule);
-        Calendar currentMonthYear = Calendar.getInstance();
-        int currentMonth = currentMonthYear.get(Calendar.MONTH);
+        Calendar currentDate = Calendar.getInstance();
+
+        int currentMonth = currentDate.get(Calendar.MONTH);
         currentMonth = currentMonth + 1;
-        int currentYear = currentMonthYear.get(Calendar.YEAR);
+
+        int currentYear = currentDate.get(Calendar.YEAR);
         monthSchedule.setText(makeMonthYearString(currentMonth, currentYear));
 
         // OPEN MONTH YEAR PICKER DIALOG
@@ -90,14 +91,12 @@ public class ScheduleFragment extends DialogFragment implements AddScheduleActiv
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        getScheduleInRundown();
+        getScheduleInCategory();
 
         return view;
     }
 
-    private void getScheduleInRundown() {
-        int currentUserId = Prefs.getInt("user_id", 0);
-
+    private void getScheduleInCategory() {
         WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
         Call<List<CategoryScheduleModel>> call = weddingService.getScheduleCategory(currentUserId);
         call.enqueue(new Callback<List<CategoryScheduleModel>>() {
@@ -144,12 +143,12 @@ public class ScheduleFragment extends DialogFragment implements AddScheduleActiv
     }
 
     private String makeMonthYearString(int selectedMonth, int selectedYear) {
-        return getMonthFormat(selectedMonth) + " " + selectedYear;
+        return getMonthYearString(selectedMonth) + " " + selectedYear;
     }
 
-    private String getMonthFormat(int month) {
+    private String getMonthYearString(int month) {
         if (month == 1)
-            return "January";
+        return "January";
         if (month == 2)
             return "February";
         if (month == 3)
@@ -177,7 +176,12 @@ public class ScheduleFragment extends DialogFragment implements AddScheduleActiv
     }
 
     @Override
-    public void onAddSchedule() {
-        getScheduleInRundown();
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                getScheduleInCategory();
+            }
+        }
     }
 }

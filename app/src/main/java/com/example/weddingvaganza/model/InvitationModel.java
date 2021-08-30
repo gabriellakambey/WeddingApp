@@ -7,34 +7,50 @@ import com.google.gson.annotations.SerializedName;
 
 public class InvitationModel implements Parcelable {
 
+    @SerializedName("formInvitationId")
     private int idInvitation;
-    @SerializedName("grooms_name")
+
     private String groomsName;
-    @SerializedName("grooms_father_name")
+
+    @SerializedName("groomsFatherName")
     private String groomsFather;
-    @SerializedName("grooms_mother_name")
+
+    @SerializedName("groomsMotherName")
     private String groomsMother;
-    @SerializedName("brides_name")
+
     private String bridesName;
-    @SerializedName("brides_father_name")
+
+    @SerializedName("bridesFatherName")
     private String bridesFather;
-    @SerializedName("brides_mother_name")
+
+    @SerializedName("bridesMotherName")
     private String bridesMother;
-    @SerializedName("id_category")
+
+    @SerializedName("categoryId")
     private int idCategory;
-    @SerializedName("date_form_invitation")
+
+    @SerializedName("dateFormInvitation")
     private String dateInvitation;
-    @SerializedName("time_form_invitation")
+
+    @SerializedName("timeFormInvitation")
     private String timeInvitation;
-    @SerializedName("title_location")
+
+    @SerializedName("titleLocation")
     private String titleLocation;
+
     private double longitude;
+
     private double latitude;
-    @SerializedName("note_form_invitation")
+
+    @SerializedName("noteFormInvitation")
     private String noteInvitation;
-	@SerializedName("id_user")
+
+	@SerializedName("userId")
 	private int userId;
+
 	private String template;
+
+	private CategoryModel categoryModel;
 
     public InvitationModel(int idInvitation, String groomsName, String groomsFather, String groomsMother, String bridesName, String bridesFather, String bridesMother, int idCategory, String dateInvitation, String timeInvitation, String titleLocation, double longitude, double latitude, String noteInvitation, int userId, String template) {
         this.idInvitation = idInvitation;
@@ -212,6 +228,14 @@ public class InvitationModel implements Parcelable {
 
     public void setTemplate(String template) {
         this.template = template;
+    }
+
+    public CategoryModel getCategoryModel() {
+        return categoryModel;
+    }
+
+    public void setCategoryModel(CategoryModel categoryModel) {
+        this.categoryModel = categoryModel;
     }
 
     @Override

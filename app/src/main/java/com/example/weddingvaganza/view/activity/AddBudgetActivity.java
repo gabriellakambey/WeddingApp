@@ -21,7 +21,6 @@ import retrofit2.Response;
 
 public class AddBudgetActivity extends AppCompatActivity {
 
-    RefreshBudgetListener listener;
     int userId = Prefs.getInt("user_id", 0);
 
     @Override
@@ -53,9 +52,10 @@ public class AddBudgetActivity extends AppCompatActivity {
                 public void onResponse(Call<AddBudgetResponse> call, Response<AddBudgetResponse> response) {
                     AddBudgetResponse addBudgetResponse = response.body();
                     if (addBudgetResponse.getStatus().equals("success")) {
-                        listener.refreshBudget();
                         Toast.makeText(AddBudgetActivity.this, "Success add budget", Toast.LENGTH_SHORT).show();
-                        onBack();
+                        Intent intent = new Intent();
+                        setResult(RESULT_OK, intent);
+                        finish();
                     }
                 }
 
@@ -79,11 +79,4 @@ public class AddBudgetActivity extends AppCompatActivity {
         }
     }
 
-    public void setListener (RefreshBudgetListener listener) {
-        this.listener = listener;
-    }
-
-    public interface RefreshBudgetListener {
-        public void refreshBudget();
-    }
 }
