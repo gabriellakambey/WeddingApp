@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,10 +31,14 @@ import android.widget.Toast;
 
 import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.adapter.CategoryScheduleAdapter;
+import com.example.weddingvaganza.adapter.ListScheduleAdapter;
 import com.example.weddingvaganza.api.WeddingApi;
 import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.CategoryModel;
 import com.example.weddingvaganza.model.CategoryScheduleModel;
+import com.example.weddingvaganza.model.ScheduleModel;
+import com.example.weddingvaganza.model.ScheduleUpdateModel;
+import com.example.weddingvaganza.model.schedulebyid.ScheduleByIdModel;
 import com.example.weddingvaganza.view.activity.AddScheduleActivity;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.whiteelephant.monthpicker.MonthPickerDialog;
@@ -51,11 +56,16 @@ import static android.content.ContentValues.TAG;
 
 public class ScheduleFragment extends Fragment {
 
-    private TextView monthSchedule;
+    private TextView monthSchedule, tvNoData;
     private ImageView calendarSchedule;
     RecyclerView recyclerView;
     CategoryScheduleAdapter adapter;
+    ScheduleUpdateModel scheduleUpdateModel;
+    int getSelectedMonth, getSelectedYear;
+    FrameLayout frameLayout;
+
     int currentUserId = Prefs.getInt("user_id", 0);
+    WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,6 +91,8 @@ public class ScheduleFragment extends Fragment {
         monthSchedule.setText(makeMonthYearString(currentMonth, currentYear));
 
         // OPEN MONTH YEAR PICKER DIALOG
+        frameLayout = view.findViewById(R.id.fl_categorySchedule);
+        tvNoData = view.findViewById(R.id.tv_noDataScheduleCategory);
         calendarSchedule = view.findViewById(R.id.calendarSchedule);
         calendarSchedule.setOnClickListener(v -> {
             monthYearPickerDialog();
@@ -97,7 +109,6 @@ public class ScheduleFragment extends Fragment {
     }
 
     private void getScheduleInCategory() {
-        WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
         Call<List<CategoryScheduleModel>> call = weddingService.getScheduleCategory(currentUserId);
         call.enqueue(new Callback<List<CategoryScheduleModel>>() {
             @Override
@@ -128,8 +139,12 @@ public class ScheduleFragment extends Fragment {
                     @Override
                     public void onDateSet(int selectedMonth, int selectedYear) {
                         selectedMonth = selectedMonth + 1;
+                        getSelectedMonth = selectedMonth;
+                        getSelectedYear = selectedYear;
+
                         String selected = makeMonthYearString(selectedMonth, selectedYear);
                         monthSchedule.setText(selected);
+                        showScheduleByMonthYear();
                     }
                 }, year, month);
 
@@ -140,6 +155,32 @@ public class ScheduleFragment extends Fragment {
                 .setTitle("Select Month and Year")
                 .build()
                 .show();
+    }
+
+    private void showScheduleByMonthYear() {
+        Call<List<CategoryScheduleModel>> call = weddingService.getScheduleCategoryMonthYear(currentUserId, getSelectedMonth, getSelectedYear);
+        call.enqueue(new Callback<List<CategoryScheduleModel>>() {
+            @Override
+            public void onResponse(Call<List<CategoryScheduleModel>> call, Response<List<CategoryScheduleModel>> response) {
+                if (response.isSuccessful()) {
+                    List<CategoryScheduleModel> modelList = response.body();
+                    adapter = new CategoryScheduleAdapter(modelList);
+                    recyclerView.setAdapter(adapter);
+                    if (modelList.size() == 0) {
+                        tvNoData.setVisibility(View.VISIBLE);
+                        frameLayout.setVisibility(View.GONE);
+                    } else {
+                        frameLayout.setVisibility(View.VISIBLE);
+                        tvNoData.setVisibility(View.GONE);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<CategoryScheduleModel>> call, Throwable t) {
+
+            }
+        });
     }
 
     private String makeMonthYearString(int selectedMonth, int selectedYear) {
@@ -184,4 +225,6 @@ public class ScheduleFragment extends Fragment {
             }
         }
     }
+
+
 }

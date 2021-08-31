@@ -8,9 +8,9 @@
     tools:context=".view.activity.SplashScreen">
 
     <ImageView
-        android:layout_width="250px"
-        android:layout_height="250px"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_centerInParent="true"
-        android:src="@drawable/logo_wedding_vaganza"/>
+        android:src="@mipmap/ic_launcher"/>
 
 </RelativeLayout>

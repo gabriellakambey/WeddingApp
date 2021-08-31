@@ -30,8 +30,7 @@ public class AddScheduleInCategoryActivity extends AppCompatActivity implements 
     LinearLayout datePicker;
     String status, categoryTitle;
     int categoryId;
-    private int currentUserId = Prefs.getInt("user_id", 0);
-    ScheduleCategoryCallBack listener;
+    int currentUserId = Prefs.getInt("user_id", 0);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +51,8 @@ public class AddScheduleInCategoryActivity extends AppCompatActivity implements 
         });
 
         // GET CURRENT CATEGORY ID & TITLE
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-        categoryId = extras.getInt("category id");
-        categoryTitle = extras.getString("category title");
+        categoryId = getIntent().getIntExtra("category id", 0);
+        categoryTitle = getIntent().getStringExtra("category title");
 
         // SET DEFAULT CATEGORY EVENT
         TextView currentCategoryTitle = findViewById(R.id.tv_currentCategory);
@@ -79,9 +76,10 @@ public class AddScheduleInCategoryActivity extends AppCompatActivity implements 
                 public void onResponse(Call<AddScheduleResponse> call, Response<AddScheduleResponse> response) {
                     AddScheduleResponse addScheduleResponse = response.body();
                     if (addScheduleResponse.getStatus().equals("success")) {
-                        listener.onAddScheduleInCategory();
                         Toast.makeText(AddScheduleInCategoryActivity.this, "Success add schedule", Toast.LENGTH_SHORT).show();
-                        onBackPressed();
+                        Intent i = new Intent();
+                        setResult(RESULT_OK, i);
+                        finish();
                     } else {
                         Toast.makeText(AddScheduleInCategoryActivity.this, "Failed add data", Toast.LENGTH_SHORT).show();
                     }
@@ -125,11 +123,4 @@ public class AddScheduleInCategoryActivity extends AppCompatActivity implements 
         textDate.setText(date);
     }
 
-    public void setListenerCallback (ScheduleCategoryCallBack listener) {
-        this.listener = listener;
-    }
-
-    public interface ScheduleCategoryCallBack {
-        public void onAddScheduleInCategory();
-    }
 }

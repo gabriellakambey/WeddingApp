@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -26,7 +27,9 @@ public class GuestsActivity extends AppCompatActivity {
 
         Button btnBack = findViewById(R.id.btnBackGuests);
         btnBack.setOnClickListener(v -> {
-            onBack();
+            Intent intent = new Intent();
+            setResult(RESULT_OK, intent);
+            finish();
         });
 
         FragmentManager fm = getSupportFragmentManager();
@@ -61,17 +64,6 @@ public class GuestsActivity extends AppCompatActivity {
             }
         });
         
-    }
-
-    private void onBack() {
-        int count = getSupportFragmentManager().getBackStackEntryCount();
-
-        if (count == 0){
-            super.onBackPressed();
-        }
-        else {
-            getSupportFragmentManager().popBackStack();
-        }
     }
 
 

@@ -34,7 +34,7 @@ import retrofit2.Callback;
 public class ListGuestAdapter extends RecyclerView.Adapter<ListGuestAdapter.ViewHolder> {
 
     private Context context;
-    private List<GuestModel> guestModels;
+    List<GuestModel> guestModels;
     ClickedItem clickedItem;
 
     public ListGuestAdapter(Context context, List<GuestModel> guestModels) {

@@ -41,86 +41,128 @@
                     android:textColor="@color/white"
                     android:textSize="32sp" />
 
-                <cn.iwgang.countdownview.CountdownView
-                    android:id="@+id/cd_finalHome"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:isHideTimeBackground="false"
-                    app:isShowDay="true"
-                    app:isShowHour="true"
-                    app:isShowMinute="true"
-                    app:isShowSecond="true"
-                    app:isTimeTextBold="true"
-                    app:timeBgColor="@color/white"
-                    app:timeBgRadius="4dp"
-                    app:timeTextColor="@color/navy"
-                    app:timeTextSize="20dp" />
-
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                    <TextView
-                        android:layout_width="27dp"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:text="days"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="9sp" />
-
-                    <RelativeLayout
-                        android:layout_width="10dp"
-                        android:layout_height="match_parent" />
-
-                    <TextView
-                        android:layout_width="27dp"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:text="hours"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="9sp" />
-
-                    <RelativeLayout
-                        android:layout_width="10dp"
-                        android:layout_height="match_parent" />
-
-                    <TextView
-                        android:layout_width="27dp"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:text="mins"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="9sp" />
-
-                    <RelativeLayout
-                        android:layout_width="10dp"
-                        android:layout_height="match_parent" />
-
-                    <TextView
-                        android:layout_width="27dp"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:text="secs"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="9sp" />
-
-                </LinearLayout>
-
-                <TextView
+                    android:id="@+id/ll_afterCountDown"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/snell_roundhand"
-                    android:text="Until The Wedding"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tv_weddingDateHome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center"
+                        android:text="30 Oktober 2021"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/snell_roundhand"
+                        android:gravity="center"
+                        android:text="Today is your wedding day..."
+                        android:textColor="@color/white"
+                        android:textSize="25sp" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_onCountDown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <cn.iwgang.countdownview.CountdownView
+                        android:id="@+id/cd_finalHome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:isHideTimeBackground="false"
+                        app:isShowDay="true"
+                        app:isShowHour="true"
+                        app:isShowMinute="true"
+                        app:isShowSecond="true"
+                        app:isTimeTextBold="true"
+                        app:timeBgColor="@color/white"
+                        app:timeBgRadius="4dp"
+                        app:timeTextColor="@color/navy"
+                        app:timeTextSize="20dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:layout_width="27dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="days"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="9sp" />
+
+                        <RelativeLayout
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:layout_width="27dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="hours"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="9sp" />
+
+                        <RelativeLayout
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:layout_width="27dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="mins"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="9sp" />
+
+                        <RelativeLayout
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:layout_width="27dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="secs"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="9sp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/snell_roundhand"
+                        android:text="Until The Wedding"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
 

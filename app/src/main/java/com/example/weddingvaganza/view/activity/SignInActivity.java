@@ -1,10 +1,13 @@
 package com.example.weddingvaganza.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -31,6 +34,7 @@ import retrofit2.Response;
 public class SignInActivity extends AppCompatActivity {
     private EditText et_email;
     private PasswordView et_password;
+    String email_user, password_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,14 +54,21 @@ public class SignInActivity extends AppCompatActivity {
 
         Button btn_login = findViewById(R.id.btn_login);
         btn_login.setOnClickListener(v-> {
-            onButtonLoginClicked();
+            email_user = et_email.getText().toString();
+            password_user = et_password.getText().toString();
+
+            if (email_user.isEmpty() && password_user.isEmpty()) {
+                Toast.makeText(this, "Field can not be empty", Toast.LENGTH_SHORT).show();
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(email_user).matches()) {
+                Toast.makeText(this, "Enter the correct email", Toast.LENGTH_SHORT).show();
+            } else {
+                onButtonLoginClicked();
+            }
+
         });
     }
 
     private void onButtonLoginClicked() {
-        String email_user = et_email.getText().toString();
-        String password_user = et_password.getText().toString();
-
         WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
         Call<LoginResponseModel> call = weddingService.login(email_user, password_user);
         call.enqueue(new Callback<LoginResponseModel>() {
@@ -82,14 +93,14 @@ public class SignInActivity extends AppCompatActivity {
 
                 } else {
 
-                    Toast.makeText(SignInActivity.this, "Failed Login", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignInActivity.this, "Enter the correct email/password", Toast.LENGTH_SHORT).show();
                 }
 
             }
 
             @Override
             public void onFailure(Call<LoginResponseModel> call, Throwable t) {
-                Toast.makeText(SignInActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignInActivity.this, "Please check your connection", Toast.LENGTH_SHORT).show();
             }
         });
     }

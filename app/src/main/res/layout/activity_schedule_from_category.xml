@@ -82,11 +82,26 @@
                     android:src="@drawable/ic_calendar" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/tv_noDataSchedule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/headerSchdFrmCat"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="No schedule list on this date"
+                android:textAlignment="center"
+                android:textColor="@color/navy"
+                android:textSize="16sp"
+                android:visibility="gone" />
+
+
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/sv_schdFrmCat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/headerSchdFrmCat">
+                android:layout_below="@id/headerSchdFrmCat"
+                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"

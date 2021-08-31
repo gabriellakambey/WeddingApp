@@ -78,6 +78,9 @@ public interface WeddingService {
     @GET("todolist/{month}/{year}/{categoryId}")
     Call<List<ScheduleModel>> getScheduleMonthYear (@Path("month") int monthDate, @Path("year") int yearDate, @Path("categoryId") int categoryId);
 
+    @GET("schedulecategory/{userId}/{month}/{year}")
+    Call<List<CategoryScheduleModel>> getScheduleCategoryMonthYear(@Path("userId") int userId, @Path("month") int monthDate, @Path("year") int yearDate);
+
     @FormUrlEncoded
     @POST("todolistadd")
     Call<AddScheduleResponse> addNewSchedule (@Field("date") String date, @Field("title") String title,
@@ -131,7 +134,7 @@ public interface WeddingService {
                                      @Query("user") int userId, @Query("alamat") String alamat,
                                      @Query("status") String status);
 
-    @GET("guest/class={classId}&&name={guestNama}")
+    @GET("guest/{classId}/{guestNama}")
     Call<List<GuestModel>> findGuestName(@Path("classId") int classId, @Path("guestNama") String guestNama);
 
     @GET("guest/status={status}&&user={userId}")

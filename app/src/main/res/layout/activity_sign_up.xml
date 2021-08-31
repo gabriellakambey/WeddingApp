@@ -16,11 +16,11 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="200px"
-            android:layout_height="200px"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
-            android:src="@drawable/logo_wedding_vaganza" />
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:layout_width="match_parent"

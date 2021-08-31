@@ -1,12 +1,15 @@
 package com.example.weddingvaganza.view.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,9 +33,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ScheduleFromCategoryActivity extends AppCompatActivity implements ListScheduleAdapter.ListScheduleCallback, AddScheduleInCategoryActivity.ScheduleCategoryCallBack {
+public class ScheduleFromCategoryActivity extends AppCompatActivity implements ListScheduleAdapter.ListScheduleCallback {
 
-    TextView categoryTitle, monthYear;
+    TextView categoryTitle, monthYear, tvNoData;
     Button btnAdd, btnBack;
     ImageView calendar;
     RecyclerView recyclerView;
@@ -40,8 +43,8 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity implements L
     ListScheduleAdapter adapter;
     int currentCategoryId, getSelectedMonth, getSelectedYear;
     String currentCategoryTitle;
-    ScheduleModel scheduleById;
     ScheduleUpdateModel scheduleUpdateModel;
+    NestedScrollView scrollView;
 
     WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
 
@@ -59,21 +62,10 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity implements L
         // BUTTON ADD SCHEDULE
         btnAdd = findViewById(R.id.btn_addSchdFrmCat);
         btnAdd.setOnClickListener(v -> {
-
             Intent intent = new Intent(this, AddScheduleInCategoryActivity.class);
             intent.putExtra("category id", currentCategoryId);
             intent.putExtra("category title", currentCategoryTitle);
             startActivityForResult(intent, 1);
-
-//            AddScheduleInCategoryActivity activity = new AddScheduleInCategoryActivity();
-//            activity.setListenerCallback(this::onAddScheduleInCategory);
-//
-//            Intent intent = new Intent(this, AddScheduleInCategoryActivity.class);
-//            Bundle extras = new Bundle();
-//            extras.putInt("category id", currentCategoryId);
-//            extras.putString("category title", currentCategoryTitle);
-//            intent.putExtras(extras);
-//            startActivity(intent);
         });
 
         // SET TOOLBAR TITLE
@@ -97,32 +89,11 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity implements L
         monthYear.setText(makeMonthYearString(currentMonth, currentYear));
 
         // month year picker dialog
+        scrollView = findViewById(R.id.sv_schdFrmCat);
+        tvNoData = findViewById(R.id.tv_noDataSchedule);
         calendar = findViewById(R.id.iv_calendarSchdFrmCat);
         calendar.setOnClickListener(v -> {
-            final Calendar today = Calendar.getInstance();
-            int year = today.get(Calendar.YEAR);
-            int month = today.get(Calendar.MONTH);
-
-            MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(this,
-                    new MonthPickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(int selectedMonth, int selectedYear) {
-                            selectedMonth = selectedMonth + 1;
-                            getSelectedMonth = selectedMonth;
-                            getSelectedYear = selectedYear;
-
-                            String selected = makeMonthYearString(selectedMonth, selectedYear);
-                            monthYear.setText(selected);
-                        }
-                    }, year, month);
-
-            builder.setActivatedMonth(month)
-                    .setMinYear(year - 1)
-                    .setActivatedYear(year)
-                    .setMaxYear(2030)
-                    .setTitle("Select Month and Year")
-                    .build()
-                    .show();
+            openMonthYearPickerDialog();
         });
 
         // recyclerview schedule
@@ -136,6 +107,35 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity implements L
 
     }
 
+    private void openMonthYearPickerDialog() {
+
+        final Calendar today = Calendar.getInstance();
+        int year = today.get(Calendar.YEAR);
+        int month = today.get(Calendar.MONTH);
+
+        MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(this,
+                new MonthPickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(int selectedMonth, int selectedYear) {
+                        selectedMonth = selectedMonth + 1;
+                        getSelectedMonth = selectedMonth;
+                        getSelectedYear = selectedYear;
+
+                        String selected = makeMonthYearString(selectedMonth, selectedYear);
+                        monthYear.setText(selected);
+                        showScheduleByMonthYear();
+                    }
+                }, year, month);
+
+        builder.setActivatedMonth(month)
+                .setMinYear(year - 1)
+                .setActivatedYear(year)
+                .setMaxYear(2030)
+                .setTitle("Select Month and Year")
+                .build()
+                .show();
+    }
+
     private void showScheduleByMonthYear() {
         Call<List<ScheduleModel>> call = weddingService.getScheduleMonthYear(getSelectedMonth, getSelectedYear, currentCategoryId);
         call.enqueue(new Callback<List<ScheduleModel>>() {
@@ -146,6 +146,13 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity implements L
                     adapter = new ListScheduleAdapter(modelList);
                     adapter.setListener(ScheduleFromCategoryActivity.this::onChecked);
                     recyclerView.setAdapter(adapter);
+                    if (modelList.size() == 0) {
+                        tvNoData.setVisibility(View.VISIBLE);
+                        scrollView.setVisibility(View.GONE);
+                    } else {
+                        scrollView.setVisibility(View.VISIBLE);
+                        tvNoData.setVisibility(View.GONE);
+                    }
                 }
             }
 
@@ -259,7 +266,12 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity implements L
     }
 
     @Override
-    public void onAddScheduleInCategory() {
-        getSchedule();
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                getSchedule();
+            }
+        }
     }
 }

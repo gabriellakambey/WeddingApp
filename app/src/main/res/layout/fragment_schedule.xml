@@ -40,6 +40,20 @@
                 android:src="@drawable/ic_calendar" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_noDataScheduleCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/headerSchedule"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="No schedule list on this date"
+            android:textAlignment="center"
+            android:textColor="@color/navy"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+
         <FrameLayout
             android:id="@+id/fl_categorySchedule"
             android:layout_width="match_parent"

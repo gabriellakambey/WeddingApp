@@ -3,12 +3,14 @@ package com.example.weddingvaganza.view.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +41,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.app.Activity.RESULT_OK;
+
 public class FinalHomeFragment extends Fragment {
     ImageButton ibGuests, ibBudget, ibVendor;
     TextView tvTotTask, tvPresentase, tvCekTask;
@@ -62,6 +66,9 @@ public class FinalHomeFragment extends Fragment {
         // SET COUNT DOWN WEDDING DATE
         String weddingDate = Prefs.getString("wedding_date", null);
 
+        LinearLayout beforeWedding = view.findViewById(R.id.ll_onCountDown);
+        LinearLayout onWeddingDay = view.findViewById(R.id.ll_afterCountDown);
+
         CountdownView countdownView = view.findViewById(R.id.cd_finalHome);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -76,28 +83,42 @@ public class FinalHomeFragment extends Fragment {
             long countDownToTheDate = theDate - currentTime;
 
             countdownView.start(countDownToTheDate);
+
+//            if (countDownToTheDate != 0) {
+//                beforeWedding.setVisibility(View.VISIBLE);
+//                onWeddingDay.setVisibility(View.GONE);
+//
+//            } else {
+//                onWeddingDay.setVisibility(View.VISIBLE);
+//                beforeWedding.setVisibility(View.GONE);
+//
+//            }
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+
+
 
         // menu guests
         ibGuests = view.findViewById(R.id.ib_guests);
         ibGuests.setOnClickListener(v -> {
             Intent guests = new Intent(getActivity(), GuestsActivity.class);
-            startActivity(guests);
+            startActivityForResult(guests, 1);
         });
 
         // menu budget
         ibBudget = view.findViewById(R.id.ib_budget);
         ibBudget.setOnClickListener(v -> {
             Intent budget = new Intent(getActivity(), BudgetActivity.class);
-            startActivity(budget);
+            startActivityForResult(budget, 1);
         });
 
         // menu vendor
         ibVendor = view.findViewById(R.id.ib_vendor);
         ibVendor.setOnClickListener(v -> {
-            Intent vendor = new Intent(getActivity(), InvitationTemplateActivity.class);
+            Intent vendor = new Intent(getActivity(), VendorActivity.class);
             startActivity(vendor);
         });
 
@@ -106,7 +127,26 @@ public class FinalHomeFragment extends Fragment {
         tvPresentase = view.findViewById(R.id.tv_progress_bar);
         tvCekTask = view.findViewById(R.id.tv_cekTask);
         progressBar = view.findViewById(R.id.progress_bar);
+        onWeddingProgress();
 
+        // GUEST INFO
+        tvTotGuestList = view.findViewById(R.id.tv_totGuestList);
+        tvTotGuestInvited = view.findViewById(R.id.tv_totGuestInvited);
+        tvTotGuestCheckIn = view.findViewById(R.id.tv_totGuestCheckIn);
+        getGuestInfo();
+
+        // OUR BUDGET INFO
+        tvBudget = view.findViewById(R.id.tv_our_budget);
+        getOurBudget();
+
+        // COST INFO
+        tvCost = view.findViewById(R.id.tv_cost);
+        getCostInfo();
+
+        return view;
+    }
+
+    private void onWeddingProgress() {
         List<ScheduleStatusModel> scheduleStatusModels = new ArrayList<>();
         Call<List<ScheduleModel>> call = weddingService.getSchedule(currentUserId);
         call.enqueue(new Callback<List<ScheduleModel>>() {
@@ -143,12 +183,9 @@ public class FinalHomeFragment extends Fragment {
                 Toast.makeText(getContext(), "Server Error", Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
-        // GUEST INFO
-        tvTotGuestList = view.findViewById(R.id.tv_totGuestList);
-        tvTotGuestInvited = view.findViewById(R.id.tv_totGuestInvited);
-        tvTotGuestCheckIn = view.findViewById(R.id.tv_totGuestCheckIn);
-
+    private void getGuestInfo() {
         List<GuestStatusModel> guestStatusModels = new ArrayList<>();
         Call<List<GuestModel>> call1 = weddingService.getGuestByUserId(currentUserId);
         call1.enqueue(new Callback<List<GuestModel>>() {
@@ -182,10 +219,32 @@ public class FinalHomeFragment extends Fragment {
 
             }
         });
+    }
 
-        // OUR BUDGET INFO
-        tvBudget = view.findViewById(R.id.tv_our_budget);
+    private void getCostInfo() {
+        Call<Integer> call3 = weddingService.getCostTotal("true", currentUserId);
+        call3.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                Integer totalCost = response.body();
 
+                if (Math.abs(totalCost / 1000000) >= 1) {
+                    tvCost.setText("IDR " + (totalCost / 1000000) + "M");
+                } else if (Math.abs(totalCost / 1000) >= 1) {
+                    tvCost.setText("IDR " + (totalCost / 1000) + "K");
+                } else {
+                    tvCost.setText("IDR " + totalCost);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void getOurBudget() {
         Call<UserModel> modelCall = weddingService.getOurBudget(currentUserId);
         modelCall.enqueue(new Callback<UserModel>() {
             @Override
@@ -207,31 +266,17 @@ public class FinalHomeFragment extends Fragment {
 
             }
         });
+    }
 
-        // COST INFO
-        tvCost = view.findViewById(R.id.tv_cost);
-
-        Call<Integer> call3 = weddingService.getCostTotal("true", currentUserId);
-        call3.enqueue(new Callback<Integer>() {
-            @Override
-            public void onResponse(Call<Integer> call, Response<Integer> response) {
-                Integer totalCost = response.body();
-
-                if (Math.abs(totalCost / 1000000) >= 1) {
-                    tvCost.setText("IDR " + (totalCost / 1000000) + "M");
-                } else if (Math.abs(totalCost / 1000) >= 1) {
-                    tvCost.setText("IDR " + (totalCost / 1000) + "K");
-                } else {
-                    tvCost.setText("IDR " + totalCost);
-                }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                getOurBudget();
+                getCostInfo();
+                getGuestInfo();
             }
-
-            @Override
-            public void onFailure(Call<Integer> call, Throwable t) {
-
-            }
-        });
-
-        return view;
+        }
     }
 }
