@@ -20,7 +20,9 @@ import com.example.weddingvaganza.api.WeddingService;
 import com.example.weddingvaganza.model.GuestModel;
 import com.example.weddingvaganza.model.GuestStatusModel;
 import com.example.weddingvaganza.model.GuestUpdateModel;
+import com.example.weddingvaganza.model.InvitationModel;
 import com.example.weddingvaganza.view.activity.GuestListActivity;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +41,8 @@ public class GuestDetailDialog extends AppCompatDialogFragment {
     WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
     DetailDialogListener listener;
     AlertDialog alertDialog;
+    List<InvitationModel> invitationModel;
+    int currentUserId = Prefs.getInt("user_id", 0);
 
     @NonNull
     @Override
@@ -82,11 +86,34 @@ public class GuestDetailDialog extends AppCompatDialogFragment {
         // INVITE BUTTON
         Button invite = view.findViewById(R.id.btn_inviteGuestDetail);
         invite.setOnClickListener(v1 -> {
-            getGuestById();
+            getInvitationSize();
             alertDialog.dismiss();
         });
 
         return alertDialog;
+    }
+
+    private void getInvitationSize() {
+        Call<List<InvitationModel>> call = weddingService.getInvitation(currentUserId);
+        call.enqueue(new Callback<List<InvitationModel>>() {
+            @Override
+            public void onResponse(Call<List<InvitationModel>> call, Response<List<InvitationModel>> response) {
+                invitationModel = response.body();
+                if (response.isSuccessful()) {
+                    if (invitationModel.size() != 0) {
+                        getGuestById();
+                    } else {
+//                        Toast.makeText(getContext(), "Create invitation first", Toast.LENGTH_SHORT).show();
+                        alertDialog.dismiss();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<InvitationModel>> call, Throwable t) {
+
+            }
+        });
     }
 
     private void getGuestById() {
@@ -95,12 +122,14 @@ public class GuestDetailDialog extends AppCompatDialogFragment {
             @Override
             public void onResponse(Call<GuestModel> call, Response<GuestModel> response) {
                 GuestModel data = response.body();
+                if (response.isSuccessful()) {
+                    String status = "invited";
+                    guestUpdateModel = new GuestUpdateModel(data.getGuestId(), data.getClassId(), data.getGuestNama(),
+                            data.getGuestNoHp(), data.getGuestEmail(), data.getUserId(), data.getHomeAddress(), status);
 
-                String status = "invited";
-                guestUpdateModel = new GuestUpdateModel(data.getGuestId(), data.getClassId(), data.getGuestNama(),
-                        data.getGuestNoHp(), data.getGuestEmail(), data.getUserId(), data.getHomeAddress(), status);
+                    updateStatusInvited();
+                }
 
-                updateStatusInvited();
             }
 
             @Override
@@ -115,7 +144,14 @@ public class GuestDetailDialog extends AppCompatDialogFragment {
         call.enqueue(new Callback<GuestUpdateModel>() {
             @Override
             public void onResponse(Call<GuestUpdateModel> call, Response<GuestUpdateModel> response) {
-                listener.closeDialog();
+                if (response.isSuccessful()) {
+                    listener.closeDialog();
+//                    Toast.makeText(getContext(), "Guest Invited", Toast.LENGTH_SHORT).show();
+                } else {
+                    listener.closeDialog();
+//                    Toast.makeText(getContext(), "Can't invite guest", Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override

@@ -93,7 +93,7 @@ public class SignInActivity extends AppCompatActivity {
 
                 } else {
 
-                    Toast.makeText(SignInActivity.this, "Enter the correct email/password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignInActivity.this, "Incorrect email or password", Toast.LENGTH_SHORT).show();
                 }
 
             }

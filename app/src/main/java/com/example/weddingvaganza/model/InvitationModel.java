@@ -52,8 +52,7 @@ public class InvitationModel implements Parcelable {
 
 	private CategoryModel categoryModel;
 
-    public InvitationModel(int idInvitation, String groomsName, String groomsFather, String groomsMother, String bridesName, String bridesFather, String bridesMother, int idCategory, String dateInvitation, String timeInvitation, String titleLocation, double longitude, double latitude, String noteInvitation, int userId, String template) {
-        this.idInvitation = idInvitation;
+    public InvitationModel(String groomsName, String groomsFather, String groomsMother, String bridesName, String bridesFather, String bridesMother, int idCategory, String dateInvitation, String timeInvitation, String titleLocation, double longitude, double latitude, String noteInvitation, int userId, String template) {
         this.groomsName = groomsName;
         this.groomsFather = groomsFather;
         this.groomsMother = groomsMother;

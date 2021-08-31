@@ -91,7 +91,7 @@ public class InvitationTemplateActivity extends AppCompatActivity {
 
     private void updateDataInvitation() {
 
-        updateInvitationModel = new InvitationModel(invitationId, groomName, groomFather, groomMother,
+        updateInvitationModel = new InvitationModel(groomName, groomFather, groomMother,
                 brideName, brideFather, brideMother, categoryId, date, time, location, longitude, latitude,
                 note, currentUserId, template);
 

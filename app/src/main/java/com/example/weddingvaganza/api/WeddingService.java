@@ -35,7 +35,7 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface WeddingService {
+public interface  WeddingService {
 
     @GET("login")
     Call<LoginResponseModel> login(@Query("email") String email_user, @Query("password") String password_user);

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.weddingvaganza.R;
@@ -28,7 +29,8 @@ import retrofit2.Response;
 public class InvitationFragment extends Fragment implements ListInvitedGuestAdapter.ClickedItem {
 
     int totalInvited;
-    TextView textView;
+    TextView textView, tvNoData;
+    LinearLayout linearLayout;
     RecyclerView recyclerView;
     ListInvitedGuestAdapter adapter;
     private WeddingService weddingService;
@@ -41,12 +43,16 @@ public class InvitationFragment extends Fragment implements ListInvitedGuestAdap
         View view = inflater.inflate(R.layout.fragment_invitation, container, false);
 
         // RECYCLER VIEW INVITED GUEST
+        linearLayout = view.findViewById(R.id.ll_invitedGuestList);
+        tvNoData = view.findViewById(R.id.tv_noInvitedGuest);
+        textView = view.findViewById(R.id.tv_totInvitedGuest);
+
         recyclerView = view.findViewById(R.id.rv_invitedGuest);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
-        textView = view.findViewById(R.id.tv_totInvitedGuest);
+
         invitedGuest();
 
         return view;
@@ -59,15 +65,24 @@ public class InvitationFragment extends Fragment implements ListInvitedGuestAdap
             @Override
             public void onResponse(Call<List<GuestModel>> call, Response<List<GuestModel>> response) {
                 List<GuestModel> guestModels = response.body();
-                adapter = new ListInvitedGuestAdapter(getContext(), guestModels);
-                totalInvited = guestModels.size();
-                adapter.setInvitedGuest(guestModels);
-                adapter.clickedInvitedListener(InvitationFragment.this::ClickedInvitedGuest);
+                if (guestModels.size() != 0) {
+                    adapter = new ListInvitedGuestAdapter(getContext(), guestModels);
+                    totalInvited = guestModels.size();
+                    adapter.setInvitedGuest(guestModels);
+                    adapter.clickedInvitedListener(InvitationFragment.this::ClickedInvitedGuest);
 
-                recyclerView.setAdapter(adapter);
+                    recyclerView.setAdapter(adapter);
 
-                // set total guest invited
-                textView.setText(totalInvited + " guests");
+                    // set total guest invited
+                    textView.setText(totalInvited + " guests");
+
+                    linearLayout.setVisibility(View.VISIBLE);
+                    tvNoData.setVisibility(View.GONE);
+                } else {
+                    tvNoData.setVisibility(View.VISIBLE);
+                    linearLayout.setVisibility(View.GONE);
+                }
+
 
             }
 

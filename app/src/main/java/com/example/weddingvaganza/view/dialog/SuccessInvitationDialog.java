@@ -16,7 +16,12 @@ import com.example.weddingvaganza.R;
 import com.example.weddingvaganza.view.activity.GuestsActivity;
 import com.example.weddingvaganza.view.activity.HomeActivity;
 
+import static android.app.Activity.RESULT_OK;
+
 public class SuccessInvitationDialog extends AppCompatDialogFragment {
+
+    AlertDialog alertDialog;
+
 
     @NonNull
     @Override
@@ -28,13 +33,14 @@ public class SuccessInvitationDialog extends AppCompatDialogFragment {
 
         builder.setView(view);
 
-        final AlertDialog alertDialog = builder.create();
+        alertDialog = builder.create();
 
         // BUTTON LATER
         Button btnLater = view.findViewById(R.id.btn_laterSuccessDialog);
         btnLater.setOnClickListener(v -> {
             startActivity(new Intent(getContext(), HomeActivity.class));
             alertDialog.dismiss();
+
         });
 
         // BUTTON INVITE FRIENDS
@@ -46,4 +52,5 @@ public class SuccessInvitationDialog extends AppCompatDialogFragment {
 
         return alertDialog;
     }
+
 }
