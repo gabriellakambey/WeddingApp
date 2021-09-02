@@ -72,7 +72,15 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
 
         Button btnSave = findViewById(R.id.btn_saveAddSchedule);
         btnSave.setOnClickListener(v -> {
-            onClickedBtnSave();
+            String title = etTitle.getText().toString();
+            String note = etNote.getText().toString();
+
+            if (!title.isEmpty() && !note.isEmpty()) {
+                onClickedBtnSave(title, note);
+            } else {
+                Toast.makeText(this, "Field can not empty", Toast.LENGTH_SHORT).show();
+            }
+
         });
 
     }
@@ -106,10 +114,7 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
         });
     }
 
-    private void onClickedBtnSave() {
-        String date = textDate.getText().toString();
-        String title = etTitle.getText().toString();
-        String note = etNote.getText().toString();
+    private void onClickedBtnSave(String title, String note) {
 
         // get selected item id
         int selectedId = spinner.getSelectedItemPosition();
@@ -124,13 +129,13 @@ public class AddScheduleActivity extends AppCompatActivity implements DatePicker
             public void onResponse(Call<AddScheduleResponse> call, Response<AddScheduleResponse> response) {
                 AddScheduleResponse addScheduleResponse = response.body();
                 if (addScheduleResponse.getStatus().equals("success")) {
-                    Toast.makeText(AddScheduleActivity.this, "Success add data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddScheduleActivity.this, "Success add schedule", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent();
                     setResult(RESULT_OK, intent);
                     finish();
 
                 } else {
-                    Toast.makeText(AddScheduleActivity.this, "Failed add data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddScheduleActivity.this, "Failed add schedule", Toast.LENGTH_SHORT).show();
                 }
             }
 

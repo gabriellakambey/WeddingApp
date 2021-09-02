@@ -85,9 +85,9 @@ public class AddInvitationActivity extends AppCompatActivity {
 
         // OPEN MAP BUTTON
         if (isServicesOk()) {
-            ImageView ivMaps = findViewById(R.id.iv_maps);
+//            ImageView ivMaps = findViewById(R.id.iv_maps);
+            LinearLayout ivMaps = findViewById(R.id.ll_maps);
             ivMaps.setOnClickListener(v -> {
-//                startActivity(new Intent(AddInvitationActivity.this, MapsActivity.class));
                 Intent intent = new Intent(AddInvitationActivity.this, MapsActivity.class);
                 startActivityForResult(intent, 1);
             });
@@ -177,12 +177,30 @@ public class AddInvitationActivity extends AppCompatActivity {
         etNote = findViewById(R.id.et_noteInvitation);
 
         btnSave = findViewById(R.id.btn_nextInvitation);
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addInvitationData();
+        btnSave.setOnClickListener(v -> {
+            String grooms = etGroomName.getText().toString();
+            String groomsFather = etGroomFather.getText().toString();
+            String groomsMother = etGroomMother.getText().toString();
+            String brides = etBrideName.getText().toString();
+            String bridesFather = etBrideFather.getText().toString();
+            String bridesMother = etBrideMother.getText().toString();
+            String note = etNote.getText().toString();
+            String template = "null";
+
+            if (grooms.isEmpty() && groomsFather.isEmpty() && groomsMother.isEmpty() && brides.isEmpty() && bridesFather.isEmpty() && bridesMother.isEmpty() && note.isEmpty() && titleLocation == null) {
+                Toast.makeText(this, "Field can not empty", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
+//                addInvitationData(grooms, groomsFather, groomsMother, brides, bridesFather, bridesMother, note, template);
             }
         });
+
+//        btnSave.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                addInvitationData();
+//            }
+//        });
 
     }
 
@@ -201,16 +219,7 @@ public class AddInvitationActivity extends AppCompatActivity {
         }
     }
 
-    private void addInvitationData() {
-        String grooms = etGroomName.getText().toString();
-        String groomsFather = etGroomFather.getText().toString();
-        String groomsMother = etGroomMother.getText().toString();
-        String brides = etBrideName.getText().toString();
-        String bridesFather = etBrideFather.getText().toString();
-        String bridesMother = etBrideMother.getText().toString();
-        String locationTitle = etLocation.getText().toString();
-        String note = etNote.getText().toString();
-        String template = "null";
+    private void addInvitationData(String grooms, String groomsFather, String groomsMother, String brides, String bridesFather, String bridesMother, String note, String template) {
 
         // get category id in spinner
         int selectedId = spinner.getSelectedItemPosition();
@@ -219,7 +228,7 @@ public class AddInvitationActivity extends AppCompatActivity {
 
         weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
         Call<AddInvitationResponse> call1 = weddingService.postInvitation(grooms, groomsFather, groomsMother,
-                brides, bridesFather, bridesMother, category, weddingDate, date, locationTitle, longitude, latitude,
+                brides, bridesFather, bridesMother, category, weddingDate, date, titleLocation, longitude, latitude,
                 note, userId, template);
         call1.enqueue(new Callback<AddInvitationResponse>() {
             @Override
@@ -227,12 +236,10 @@ public class AddInvitationActivity extends AppCompatActivity {
                 AddInvitationResponse addInvitationResponse = response.body();
 
                 if (addInvitationResponse.getStatus().equals("success")) {
-//                    InvitationModel parseInvitationModel = addInvitationResponse.getInvitationModel();
 
                     Toast.makeText(AddInvitationActivity.this, "Success add data", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(AddInvitationActivity.this, InvitationTemplateActivity.class);
-//                    intent.putExtra("invitation model", parseInvitationModel);
                     intent.putExtra("category id", category);
                     startActivity(intent);
 

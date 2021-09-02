@@ -13,15 +13,14 @@
         android:text="Category Events"
         android:textColor="@color/navy"
         android:textSize="16sp"
-        android:textStyle="bold" />
+        android:fontFamily="@font/poppins_semi_bold"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_rundownInCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:background="@drawable/border_shadow"
-        android:padding="10dp" />
+        android:paddingBottom="20dp"/>
 
 
 </LinearLayout>

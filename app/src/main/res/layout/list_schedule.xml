@@ -14,12 +14,13 @@
         android:button="@null"
         android:text="schedule yang harus dikerjakan"
         android:textColor="@color/navy"
-        android:textStyle="bold"
-        android:textSize="16sp" />
+        android:textSize="14sp"
+        android:fontFamily="@font/poppins_medium"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/champagne"/>
+        android:background="@color/champagne"
+        android:layout_marginHorizontal="10dp"/>
 
 </LinearLayout>

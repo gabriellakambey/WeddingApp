@@ -16,7 +16,8 @@
             android:layout_height="wrap_content"
             android:text="Guest Group"
             android:textColor="@color/navy"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_medium"/>
 
         <ImageView
             android:layout_width="wrap_content"

@@ -100,7 +100,6 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity implements L
         recyclerView = findViewById(R.id.rv_schdFrmCat);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         getSchedule();
 
@@ -170,9 +169,18 @@ public class ScheduleFromCategoryActivity extends AppCompatActivity implements L
             public void onResponse(Call<List<ScheduleModel>> call, Response<List<ScheduleModel>> response) {
                 if (response.isSuccessful()) {
                     List<ScheduleModel> scheduleModels = response.body();
-                    adapter = new ListScheduleAdapter(scheduleModels);
-                    adapter.setListener(ScheduleFromCategoryActivity.this::onChecked);
-                    recyclerView.setAdapter(adapter);
+                    if (scheduleModels.size() == 0) {
+                        tvNoData.setVisibility(View.VISIBLE);
+                        scrollView.setVisibility(View.GONE);
+                    } else {
+                        scrollView.setVisibility(View.VISIBLE);
+                        tvNoData.setVisibility(View.GONE);
+
+                        adapter = new ListScheduleAdapter(scheduleModels);
+                        adapter.setListener(ScheduleFromCategoryActivity.this::onChecked);
+                        recyclerView.setAdapter(adapter);
+                    }
+
                 }
             }
 

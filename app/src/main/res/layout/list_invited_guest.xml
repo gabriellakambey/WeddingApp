@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cv_listInvitedGuest"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:layout_marginBottom="5dp"
+    android:layout_height="70dp"
+    android:layout_marginBottom="10dp"
     android:background="@drawable/border_shadow"
     android:padding="10dp"
     app:cardCornerRadius="7dp">
@@ -19,16 +19,17 @@
             android:id="@+id/tv_listInvitedGuest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semi_bold"
             android:text="Guest's Names"
             android:textColor="@color/navy"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_invitedGuestGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="Bride's Family"
             android:textColor="@color/navy"
             android:textSize="12sp" />

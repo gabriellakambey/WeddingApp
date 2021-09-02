@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cv_listGuest"
     android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:layout_marginBottom="5dp"
+    android:layout_height="45dp"
+    android:layout_marginBottom="10dp"
     android:background="@drawable/border_shadow"
     android:padding="10dp"
     app:cardCornerRadius="7dp">
@@ -12,16 +12,17 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:padding="10dp">
 
         <TextView
             android:id="@+id/tv_listGuest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
             android:text="Guest's Names"
             android:textColor="@color/navy"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <View
             android:id="@+id/dotStatus"

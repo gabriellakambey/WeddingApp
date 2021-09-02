@@ -134,16 +134,22 @@ public class AddRundownActivity extends AppCompatActivity {
 
         Button btnSave = findViewById(id.btn_saveAddRundown);
         btnSave.setOnClickListener(v -> {
-            onButtonSave();
+            String title = etTitle.getText().toString();
+            String pj = etPersonIC.getText().toString();
+            String note = etNote.getText().toString();
+            String status = "false";
+
+            if (!pj.isEmpty() && !title.isEmpty() && !note.isEmpty()) {
+                onButtonSave(title, pj, note, status);
+            } else {
+                Toast.makeText(this, "Field can not empty", Toast.LENGTH_SHORT).show();
+            }
+
         });
 
     }
 
-    private void onButtonSave() {
-        String title = etTitle.getText().toString();
-        String pj = etPersonIC.getText().toString();
-        String note = etNote.getText().toString();
-        String status = "false";
+    private void onButtonSave(String title, String pj, String note, String status) {
 
         // get selected item id
         int selectedId = spinner.getSelectedItemPosition();

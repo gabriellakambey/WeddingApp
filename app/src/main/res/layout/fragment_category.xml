@@ -36,7 +36,8 @@
                 android:layout_gravity="center_vertical"
                 android:text="Add Category"
                 android:textColor="@color/navy"
-                android:textSize="14dp" />
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_medium"/>
         </LinearLayout>
 
         <RelativeLayout

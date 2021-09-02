@@ -134,8 +134,8 @@ public interface  WeddingService {
                                      @Query("user") int userId, @Query("alamat") String alamat,
                                      @Query("status") String status);
 
-    @GET("guest/{classId}/{guestNama}")
-    Call<List<GuestModel>> findGuestName(@Path("classId") int classId, @Path("guestNama") String guestNama);
+    @GET("guest/{classId}/{userId}/{guestNama}")
+    Call<List<GuestModel>> findGuestName(@Path("classId") int classId, @Path("userId") int userId, @Path("guestNama") String guestNama);
 
     @GET("guest/status={status}&&user={userId}")
     Call<List<GuestModel>> getInvitedGuest(@Path("status") String status, @Path("userId") int userId);

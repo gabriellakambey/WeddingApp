@@ -19,6 +19,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,7 +30,7 @@ public class AddGuestActivity extends AppCompatActivity {
     EditText etName, etEmail, etPhoneNum, etAddress;
     private Spinner spinner;
     WeddingService weddingService;
-    private int userId = Prefs.getInt("user_id", 0);
+    int userId = Prefs.getInt("user_id", 0);
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -37,14 +38,42 @@ public class AddGuestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_guest);
 
-        // button back
+        // BUTTON BACK
         btnBack = findViewById(R.id.btn_BackAddGuest);
         btnBack.setOnClickListener(v -> {
             onBack();
         });
 
-        // retrofit spinner
+        // RETROFIT SPINNER
         spinner = findViewById(R.id.spinner_addGuest);
+        spinnerRetrofit();
+
+        // BUTTON SAVE
+        etName = findViewById(R.id.et_nameAddGuest);
+        etEmail = findViewById(R.id.et_emailAddGuest);
+        etPhoneNum = findViewById(R.id.et_phoneNumAddGuest);
+        etAddress = findViewById(R.id.et_addressAddGuest);
+        btnSave = findViewById(R.id.btn_saveAddGuest);
+
+        btnSave.setOnClickListener(v -> {
+            String name = etName.getText().toString();
+            String email = etEmail.getText().toString();
+            String noHp = etPhoneNum.getText().toString();
+            String alamat = etAddress.getText().toString();
+            String status = "not invited";
+
+            if (name.isEmpty() && email.isEmpty() && noHp.isEmpty() && alamat.isEmpty()) {
+                Toast.makeText(this, "Field can not empty", Toast.LENGTH_SHORT).show();
+            } else if (!Pattern.compile(".{10,13}").matcher(noHp).matches()) {
+                Toast.makeText(this, "Enter the correct phone number", Toast.LENGTH_SHORT).show();
+            } else {
+                onSaveButton(name, email, noHp, alamat, status);
+            }
+
+        });
+    }
+
+    private void spinnerRetrofit() {
         List<GuestGroupModel> group = new ArrayList<>();
         ArrayAdapter<GuestGroupModel> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, group);
         weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
@@ -70,47 +99,33 @@ public class AddGuestActivity extends AppCompatActivity {
 
             }
         });
+    }
 
-        // button save
-        etName = findViewById(R.id.et_nameAddGuest);
-        etEmail = findViewById(R.id.et_emailAddGuest);
-        etPhoneNum = findViewById(R.id.et_phoneNumAddGuest);
-        etAddress = findViewById(R.id.et_addressAddGuest);
-        btnSave = findViewById(R.id.btn_saveAddGuest);
+    private void onSaveButton(String name, String email, String noHp, String alamat, String status) {
+        // get selected item id on spinner
+        int selectedId = spinner.getSelectedItemPosition();
+        GuestGroupModel getItemId = (GuestGroupModel) spinner.getItemAtPosition(selectedId);
+        int kelasId = getItemId.getClassId();
 
-        btnSave.setOnClickListener(v -> {
-            String name = etName.getText().toString();
-            String email = etEmail.getText().toString();
-            String noHp = etPhoneNum.getText().toString();
-            String alamat = etAddress.getText().toString();
-            String status = "not invited";
+        weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
+        Call<AddGuestResponse> call1 = weddingService.addGuest(kelasId, name, noHp, email, userId, alamat, status);
+        call1.enqueue(new Callback<AddGuestResponse>() {
+            @Override
+            public void onResponse(Call<AddGuestResponse> call, Response<AddGuestResponse> response) {
+                AddGuestResponse addGuestResponse = response.body();
+                if (addGuestResponse.getStatus().equals("success")) {
+                    Toast.makeText(AddGuestActivity.this, "Success add guest", Toast.LENGTH_SHORT).show();
+                    onBackPressed();
 
-            // get selected item id on spinner
-            int selectedId = spinner.getSelectedItemPosition();
-            GuestGroupModel getItemId = (GuestGroupModel) spinner.getItemAtPosition(selectedId);
-            int kelasId = getItemId.getClassId();
-
-            weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-            Call<AddGuestResponse> call1 = weddingService.addGuest(kelasId, name, noHp, email, userId, alamat, status);
-            call1.enqueue(new Callback<AddGuestResponse>() {
-                @Override
-                public void onResponse(Call<AddGuestResponse> call, Response<AddGuestResponse> response) {
-                    AddGuestResponse addGuestResponse = response.body();
-                    if (addGuestResponse.getStatus().equals("success")) {
-                        Toast.makeText(AddGuestActivity.this, "Success add guest", Toast.LENGTH_SHORT).show();
-                        onBackPressed();
-
-                    } else {
-                        Toast.makeText(AddGuestActivity.this, "Failed add guest", Toast.LENGTH_SHORT).show();
-                    }
+                } else {
+                    Toast.makeText(AddGuestActivity.this, "Failed add guest", Toast.LENGTH_SHORT).show();
                 }
+            }
 
-                @Override
-                public void onFailure(Call<AddGuestResponse> call, Throwable t) {
+            @Override
+            public void onFailure(Call<AddGuestResponse> call, Throwable t) {
 
-                }
-            });
-
+            }
         });
     }
 

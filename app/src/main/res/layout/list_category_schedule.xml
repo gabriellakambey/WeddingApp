@@ -12,14 +12,14 @@
         android:layout_marginBottom="5dp"
         android:text="Category Event"
         android:textColor="@color/navy"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textSize="16sp"
+        android:fontFamily="@font/poppins_semi_bold"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_listSchedule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"/>
+        android:paddingBottom="15dp"/>
 
 
 </LinearLayout>

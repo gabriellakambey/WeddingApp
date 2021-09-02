@@ -1,219 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".view.activity.AddGuestActivity">
 
-    <LinearLayout
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="@color/navy"
-            app:contentInsetEnd="0dp"
-            app:contentInsetLeft="0dp"
-            app:contentInsetRight="0dp"
-            app:contentInsetStart="0dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="10dp">
-
-                <Button
-                    android:id="@+id/btn_BackAddGuest"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="10dp"
-                    android:background="@drawable/ic_rounded_back" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/snell_roundhand_bold"
-                    android:gravity="center"
-                    android:text="Guests"
-                    android:textColor="@color/white"
-                    android:textSize="32sp" />
-            </RelativeLayout>
-
-        </androidx.appcompat.widget.Toolbar>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="15dp"
-            android:text="Add Guest"
-            android:textColor="@color/navy"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="15dp"
-            app:cardCornerRadius="10dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Name"
-                    android:textColor="@color/navy"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/et_nameAddGuest"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/round_navy"
-                    android:hint="Enter the guest name"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:padding="15dp"
-                    android:textColor="@color/navy"
-                    android:textColorHint="@color/hint"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Guest Group"
-                    android:textColor="@color/navy"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/round_navy"
-                    android:orientation="horizontal"
-                    android:padding="15dp">
-
-                    <Spinner
-                        android:id="@+id/spinner_addGuest"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:autofillHints="Select the Guest Group" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="E-mail"
-                    android:textColor="@color/navy"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/et_emailAddGuest"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/round_navy"
-                    android:hint="Enter the guest e-mail"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:padding="15dp"
-                    android:textColor="@color/navy"
-                    android:textColorHint="@color/hint"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Phone Number (Whatsapp)"
-                    android:textColor="@color/navy"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/et_phoneNumAddGuest"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/round_navy"
-                    android:hint="Enter the guest phone number"
-                    android:inputType="phone"
-                    android:maxLines="1"
-                    android:padding="15dp"
-                    android:textColor="@color/navy"
-                    android:textColorHint="@color/hint"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Home Address"
-                    android:textColor="@color/navy"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/round_navy"
-                    android:orientation="horizontal"
-                    android:padding="13dp">
-
-                    <EditText
-                        android:id="@+id/et_addressAddGuest"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/transparent_background"
-                        android:hint="Write note for the schedule"
-                        android:inputType="textLongMessage"
-                        android:textColor="@color/navy"
-                        android:textColorHint="@color/hint"
-                        android:textSize="12dp" />
-
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/btn_saveAddGuest"
-                    android:layout_width="100dp"
-                    android:layout_height="45dp"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/button_gold"
-                    android:text="Save"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white" />
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        android:layout_height="65dp"
+        android:background="@color/navy"
+        app:contentInsetEnd="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetStart="0dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="10dp">
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/btn_BackAddGuest"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/ic_rounded_back" />
 
-</androidx.core.widget.NestedScrollView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/snell_roundhand_bold"
+                android:gravity="center"
+                android:text="Guests"
+                android:textColor="@color/white"
+                android:textSize="32sp" />
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Add Guest"
+                android:textColor="@color/navy"
+                android:textSize="16sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:text="Name"
+                        android:textColor="@color/navy"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/et_nameAddGuest"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_navy"
+                        android:fontFamily="@font/poppins_medium"
+                        android:hint="Enter the guest name"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="13dp"
+                        android:textColor="@color/navy"
+                        android:textColorHint="@color/hint"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:text="Guest Group"
+                        android:textColor="@color/navy"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_navy"
+                        android:orientation="horizontal"
+                        android:padding="13dp">
+
+                        <Spinner
+                            android:id="@+id/spinner_addGuest"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autofillHints="Select the Guest Group" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:text="E-mail"
+                        android:textColor="@color/navy"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/et_emailAddGuest"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_navy"
+                        android:fontFamily="@font/poppins_medium"
+                        android:hint="Enter the guest e-mail"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:padding="13dp"
+                        android:textColor="@color/navy"
+                        android:textColorHint="@color/hint"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:text="Phone Number (Whatsapp)"
+                        android:textColor="@color/navy"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/et_phoneNumAddGuest"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_navy"
+                        android:fontFamily="@font/poppins_medium"
+                        android:hint="Enter the guest phone number"
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:padding="13dp"
+                        android:textColor="@color/navy"
+                        android:textColorHint="@color/hint"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:text="Home Address"
+                        android:textColor="@color/navy"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/round_navy"
+                        android:orientation="horizontal"
+                        android:padding="13dp">
+
+                        <EditText
+                            android:id="@+id/et_addressAddGuest"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/transparent_background"
+                            android:fontFamily="@font/poppins_medium"
+                            android:hint="Write note for the schedule"
+                            android:inputType="textLongMessage"
+                            android:textColor="@color/navy"
+                            android:textColorHint="@color/hint"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_saveAddGuest"
+                        android:layout_width="150dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/button_gold"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Save"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

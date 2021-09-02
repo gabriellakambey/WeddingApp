@@ -57,28 +57,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/tv_dateSchdFrmCat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="April 2021"
                     android:textColor="@color/navy"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp" />
 
                 <RelativeLayout
-                    android:layout_width="15dp"
+                    android:layout_width="10dp"
                     android:layout_height="wrap_content" />
 
                 <ImageView
                     android:id="@+id/iv_calendarSchdFrmCat"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="end"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="end|center_vertical"
                     android:src="@drawable/ic_calendar" />
             </LinearLayout>
 
@@ -89,7 +87,7 @@
                 android:layout_below="@id/headerSchdFrmCat"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="No schedule list on this date"
+                android:text="No schedule list available"
                 android:textAlignment="center"
                 android:textColor="@color/navy"
                 android:textSize="16sp"
@@ -114,7 +112,8 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_schdFrmCat"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="20dp"/>
 
                 </LinearLayout>
 

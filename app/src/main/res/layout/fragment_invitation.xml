@@ -9,14 +9,15 @@
     <Button
         android:id="@+id/btn_viewInvitation"
         android:layout_width="200dp"
-        android:layout_height="35dp"
+        android:layout_height="45dp"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:background="@drawable/button_gold"
         android:text="View your invitation"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="12sp" />
+        android:textSize="13sp"
+        android:fontFamily="@font/poppins_medium"/>
 
     <TextView
         android:id="@+id/tv_noInvitedGuest"
@@ -46,7 +47,7 @@
             android:text="Invited Guests"
             android:textColor="@color/navy"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/poppins_semi_bold"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -61,7 +62,8 @@
                 android:layout_height="wrap_content"
                 android:text="Total guest: "
                 android:textColor="@color/navy"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_medium"/>
 
             <TextView
                 android:id="@+id/tv_totInvitedGuest"
@@ -69,7 +71,8 @@
                 android:layout_height="wrap_content"
                 android:text="10 guests"
                 android:textColor="@color/navy"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_medium"/>
 
 
         </LinearLayout>
@@ -83,9 +86,10 @@
                 android:id="@+id/rv_invitedGuest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
+                android:layout_marginHorizontal="25dp"
                 android:layout_marginTop="10dp"
-                android:clipToPadding="false" />
+                android:clipToPadding="false"
+                android:paddingBottom="25dp"/>
 
         </ScrollView>
 

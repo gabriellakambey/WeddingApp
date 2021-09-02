@@ -29,6 +29,7 @@ public class AddCategoryDialog extends AppCompatDialogFragment {
     Button save;
     ImageView close;
     private CategoryDialogListener listener;
+    int currentUserId = Prefs.getInt("user_id", 0);
 
     @NonNull
     @Override
@@ -53,34 +54,41 @@ public class AddCategoryDialog extends AppCompatDialogFragment {
         save = view.findViewById(R.id.btn_addCategory);
         save.setOnClickListener(v -> {
             String title = etCatTitle.getText().toString();
-            int currentUserId = Prefs.getInt("user_id", 0);
 
-            WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-            Call<AddCategoryResponse> call = weddingService.addCategory(title, currentUserId);
-            call.enqueue(new Callback<AddCategoryResponse>() {
-                @Override
-                public void onResponse(Call<AddCategoryResponse> call, Response<AddCategoryResponse> response) {
-                    AddCategoryResponse addCategoryResponse = response.body();
-                    if (addCategoryResponse.getStatus().equals("success")) {
-
-                        listener.onAddCategory();
-                        Toast.makeText(getActivity(), "Success Add Category", Toast.LENGTH_SHORT).show();
-                        alertDialog.dismiss();
-
-                    } else {
-                        Toast.makeText(getActivity(), "Failed Add Category", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<AddCategoryResponse> call, Throwable t) {
-                    Toast.makeText(getContext(), "Server Error", Toast.LENGTH_SHORT).show();
-                }
-            });
+            if (!title.isEmpty()) {
+                onAddCategory(alertDialog, title);
+            } else {
+                Toast.makeText(getActivity(), "Field can not empty", Toast.LENGTH_SHORT).show();
+            }
 
         });
 
         return alertDialog;
+    }
+
+    private void onAddCategory(AlertDialog alertDialog, String title) {
+        WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
+        Call<AddCategoryResponse> call = weddingService.addCategory(title, currentUserId);
+        call.enqueue(new Callback<AddCategoryResponse>() {
+            @Override
+            public void onResponse(Call<AddCategoryResponse> call, Response<AddCategoryResponse> response) {
+                AddCategoryResponse addCategoryResponse = response.body();
+                if (addCategoryResponse.getStatus().equals("success")) {
+
+                    listener.onAddCategory();
+                    alertDialog.dismiss();
+                    Toast.makeText(getActivity(), "Success Add Category", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast.makeText(getActivity(), "Failed Add Category", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddCategoryResponse> call, Throwable t) {
+                Toast.makeText(getContext(), "Server Error", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void setListener(CategoryDialogListener listener) {

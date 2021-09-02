@@ -102,7 +102,7 @@ public class GuestListActivity extends AppCompatActivity implements ListGuestAda
 
     private void searchGuestName(String text) {
         weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-        Call<List<GuestModel>> call = weddingService.findGuestName(currentGroup, text);
+        Call<List<GuestModel>> call = weddingService.findGuestName(currentGroup, currentUser, text);
         call.enqueue(new Callback<List<GuestModel>>() {
             @Override
             public void onResponse(Call<List<GuestModel>> call, Response<List<GuestModel>> response) {

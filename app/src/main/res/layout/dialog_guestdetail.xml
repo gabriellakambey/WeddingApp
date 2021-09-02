@@ -14,15 +14,15 @@
         android:text="Guest's Name"
         android:textAlignment="center"
         android:textColor="@color/navy"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textSize="16sp"
+        android:fontFamily="@font/poppins_semi_bold"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginTop="15dp"
         android:background="@drawable/border_shadow"
+        android:orientation="vertical"
         android:padding="10dp">
 
         <LinearLayout
@@ -35,7 +35,8 @@
                 android:layout_height="wrap_content"
                 android:text="Status"
                 android:textColor="@color/navy"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_medium"/>
 
             <TextView
                 android:id="@+id/tv_statusGuestDetail"
@@ -43,7 +44,8 @@
                 android:layout_height="wrap_content"
                 android:text="Invited"
                 android:textColor="@color/navy"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_medium"/>
 
         </LinearLayout>
 
@@ -58,7 +60,8 @@
                 android:layout_height="wrap_content"
                 android:text="Email"
                 android:textColor="@color/navy"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_medium"/>
 
             <TextView
                 android:id="@+id/tv_mailGuestDetail"
@@ -66,7 +69,8 @@
                 android:layout_height="wrap_content"
                 android:text="guest@mail.com"
                 android:textColor="@color/navy"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_medium"/>
 
         </LinearLayout>
 
@@ -81,7 +85,8 @@
                 android:layout_height="wrap_content"
                 android:text="Phone Number"
                 android:textColor="@color/navy"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_medium"/>
 
             <TextView
                 android:id="@+id/tv_phoneGuestDetail"
@@ -89,7 +94,8 @@
                 android:layout_height="wrap_content"
                 android:text="0812 4598 1275"
                 android:textColor="@color/navy"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_medium"/>
 
         </LinearLayout>
 
@@ -104,7 +110,8 @@
                 android:layout_height="wrap_content"
                 android:text="Address"
                 android:textColor="@color/navy"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_medium"/>
 
             <TextView
                 android:id="@+id/tv_addressGuestDetail"
@@ -112,7 +119,8 @@
                 android:layout_height="wrap_content"
                 android:text="Manado City, North Sulawesi, Indonesia"
                 android:textColor="@color/navy"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_medium"/>
 
         </LinearLayout>
 
@@ -120,35 +128,90 @@
 
 
     <LinearLayout
+        android:id="@+id/ll_enableInvite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
         android:gravity="center"
-        android:layout_marginTop="15dp">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_inviteGuestDetail"
-            android:layout_width="80dp"
-            android:layout_height="30dp"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:background="@drawable/button_gold"
             android:text="Invite"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="12sp" />
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"/>
 
         <RelativeLayout
             android:layout_width="15dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/btn_closeGuestDetail"
-            android:layout_width="80dp"
-            android:layout_height="30dp"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:background="@drawable/round_navy"
             android:text="Close"
             android:textAllCaps="false"
             android:textColor="@color/navy"
-            android:textSize="12sp" />
+            android:textSize="13sp"
+            android:fontFamily="@font/poppins_medium"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_disableInvite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:background="@drawable/button_disable"
+                android:text="Invite"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <RelativeLayout
+                android:layout_width="15dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btn_closeGuestDetail1"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:background="@drawable/round_navy"
+                android:text="Close"
+                android:textAllCaps="false"
+                android:textColor="@color/navy"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="Create your invitation first to invite your friends"
+            android:textAlignment="center"
+            android:textColor="@color/navy"
+            android:textSize="12sp"
+            android:fontFamily="@font/poppins_medium"/>
+
 
     </LinearLayout>
 

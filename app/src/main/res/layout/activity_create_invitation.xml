@@ -56,10 +56,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="15dp"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Schedule Event"
                 android:textColor="@color/navy"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="16sp" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -78,11 +78,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_semi_bold"
                         android:text="Location"
                         android:textColor="@color/navy"
-                        android:textSize="14dp" />
+                        android:textSize="14sp" />
 
                     <LinearLayout
+                        android:id="@+id/ll_maps"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -100,18 +102,20 @@
                             android:id="@+id/et_locationInvitation"
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/transparent_background"
+                            android:background="@null"
+                            android:fontFamily="@font/poppins_medium"
                             android:hint="Search location"
                             android:inputType="text"
-                            android:paddingEnd="20dp"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            android:editable="false"
+                            android:clickable="false"/>
 
                         <ImageView
                             android:id="@+id/iv_maps"
                             android:layout_width="20dp"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_marginLeft="5dp"
+                            android:layout_gravity="end"
+                            android:layout_marginStart="5dp"
                             android:src="@drawable/ic_map" />
 
                     </LinearLayout>
@@ -120,15 +124,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_semi_bold"
                         android:text="Note"
                         android:textColor="@color/navy"
-                        android:textSize="14dp" />
+                        android:textSize="14sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
                         android:layout_marginTop="5dp"
-                        android:layout_marginBottom="10dp"
                         android:background="@drawable/round_navy"
                         android:orientation="horizontal"
                         android:padding="13dp">
@@ -138,11 +142,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/transparent_background"
+                            android:fontFamily="@font/poppins_medium"
                             android:hint="Write the detail of location address"
                             android:inputType="textLongMessage"
                             android:textColor="@color/navy"
                             android:textColorHint="@color/hint"
-                            android:textSize="12dp" />
+                            android:textSize="12sp" />
 
                     </LinearLayout>
 
@@ -150,9 +155,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_semi_bold"
                         android:text="Event Category"
                         android:textColor="@color/navy"
-                        android:textSize="14dp" />
+                        android:textSize="14sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -160,26 +166,26 @@
                         android:layout_marginTop="5dp"
                         android:background="@drawable/round_navy"
                         android:orientation="horizontal"
-                        android:padding="15dp">
+                        android:padding="13dp">
 
                         <Spinner
                             android:id="@+id/spinner_invitation"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:autofillHints="Select the Category"
-                            android:entries="@array/category" />
+                            android:autofillHints="Select the Category" />
                     </LinearLayout>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_medium"
                         android:text="Wedding Date"
                         android:textColor="@color/navy"
-                        android:textSize="14dp" />
+                        android:textSize="14sp" />
 
                     <LinearLayout
-                        android:layout_width="100dp"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/round_navy"
@@ -191,6 +197,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/transparent_background"
+                            android:fontFamily="@font/poppins_medium"
                             android:text="dd/mm/yyyy"
                             android:textColor="@color/navy"
                             android:textSize="12sp" />
@@ -201,9 +208,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_semi_bold"
                         android:text="Time"
                         android:textColor="@color/navy"
-                        android:textSize="14dp" />
+                        android:textSize="14sp" />
 
                     <LinearLayout
                         android:id="@+id/tp_timeInvitation"
@@ -211,12 +219,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/round_navy"
-                        android:padding="15dp">
+                        android:padding="13dp">
 
                         <TextView
                             android:id="@+id/tv_timeInvitation"
                             android:layout_width="55dp"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
                             android:text="hh:mm"
                             android:textColor="@color/hint"
                             android:textSize="12sp" />
@@ -241,10 +250,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="15dp"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Groom's Data"
                 android:textColor="@color/navy"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="16sp" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -263,9 +272,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_semi_bold"
                         android:text="Full Name"
                         android:textColor="@color/navy"
-                        android:textSize="14dp" />
+                        android:textSize="14sp" />
 
                     <EditText
                         android:id="@+id/et_groomName"
@@ -273,6 +283,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/round_navy"
+                        android:fontFamily="@font/poppins_medium"
                         android:hint="Enter the groom's full name"
                         android:inputType="text"
                         android:maxLines="1"
@@ -285,9 +296,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_semi_bold"
                         android:text="Father's Name"
                         android:textColor="@color/navy"
-                        android:textSize="14dp" />
+                        android:textSize="14sp" />
 
                     <EditText
                         android:id="@+id/et_groomFather"
@@ -295,6 +307,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/round_navy"
+                        android:fontFamily="@font/poppins_medium"
                         android:hint="Enter groom's father full name"
                         android:inputType="text"
                         android:maxLines="1"
@@ -307,9 +320,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_semi_bold"
                         android:text="Mother's Name"
                         android:textColor="@color/navy"
-                        android:textSize="14dp" />
+                        android:textSize="14sp" />
 
                     <EditText
                         android:id="@+id/et_groomMother"
@@ -317,6 +331,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/round_navy"
+                        android:fontFamily="@font/poppins_medium"
                         android:hint="Enter groom's father full name"
                         android:inputType="text"
                         android:maxLines="1"
@@ -337,10 +352,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="15dp"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Bride's Data"
                 android:textColor="@color/navy"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="16sp" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -359,9 +374,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_semi_bold"
                         android:text="Full Name"
                         android:textColor="@color/navy"
-                        android:textSize="14dp" />
+                        android:textSize="14sp" />
 
                     <EditText
                         android:id="@+id/et_brideName"
@@ -369,6 +385,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/round_navy"
+                        android:fontFamily="@font/poppins_medium"
                         android:hint="Enter the bride's full name"
                         android:inputType="text"
                         android:maxLines="1"
@@ -381,9 +398,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_semi_bold"
                         android:text="Father's Name"
                         android:textColor="@color/navy"
-                        android:textSize="14dp" />
+                        android:textSize="14sp" />
 
                     <EditText
                         android:id="@+id/et_brideFather"
@@ -391,6 +409,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/round_navy"
+                        android:fontFamily="@font/poppins_medium"
                         android:hint="Enter bride's father full name"
                         android:inputType="text"
                         android:maxLines="1"
@@ -403,9 +422,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/poppins_semi_bold"
                         android:text="Mother's Name"
                         android:textColor="@color/navy"
-                        android:textSize="14dp" />
+                        android:textSize="14sp" />
 
                     <EditText
                         android:id="@+id/et_brideMother"
@@ -413,6 +433,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/round_navy"
+                        android:fontFamily="@font/poppins_medium"
                         android:hint="Enter bride's father full name"
                         android:inputType="text"
                         android:maxLines="1"
@@ -430,15 +451,17 @@
 
             <Button
                 android:id="@+id/btn_nextInvitation"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="35dp"
                 android:background="@drawable/button_gold"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Next"
                 android:textAllCaps="false"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="13sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"

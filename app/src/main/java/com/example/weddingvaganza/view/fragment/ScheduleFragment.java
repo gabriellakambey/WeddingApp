@@ -26,6 +26,7 @@ import android.widget.DatePicker;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,7 +63,7 @@ public class ScheduleFragment extends Fragment {
     CategoryScheduleAdapter adapter;
     ScheduleUpdateModel scheduleUpdateModel;
     int getSelectedMonth, getSelectedYear;
-    FrameLayout frameLayout;
+    RelativeLayout relativeLayout;
 
     int currentUserId = Prefs.getInt("user_id", 0);
     WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
@@ -91,7 +92,7 @@ public class ScheduleFragment extends Fragment {
         monthSchedule.setText(makeMonthYearString(currentMonth, currentYear));
 
         // OPEN MONTH YEAR PICKER DIALOG
-        frameLayout = view.findViewById(R.id.fl_categorySchedule);
+        relativeLayout = view.findViewById(R.id.fl_categorySchedule);
         tvNoData = view.findViewById(R.id.tv_noDataScheduleCategory);
         calendarSchedule = view.findViewById(R.id.calendarSchedule);
         calendarSchedule.setOnClickListener(v -> {
@@ -168,9 +169,9 @@ public class ScheduleFragment extends Fragment {
                     recyclerView.setAdapter(adapter);
                     if (modelList.size() == 0) {
                         tvNoData.setVisibility(View.VISIBLE);
-                        frameLayout.setVisibility(View.GONE);
+                        relativeLayout.setVisibility(View.GONE);
                     } else {
-                        frameLayout.setVisibility(View.VISIBLE);
+                        relativeLayout.setVisibility(View.VISIBLE);
                         tvNoData.setVisibility(View.GONE);
                     }
                 }

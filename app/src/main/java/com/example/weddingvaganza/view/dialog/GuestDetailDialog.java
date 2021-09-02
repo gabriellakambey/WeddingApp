@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,14 +36,14 @@ public class GuestDetailDialog extends AppCompatDialogFragment {
 
     GuestModel guestModel;
     TextView guestName, status, email, phoneNumber, address;
-    int guestId;
-    int currentGroup;
+    int guestId, currentGroup, invitationSize;
+    LinearLayout llEnable, llDisable;
     GuestUpdateModel guestUpdateModel;
     WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
     DetailDialogListener listener;
     AlertDialog alertDialog;
-    List<InvitationModel> invitationModel;
     int currentUserId = Prefs.getInt("user_id", 0);
+    Button close1, invite, close;
 
     @NonNull
     @Override
@@ -55,12 +56,6 @@ public class GuestDetailDialog extends AppCompatDialogFragment {
         builder.setView(view);
 
         alertDialog = builder.create();
-
-        // CLOSE BUTTON DIALOG
-        Button close = view.findViewById(R.id.btn_closeGuestDetail);
-        close.setOnClickListener(v -> {
-            alertDialog.dismiss();
-        });
 
         // SET DETAIL DATA
         guestModel = this.getArguments().getParcelable("guest selected");
@@ -83,12 +78,13 @@ public class GuestDetailDialog extends AppCompatDialogFragment {
         phoneNumber.setText(guestModel.getGuestNoHp());
         address.setText(guestModel.getHomeAddress());
 
-        // INVITE BUTTON
-        Button invite = view.findViewById(R.id.btn_inviteGuestDetail);
-        invite.setOnClickListener(v1 -> {
-            getInvitationSize();
-            alertDialog.dismiss();
-        });
+        // INVITE BUTTON IN CONDITION
+        llEnable = view.findViewById(R.id.ll_enableInvite);
+        llDisable = view.findViewById(R.id.ll_disableInvite);
+        close1 = view.findViewById(R.id.btn_closeGuestDetail1);
+        invite = view.findViewById(R.id.btn_inviteGuestDetail);
+        close = view.findViewById(R.id.btn_closeGuestDetail);
+        getInvitationSize();
 
         return alertDialog;
     }
@@ -98,14 +94,28 @@ public class GuestDetailDialog extends AppCompatDialogFragment {
         call.enqueue(new Callback<List<InvitationModel>>() {
             @Override
             public void onResponse(Call<List<InvitationModel>> call, Response<List<InvitationModel>> response) {
-                invitationModel = response.body();
-                if (response.isSuccessful()) {
-                    if (invitationModel.size() != 0) {
-                        getGuestById();
-                    } else {
-//                        Toast.makeText(getContext(), "Create invitation first", Toast.LENGTH_SHORT).show();
+                List<InvitationModel> invitationModel = response.body();
+                if (invitationModel.size() == 0) {
+                    llDisable.setVisibility(View.VISIBLE);
+                    llEnable.setVisibility(View.GONE);
+                    close1.setOnClickListener(v -> {
                         alertDialog.dismiss();
-                    }
+                    });
+
+                } else {
+                    llEnable.setVisibility(View.VISIBLE);
+                    llDisable.setVisibility(View.GONE);
+
+
+                    invite.setOnClickListener(v1 -> {
+                        getGuestById();
+                        alertDialog.dismiss();
+                    });
+
+                    close.setOnClickListener(v -> {
+                        alertDialog.dismiss();
+                    });
+
                 }
             }
 

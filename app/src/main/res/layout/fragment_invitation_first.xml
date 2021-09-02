@@ -15,11 +15,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semi_bold"
             android:text="You don't have wedding invitation"
             android:textAlignment="center"
             android:textColor="@color/navy"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/btn_createInvit"
@@ -27,10 +27,11 @@
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/button_gold"
+            android:fontFamily="@font/poppins_medium"
             android:text="Create Invitation"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="13sp" />
 
     </LinearLayout>
 
