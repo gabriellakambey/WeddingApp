@@ -50,10 +50,10 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="Add Budget"
             android:textColor="@color/navy"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="16sp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -72,10 +72,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_semi_bold"
                     android:text="Budget Title"
                     android:textColor="@color/navy"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/et_titleAddBudget"
@@ -83,6 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/round_navy"
+                    android:fontFamily="@font/poppins_medium"
                     android:hint="Enter the budget title"
                     android:inputType="text"
                     android:maxLines="1"
@@ -95,10 +96,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_semi_bold"
                     android:text="Cost / Estimate"
                     android:textColor="@color/navy"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/et_costAddBudget"
@@ -106,6 +107,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/round_navy"
+                    android:fontFamily="@font/poppins_medium"
                     android:hint="Enter the price estimate"
                     android:inputType="number"
                     android:maxLines="1"
@@ -118,10 +120,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_semi_bold"
                     android:text="Notes"
                     android:textColor="@color/navy"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -137,21 +139,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/transparent_background"
+                        android:fontFamily="@font/poppins_medium"
                         android:hint="Write note for the schedule"
                         android:inputType="textLongMessage"
                         android:textColor="@color/navy"
                         android:textColorHint="@color/hint"
-                        android:textSize="12dp" />
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
                 <Button
                     android:id="@+id/btn_saveAddBudget"
-                    android:layout_width="100dp"
+                    android:layout_width="150dp"
                     android:layout_height="45dp"
                     android:layout_gravity="right"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/button_gold"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Save"
                     android:textAllCaps="false"
                     android:textColor="@color/white" />

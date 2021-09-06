@@ -60,7 +60,6 @@ public class PaymentFragment extends Fragment implements PaymentAdapter.ClickedI
         // RECYCLER VIEW LIST PAYMENT
         rv_payment = v.findViewById(R.id.rv_paidItem);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rv_payment.setLayoutManager(layoutManager);
 
         getPaidList();

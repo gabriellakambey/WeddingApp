@@ -5,21 +5,22 @@
     android:layout_height="match_parent"
     tools:context=".view.fragment.BudgetListFragment">
 
+    <!--    final view payment-->
     <RelativeLayout
         android:id="@+id/rl_finalPayment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20dp"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <TextView
             android:id="@+id/tv_totalBudget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semi_bold"
             android:text="Total Paid"
             android:textColor="@color/navy"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="16sp" />
 
         <LinearLayout
             android:id="@+id/ll_totalBudget"
@@ -36,11 +37,11 @@
                 android:id="@+id/tv_totalBudgetUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semi_bold"
                 android:text="IDR 0"
                 android:textAlignment="center"
                 android:textColor="@color/navy"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -50,10 +51,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/ll_totalBudget"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_semi_bold"
             android:text="Your Budget Item"
             android:textColor="@color/navy"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="16sp" />
 
         <ScrollView
             android:id="@+id/sv_rv"
@@ -72,13 +73,14 @@
 
     </RelativeLayout>
 
+    <!--    first view payment-->
     <LinearLayout
         android:id="@+id/ll_firstPayment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <TextView
             android:layout_width="match_parent"

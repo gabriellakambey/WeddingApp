@@ -98,7 +98,6 @@ public class BudgetListFragment extends Fragment implements OurBudgetDialog.OurB
         // RECYCLER VIEW LIST BUDGET
         rv_budgetList = v.findViewById(R.id.rv_budgetItem);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-//        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rv_budgetList.setLayoutManager(layoutManager);
 
         getBudget();

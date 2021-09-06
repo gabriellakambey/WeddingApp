@@ -63,6 +63,7 @@
         android:layout_marginHorizontal="80dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/button_gold"
+        android:fontFamily="@font/poppins_medium"
         android:text="Choose Template"
         android:textAllCaps="false"
         android:textColor="@color/white" />

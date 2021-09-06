@@ -5,12 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".view.fragment.BudgetListFragment">
 
+    <!--    final view budget list-->
     <RelativeLayout
         android:id="@+id/rl_finalBudget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:id="@+id/totalBudget"
@@ -21,10 +22,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semi_bold"
                 android:text="Total Budget"
                 android:textColor="@color/navy"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:id="@+id/ll_totalBudget"
@@ -39,11 +40,11 @@
                     android:id="@+id/tv_totalBudgetUp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semi_bold"
                     android:text="IDR 0"
                     android:textAlignment="center"
                     android:textColor="@color/navy"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="20sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -54,6 +55,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
                         android:text="Our Budget:"
                         android:textAlignment="center"
                         android:textColor="@color/navy"
@@ -67,6 +69,7 @@
                         android:id="@+id/tv_ourBudget"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
                         android:text="IDR 0"
                         android:textColor="@color/navy"
                         android:textSize="14sp" />
@@ -89,10 +92,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_semi_bold"
                 android:text="Your Budget Item"
                 android:textColor="@color/navy"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -123,13 +126,14 @@
 
     </RelativeLayout>
 
+    <!--    first view budget list-->
     <LinearLayout
         android:id="@+id/ll_firstBudget"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <TextView
             android:layout_width="match_parent"

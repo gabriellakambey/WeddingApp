@@ -82,7 +82,6 @@ public class AddInvitationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_invitation);
 
-
         // OPEN MAP BUTTON
         if (isServicesOk()) {
 //            ImageView ivMaps = findViewById(R.id.iv_maps);
@@ -190,17 +189,10 @@ public class AddInvitationActivity extends AppCompatActivity {
             if (grooms.isEmpty() && groomsFather.isEmpty() && groomsMother.isEmpty() && brides.isEmpty() && bridesFather.isEmpty() && bridesMother.isEmpty() && note.isEmpty() && titleLocation == null) {
                 Toast.makeText(this, "Field can not empty", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
-//                addInvitationData(grooms, groomsFather, groomsMother, brides, bridesFather, bridesMother, note, template);
+//                Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
+                addInvitationData(grooms, groomsFather, groomsMother, brides, bridesFather, bridesMother, note, template);
             }
         });
-
-//        btnSave.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                addInvitationData();
-//            }
-//        });
 
     }
 
