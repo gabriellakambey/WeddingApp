@@ -1,6 +1,7 @@
 package com.example.weddingvaganza.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -26,9 +27,10 @@ import retrofit2.Response;
 
 public class AddScheduleInCategoryActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     int monthDate, yearDate;
-    EditText textDate, etTitle, etNote;
+    EditText etTitle, etNote;
+    TextView textDate;
     LinearLayout datePicker;
-    String status, categoryTitle;
+    String status, categoryTitle, date;
     int categoryId;
     int currentUserId = Prefs.getInt("user_id", 0);
 
@@ -64,35 +66,42 @@ public class AddScheduleInCategoryActivity extends AppCompatActivity implements 
 
         Button btnSave = findViewById(R.id.btn_saveAddScheduleInCategory);
         btnSave.setOnClickListener(v -> {
-            String date = textDate.getText().toString();
             String title = etTitle.getText().toString();
             String note = etNote.getText().toString();
             status  = "unchecked";
 
-            WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
-            Call<AddScheduleResponse> call = weddingService.addNewSchedule(date, title, categoryId, note, currentUserId, status, monthDate, yearDate);
-            call.enqueue(new Callback<AddScheduleResponse>() {
-                @Override
-                public void onResponse(Call<AddScheduleResponse> call, Response<AddScheduleResponse> response) {
-                    AddScheduleResponse addScheduleResponse = response.body();
-                    if (addScheduleResponse.getStatus().equals("success")) {
-                        Toast.makeText(AddScheduleInCategoryActivity.this, "Success add schedule", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent();
-                        setResult(RESULT_OK, i);
-                        finish();
-                    } else {
-                        Toast.makeText(AddScheduleInCategoryActivity.this, "Failed add data", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<AddScheduleResponse> call, Throwable t) {
-
-                }
-            });
+            if (title.isEmpty() && note.isEmpty()) {
+                Toast.makeText(this, "Field can not empty", Toast.LENGTH_SHORT).show();
+            } else {
+                onAddSchedule(title, note);
+            }
 
         });
 
+    }
+
+    private void onAddSchedule(String title, String note) {
+        WeddingService weddingService = WeddingApi.getRetrofit().create(WeddingService.class);
+        Call<AddScheduleResponse> call = weddingService.addNewSchedule(date, title, categoryId, note, currentUserId, status, monthDate, yearDate);
+        call.enqueue(new Callback<AddScheduleResponse>() {
+            @Override
+            public void onResponse(Call<AddScheduleResponse> call, Response<AddScheduleResponse> response) {
+                AddScheduleResponse addScheduleResponse = response.body();
+                if (addScheduleResponse.getStatus().equals("success")) {
+                    Toast.makeText(AddScheduleInCategoryActivity.this, "Success add schedule", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent();
+                    setResult(RESULT_OK, i);
+                    finish();
+                } else {
+                    Toast.makeText(AddScheduleInCategoryActivity.this, "Failed add data", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddScheduleResponse> call, Throwable t) {
+
+            }
+        });
     }
 
     private void onBack() {
@@ -119,8 +128,9 @@ public class AddScheduleInCategoryActivity extends AppCompatActivity implements 
         month = month + 1;
         monthDate = month;
         yearDate = year;
-        String date = dayOfMonth + "/" + month + "/" + year;
+        date = dayOfMonth + "/" + month + "/" + year;
         textDate.setText(date);
+        textDate.setTextColor(ContextCompat.getColor(this, R.color.navy));
     }
 
 }

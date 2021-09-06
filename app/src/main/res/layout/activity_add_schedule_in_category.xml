@@ -60,11 +60,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="30dp"
                     android:layout_marginTop="20dp"
-                    android:fontFamily="@font/roboto_regular"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Add Schedule"
                     android:textColor="@color/navy"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -83,11 +82,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:fontFamily="@font/roboto_regular"
+                            android:fontFamily="@font/poppins_semi_bold"
                             android:text="Date"
                             android:textColor="@color/navy"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:textSize="14sp" />
 
                         <LinearLayout
                             android:id="@+id/dp_addScheduleInCategory"
@@ -96,18 +94,20 @@
                             android:layout_marginBottom="10dp"
                             android:background="@drawable/round_navy"
                             android:orientation="horizontal"
-                            android:padding="13dp">
+                            android:padding="12dp">
 
-                            <EditText
+                            <TextView
                                 android:id="@+id/td_addScheduleInCategory"
                                 android:layout_width="150dp"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/transparent_background"
-                                android:hint="dd/mm/yyyy"
-                                android:inputType="date" />
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="dd/mm/yyyy"
+                                android:textColor="@color/hint"
+                                android:textSize="12sp" />
 
                             <ImageView
-                                android:layout_width="20dp"
+                                android:layout_width="18dp"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_calendar" />
 
@@ -117,11 +117,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:fontFamily="@font/roboto_regular"
+                            android:fontFamily="@font/poppins_semi_bold"
                             android:text="Title"
                             android:textColor="@color/navy"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:textSize="14sp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -136,8 +135,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/transparent_background"
+                                android:fontFamily="@font/poppins_medium"
                                 android:hint="Enter the Title"
-                                android:inputType="text" />
+                                android:inputType="text"
+                                android:textSize="12sp" />
 
                         </LinearLayout>
 
@@ -145,11 +146,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:fontFamily="@font/roboto_regular"
+                            android:fontFamily="@font/poppins_semi_bold"
                             android:text="Category Event"
                             android:textColor="@color/navy"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:textSize="14sp" />
 
 
                         <LinearLayout
@@ -165,9 +165,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/transparent_background"
+                                android:fontFamily="@font/poppins_medium"
                                 android:text="Current category events"
                                 android:textColor="@color/navy"
-                                android:textSize="14sp" />
+                                android:textSize="12sp" />
 
                         </LinearLayout>
 
@@ -175,11 +176,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:fontFamily="@font/roboto_regular"
+                            android:fontFamily="@font/poppins_semi_bold"
                             android:text="Note"
                             android:textColor="@color/navy"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:textSize="14sp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -194,23 +194,26 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/transparent_background"
+                                android:fontFamily="@font/poppins_medium"
                                 android:hint="Write note for the schedule"
-                                android:inputType="textLongMessage" />
+                                android:inputType="textLongMessage"
+                                android:textSize="12sp" />
 
                         </LinearLayout>
 
                         <Button
                             android:id="@+id/btn_saveAddScheduleInCategory"
-                            android:layout_width="100dp"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
                             android:background="@drawable/button_gold"
-                            android:fontFamily="@font/roboto_regular"
+                            android:fontFamily="@font/poppins_medium"
                             android:paddingHorizontal="20dp"
                             android:paddingVertical="5dp"
                             android:text="Save"
                             android:textAllCaps="false"
                             android:textColor="@color/white"
+                            android:textSize="13sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>

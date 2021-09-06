@@ -61,11 +61,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="30dp"
                     android:layout_marginTop="20dp"
-                    android:fontFamily="@font/roboto_regular"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Category Schedule"
                     android:textColor="@color/navy"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -84,11 +83,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:fontFamily="@font/roboto_regular"
+                            android:fontFamily="@font/poppins_semi_bold"
                             android:text="Category"
                             android:textColor="@color/navy"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textSize="14sp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -103,20 +101,22 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/transparent_background"
+                                android:fontFamily="@font/poppins_medium"
                                 android:hint="Enter the category schedule"
                                 android:inputType="text"
                                 android:maxLines="1"
                                 android:textColor="@color/navy"
                                 android:textColorHint="@color/hint"
                                 android:textSize="12sp"
-                                android:visibility="visible"/>
+                                android:visibility="visible" />
 
                             <TextView
                                 android:id="@+id/tv_titleCategory"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_medium"
                                 android:text="Category"
-                                android:textColor="@color/navy"
+                                android:textColor="@color/hint"
                                 android:textSize="12sp"
                                 android:visibility="gone" />
 
@@ -124,12 +124,12 @@
 
                         <Button
                             android:id="@+id/btn_saveCategory"
-                            android:layout_width="100dp"
+                            android:layout_width="130dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
                             android:layout_marginTop="10dp"
                             android:background="@drawable/button_gold"
-                            android:fontFamily="@font/roboto_regular"
+                            android:fontFamily="@font/poppins_medium"
                             android:paddingHorizontal="20dp"
                             android:paddingVertical="5dp"
                             android:text="Next"
@@ -143,23 +143,23 @@
 
             </LinearLayout>
 
+            <!--            create schedule-->
             <LinearLayout
                 android:id="@+id/ll_addSchedule"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="30dp"
                     android:layout_marginTop="20dp"
-                    android:fontFamily="@font/roboto_regular"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Create Schedule"
                     android:textColor="@color/navy"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -178,11 +178,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:fontFamily="@font/roboto_regular"
+                            android:fontFamily="@font/poppins_semi_bold"
                             android:text="Date"
                             android:textColor="@color/navy"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textSize="14sp" />
 
                         <LinearLayout
                             android:id="@+id/dp_addScheduleFirst"
@@ -191,13 +190,14 @@
                             android:layout_marginBottom="10dp"
                             android:background="@drawable/round_navy"
                             android:orientation="horizontal"
-                            android:padding="15dp">
+                            android:padding="13dp">
 
                             <TextView
                                 android:id="@+id/td_addScheduleFirst"
                                 android:layout_width="150dp"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/transparent_background"
+                                android:fontFamily="@font/poppins_medium"
                                 android:text="dd/mm/yyyy"
                                 android:textColor="@color/hint"
                                 android:textSize="12sp" />
@@ -213,11 +213,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:fontFamily="@font/roboto_regular"
+                            android:fontFamily="@font/poppins_semi_bold"
                             android:text="Title Schedule"
                             android:textColor="@color/navy"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textSize="14sp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -232,6 +231,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/transparent_background"
+                                android:fontFamily="@font/poppins_medium"
                                 android:hint="Enter the title of schedule"
                                 android:inputType="text"
                                 android:maxLines="1"
@@ -245,11 +245,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:fontFamily="@font/roboto_regular"
+                            android:fontFamily="@font/poppins_semi_bold"
                             android:text="Note"
                             android:textColor="@color/navy"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textSize="14sp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -257,13 +256,14 @@
                             android:layout_marginBottom="10dp"
                             android:background="@drawable/round_navy"
                             android:orientation="horizontal"
-                            android:padding="15dp">
+                            android:padding="13dp">
 
                             <EditText
                                 android:id="@+id/et_noteAddScheduleFirst"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/transparent_background"
+                                android:fontFamily="@font/poppins_medium"
                                 android:hint="Write note for the schedule"
                                 android:inputType="textLongMessage"
                                 android:textColor="@color/navy"
@@ -278,13 +278,12 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
                             android:background="@drawable/button_gold"
-                            android:fontFamily="@font/roboto_regular"
+                            android:fontFamily="@font/poppins_medium"
                             android:paddingHorizontal="20dp"
                             android:paddingVertical="5dp"
                             android:text="Save Schedule"
                             android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textStyle="bold" />
+                            android:textColor="@color/white" />
 
                     </LinearLayout>
 

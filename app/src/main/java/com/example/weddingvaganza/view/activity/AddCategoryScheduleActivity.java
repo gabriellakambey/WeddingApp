@@ -91,8 +91,6 @@ public class AddCategoryScheduleActivity extends AppCompatActivity implements Da
             status = "unchecked";
 
             if (date != null && !title.isEmpty() && !note.isEmpty()) {
-                Log.d(TAG, "onCreate: " + categoryId);
-                Toast.makeText(this, "date: " + date + " title: " + title + " note: " + note + " id; " + categoryId, Toast.LENGTH_SHORT).show();
                 postSchedule();
             } else if (date == null) {
                 Toast.makeText(this, "Field can not be empty", Toast.LENGTH_SHORT).show();

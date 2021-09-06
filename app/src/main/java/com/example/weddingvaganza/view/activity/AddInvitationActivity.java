@@ -189,7 +189,6 @@ public class AddInvitationActivity extends AppCompatActivity {
             if (grooms.isEmpty() && groomsFather.isEmpty() && groomsMother.isEmpty() && brides.isEmpty() && bridesFather.isEmpty() && bridesMother.isEmpty() && note.isEmpty() && titleLocation == null) {
                 Toast.makeText(this, "Field can not empty", Toast.LENGTH_SHORT).show();
             } else {
-//                Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
                 addInvitationData(grooms, groomsFather, groomsMother, brides, bridesFather, bridesMother, note, template);
             }
         });
