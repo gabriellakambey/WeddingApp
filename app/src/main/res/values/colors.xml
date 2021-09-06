@@ -17,4 +17,9 @@
     <color name="yellow">#F2C94C</color>
     <color name="blue">#2F80ED</color>
 
+    <color name="dark_brown">#351F10</color>
+    <color name="soft_brown">#665E5A</color>
+    <color name="cream">#E2D4BF</color>
+    <color name="skin_color">#EABB98</color>
+
 </resources>

@@ -26,21 +26,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:fontFamily="@font/poppins_semi_bold"
             android:text="Name"
             android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/validate_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="* Validate name"
             android:textColor="#ED4337"
             android:textSize="12sp"
-            android:textStyle="bold"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <EditText
             android:id="@+id/et_name"
@@ -48,33 +48,34 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@drawable/round_champagne"
+            android:fontFamily="@font/poppins_medium"
             android:hint="Enter Your Name"
             android:inputType="text"
             android:maxLines="1"
             android:padding="15dp"
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins_semi_bold"
             android:text="Phone Number (WhatsApp)"
             android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/validate_phoneNum"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="* Validate phone number"
             android:textColor="#ED4337"
             android:textSize="12sp"
-            android:textStyle="bold"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <EditText
             android:id="@+id/et_phoneNumber"
@@ -82,33 +83,34 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@drawable/round_champagne"
+            android:fontFamily="@font/poppins_medium"
             android:hint="Enter Your Phone Number"
             android:inputType="phone"
             android:maxLines="1"
             android:padding="15dp"
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins_semi_bold"
             android:text="Email"
             android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/validate_emailRegis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="* Validate email"
             android:textColor="#ED4337"
             android:textSize="12sp"
-            android:textStyle="bold"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <EditText
             android:id="@+id/et_emailRegis"
@@ -116,33 +118,34 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@drawable/round_champagne"
+            android:fontFamily="@font/poppins_medium"
             android:hint="Enter Your Email Address"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:padding="15dp"
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins_semi_bold"
             android:text="Password"
             android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/validate_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="* Validate password"
             android:textColor="#ED4337"
             android:textSize="12sp"
-            android:textStyle="bold"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <com.xwray.passwordview.PasswordView
             android:id="@+id/et_passwordRegis"
@@ -151,12 +154,13 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/round_champagne"
             android:drawableTint="@color/white"
+            android:fontFamily="@font/poppins_medium"
             android:hint="Enter Your Password"
             android:inputType="textPassword"
             android:padding="15dp"
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
-            android:textSize="14sp"
+            android:textSize="12sp"
             app:useStrikeThrough="true" />
 
         <LinearLayout
@@ -168,6 +172,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
                 android:text="Minimum 8 characters"
                 android:textColor="@color/white"
                 android:textSize="11sp" />
@@ -178,21 +183,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins_semi_bold"
             android:text="Confirm Password"
             android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/validate_confirmPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="* Validate confirm password"
             android:textColor="#ED4337"
             android:textSize="12sp"
-            android:textStyle="bold"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <com.xwray.passwordview.PasswordView
             android:id="@+id/et_passwordConfirm"
@@ -201,33 +206,34 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/round_champagne"
             android:drawableTint="@color/white"
+            android:fontFamily="@font/poppins_medium"
             android:hint="Enter Your Password"
             android:inputType="textPassword"
             android:padding="15dp"
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
-            android:textSize="14sp"
+            android:textSize="12sp"
             app:useStrikeThrough="true" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins_semi_bold"
             android:text="Bride's &amp; Groom's Name"
             android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/validate_coupleName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="* Validate couple name"
             android:textColor="#ED4337"
             android:textSize="12sp"
-            android:textStyle="bold"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <EditText
             android:id="@+id/et_coupleName"
@@ -235,33 +241,34 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@drawable/round_champagne"
+            android:fontFamily="@font/poppins_medium"
             android:hint="Ex: Alex &amp; Kyle"
             android:inputType="text"
             android:maxLines="1"
             android:padding="15dp"
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins_semi_bold"
             android:text="The Wedding Date"
             android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/validate_wedDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="* Validate wedding date"
             android:textColor="#ED4337"
             android:textSize="12sp"
-            android:textStyle="bold"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/ll_dateSignUp"
@@ -277,6 +284,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:background="@drawable/transparent_background"
+                android:fontFamily="@font/poppins_medium"
                 android:hint="dd/mm/yyyy"
                 android:inputType="date"
                 android:maxLines="1"
@@ -305,11 +313,11 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"
             android:background="@drawable/button_champagne"
+            android:fontFamily="@font/poppins_semi_bold"
             android:text="Sign Up"
             android:textAllCaps="false"
             android:textColor="@color/navy"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -320,6 +328,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
                 android:text="Already have an account?"
                 android:textColor="@color/white"
                 android:textSize="11sp" />
@@ -332,10 +341,10 @@
                 android:id="@+id/tv_signIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semi_bold"
                 android:text="Sign In"
                 android:textColor="@color/champagne"
-                android:textSize="11sp"
-                android:textStyle="bold" />
+                android:textSize="11sp" />
 
         </LinearLayout>
 
@@ -351,6 +360,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:fontFamily="@font/poppins_regular"
                 android:text="By registering, I agree to the Wedding Vaganza's"
                 android:textColor="@color/white"
                 android:textSize="11sp" />
@@ -359,6 +369,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:fontFamily="@font/poppins_regular"
                 android:text="Terms and Conditions"
                 android:textColor="@color/white"
                 android:textSize="11sp" />

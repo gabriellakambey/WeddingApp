@@ -198,10 +198,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppins_semi_bold"
                     android:text="Menu"
                     android:textColor="@color/navy"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -235,6 +235,7 @@
                             <TextView
                                 android:layout_width="60dp"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_medium"
                                 android:text="Guests"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
@@ -254,11 +255,12 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:background="@drawable/button_champagne"
-                                android:src="@drawable/ic_budget" />
+                                android:src="@drawable/ic_wedding_cost" />
 
                             <TextView
                                 android:layout_width="60dp"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_medium"
                                 android:text="Budget"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
@@ -277,11 +279,12 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:background="@drawable/button_champagne"
-                                android:src="@drawable/ic_vendors" />
+                                android:src="@drawable/ic_rating" />
 
                             <TextView
                                 android:layout_width="60dp"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_medium"
                                 android:text="Vendor"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
@@ -304,10 +307,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="To The Wedding"
                     android:textColor="@color/navy"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -342,6 +345,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:fontFamily="@font/poppins_medium"
                                 android:text="50%"
                                 android:textAlignment="center"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -374,6 +378,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
                                     android:text="Task "
                                     android:textColor="@color/gold"
                                     android:textSize="14sp" />
@@ -382,6 +387,7 @@
                                     android:id="@+id/tv_cekTask"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
                                     android:text=" 25"
                                     android:textColor="@color/gold"
                                     android:textSize="14sp" />
@@ -389,6 +395,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
                                     android:text="/"
                                     android:textColor="@color/gold"
                                     android:textSize="14sp" />
@@ -397,6 +404,7 @@
                                     android:id="@+id/tv_totTask"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
                                     android:text="50"
                                     android:textColor="@color/gold"
                                     android:textSize="14sp" />
@@ -421,10 +429,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppins_semi_bold"
                     android:text="Guests"
                     android:textColor="@color/navy"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -450,33 +458,33 @@
                                 android:id="@+id/tv_totGuestList"
                                 android:layout_width="60dp"
                                 android:layout_height="29dp"
-                                android:layout_marginRight="30dp"
+                                android:layout_marginEnd="30dp"
+                                android:fontFamily="@font/poppins_semi_bold"
                                 android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/navy"
-                                android:textSize="25dp"
-                                android:textStyle="bold" />
+                                android:textSize="25sp" />
 
                             <TextView
                                 android:id="@+id/tv_totGuestInvited"
                                 android:layout_width="60dp"
                                 android:layout_height="29dp"
-                                android:layout_marginRight="30dp"
+                                android:layout_marginEnd="30dp"
+                                android:fontFamily="@font/poppins_semi_bold"
                                 android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/navy"
-                                android:textSize="25dp"
-                                android:textStyle="bold" />
+                                android:textSize="25sp" />
 
                             <TextView
                                 android:id="@+id/tv_totGuestCheckIn"
                                 android:layout_width="60dp"
                                 android:layout_height="29dp"
+                                android:fontFamily="@font/poppins_semi_bold"
                                 android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/navy"
-                                android:textSize="25dp"
-                                android:textStyle="bold" />
+                                android:textSize="25sp" />
 
                         </LinearLayout>
 
@@ -536,10 +544,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppins_semi_bold"
                     android:text="Budget"
                     android:textColor="@color/navy"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -565,23 +573,21 @@
                             <TextView
                                 android:layout_width="150dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginRight="30dp"
-                                android:fontFamily="@font/snell_roundhand"
+                                android:layout_marginEnd="30dp"
+                                android:fontFamily="@font/poppins_semi_bold"
                                 android:text="Our Budget"
                                 android:textAlignment="center"
                                 android:textColor="@color/gold"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:layout_width="150dp"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/snell_roundhand"
+                                android:fontFamily="@font/poppins_semi_bold"
                                 android:text="Cost"
                                 android:textAlignment="center"
                                 android:textColor="@color/gold"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
+                                android:textSize="16sp" />
 
                         </LinearLayout>
 
@@ -595,22 +601,22 @@
                                 android:id="@+id/tv_our_budget"
                                 android:layout_width="150dp"
                                 android:layout_height="29dp"
-                                android:layout_marginRight="30dp"
+                                android:layout_marginEnd="30dp"
+                                android:fontFamily="@font/poppins_semi_bold"
                                 android:text="IDR 0"
                                 android:textAlignment="center"
                                 android:textColor="@color/navy"
-                                android:textSize="25dp"
-                                android:textStyle="bold" />
+                                android:textSize="25sp" />
 
                             <TextView
                                 android:id="@+id/tv_cost"
                                 android:layout_width="150dp"
                                 android:layout_height="29dp"
+                                android:fontFamily="@font/poppins_semi_bold"
                                 android:text="IDR 0"
                                 android:textAlignment="center"
                                 android:textColor="@color/navy"
-                                android:textSize="25dp"
-                                android:textStyle="bold" />
+                                android:textSize="25sp" />
 
                         </LinearLayout>
 

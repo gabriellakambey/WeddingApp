@@ -10,9 +10,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_centerInParent="true"
         android:layout_margin="24dp"
-        android:layout_centerInParent="true">
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="80dp"
@@ -23,75 +23,78 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Email"
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:layout_marginTop="25dp"
-            android:textColor="@color/white"/>
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="Email"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:maxLines="1"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/white"
-            android:hint="Enter Your Email"
-            android:textColorHint="@color/hint"
             android:layout_marginTop="5dp"
+            android:background="@drawable/round_champagne"
+            android:fontFamily="@font/poppins_medium"
+            android:hint="Enter Your Email"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
             android:padding="15dp"
-            android:background="@drawable/round_champagne"/>
+            android:textColor="@color/white"
+            android:textColorHint="@color/hint"
+            android:textSize="14sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Password"
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:layout_marginTop="15dp"
-            android:textColor="@color/white"/>
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="Password"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
         <com.xwray.passwordview.PasswordView
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Your Password"
-            android:textColorHint="@color/hint"
-            android:textColor="@color/white"
-            android:inputType="textPassword"
-            android:textSize="14sp"
             android:layout_marginTop="5dp"
-            android:padding="15dp"
             android:background="@drawable/round_champagne"
-            app:useStrikeThrough="true"
-            android:drawableTint="@color/white"/>
+            android:drawableTint="@color/white"
+            android:fontFamily="@font/poppins_medium"
+            android:hint="Enter Your Password"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/hint"
+            android:textSize="14sp"
+            app:useStrikeThrough="true" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp">
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="11sp"
+                android:fontFamily="@font/poppins_regular"
                 android:text="Forgot password?"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:textSize="11sp" />
 
             <RelativeLayout
                 android:layout_width="5dp"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
             <TextView
                 android:id="@+id/tv_clickHere"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="11sp"
+                android:fontFamily="@font/poppins_semi_bold"
                 android:text="Click Here"
-                android:textStyle="bold"
-                android:textColor="@color/champagne"/>
+                android:textColor="@color/champagne"
+                android:textSize="11sp" />
 
         </LinearLayout>
 
@@ -99,43 +102,44 @@
             android:id="@+id/btn_login"
             android:layout_width="180dp"
             android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"
+            android:background="@drawable/button_champagne"
+            android:fontFamily="@font/poppins_semi_bold"
             android:text="Sign In"
             android:textAllCaps="false"
-            android:textSize="18sp"
-            android:textStyle="bold"
             android:textColor="@color/navy"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/button_champagne"/>
+            android:textSize="18sp" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="11sp"
+            android:fontFamily="@font/poppins_regular"
             android:text="Don't have an account?"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textSize="11sp" />
 
         <RelativeLayout
             android:layout_width="5dp"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
         <TextView
             android:id="@+id/tv_signUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:fontFamily="@font/poppins_semi_bold"
             android:text="Sign Up"
-            android:textStyle="bold"
-            android:textColor="@color/champagne"/>
+            android:textColor="@color/champagne"
+            android:textSize="12sp" />
 
     </LinearLayout>
 
